@@ -1,0 +1,64 @@
+<script src="/scripts/indexScript.js"></script>
+<script src="/scripts/ngoRegisterScript.js"></script>
+<link rel="stylesheet" href="/styles/css/ngoRegister.css" />
+<link rel="stylesheet" href="/styles/css/needLogin.css" />
+
+<section id="main">
+    <aside>
+        <div class="container">
+            <form name="form-registerNGO" action="#" method="POST" onsubmit="changeForm(1)">
+                <div class="registerNGO">
+                    <h1 class="form-title">1° - Dados da ONG</h1>
+                    <input name="ngoName" class="form-input" type="text" placeholder="Nome da ONG" length="150" />
+                    <textarea name="ngoDescription" type="text" class="form-input form-textarea"
+                        placeholder="Descrição da ONG" length="3000"></textarea>
+                    <label for="ngoLogo" class="form-btnFile">Logo da ONG</label>
+                    <input id="ngoLogo" class="form-file" name="ngoLogo" class="form-image" type="file"
+                        placeholder="Logo da ONG" />
+                    <input name="ngoAdress" class="form-input" type="text" placeholder="Endereço da ONG" length="200" />
+                    <input name="ngoCases" class="form-input" type="text" placeholder="Causas" />
+                    <input name="ngoCNPJ" class="form-input" type="number" placeholder="CNPJ - __.___.___/____-__"
+                        length="18" />
+                    <div class="form-submit" name="submitRegisterNGO-1">Próximo</div>
+                </div>
+
+                <div class="registerNGO">
+                    <h1 class="form-title">2° - Contato e registro</h1>
+                    <input name="ngoTelephone" class="form-input" type="number" placeholder="Telefone - (__) ____-____" length="150" />
+                    <input name="ngoEmail" class="form-input" type="email" placeholder="Email da ONG" length="200" />
+                    <input name="ngoPassword" class="form-input" type="password" placeholder="Senha" />
+                    <input name="ngoConfirmPassword" class="form-input" type="password" placeholder="Confirmar senha"
+                        length="18" />
+                    <div class="form-submit" name="submitRegisterNGO-2">Próximo</div>
+                </div>
+
+                <div class="registerNGO">
+                    <h1 class="form-title">3° - Dados da ONG</h1>
+                    <textarea name="ngoDescription" type="text" class="form-input form-textarea"
+                        placeholder="Descreva brevemente sua ONG; Onde atua, trabalhos realizados, causas, etc" length="5000" style="height: 300px"></textarea>
+                    <button id="registerNGO-submit" disabled type="submit">Enviar dados</button>
+                </div>
+
+            </form>
+        </div>
+    </aside>
+    <aside>
+        <div class="container">
+            <nav class="steps">
+                <div class="step">
+                    <h1>1° Passo</h1>
+                    <p>Dados da ONG.</p>
+                </div>
+                <div class="step disabled">
+                    <h1>2° Passo</h1>
+                    <p>Informações de contato e registro.</p>
+                </div>
+                <div class="step disabled">
+                    <h1>3° Passo</h1>
+                    <p>Descrição da ONG.</p>
+                </div>
+            </nav>
+        </div>
+    </aside>
+</section>
+<script>init()</script>

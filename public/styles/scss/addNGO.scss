@@ -1,0 +1,15 @@
+aside:first-child{
+    .container{
+        display: flex;
+        justify-content: center;
+    }
+    #form-login{
+        display: none;
+    }
+}
+aside:last-child{
+    .container{
+        display: flex;
+        align-items: center;
+    }
+}

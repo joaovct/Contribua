@@ -1,0 +1,93 @@
+// MAIN VARS
+
+$mainColor: #3171e0;
+$margin4: 40px;
+$margin2: 20px;
+
+body {
+  height: calc(100% - 155px);
+  width: 100%;
+  position: absolute;
+}
+
+section#main {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  aside {
+    width: 49.8%;
+    background: white;
+    display: flex;
+    justify-content: center;
+
+    &:last-child {
+      height: auto;
+      background: #F2F2F2;
+      padding: 0 0 $margin4 0;
+    }
+
+    .title-aside {
+      margin: $margin2 0 $margin2 0;
+      font-size: 2.6em;
+      color: rgb(48, 48, 48);
+      font-weight: bold;
+    }
+    p{
+        font-size: 1.3em;
+    }
+    .group {
+      .person {
+        display: flex;
+        align-items: center;
+        padding: $margin2 $margin2 $margin2 0;
+        margin: 0;
+        .avatar {
+          img {
+            height: 150px;
+            width: 150px;
+            border-radius: 100%;
+            box-shadow: 0 0 15px -5px rgba(0,0,0,0.1)
+          }
+        }
+        .content {
+          margin: 0 0 0 $margin2;
+          width: 100%;
+          display: flex;
+          flex-flow: column nowrap;
+          justify-content: center;
+
+          .message {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 0;
+            color: rgb(46, 46, 46);
+          }
+          .name {
+            font-size: 1.2em;
+            font-weight: 500;
+            margin: 10px 0;
+            color: rgb(80, 80, 80);
+          }
+        }
+      }
+    }
+    form#letsgo{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        button[type=submit]{
+            width: auto;
+            margin: $margin2 0;
+            padding: $margin2 / 2 $margin4 / 2 $margin2 / 2 $margin4 / 2;
+            background: white;
+            text-transform: uppercase;
+            font-family: nunito;
+            font-weight: 500;
+            color: rgb(48, 48, 48);
+            box-shadow: 0 6px 10px 0px rgba(0,0,0,0.2);
+        }
+    }
+  }
+}

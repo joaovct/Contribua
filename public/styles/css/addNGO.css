@@ -1,0 +1,14 @@
+aside:first-child .container {
+  display: flex;
+  justify-content: center;
+}
+aside:first-child #form-login {
+  display: none;
+}
+
+aside:last-child .container {
+  display: flex;
+  align-items: center;
+}
+
+/*# sourceMappingURL=addngo.css.map */

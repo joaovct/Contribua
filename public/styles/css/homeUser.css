@@ -1,0 +1,115 @@
+body {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.centralize .container {
+  width: 1320px;
+  margin-left: 40px;
+}
+
+.feed-filters {
+  width: 100%;
+}
+.feed-filters .group-categories {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.feed-filters .group-categories .item-category {
+  margin: 0 10px 0;
+  padding: 5px 10px 5px 10px;
+  font-size: 1.2em;
+  border-radius: 7px;
+  color: #818181;
+  transition: 0.5s;
+}
+.feed-filters .group-categories .item-category:hover {
+  background: #f9f9f9;
+}
+.feed-filters .group-categories .item-category:first-child {
+  margin-left: 0;
+}
+.feed-filters .group-categories .active {
+  font-size: 1.5em;
+  color: #3171e0;
+  font-weight: 500;
+}
+
+.nav-articles {
+  width: 100%;
+  margin: 0 0 40px 0;
+}
+.nav-articles .title-nav {
+  font-size: 2.5em;
+  text-align: left;
+}
+.nav-articles .group-articles {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0;
+}
+.nav-articles .group-articles .feed-article {
+  display: inline-block;
+  width: 400px;
+  margin: 0 40px 0 0;
+  padding-bottom: 80px;
+}
+.nav-articles .group-articles .feed-article .article-image {
+  height: 250px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: block;
+  background-image: url("../../assets/imgs/animals-cats-cute-45170.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.nav-articles .group-articles .feed-article .article-title {
+  font-size: 2em;
+  font-weight: bolder;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+.nav-articles .group-articles .feed-article .article-subitle {
+  font-size: 1.2em;
+  font-weight: normal;
+  color: #818181;
+  margin: 5px 0 0 0;
+  position: relative;
+}
+.nav-articles .group-articles .feed-article .article-ngo {
+  display: flex;
+  align-items: center;
+  margin: 20px 0 0 0;
+}
+.nav-articles .group-articles .feed-article .article-ngo .article-ngo-avatar {
+  padding: 0;
+  margin: 0;
+  height: 70px;
+  width: 70px;
+  display: block;
+  background-image: url("../../assets/imgs/adorable-animal-baby-1851164.jpg");
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+.nav-articles .group-articles .feed-article .article-ngo .article-ngo-details {
+  margin-left: 20px;
+}
+.nav-articles .group-articles .feed-article .article-ngo .article-ngo-details .article-ngo-name {
+  font-weight: 500;
+  font-size: 1.1em;
+  margin: 0 0 5px 0;
+}
+.nav-articles .group-articles .feed-article .article-ngo .article-ngo-details .article-ngo-date {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+/*# sourceMappingURL=homeUser.css.map */

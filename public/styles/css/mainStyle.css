@@ -1,0 +1,200 @@
+@font-face {
+  font-family: Nunito;
+  font-weight: bold;
+  src: url("../../assets/fonts/Nunito-Bold.ttf");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: bolder;
+  src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: normal;
+  src: url("../../assets/fonts/Nunito-Regular.ttf");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: 500;
+  src: url("../../assets/fonts/Nunito-SemiBold.ttf");
+}
+html {
+  height: auto;
+  width: 100%;
+}
+
+* {
+  z-index: 1;
+}
+
+a {
+  text-decoration: none;
+  color: #3171e0;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: Nunito;
+  overflow-x: hidden;
+}
+
+header {
+  width: 100%;
+  background: white;
+  box-shadow: 0 0 24px 3px rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 12px 0 12px 0;
+  z-index: 999;
+}
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .container .logo {
+  height: 50px;
+}
+header .container nav.nav-header {
+  display: flex;
+  width: auto;
+}
+header .container nav.nav-header ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+header .container nav.nav-header ul a {
+  text-decoration: none;
+}
+header .container nav.nav-header ul li {
+  font-size: 1.5em;
+  font-weight: 500;
+  color: black;
+  margin: 0 10px 0 10px;
+  transition: 0.25s;
+  position: relative;
+  transform-style: preserve-3d;
+  border-radius: 7px;
+  padding: 3px 7px 3px 7px;
+}
+header .container nav.nav-header ul li:hover {
+  color: #3171e0;
+  background: rgba(49, 113, 224, 0.1);
+}
+
+form {
+  height: auto;
+  width: 400px;
+}
+form .form-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+form .form-textarea {
+  height: 150px;
+  width: 100%;
+  font-size: 1em;
+  font-family: Nunito;
+  resize: none;
+}
+form .form-input {
+  margin: 20px 0;
+  display: block;
+  width: 100%;
+  border: 1px solid #dddddd;
+  background: #f9f9f9;
+  padding: 10px 15px 10px 15px;
+  box-sizing: border-box;
+  outline: 0;
+  border-radius: 5px;
+  font-size: 1.25rem;
+}
+form .form-btnFile {
+  height: 150px;
+  width: 150px;
+  padding: 40px 20px 0 20px;
+  display: block;
+  font-size: 1.5em;
+  text-align: center;
+  background: #f9f9f9;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+form .form-file {
+  display: none;
+}
+form .form-submit,
+form button[type=submit],
+form input[type=submit] {
+  width: 100%;
+  border: none;
+  background: #3171e0;
+  box-shadow: 0 6px 16px 0 rgba(49, 113, 224, 0.3);
+  color: white;
+  font-size: 1.5em;
+  text-align: center;
+  padding: 6px 15px 6px 15px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+form .form-submit:disabled,
+form button[type=submit]:disabled,
+form input[type=submit]:disabled {
+  opacity: 0.5;
+}
+form .form-link {
+  margin: 20px 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-decoration: underline;
+  color: #3171e0;
+  font-size: 1.1em;
+}
+form .form-span-text {
+  width: 100%;
+  text-align: center;
+  font-size: 1.1em;
+  display: block;
+}
+form .form-span-text .form-span-black {
+  color: black !important;
+}
+form .form-span-text .form-link {
+  display: inline;
+  color: #3171e0;
+}
+
+div.spacing {
+  height: 40px;
+  width: 100%;
+  position: relative;
+  display: block;
+}
+
+div.container {
+  width: 90%;
+  position: relative;
+}
+
+.blue {
+  color: #3171e0;
+}
+
+.centralize {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+/*# sourceMappingURL=mainStyle.css.map */
