@@ -1,15 +1,88 @@
-aside:first-child{
-    .container{
-        display: flex;
-        justify-content: center;
-    }
-    #form-login{
-        display: none;
-    }
+@import "utilities/variables";
+@import "utilities/extends.scss";
+
+.centralize{
+  height: calc(100% - 99px);
 }
-aside:last-child{
-    .container{
-        display: flex;
-        align-items: center;
+
+#main {
+  height: 100%;
+  width: $widthContainer;
+  display: flex;
+  padding-bottom: $margin4;
+  box-sizing: border-box;
+}
+
+aside {
+  height: 100%;
+  width: 50%;
+  background: white;
+  display: flex;
+  position: relative;
+  &:first-child{
+    justify-content: center;
+    position: relative;
+    overflow-y: scroll;
+  }
+  &:last-child {
+    justify-content: flex-start;
+    background: #f2f2f2;
+    padding: 0 0 0 $margin4;
+    box-sizing: border-box;
+    .title-aside {
+      font-weight: 500;
     }
+  }
+
+  .title-aside {
+    margin: $margin2 0 $margin2 0;
+    font-size: 2.6em;
+    color: rgb(48, 48, 48);
+    font-weight: bold;
+  }
+  p {
+    font-size: 1.3em;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+  
+    .steps {
+      width: 100%;
+      padding: 0 0 0 $margin2;
+      box-sizing: border-box;
+      .step {
+        margin: $margin2 * 1.5 0;
+        cursor: pointer;
+        transition: all 0.25s;
+        h1 {
+          font-size: 2.8em;
+          margin: 0;
+          padding: 0;
+        }
+        p {
+          font-size: 1em;
+          margin: 5px 0;
+          padding: 0;
+          transition: all 0.5s;
+        }
+      }
+      .disabled {
+        opacity: 0.5;
+        transform: scale(0.9);
+      }
+    }
+  }
+  #form-registerNGO{
+    height: 100%;
+    .registerNGO{
+      display: block;
+      position: relative;
+    }
+    .registerNGO:nth-child(2),
+    .registerNGO:nth-child(3) {
+      display: none;
+    }
+  }
+  
 }

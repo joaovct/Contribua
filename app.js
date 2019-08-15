@@ -7,7 +7,7 @@ const path = require('path')
 const session = require('express-session')
 const flash = require('connect-flash')
 const user = require('./Routers/user.js')
-const ngoRegister = require('./Routers/ngoRegister.js')
+const addNGO = require('./Routers/addNGO.js')
 
 //**Configs**//
 // Session
@@ -43,12 +43,10 @@ app.use(express.static(path.join(__dirname, "public")))
 // Routers
 
 app.use('/user', user)
-app.use('/ngoRegister', ngoRegister)
+app.use('/addNGO', addNGO)
 
 app.get('/', (req, res) => {
-    userActive = true
-    if(userActive) res.redirect("/user")
-    else res.render('index')
+    res.render('index')
 })
 
 

@@ -1,31 +1,32 @@
-// MAIN VARS
-
-$mainColor: #3171e0;
-$margin4: 40px;
-$margin2: 20px;
+@import "utilities/variables";
+@import "utilities/extends.scss";
 
 body {
-  height: calc(100% - 155px);
-  width: 100%;
-  position: absolute;
+  @extend %bodyAbsolute;
+}
+
+.container{
+  width: 90%;
 }
 
 section#main {
   height: 100%;
-  width: 100%;
+  width: $widthContainer;
   position: relative;
   display: flex;
   justify-content: space-between;
   aside {
-    width: 49.8%;
     background: white;
     display: flex;
-    justify-content: center;
-
+    padding: $margin2 0 0 0;
     &:last-child {
-      height: auto;
+      width: 30%;
+      justify-content: center;
       background: #F2F2F2;
-      padding: 0 0 $margin4 0;
+
+      .title-aside{
+        font-weight: 500;
+      }
     }
 
     .title-aside {
@@ -45,8 +46,8 @@ section#main {
         margin: 0;
         .avatar {
           img {
-            height: 150px;
-            width: 150px;
+            height: 100px;
+            width: 100px;
             border-radius: 100%;
             box-shadow: 0 0 15px -5px rgba(0,0,0,0.1)
           }

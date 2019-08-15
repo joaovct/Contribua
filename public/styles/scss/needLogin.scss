@@ -1,49 +1,17 @@
-$margin2: 20px;
-$margin4: 40px;
+@import "utilities/variables";
 
-aside:first-child {
-  .container {
-    display: flex;
-    justify-content: center;
-    overflow-y: scroll;
+aside:first-child{
+  .container{
+      display: flex;
+      justify-content: center;
   }
-  #form-login {
-    display: none;
-  }
-  .registerNGO:nth-child(2),
-  .registerNGO:nth-child(3) {
-    display: none;
+  #form-login{
+      display: none;
   }
 }
-aside:last-child {
-  .container {
-    display: flex;
-    align-items: center;
-
-    .steps {
-      width: 100%;
-      padding: 0 0 0 $margin2;
-      box-sizing: border-box;
-      .step {
-        margin: $margin2 * 1.5 0;
-        cursor: pointer;
-        transition: all .25s;
-        h1 {
-          font-size: 2.8em;
-          margin: 0;
-          padding: 0;
-        }
-        p {
-          font-size: 1em;
-          margin: 5px 0;
-          padding: 0;
-          transition: all .5s;
-        }
-      }
-      .disabled {
-        opacity: 0.5;
-        transform: scale(0.9);
-      }
-    }
+aside:last-child{
+  .container{
+      display: flex;
+      align-items: center;
   }
 }

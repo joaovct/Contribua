@@ -1,3 +1,23 @@
+@font-face {
+  font-family: Nunito;
+  font-weight: bold;
+  src: url("../../assets/fonts/Nunito-Bold.ttf");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: bolder;
+  src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: normal;
+  src: url("../../assets/fonts/Nunito-Regular.ttf");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: 500;
+  src: url("../../assets/fonts/Nunito-SemiBold.ttf");
+}
 section#landing {
   height: 100%;
   width: 100%;
@@ -19,7 +39,7 @@ section#landing .container {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  max-width: 1200px;
+  width: 1320px;
 }
 section#landing .group {
   display: flex;
@@ -48,8 +68,8 @@ section#landing .group .label-hero-image {
   justify-content: flex-end;
   align-items: center;
   font-size: 1em;
-  margin: 0 0 0 0;
-  font-weight: normal;
+  margin: 10px 0 0 0;
+  font-weight: 500;
   text-align: right;
 }
 section#landing .group .label-hero-image img {

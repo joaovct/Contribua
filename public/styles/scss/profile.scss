@@ -1,0 +1,122 @@
+@import "utilities/variables";
+@import "utilities/extends";
+
+header.headerRelative {
+  @extend %headerLoged;
+}
+.container {
+  width: $widthContainer;
+}
+.profile-data {
+  display: grid;
+  align-items: center;
+  grid-template-areas: "figure name configuration" "figure location location" "figure about about";
+  grid-template-columns: auto 1fr auto;
+  grid-column-gap: $margin4;
+  padding: 40px 0 0 0; // For after
+  figure.profile-pic {
+    grid-area: figure;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    img {
+      height: 175px;
+      width: 175px;
+      border-radius: 7px;
+      object-fit: cover;
+    }
+  }
+  figure.availableVolunteer {
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      top: -15px;
+      right: -20px;
+      height: 40px;
+      width: 40px;
+      border-radius: 100%;
+      background: $successColor;
+    }
+  }
+  .profile-name {
+    display: flex;
+    align-items: center;
+    grid-area: name;
+    .username {
+      font-size: 2.4em;
+      font-weight: bolder;
+      padding: 0;
+      margin: 0;
+    }
+    .feed-filters {
+      width: auto;
+      margin-left: $margin2;
+      .item-category,
+      .active {
+        font-size: 1.1em;
+        padding: 10px;
+      }
+    }
+  }
+  figure.linkSettings {
+    padding: 0;
+    margin: 0;
+    grid-area: configuration;
+    cursor: pointer;
+    img {
+      height: 35px;
+      width: 35px;
+    }
+  }
+  .profile-location-since {
+    margin: $margin2 / 2 0 0 0;
+    grid-area: location;
+    .content {
+      font-size: 1.1em;
+      font-weight: 500;
+      color: $gray;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .profile-about {
+    margin: $margin2 / 2 0 0 0;
+    grid-area: about;
+    .content {
+      font-size: 1.1em;
+      font-weight: normal;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  //   border-top: 1.25px solid $lightGray2;
+  //   border-bottom: 1.25px solid $lightGray2;
+  background: $lightGray;
+  padding: $margin2 0 $margin2 0;
+  margin: $margin2 0 $margin2 0;
+  ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    li {
+      margin: 0 $margin4 0 $margin4;
+      text-align: center;
+      font-size: 1.1em;
+      font-weight: bold;
+      color: $darkGray;
+
+      .number {
+        display: block;
+        font-size: 1.4em;
+        color: black;
+      }
+    }
+  }
+}

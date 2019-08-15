@@ -18,17 +18,5 @@
   font-weight: 500;
   src: url("../../assets/fonts/Nunito-SemiBold.ttf");
 }
-aside:first-child .container {
-  display: flex;
-  justify-content: center;
-}
-aside:first-child #form-login {
-  display: none;
-}
 
-aside:last-child .container {
-  display: flex;
-  align-items: center;
-}
-
-/*# sourceMappingURL=needLogin.css.map */
+/*# sourceMappingURL=variables.css.map */

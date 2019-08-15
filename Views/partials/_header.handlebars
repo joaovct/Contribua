@@ -1,17 +1,32 @@
+<header class="headerRelative">
+</header>
+
 <header>
     <div class="container">
-        <a href="/"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
+        {{#if userActive}}<a href="/user"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>{{else}}<a href="/"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>{{/if}}
         <nav class="nav-header">
             <ul>
-                <a href="/ngoRegister">
-                    <li>Sou uma ONG</li>
+                {{#if userActive}}
+                <a href="#">
+                    <li class="icon"><img  src="/assets/imgs/search.svg"></li>
                 </a>
                 <a href="#">
-                    <li>Sou novo</li>
+                    <li class="icon"><img  src="/assets/imgs/bell.svg"></li>
+                </a>
+                <a href="/user/profile">
+                    <li class="profile-pic availableVolunteer"><img src="/assets/imgs/João Victor.jpg"</li>
+                </a>
+                {{else}}
+                <a href="/addNGO">
+                    <li class="text">Sou uma ONG</li>
                 </a>
                 <a href="#">
-                    <li>Login</li>
+                    <li class="text">Sou novo</li>
                 </a>
+                <a href="#">
+                    <li class="text">Login</li>
+                </a>   
+                {{/if}}
             </ul>
         </nav>
     </div>

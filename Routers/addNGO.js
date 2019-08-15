@@ -2,13 +2,12 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req,res) => {
-    res.render('ngoRegister/presentation')
+    res.render('addNGO/presentation')
 })
 
 router.post('/addNGO',(req,res)=>{
-    userActive = true
-    if(!userActive) res.render('ngoRegister/needLogin')
-    else res.render('ngoRegister/addNGO')
+    res.render('addNGO/addNGO')
+    // res.render('addNGO/needLogin')
 })
 
 module.exports = router

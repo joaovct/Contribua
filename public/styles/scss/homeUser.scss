@@ -1,120 +1,161 @@
-// VARS
+@import "utilities/variables";
+@import "utilities/extends";
 
-$mainColor: #3171e0;
-$gray: #818181;
-$margin4: 40px;
-$margin2: 20px;
-
-body{
-    height: 100%;
-    width: 100%;
-    position: absolute;
+header.headerRelative{
+  @extend %headerLoged;
 }
 
-.centralize .container{
-    width: 1320px;
-    margin-left: $margin4;
+.centralize .container {
+  width: $widthContainer;
+  margin: 0;
+  padding: 0;
 }
 
 .feed-filters {
-    width: 100%;
-    .group-categories {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      .item-category {
-        margin: 0 10px 0;
-        padding: 5px 10px 5px 10px;
-        font-size: 1.2em;
-        border-radius: 7px;
-        color: $gray;
-        transition: 0.5s;
-        &:hover {
-          background: #f9f9f9;
-        }
-        &:first-child {
-          margin-left: 0;
-        }
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0 0 0; // For box-shadow
+  align-items: center;
+  width: 100%;
+  .group-categories {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    .item-category {
+      margin: 0 10px 0;
+      padding: 5px 7px 5px 7px;
+      font-size: 1.2em;
+      border-radius: 7px;
+      color: $gray;
+      transition: 0.5s;
+      &:hover {
+        background: $lightGray;
       }
-      .active {
-        font-size: 1.5em;
-        color: $mainColor;
-        font-weight: 500;
+      &:first-child {
+        margin-left: 0;
       }
+    }
+    .active {
+      font-size: 1.5em;
+      color: $mainColor;
+      font-weight: 500;
+      background: $lightBlue;
     }
   }
-  
-  .nav-articles {
-    width: 100%;
-    margin: 0 0 $margin4 0;
-    .title-nav {
-      font-size: 2.5em;
-      text-align: left;
-    }
-    .group-articles {
-      display: flex;
-      flex-flow: row wrap;
-      padding: 0;
-      .feed-article {
-        display: inline-block;
-        width: 400px;
-        margin: 0 $margin4 0 0;
-        padding-bottom: $margin4 * 2;
-        .article-image {
-          height: 250px;
+  button.btn-filters{
+    border: none;
+    background: $lightBlue;
+    font-size: 1.2em;
+    font-weight: normal;
+    color: $mainColor;
+    padding: 5px 12px 5px 12px;
+    border-radius: 7px;
+    box-shadow: 0 4px 9px -5px rgb(187, 194, 209);
+  }
+}
+
+.nav-articles {
+  width: 100%;
+  margin: 0 0 $margin4 0;
+  .title-nav {
+    font-size: 2.3em;
+    text-align: left;
+  }
+  .group-articles {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 0;
+    .feed-article {
+      display: inline-block;
+      width: 400px;
+      margin: 0 $margin4 0 0;
+      padding-bottom: $margin4 + 20px;
+      cursor: pointer;
+      .article-image {
+        height: 250px;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        display: block;
+        position: relative;
+        img {
+          height: 100%;
           width: 100%;
+          object-fit: cover;
+        }
+      }
+      .article-title {
+        font-size: 1.8em;
+        font-weight: bolder;
+        padding: 0;
+        margin: $margin2 / 2 0 0 0;
+      }
+      .article-subitle {
+        font-size: 1.15em;
+        font-weight: normal;
+        color: $gray;
+        margin: $margin2 / 4 0 0 0;
+        position: relative;
+      }
+      .article-ngo {
+        display: flex;
+        align-items: center;
+        margin: $margin2 0 0 0;
+        .article-ngo-avatar {
           padding: 0;
           margin: 0;
+          height: 70px;
+          width: 70px;
           display: block;
-          background-image: url("../../assets/imgs/animals-cats-cute-45170.jpg");
-          background-position: center;
-          background-size: cover;
-        }
-        .article-title {
-          font-size: 2em;
-          font-weight: bolder;
-          padding: 0;
-          margin: $margin2 / 2 0 0 0;
-        }
-        .article-subitle {
-          font-size: 1.2em;
-          font-weight: normal;
-          color: $gray;
-          margin: $margin2 / 4 0 0 0;
-          position: relative;
-        }
-        .article-ngo {
-          display: flex;
-          align-items: center;
-          margin: $margin2 0 0 0;
-          .article-ngo-avatar {
-            padding: 0;
-            margin: 0;
-            height: 70px;
-            width: 70px;
-            display: block;
-            background-image: url("../../assets/imgs/adorable-animal-baby-1851164.jpg");
-            background-position: center;
-            background-size: cover;
-            border-radius: 50%;
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 100%;
           }
-          .article-ngo-details {
-            margin-left: $margin2;
-            .article-ngo-name {
-              font-weight: 500;
-              font-size: 1.1em;
-              margin: 0 0 5px 0;
-            }
-            .article-ngo-date {
-              margin: 0;
-              font-size: 1em;
-              font-weight: 500;
-            }
+        }
+        .article-ngo-details {
+          margin-left: $margin2;
+          .article-ngo-name {
+            font-weight: 500;
+            font-size: 1.1em;
+            margin: 0 0 5px 0;
+          }
+          .article-ngo-date {
+            margin: 0;
+            font-size: 1em;
+            font-weight: 500;
           }
         }
       }
     }
+    .event-closed{
+      .article-image::after{
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(0,0,0,0.2);
+        z-index: 1;
+      }
+      .article-image::before{
+        content: 'Encerrado';
+        font-size: 1.1em;
+        font-weight: 500;
+        padding: 3px 7px 3px 7px;
+        top: $margin2 / 2;
+        right: $margin2 / 2;
+        background: $lightGray;
+        color: $dangerColor;
+        position: absolute;
+        border-radius: 7px;
+        z-index: 2;
+      }
+    }
   }
+}

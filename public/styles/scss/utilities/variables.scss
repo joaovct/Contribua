@@ -1,0 +1,44 @@
+// COLORS
+$mainColor: #3171e0;
+$lightBlue: #E0EAFB;
+$successColor: #32FF6A;
+$alertColor: #ffa600; 
+$dangerColor: #e42200;
+$lightGray: #f9f9f9;
+$lightGray2: #c7c7c7;
+$gray: #818181;
+$darkGray: #3f3f3f;
+
+// SIZES
+$margin4: 40px;
+$margin2: 20px;
+$widthContainer: 1320px;
+
+// FONTS
+$fontFamily: Nunito;
+
+@font-face {
+  font-family: $fontFamily;
+  font-weight: bold;
+  src: url("../../assets/fonts/Nunito-Bold.ttf");
+}
+
+@font-face {
+  font-family: $fontFamily;
+  font-weight: bolder;
+  src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: $fontFamily;
+  font-weight: normal;
+  src: url("../../assets/fonts/Nunito-Regular.ttf");
+}
+
+@font-face {
+  font-family: $fontFamily;
+  font-weight: 500;
+  src: url("../../assets/fonts/Nunito-SemiBold.ttf");
+}
+
+
