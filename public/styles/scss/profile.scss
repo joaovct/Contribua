@@ -1,9 +1,6 @@
 @import "utilities/variables";
 @import "utilities/extends";
 
-header.headerRelative {
-  @extend %headerLoged;
-}
 .container {
   width: $widthContainer;
 }
@@ -14,6 +11,7 @@ header.headerRelative {
   grid-template-columns: auto 1fr auto;
   grid-column-gap: $margin4;
   padding: 40px 0 0 0; // For after
+
   figure.profile-pic {
     grid-area: figure;
     position: relative;
@@ -49,13 +47,19 @@ header.headerRelative {
       padding: 0;
       margin: 0;
     }
-    .feed-filters {
+    .feed-header {
       width: auto;
       margin-left: $margin2;
-      .item-category,
-      .active {
-        font-size: 1.1em;
-        padding: 10px;
+      margin-bottom: 0;
+      border-bottom: 0;
+      padding: 0;
+      .group-categories{
+        margin: 0;
+        .filter-active{
+          background: $lightBlue !important;
+          color: $mainColor;
+          font-weight: 500;
+        }
       }
     }
   }
@@ -65,8 +69,8 @@ header.headerRelative {
     grid-area: configuration;
     cursor: pointer;
     img {
-      height: 35px;
-      width: 35px;
+      height: 28px;
+      width: 28px;
     }
   }
   .profile-location-since {
@@ -94,8 +98,6 @@ header.headerRelative {
 .profile-stats {
   display: flex;
   justify-content: center;
-  //   border-top: 1.25px solid $lightGray2;
-  //   border-bottom: 1.25px solid $lightGray2;
   background: $lightGray;
   padding: $margin2 0 $margin2 0;
   margin: $margin2 0 $margin2 0;

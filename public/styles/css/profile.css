@@ -18,10 +18,6 @@
   font-weight: 500;
   src: url("../../assets/fonts/Nunito-SemiBold.ttf");
 }
-header.headerRelative {
-  height: 139px;
-}
-
 .container {
   width: 1320px;
 }
@@ -70,14 +66,20 @@ header.headerRelative {
   padding: 0;
   margin: 0;
 }
-.profile-data .profile-name .feed-filters {
+.profile-data .profile-name .feed-header {
   width: auto;
   margin-left: 20px;
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding: 0;
 }
-.profile-data .profile-name .feed-filters .item-category,
-.profile-data .profile-name .feed-filters .active {
-  font-size: 1.1em;
-  padding: 10px;
+.profile-data .profile-name .feed-header .group-categories {
+  margin: 0;
+}
+.profile-data .profile-name .feed-header .group-categories .filter-active {
+  background: #E0EAFB !important;
+  color: #3171e0;
+  font-weight: 500;
 }
 .profile-data figure.linkSettings {
   padding: 0;
@@ -86,8 +88,8 @@ header.headerRelative {
   cursor: pointer;
 }
 .profile-data figure.linkSettings img {
-  height: 35px;
-  width: 35px;
+  height: 28px;
+  width: 28px;
 }
 .profile-data .profile-location-since {
   margin: 10px 0 0 0;

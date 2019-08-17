@@ -66,6 +66,8 @@ section#main aside .group .person {
 section#main aside .group .person .avatar img {
   height: 100px;
   width: 100px;
+  object-fit: cover;
+  object-position: center;
   border-radius: 100%;
   box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.1);
 }

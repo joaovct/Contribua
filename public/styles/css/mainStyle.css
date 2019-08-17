@@ -110,11 +110,14 @@ header .container nav.nav-header ul a {
   text-decoration: none;
 }
 header .container nav.nav-header ul li {
-  margin: 0 10px 0 10px;
+  margin: 0 20px 0 20px;
   transition: 0.25s;
   position: relative;
   transform-style: preserve-3d;
   padding: 5px 10px 5px 10px;
+}
+header .container nav.nav-header ul li:last-child {
+  margin-right: 0;
 }
 header .container nav.nav-header ul li.text {
   font-size: 1.3em;
@@ -130,9 +133,21 @@ header .container nav.nav-header ul li.icon img {
   height: 27px;
   width: 27px;
 }
+header .container nav.nav-header ul li.profile-pic {
+  padding-right: 0;
+}
 header .container nav.nav-header ul li.profile-pic img {
-  height: 75px;
-  width: 75px;
+  height: 64px;
+  width: 64px;
+  border-radius: 7px;
+  object-fit: cover;
+}
+header .container nav.nav-header ul li.profile-pic:after {
+  position: absolute;
+  top: -2.5px;
+  right: -10px;
+  height: 20px;
+  width: 20px;
   border-radius: 100%;
 }
 header .container nav.nav-header ul li.availableVolunteer {
@@ -140,25 +155,13 @@ header .container nav.nav-header ul li.availableVolunteer {
 }
 header .container nav.nav-header ul li.availableVolunteer:after {
   content: "";
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  height: 20px;
-  width: 20px;
   background: #32FF6A;
-  border-radius: 100%;
 }
 header .container nav.nav-header ul li.unavailableVolunteer {
   position: relative;
 }
 header .container nav.nav-header ul li.unavailableVolunteer:after {
   content: "";
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  height: 20px;
-  width: 20px;
-  background: #ffa600;
   border-radius: 100%;
 }
 
@@ -256,6 +259,12 @@ a {
 div.container {
   box-sizing: border-box;
   position: relative;
+}
+
+.title {
+  font-size: 2.5em;
+  font-weight: bolder;
+  margin: 0 0 0 0;
 }
 
 .blue {
