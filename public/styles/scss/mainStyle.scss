@@ -1,12 +1,13 @@
 @import "utilities/variables";
 @import "utilities/extends.scss";
 
-html{
+html {
   height: 100%;
   width: 100%;
   padding: 0;
   margin: 0;
 }
+
 
 * {
   z-index: 1;
@@ -28,15 +29,15 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: $lightGray; 
+  background: $lightColor;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $gray; 
+  background: $gray;
 }
 
-::-webkit-scrollbar-thumb:hover{
+::-webkit-scrollbar-thumb:hover {
   background: $darkGray;
 }
 
@@ -47,7 +48,7 @@ div.spacing {
   display: block;
 }
 
-.headerRelative{
+.headerRelative {
   height: 99px;
   padding: 0;
   position: relative;
@@ -74,7 +75,35 @@ header {
     align-items: center;
 
     .logo {
-      height: 50px;
+      height: 44px;
+    }
+    .search-field{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .search-form{
+        display: flex;
+        align-items: center;
+        position: relative;
+        img{
+          height: 1.2em;
+          left: 13.5px;
+          position: absolute;
+          z-index: 999;
+        }
+        .search-input{
+          width: 400px;
+          font-size: 0.9em;
+          text-align: left;
+          padding: 10px 10px 10px 44px;
+          outline: none;
+          border: 1px solid $lightBlue;
+          background: white;
+          border-radius: 14px;
+        }
+      }
+      
     }
     nav.nav-header {
       display: flex;
@@ -89,13 +118,16 @@ header {
         a {
           text-decoration: none;
         }
-        li{
-          margin: 0 $margin2 / 1 0 $margin2 / 1;
+        li {
+          margin: 0 $margin2 / 1.5 0 $margin2 / 1.5;
           transition: 0.25s;
           position: relative;
           transform-style: preserve-3d;
           padding: 5px 10px 5px 10px;
-          &:last-child{
+          &:first-child{
+            margin-left: 0;
+          }
+          &:last-child {
             margin-right: 0;
           }
         }
@@ -109,40 +141,40 @@ header {
             background: rgba(49, 113, 224, 0.1);
           }
         }
-        li.icon{
-          img{
+        li.icon {
+          img {
             height: 27px;
             width: 27px;
           }
         }
-        li.profile-pic{
+        li.profile-pic {
           padding-right: 0;
-          img{
+          img {
             height: 64px;
             width: 64px;
-            border-radius: 7px;
+            border-radius: 50%;
             object-fit: cover;
           }
-          &:after{
+          &:after {
             position: absolute;
-            top: -2.5px;
-            right: -10px;
+            top: 2.5px;
+            right: 0px;
             height: 20px;
             width: 20px;
             border-radius: 100%;
           }
         }
-        li.availableVolunteer{
+        li.availableVolunteer {
           position: relative;
-          &:after{
-            content: '';
+          &:after {
+            content: "";
             background: $successColor;
           }
         }
-        li.unavailableVolunteer{
+        li.unavailableVolunteer {
           position: relative;
-          &:after{
-            content: '';
+          &:after {
+            content: "";
             border-radius: 100%;
           }
         }
@@ -170,7 +202,7 @@ form {
     display: block;
     width: 100%;
     border: 1px solid #dddddd;
-    background: $lightGray;
+    background: $lightColor;
     padding: 10px 15px 10px 15px;
     box-sizing: border-box;
     outline: 0;
@@ -251,7 +283,7 @@ div.container {
   position: relative;
 }
 
-.title{
+.title {
   font-size: 2.5em;
   font-weight: bolder;
   margin: 0 0 0 0;
@@ -266,5 +298,3 @@ div.container {
   flex-flow: column wrap;
   align-items: center;
 }
-
-

@@ -30,21 +30,21 @@ header.headerRelative {
 
 .title {
   margin: 0 0 20px 0;
-  font-weight: bold;
-  font-size: 3em;
+  font-weight: 500;
+  font-size: 2.2em;
 }
 
 .feed-header {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: baseline;
   width: 100%;
   padding-bottom: 20px;
-  border-bottom: 1px solid #c7c7c7;
+  border-bottom: 1px solid #e1e1e1;
 }
 .feed-header .filters {
-  width: 100%;
+  width: auto;
   border-radius: 5px;
   display: flex;
   flex-flow: column nowrap;
@@ -68,6 +68,18 @@ header.headerRelative {
   list-style-type: none;
   padding: 0;
   margin: 0 0 20px 0;
+}
+.feed-header .filters .group-categories .category-link {
+  font-size: 1.15em;
+  color: #818181;
+  margin-right: 20px;
+  font-weight: normal;
+  transition: 0.25s;
+}
+.feed-header .filters .group-categories .active-link {
+  font-size: 1.5em;
+  font-weight: 500;
+  color: #3171e0;
 }
 .feed-header .filters .group-categories .item-category {
   margin: 0 10px 0;
@@ -108,31 +120,40 @@ header.headerRelative {
   padding: 5px 12px 5px 12px;
   border-radius: 7px;
   box-shadow: 0 4px 9px -5px #bbc2d1;
+  cursor: pointer;
 }
 
-.nav-articles {
+.group-nav .nav-articles {
   width: 100%;
   margin: 0 0 0 0;
 }
-.nav-articles .title-nav {
-  font-size: 2.3em;
+.group-nav .nav-articles .title-nav {
+  font-size: 2.7em;
+  font-weight: bold;
   text-align: left;
+  margin: 20px 0 10px 0;
 }
-.nav-articles .group-articles {
+.group-nav .nav-articles .group-articles {
   display: flex;
   flex-flow: row wrap;
   padding: 0;
 }
-.nav-articles .group-articles .feed-article {
+.group-nav .nav-articles .group-articles .feed-article {
   display: inline-block;
   width: 400px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   padding-bottom: 60px;
+  box-shadow: 0 0 25px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  background: white;
   cursor: pointer;
 }
-.nav-articles .group-articles .feed-article:nth-child(3n-1) {
-  margin: 0 60px 0 60px;
+.group-nav .nav-articles .group-articles .feed-article:nth-child(3n-1) {
+  margin-left: 60px;
+  margin-right: 60px;
 }
-.nav-articles .group-articles .feed-article .article-image {
+.group-nav .nav-articles .group-articles .feed-article .article-image {
   height: 250px;
   width: 100%;
   padding: 0;
@@ -140,83 +161,91 @@ header.headerRelative {
   display: block;
   position: relative;
 }
-.nav-articles .group-articles .feed-article .article-image img {
+.group-nav .nav-articles .group-articles .feed-article .article-image img {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
 }
-.nav-articles .group-articles .feed-article .article-title {
+.group-nav .nav-articles .group-articles .feed-article .article-content {
+  width: 100%;
+  padding: 20px 20px 0 20px;
+  box-sizing: border-box;
+}
+.group-nav .nav-articles .group-articles .feed-article .article-content .article-title {
   font-size: 1.8em;
   font-weight: bolder;
   padding: 0;
-  margin: 10px 0 0 0;
+  margin: 0 0 0 0;
 }
-.nav-articles .group-articles .feed-article .article-subitle {
+.group-nav .nav-articles .group-articles .feed-article .article-content .article-subitle {
   font-size: 1.15em;
   font-weight: normal;
   color: #818181;
   margin: 5px 0 0 0;
   position: relative;
 }
-.nav-articles .group-articles .feed-article .article-ngo {
+.group-nav .nav-articles .group-articles .feed-article .article-content .article-ngo {
   display: flex;
   align-items: center;
   margin: 20px 0 0 0;
 }
-.nav-articles .group-articles .feed-article .article-ngo .article-ngo-avatar {
+.group-nav .nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-avatar {
   padding: 0;
   margin: 0;
   height: 70px;
   width: 70px;
   display: block;
 }
-.nav-articles .group-articles .feed-article .article-ngo .article-ngo-avatar img {
+.group-nav .nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-avatar img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   border-radius: 100%;
 }
-.nav-articles .group-articles .feed-article .article-ngo .article-ngo-details {
+.group-nav .nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-details {
   margin-left: 20px;
 }
-.nav-articles .group-articles .feed-article .article-ngo .article-ngo-details .article-ngo-name {
+.group-nav .nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-details .article-ngo-name {
   font-weight: 500;
   font-size: 1.1em;
   margin: 0 0 5px 0;
 }
-.nav-articles .group-articles .feed-article .article-ngo .article-ngo-details .article-ngo-date {
+.group-nav .nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-details .article-ngo-date {
   margin: 0;
   font-size: 1em;
   font-weight: 500;
 }
-.nav-articles .group-articles .feed-ngo {
+.group-nav .nav-articles .group-articles .feed-ngo {
   margin: 0 40px 0 0;
+  background: white;
 }
-.nav-articles .group-articles .feed-ngo .ngo-pic {
+.group-nav .nav-articles .group-articles .feed-ngo .ngo-pic {
   margin: 0;
   padding: 0;
   display: block;
 }
-.nav-articles .group-articles .feed-ngo .ngo-pic img {
+.group-nav .nav-articles .group-articles .feed-ngo .ngo-pic img {
   height: 200px;
   width: 200px;
   border-radius: 100%;
   object-fit: cover;
   display: block;
 }
-.nav-articles .group-articles .feed-ngo .ngo-name {
+.group-nav .nav-articles .group-articles .feed-ngo .ngo-name {
   font-size: 2em;
   text-align: center;
   margin: 20px 0 0 0;
   padding: 0;
 }
-.nav-articles .group-articles .feed-ngo .ngo-members {
+.group-nav .nav-articles .group-articles .feed-ngo .ngo-members {
   font-size: 1.2em;
   text-align: center;
   margin: 0;
   padding: 0;
 }
-.nav-articles .group-articles .event-closed .article-image::after {
+.group-nav .nav-articles .group-articles .event-closed .article-image::after {
   content: "";
   position: absolute;
   height: 100%;
@@ -225,8 +254,10 @@ header.headerRelative {
   left: 0;
   background: rgba(0, 0, 0, 0.2);
   z-index: 1;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
 }
-.nav-articles .group-articles .event-closed .article-image::before {
+.group-nav .nav-articles .group-articles .event-closed .article-image::before {
   content: "Encerrado";
   font-size: 1.1em;
   font-weight: 500;
