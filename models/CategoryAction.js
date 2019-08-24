@@ -29,6 +29,6 @@ const CategoryAction = db.sequelize.define("tbCategoryAction", {
     collate: "utf8_general_ci"
 })
 
-CategoryAction.sync({force: true})
+//CategoryAction.sync({force: true})
 
 module.exports = CategoryAction

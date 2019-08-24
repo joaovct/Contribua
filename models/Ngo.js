@@ -11,6 +11,13 @@ const Ngo = db.sequelize.define("tbNgo", {
         allowNull: false,
         type: db.Sequelize.STRING(70),
     },
+    descriptionNgo: {
+        type: db.Sequelize.STRING(250)
+    },
+    cnpjNgo: {
+        allowNull: false,
+        type: db.Sequelize.STRING(15)
+    },
     emailNgo: {
         allowNull: false,
         type: db.Sequelize.STRING(80)
