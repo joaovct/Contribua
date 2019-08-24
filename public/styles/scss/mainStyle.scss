@@ -267,4 +267,26 @@ div.container {
   align-items: center;
 }
 
-
+div.icon-input {
+  position: relative;
+  &.alert-validation:after{
+    background-image: url("../../assets/imgs/close.png");
+  }
+  &.caution-validation:after{
+    background-image: url("../../assets/imgs/exclamation.png");
+  }
+  &.success-validation:after{
+    background-image: url("../../assets/imgs/checked.png");
+  }
+  &:after{
+    content: "";
+    height: 100%;
+    width: 40px;
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: center;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+}

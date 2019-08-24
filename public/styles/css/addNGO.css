@@ -1,104 +1,83 @@
 @font-face {
   font-family: Nunito;
   font-weight: bold;
-  src: url("../../assets/fonts/Nunito-Bold.ttf");
-}
+  src: url("../../assets/fonts/Nunito-Bold.ttf"); }
 @font-face {
   font-family: Nunito;
   font-weight: bolder;
-  src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
-}
+  src: url("../../assets/fonts/Nunito-ExtraBold.ttf"); }
 @font-face {
   font-family: Nunito;
   font-weight: normal;
-  src: url("../../assets/fonts/Nunito-Regular.ttf");
-}
+  src: url("../../assets/fonts/Nunito-Regular.ttf"); }
 @font-face {
   font-family: Nunito;
   font-weight: 500;
-  src: url("../../assets/fonts/Nunito-SemiBold.ttf");
-}
+  src: url("../../assets/fonts/Nunito-SemiBold.ttf"); }
 .centralize {
-  height: calc(100% - 99px);
-}
+  height: calc(100% - 99px); }
 
 #main {
   height: 100%;
   width: 1320px;
   display: flex;
   padding-bottom: 40px;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 aside {
   height: 100%;
   width: 50%;
   background: white;
   display: flex;
-  position: relative;
-}
-aside:first-child {
-  justify-content: center;
-  position: relative;
-  overflow-y: scroll;
-}
-aside:last-child {
-  justify-content: flex-start;
-  background: #f2f2f2;
-  padding: 0 0 0 40px;
-  box-sizing: border-box;
-}
-aside:last-child .title-aside {
-  font-weight: 500;
-}
-aside .title-aside {
-  margin: 20px 0 20px 0;
-  font-size: 2.6em;
-  color: #303030;
-  font-weight: bold;
-}
-aside p {
-  font-size: 1.3em;
-}
-aside .container {
-  display: flex;
-  align-items: center;
-}
-aside .container .steps {
-  width: 100%;
-  padding: 0 0 0 20px;
-  box-sizing: border-box;
-}
-aside .container .steps .step {
-  margin: 30px 0;
-  cursor: pointer;
-  transition: all 0.25s;
-}
-aside .container .steps .step h1 {
-  font-size: 2.8em;
-  margin: 0;
-  padding: 0;
-}
-aside .container .steps .step p {
-  font-size: 1em;
-  margin: 5px 0;
-  padding: 0;
-  transition: all 0.5s;
-}
-aside .container .steps .disabled {
-  opacity: 0.5;
-  transform: scale(0.9);
-}
-aside #form-registerNGO {
-  height: 100%;
-}
-aside #form-registerNGO .registerNGO {
-  display: block;
-  position: relative;
-}
-aside #form-registerNGO .registerNGO:nth-child(2),
-aside #form-registerNGO .registerNGO:nth-child(3) {
-  display: none;
-}
+  position: relative; }
+  aside:first-child {
+    justify-content: center;
+    position: relative;
+    overflow-y: scroll; }
+  aside:last-child {
+    justify-content: flex-start;
+    background: #f2f2f2;
+    padding: 0 0 0 40px;
+    box-sizing: border-box; }
+    aside:last-child .title-aside {
+      font-weight: 500; }
+  aside .title-aside {
+    margin: 20px 0 20px 0;
+    font-size: 2.6em;
+    color: #303030;
+    font-weight: bold; }
+  aside p {
+    font-size: 1.3em; }
+  aside .container {
+    display: flex;
+    align-items: center; }
+    aside .container .steps {
+      width: 100%;
+      padding: 0 0 0 20px;
+      box-sizing: border-box; }
+      aside .container .steps .step {
+        margin: 30px 0;
+        cursor: pointer;
+        transition: all 0.25s; }
+        aside .container .steps .step h1 {
+          font-size: 2.8em;
+          margin: 0;
+          padding: 0; }
+        aside .container .steps .step p {
+          font-size: 1em;
+          margin: 5px 0;
+          padding: 0;
+          transition: all 0.5s; }
+      aside .container .steps .disabled {
+        opacity: 0.5;
+        transform: scale(0.9); }
+  aside #form-registerNGO {
+    height: 100%; }
+    aside #form-registerNGO .registerNGO {
+      display: block;
+      position: relative; }
+    aside #form-registerNGO .registerNGO:nth-child(2),
+    aside #form-registerNGO .registerNGO:nth-child(3) {
+      display: none; }
 
 /*# sourceMappingURL=addNGO.css.map */
