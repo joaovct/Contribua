@@ -1,0 +1,6 @@
+# Ignore css
+public/styles/css/
+
+# Ignore sass cache
+public/styles/.sass-cache
+public/styles/.sass-cache/*

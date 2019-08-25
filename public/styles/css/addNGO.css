@@ -54,12 +54,12 @@ aside:last-child .title-aside {
 }
 aside .title-aside {
   margin: 20px 0 20px 0;
-  font-size: 2.6em;
+  font-size: 2.2em;
   color: #303030;
   font-weight: bold;
 }
 aside p {
-  font-size: 1.3em;
+  font-size: 1.5em;
 }
 aside .container {
   display: flex;

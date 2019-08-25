@@ -267,6 +267,7 @@ form input[type=submit] {
   padding: 10px 15px 10px 15px;
   border-radius: 7px;
   box-sizing: border-box;
+  margin-top: 20px;
   cursor: pointer;
   display: inline-block !important;
 }
@@ -347,6 +348,30 @@ div.overlay .modal {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
+}
+
+div.icon-input {
+  position: relative;
+}
+div.icon-input.alert-validation:after {
+  background-image: url("../../assets/imgs/close.png");
+}
+div.icon-input.caution-validation:after {
+  background-image: url("../../assets/imgs/exclamation.png");
+}
+div.icon-input.success-validation:after {
+  background-image: url("../../assets/imgs/checked.png");
+}
+div.icon-input:after {
+  content: "";
+  height: 100%;
+  width: 40px;
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: center;
+  position: absolute;
+  right: 0px;
+  top: 0px;
 }
 
 /*# sourceMappingURL=mainStyle.css.map */

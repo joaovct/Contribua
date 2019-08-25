@@ -1,12 +1,10 @@
-<script src="/scripts/indexScript.js"></script>
-<script src="/scripts/addNGOScript.js"></script>
 <link rel="stylesheet" href="/styles/css/addNGO.css" />
 
 <div class="centralize">
     <section id="main">
         <aside>
             <div class="container">
-                <form id="form-registerNGO" name="form-registerNGO" action="#" method="POST" onsubmit="changeForm(1)">
+                <form id="form-registerNGO" name="form-registerNGO" action="/addNGO/registerNGO" method="POST" onsubmit="changeForm(1)">
                     <div class="registerNGO">
                         <h1 class="form-title"><span>1° Passo</span><br>Dados da ONG</h1>
                         <input name="ngoName" class="form-input" type="text" placeholder="Nome da ONG" length="150" />
@@ -18,8 +16,8 @@
                         <input name="ngoAdress" class="form-input" type="text" placeholder="Endereço da ONG"
                             length="200" />
                         <input name="ngoCases" class="form-input" type="text" placeholder="Causas" />
-                        <input name="ngoCNPJ" class="form-input" type="number" placeholder="CNPJ - __.___.___/____-__"
-                            length="18" />
+                        <div class="icon-input"><input name="ngoCNPJ" class="form-input" type="text" placeholder="CNPJ - __.___.___/____-__"
+                            maxlength="18" /></div>
                         <div class="form-submit" name="submitRegisterNGO-1">Próximo</div>
                     </div>
 
@@ -67,4 +65,6 @@
     </section>
 </div>
 
+<script src="/scripts/indexScript.js"></script>
+<script src="/scripts/addNGOScript.js"></script>
 <script>init()</script>
