@@ -108,6 +108,7 @@ header.headerRelative {
 }
 
 .group-nav {
+  transition: opacity .3s;
   .nav-articles {
     width: 100%;
     margin: 0 0 0 0;
@@ -258,4 +259,8 @@ header.headerRelative {
       }
     }
   }
+}
+
+.group-nav:nth-child(3), .group-nav:nth-child(4){
+  display: none;
 }

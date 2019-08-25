@@ -34,11 +34,11 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $gray;
+  background: $lightGray2;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: $darkGray;
+  background: $gray;
 }
 
 div.spacing {
@@ -94,7 +94,7 @@ header {
         }
         .search-input{
           width: 400px;
-          font-size: 0.9em;
+          font-size: 0.9rem;
           text-align: left;
           padding: 10px 10px 10px 44px;
           outline: none;
@@ -132,7 +132,7 @@ header {
           }
         }
         li.text {
-          font-size: 1.3em;
+          font-size: 1.3rem;
           font-weight: 500;
           color: black;
           border-radius: 7px;
@@ -187,22 +187,22 @@ form {
   height: auto;
   width: 400px;
   .form-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
   }
   .form-textarea {
     height: 150px;
     width: 100%;
-    font-size: 1em;
+    font-size: 1rem;
     font-family: Nunito;
     resize: none;
   }
   .form-input {
-    margin: $margin2 0;
+    margin: $margin2 0 0 0;
     display: block;
     width: 100%;
-    border: 1px solid #dddddd;
-    background: $lightColor;
+    border: 1.5px solid $lightGray;
+    background: $lightBlue2;
     padding: 10px 15px 10px 15px;
     box-sizing: border-box;
     outline: 0;
@@ -210,15 +210,31 @@ form {
     font-size: 1.25rem;
   }
 
+  .form-input-icon{
+    margin: $margin2 0 0 0;
+    padding: 0;
+    position: relative;
+    .form-input{
+      padding-left: 45px;
+      margin: 0;
+    }
+    img{
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      height: 25px;
+    }
+  }
+
   .form-btnFile {
     height: 150px;
     width: 150px;
     padding: $margin4 $margin2 0 $margin2;
     display: block;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     text-align: center;
-    background: #f9f9f9;
-    border: 1px solid #dddddd;
+    background: #fcfcfc;
+    border: 1.5px solid $lightBlue2;
     border-radius: 5px;
     box-sizing: border-box;
     cursor: pointer;
@@ -236,13 +252,14 @@ form {
     background: $mainColor;
     box-shadow: 0 6px 16px 0 rgba(49, 113, 224, 0.3);
     color: white;
-    font-size: 1.5em;
+    font-size: 1.5rem;
+    font-weight: 100;
     text-align: center;
-    padding: 6px 15px 6px 15px;
-    border-radius: 5px;
+    padding: 10px 15px 10px 15px;
+    border-radius: 7px;
     box-sizing: border-box;
     cursor: pointer;
-
+    display: inline-block !important;
     &:disabled {
       opacity: 0.5;
       // background: rgb(172, 172, 172);
@@ -256,12 +273,12 @@ form {
     text-align: center;
     text-decoration: underline;
     color: $mainColor;
-    font-size: 1.1em;
+    font-size: 1.1rem;
   }
   .form-span-text {
     width: 100%;
     text-align: center;
-    font-size: 1.1em;
+    font-size: 1.1rem;
     display: block;
     .form-span-black {
       color: black !important;
@@ -283,9 +300,35 @@ div.container {
   position: relative;
 }
 
+div.overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  // display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.05);
+  z-index: 999;
+  .modal{
+    padding: 30px 40px 30px 40px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.16);
+  }
+}
+
 .title {
-  font-size: 2.5em;
-  font-weight: bolder;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 0 0;
+}
+
+.text {
+  font-size: 1.25rem;
+  text-align: left;
+  font-weight: normal;
   margin: 0 0 0 0;
 }
 

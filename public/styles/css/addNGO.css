@@ -1,15 +1,5 @@
 @font-face {
   font-family: Nunito;
-  font-weight: bold;
-  src: url("../../assets/fonts/Nunito-Bold.ttf");
-}
-@font-face {
-  font-family: Nunito;
-  font-weight: bolder;
-  src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
-}
-@font-face {
-  font-family: Nunito;
   font-weight: normal;
   src: url("../../assets/fonts/Nunito-Regular.ttf");
 }
@@ -17,6 +7,16 @@
   font-family: Nunito;
   font-weight: 500;
   src: url("../../assets/fonts/Nunito-SemiBold.ttf");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: 700;
+  src: url("../../assets/fonts/Nunito-Bold.ttf");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: 800;
+  src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
 }
 .centralize {
   height: calc(100% - 99px);
@@ -44,9 +44,10 @@ aside:first-child {
 }
 aside:last-child {
   justify-content: flex-start;
-  background: #f2f2f2;
+  background: #f9f9f9;
   padding: 0 0 0 40px;
   box-sizing: border-box;
+  position: relative;
 }
 aside:last-child .title-aside {
   font-weight: 500;
@@ -75,12 +76,12 @@ aside .container .steps .step {
   transition: all 0.25s;
 }
 aside .container .steps .step h1 {
-  font-size: 2.8em;
+  font-size: 2.5em;
   margin: 0;
   padding: 0;
 }
 aside .container .steps .step p {
-  font-size: 1em;
+  font-size: 1.5em;
   margin: 5px 0;
   padding: 0;
   transition: all 0.5s;
@@ -95,6 +96,11 @@ aside #form-registerNGO {
 aside #form-registerNGO .registerNGO {
   display: block;
   position: relative;
+}
+aside #form-registerNGO .registerNGO .form-title span {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #818181;
 }
 aside #form-registerNGO .registerNGO:nth-child(2),
 aside #form-registerNGO .registerNGO:nth-child(3) {

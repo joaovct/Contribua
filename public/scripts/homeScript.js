@@ -4,6 +4,7 @@ function init(){
     // addEventBtnFilter("btn-filters", "filters")
     addEventFilters("item-filter")
     addEventFilters("category-filter")
+    addEventLinks("category-link")
 }
 
 function addEventBtnFilter(e, e2){
@@ -16,7 +17,7 @@ function addEventBtnFilter(e, e2){
 
 function addEventFilters(e){
     e = document.getElementsByClassName(e)
-    console.log(e)
+    // console.log(e)
     for(i=0;i<e.length;i++){
          e[i].addEventListener("click", (el)=>{
              el = el.path[1]
@@ -29,6 +30,59 @@ function addEventFilters(e){
                  el.classList.remove("filter-disabled")
              }
          })
+    }
+}
+
+function addEventLinks(el){
+    el = document.getElementsByClassName(el)
+    for(i=0;i<el.length;i++){
+        el[i].addEventListener("click", (e)=>{
+            // console.log(e)
+            target = e.target.title
+            changeGroupNav(target)
+        })
+    }
+}
+
+function changeGroupNav(target){
+    e = document.getElementsByClassName("group-nav")
+    link = document.getElementsByClassName("category-link")
+    targetE = document.getElementById(target)
+    timeOut = 500
+
+    if(target == "ngo-events"){
+        animatesGroupNav(targetE, e[1], e[2], timeOut)
+    } 
+    else if(target == "ngo-members"){
+        animatesGroupNav(targetE, e[0], e[2], timeOut) 
+    }
+    else{
+        animatesGroupNav(targetE, e[0], e[1], timeOut) 
+    }
+    animatesLinkGroupNav(target, link)
+}
+
+function animatesGroupNav(targetE, e1, e2, timeOut){
+    targetE.style.display = "block"
+    setTimeout(() => {
+        targetE.style.opacity = 1 
+    }, timeOut);
+    e1.style.opacity = 0
+    e2.style.opacity = 0  
+    setTimeout(() => {
+        e1.style.display = "none"
+        e2.style.display = "none" 
+    }, timeOut);
+}
+
+function animatesLinkGroupNav(target, link){
+    for(i=0;i<link.length;i++){
+        console.log(link[i])
+        if(link[i].title == target){
+            link[i].classList.add("active-link")
+        }else{
+            link[i].classList.remove("active-link")
+        }
     }
 }
 

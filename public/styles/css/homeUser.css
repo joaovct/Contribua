@@ -1,15 +1,5 @@
 @font-face {
   font-family: Nunito;
-  font-weight: bold;
-  src: url("../../assets/fonts/Nunito-Bold.ttf");
-}
-@font-face {
-  font-family: Nunito;
-  font-weight: bolder;
-  src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
-}
-@font-face {
-  font-family: Nunito;
   font-weight: normal;
   src: url("../../assets/fonts/Nunito-Regular.ttf");
 }
@@ -17,6 +7,16 @@
   font-family: Nunito;
   font-weight: 500;
   src: url("../../assets/fonts/Nunito-SemiBold.ttf");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: 700;
+  src: url("../../assets/fonts/Nunito-Bold.ttf");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: 800;
+  src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
 }
 header.headerRelative {
   height: 139px;
@@ -123,6 +123,9 @@ header.headerRelative {
   cursor: pointer;
 }
 
+.group-nav {
+  transition: opacity 0.3s;
+}
 .group-nav .nav-articles {
   width: 100%;
   margin: 0 0 0 0;
@@ -269,6 +272,10 @@ header.headerRelative {
   position: absolute;
   border-radius: 7px;
   z-index: 2;
+}
+
+.group-nav:nth-child(3), .group-nav:nth-child(4) {
+  display: none;
 }
 
 /*# sourceMappingURL=homeUser.css.map */

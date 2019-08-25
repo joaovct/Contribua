@@ -8,7 +8,7 @@
             <div class="container">
                 <form id="form-registerNGO" name="form-registerNGO" action="#" method="POST" onsubmit="changeForm(1)">
                     <div class="registerNGO">
-                        <h1 class="form-title">1° - Dados da ONG</h1>
+                        <h1 class="form-title"><span>1° Passo</span><br>Dados da ONG</h1>
                         <input name="ngoName" class="form-input" type="text" placeholder="Nome da ONG" length="150" />
                         <textarea name="ngoDescription" type="text" class="form-input form-textarea"
                             placeholder="Descrição da ONG" length="3000"></textarea>
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="registerNGO">
-                        <h1 class="form-title">2° - Contato e registro</h1>
+                        <h1 class="form-title"><span>2° passo</span><br>Contato e registro</h1>
                         <input name="ngoTelephone" class="form-input" type="number"
                             placeholder="Telefone - (__) ____-____" length="150" />
                         <input name="ngoEmail" class="form-input" type="email" placeholder="Email da ONG"
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="registerNGO">
-                        <h1 class="form-title">3° - Dados da ONG</h1>
+                        <h1 class="form-title"><span>3° passo</span><br>Dados da ONG</h1>
                         <textarea name="ngoDescription" type="text" class="form-input form-textarea"
                             placeholder="Descreva brevemente sua ONG; Onde atua, trabalhos realizados, causas, etc"
                             length="5000" style="height: 300px"></textarea>
@@ -49,17 +49,17 @@
         <aside>
             <div class="container">
                 <nav class="steps">
-                    <div class="step">
-                        <h1>1° Passo</h1>
-                        <p>Dados da ONG.</p>
+                    <div class="step" title="1">
+                        <p>1° Passo</p>
+                        <h1>Dados da ONG.</h1>
                     </div>
-                    <div class="step disabled">
-                        <h1>2° Passo</h1>
-                        <p>Informações de contato e registro.</p>
+                    <div class="step disabled" title="2">
+                        <p>2° Passo</p>
+                        <h1>Informações de contato e registro.</h1>
                     </div>
-                    <div class="step disabled">
-                        <h1>3° Passo</h1>
-                        <p>Descrição da ONG.</p>
+                    <div class="step disabled" title="3">
+                        <p>3° Passo</p>
+                        <h1>Descrição da ONG.</h1>
                     </div>
                 </nav>
             </div>

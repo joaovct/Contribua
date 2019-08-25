@@ -26,9 +26,10 @@ aside {
   }
   &:last-child {
     justify-content: flex-start;
-    background: #f2f2f2;
+    background: $lightColor;
     padding: 0 0 0 $margin4;
     box-sizing: border-box;
+    position: relative;
     .title-aside {
       font-weight: 500;
     }
@@ -56,12 +57,12 @@ aside {
         cursor: pointer;
         transition: all 0.25s;
         h1 {
-          font-size: 2.8em;
+          font-size: 2.5em;
           margin: 0;
           padding: 0;
         }
         p {
-          font-size: 1em;
+          font-size: 1.5em;
           margin: 5px 0;
           padding: 0;
           transition: all 0.5s;
@@ -78,6 +79,13 @@ aside {
     .registerNGO{
       display: block;
       position: relative;
+      .form-title{
+        span{
+          font-size: 1.5rem;
+          font-weight: 500;
+          color: $gray;
+        }
+      }
     }
     .registerNGO:nth-child(2),
     .registerNGO:nth-child(3) {

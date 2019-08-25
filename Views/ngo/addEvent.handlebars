@@ -1,1 +1,142 @@
-<h1>dkas</h1>
+<link rel="stylesheet" href="/styles/css/addEvent.css" />
+<script src="/scripts/addEventScript.js"></script>
+<div class="centralize">
+    <div class="container">
+        <div id="addEvent">
+            <ul id="addEvent-progress">
+                <li>1° Passo
+                    <hr class="progress-bar">
+                </li>
+                <li>2° Passo
+                    <hr class="progress-bar">
+                </li>
+                <li>3° Passo
+                    <hr class="progress-bar">
+                </li>
+            </ul>
+            <form id="form-addEvent" name="addEvent">
+                <div class="addEvent-step">
+                    <h1 class="title">Informações do evento</h1>
+                    <div class="flex-inputs">
+                        <input class="form-input" placeholder="Nome do evento" />
+                        <textarea class="form-textarea form-input" placeholder="Resumo do evento"></textarea>
+                        <label class="form-input-icon">
+                            <input class="form-input" placeholder="Endereço do evento"></input>
+                            <img src="/assets/imgs/placeholder.svg" />
+                        </label>
+                        <input class="form-input" placeholder="Causas apoiadas" />
+                        <input class="form-input" placeholder="Habilidades desejáveis" />
+                        <textarea id="description-event" class="form-textarea form-input"
+                            placeholder="Escreva uma descrição sobre esse evento"></textarea>
+                    </div>
+                    <a class="form-submit addEvent-btn" title="1">Próximo</a>
+                </div>
+                <div class="addEvent-step">
+                    <h1 class="title">Tipo de evento</h1>
+                    <div class="flex-inputs">
+                        <div class="group-labels">
+                            <label title="0" class="typeEvent-label" for="radioPunctual">
+                                <img class="icon" src="/assets/imgs/clock.svg" />
+                                <p>Data única</p>
+                            </label>
+                            <label title="1" class="typeEvent-label" for="radioRecurrent">
+                                <img class="icon" src="/assets/imgs/calendar.svg" />
+                                <p>Recorrente</p>
+                            </label>
+                            <input type="radio" id="radioRecurrent" class="typeEvent-Radio" name="typeEvent"
+                                value="recurrent">
+                            <input type="radio" id="radioPunctual" class="typeEvent-Radio" name="typeEvent"
+                                value="punctual">
+                        </div>
+
+                        <div class="typeEvent-inputs">
+                            <div class="input">
+                                <label for="event-date">Data</label>
+                                <input id="event-date" name="event-date" class="form-input" type="date">
+                            </div>
+                            <div class="input">
+                                <label for="event-hourInit">Início</label>
+                                <input id="event-hourInit" name="event-hourInit" class="form-input" type="time">
+                            </div>
+                            <div class="input">
+                                <label for="event-hourEnd">Término</label>
+                                <input id="event-hourEnd" name="event-hourEnd" class="form-input" type="time">
+                            </div>
+                            <a class="form-submit addEvent-btn" title="2">Próximo</a>
+                        </div>
+                        <div class="typeEvent-inputs">
+                            <div class="input">
+                                <label for="event-dateInit">Início</label>
+                                <input id="event-dateInit" name="event-dateInit" class="form-input" type="date">
+                            </div>
+                            <div class="input">
+                                <label for="event-hourInit">Início</label>
+                                <input id="event-hourInit" name="event-hourInit" class="form-input" type="time">
+                            </div>
+                            <div class="input input-block">
+                                <label for="event-dateInit">Término</label>
+                                <input id="event-dateEnd" name="event-dateEnd" class="form-input" type="date">
+                            </div>
+                            <a class="form-submit addEvent-btn" title="2">Próximo</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form id="form-addEvent-jobs" name="addEvent-jobs">
+                <div class="addEvent-step">
+                    <h1 class="title">Adicionar vagas</h1>
+                    <div class="flex-inputs">
+                        <div class="group-jobs">
+                            <div class="job btn-add-job">
+                                <img class="icon" src="/assets/imgs/add-user.svg" />
+                                <p>Nova vaga</p>
+                            </div>
+                            <div class="add-job">
+                                <input class="form-input" type="text" placeholder="Nome da vaga">
+                                <textarea class="form-input form-textarea" type="text"
+                                    placeholder="Descrição da vaga"></textarea>
+                                <input class="form-input" type="number" placeholder="Quantidade de vagas">
+                                <input class="form-input" type="number" placeholder="Horas p/semana">
+                                <a href="#" class="form-submit close-add-job">Criar vaga</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="form-submit addEvent-btn" title="3">Próximo</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="overlay">
+    <form name="addEvent-image">
+        <div class="modal">
+            <div id="addEvent-imageUp">
+                <label class="imageUp" for="event-image"><img src="/assets/imgs/upload.svg" /></label>
+                <input type="file" id="event-image" name="event-image" />
+                <h1 class="title">Só mais um detalhe</h1>
+                <p class="text">Clique no espaço cinza para escolher uma imagem que atraia o público para este evento.
+                </p>
+            </div>
+        </div>
+        {{!-- <div class="modal">
+            <div class="preview">
+                <h1 class="title">Preview</h1>
+                <img class="preview-image" src="/assets/imgs/dog.jpg">
+                <h1 class="title preview-title">Salve os cachorros</h1>
+                <p class="preview-content">Aliquip ex cupidatat amet officia proident fugiat non amet commodo. Veniam
+                    excepteur nostrud cupidatat in. Non occaecat minim enim mollit aute.</p>
+                <button type="submit">Finalizar</button>
+            </div>
+        </div> --}}
+        {{!-- <div class="modal">
+            <div class="preview">
+                <img class="preview-image" src="/assets/imgs/successImage.png">
+                <h1 class="title success-title">Boas notícias!</h1>
+                <p class="preview-content">Esse evento foi criado com sucesso e agora você já pode procurar e convidar voluntários para lhe ajudar.</p>
+                <a href="/ngo">Ir para a home</a>
+            </div>
+        </div> --}}
+    </form>
+
+</div>
+<script>init()</script>

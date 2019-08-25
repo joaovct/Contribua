@@ -14,16 +14,14 @@ function addEventClick(el){
         el[i].order = i
         // console.log(el[i].order)
         el[i].addEventListener("click", (e) => {
-            if(e.target.order != undefined) changeForm(e.target.order, "btn")
-            else {
-                // GAMBIARRA
-                order = e.target.innerHTML
-                order = order.substr(0,1)
-                order = parseInt(order)
-                order -= 1;
-                changeForm(order, "step")
+            if(e.target.order != undefined){
+                changeForm(e.target.order, "btn")
+                console.log("AEEEee")
+            }else{
+                e = e.path[1].title
+                e = parseInt(e) - 1
+                changeForm(e, "step")
             }
-            
         })
     }
 }
@@ -57,7 +55,6 @@ function changeForm(n, format){
             }
             animatesStep(n)
         }else{
-    
             if(n<2){
                 forms[n+1].style.display = "block"
                 forms[n].style.display = "none"

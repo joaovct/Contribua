@@ -1,0 +1,288 @@
+@import "utilities/variables.scss";
+
+.centralize {
+  height: calc(100% - #{$heightHeader});
+  width: 100%;
+  padding: 0;
+}
+
+.container {
+  width: $widthContainer;
+}
+
+#addEvent {
+  position: relative;
+  width: 100%;
+  ul#addEvent-progress {
+    display: flex;
+    list-style: none;
+    margin: 0 0 $margin4 0;
+    padding: 0;
+    background: white;
+    width: 100%;
+    z-index: 998;
+    li {
+      font-size: 1.75em;
+      font-weight: 100;
+      position: relative;
+      margin: 0;
+      margin-right: $margin2;
+      opacity: 0.35;
+      cursor: pointer;
+      hr {
+        margin: 5px 0 0 0;
+        height: 3px;
+        width: calc(100% + #{$margin2});
+        background: $lightBlue;
+        border: none;
+        transition: 0.5s;
+        transform-origin: left;
+      }
+      &:first-child {
+        opacity: 1;
+        font-weight: 500;
+        hr {
+          background: $mainColor;
+        }
+      }
+      &:last-child hr {
+        width: 100%;
+      }
+    }
+  }
+  form {
+    width: 100%;
+  }
+  .addEvent-step {
+    display: block;
+    margin-top: $margin4;
+    padding-bottom: $margin2;
+    .title {
+      font-size: 2.7em;
+      margin-bottom: $margin2;
+    }
+    %card {
+      background: white;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+      border: 3px solid $mainColor;
+      box-shadow: 0 12px 24px 3px rgba(0, 0, 0, 0.06);
+      border-radius: 14px;
+      padding: 24.75px 31.5px 24.75px 31.5px;
+      cursor: pointer;
+      margin-right: $margin4;
+      margin-left: $margin4;
+      img.icon {
+        height: 100px;
+        width: 100px;
+      }
+      p {
+        font-size: 1.75em;
+        font-weight: normal;
+        margin: $margin2 0 0 0;
+        text-align: center;
+      }
+    }
+    &:nth-child(1) {
+      // display: none;
+      margin-top: 0;
+      .flex-inputs {
+        height: calc((43px + 1.25rem) * 6);
+        width: 100%;
+        display: flex;
+        flex-flow: column wrap;
+        box-sizing: border-box;
+        .form-input {
+          width: calc(50% - #{$margin2});
+          &:nth-child(n-4) {
+            margin-right: $margin2;
+          }
+          &:nth-child(n + 5) {
+            margin-left: $margin2;
+          }
+        }
+        .form-input-icon {
+          margin-right: $margin2;
+          .form-input {
+            width: 100%;
+            margin: 0;
+          }
+        }
+        textarea#description-event {
+          height: calc(100% - 76px - 1.25rem);
+          grid-area: 6;
+        }
+      }
+    }
+    &:nth-child(2) {
+      display: none;
+      .flex-inputs {
+        min-height: calc((43px + 1.25rem) * 6);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column nowrap;
+        .group-labels {
+          display: flex;
+          justify-content: space-between;
+          width: 600px;
+          .typeEvent-label {
+            @extend %card;
+          }
+          .typeEvent-Radio {
+            display: none;
+          }
+        }
+        .typeEvent-inputs {
+          width: 520px;
+          display: none;
+          margin-top: $margin2;
+          .input {
+            display: inline-block;
+            margin-right: $margin2;
+            label {
+              display: block;
+              font-size: 1.75em;
+              font-weight: 500;
+              margin: $margin2 0 0 0;
+            }
+            input {
+              display: block;
+              width: auto;
+              margin: $margin2 / 2 0 0 0;
+            }
+          }
+          .input-block {
+            display: block;
+          }
+        }
+      }
+    }
+    button[type="submit"],
+    .form-submit {
+      width: auto;
+      padding: 10px 20px 10px 20px;
+      font-size: 1.4em;
+      margin-top: $margin2;
+      display: inline-block;
+    }
+  }
+  #form-addEvent-jobs {
+    .addEvent-step {
+      display: none;
+      .flex-inputs {
+        height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .group-jobs {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          flex-flow: row wrap;
+          .job {
+            @extend %card;
+            padding: 50px 35px 50px 35px;
+          }
+          .add-job {
+            display: none;
+            width: auto;
+            .form-input {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.overlay {
+  display: none;
+  position: relative;
+  form {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .modal {
+      width: 450px;
+      #addEvent-imageUp {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column nowrap;
+        width: 450px;
+        label.imageUp {
+          height: 200px;
+          width: 350px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #f2f2f2;
+          border-radius: 7px;
+          position: relative;
+          cursor: pointer;
+          img {
+            height: 100px;
+            width: 100px;
+          }
+        }
+        .title {
+          margin-top: $margin2;
+        }
+        .text {
+          font-size: 1.4em;
+          margin-top: $margin2 / 2;
+        }
+        #event-image {
+          display: none;
+        }
+      }
+      .preview {
+        width: 350px;
+        .title {
+          margin-bottom: $margin4;
+        }
+        .success-title {
+          text-align: center;
+          margin: $margin4 0 $margin2 0;
+        }
+        img.preview-image {
+          height: 200px;
+          width: 350px;
+          border-radius: 7px;
+          object-fit: cover;
+        }
+        .preview-title {
+          font-size: 2em;
+          margin: $margin2 0 0 0;
+        }
+        .preview-content {
+          font-size: 1.25em;
+          margin: $margin2 / 2 0 0 0;
+        }
+        button[type="submit"],
+        .form-submit {
+          width: auto;
+          margin-top: $margin2;
+        }
+        a {
+          font-size: 1.25em;
+          display: block;
+          text-align: center;
+          text-decoration: underline;
+          margin-top: $margin2;
+        }
+      }
+    }
+  }
+}

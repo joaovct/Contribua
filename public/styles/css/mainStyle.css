@@ -1,15 +1,5 @@
 @font-face {
   font-family: Nunito;
-  font-weight: bold;
-  src: url("../../assets/fonts/Nunito-Bold.ttf");
-}
-@font-face {
-  font-family: Nunito;
-  font-weight: bolder;
-  src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
-}
-@font-face {
-  font-family: Nunito;
   font-weight: normal;
   src: url("../../assets/fonts/Nunito-Regular.ttf");
 }
@@ -17,6 +7,16 @@
   font-family: Nunito;
   font-weight: 500;
   src: url("../../assets/fonts/Nunito-SemiBold.ttf");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: 700;
+  src: url("../../assets/fonts/Nunito-Bold.ttf");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: 800;
+  src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
 }
 html {
   height: 100%;
@@ -50,11 +50,11 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #818181;
+  background: #c7c7c7;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f3f;
+  background: #818181;
 }
 
 div.spacing {
@@ -113,7 +113,7 @@ header .container .search-field .search-form img {
 }
 header .container .search-field .search-form .search-input {
   width: 400px;
-  font-size: 0.9em;
+  font-size: 0.9rem;
   text-align: left;
   padding: 10px 10px 10px 44px;
   outline: none;
@@ -150,7 +150,7 @@ header .container nav.nav-header ul li:last-child {
   margin-right: 0;
 }
 header .container nav.nav-header ul li.text {
-  font-size: 1.3em;
+  font-size: 1.3rem;
   font-weight: 500;
   color: black;
   border-radius: 7px;
@@ -200,37 +200,52 @@ form {
   width: 400px;
 }
 form .form-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
 }
 form .form-textarea {
   height: 150px;
   width: 100%;
-  font-size: 1em;
+  font-size: 1rem;
   font-family: Nunito;
   resize: none;
 }
 form .form-input {
-  margin: 20px 0;
+  margin: 20px 0 0 0;
   display: block;
   width: 100%;
-  border: 1px solid #dddddd;
-  background: #f9f9f9;
+  border: 1.5px solid #e1e1e1;
+  background: #fafaff;
   padding: 10px 15px 10px 15px;
   box-sizing: border-box;
   outline: 0;
   border-radius: 5px;
   font-size: 1.25rem;
 }
+form .form-input-icon {
+  margin: 20px 0 0 0;
+  padding: 0;
+  position: relative;
+}
+form .form-input-icon .form-input {
+  padding-left: 45px;
+  margin: 0;
+}
+form .form-input-icon img {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  height: 25px;
+}
 form .form-btnFile {
   height: 150px;
   width: 150px;
   padding: 40px 20px 0 20px;
   display: block;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   text-align: center;
-  background: #f9f9f9;
-  border: 1px solid #dddddd;
+  background: #fcfcfc;
+  border: 1.5px solid #fafaff;
   border-radius: 5px;
   box-sizing: border-box;
   cursor: pointer;
@@ -246,12 +261,14 @@ form input[type=submit] {
   background: #3171e0;
   box-shadow: 0 6px 16px 0 rgba(49, 113, 224, 0.3);
   color: white;
-  font-size: 1.5em;
+  font-size: 1.5rem;
+  font-weight: 100;
   text-align: center;
-  padding: 6px 15px 6px 15px;
-  border-radius: 5px;
+  padding: 10px 15px 10px 15px;
+  border-radius: 7px;
   box-sizing: border-box;
   cursor: pointer;
+  display: inline-block !important;
 }
 form .form-submit:disabled,
 form button[type=submit]:disabled,
@@ -265,12 +282,12 @@ form .form-link {
   text-align: center;
   text-decoration: underline;
   color: #3171e0;
-  font-size: 1.1em;
+  font-size: 1.1rem;
 }
 form .form-span-text {
   width: 100%;
   text-align: center;
-  font-size: 1.1em;
+  font-size: 1.1rem;
   display: block;
 }
 form .form-span-text .form-span-black {
@@ -291,9 +308,34 @@ div.container {
   position: relative;
 }
 
+div.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.05);
+  z-index: 999;
+}
+div.overlay .modal {
+  padding: 30px 40px 30px 40px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+}
+
 .title {
-  font-size: 2.5em;
-  font-weight: bolder;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 0 0;
+}
+
+.text {
+  font-size: 1.25rem;
+  text-align: left;
+  font-weight: normal;
   margin: 0 0 0 0;
 }
 

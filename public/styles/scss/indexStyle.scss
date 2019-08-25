@@ -1,15 +1,14 @@
 @import "utilities/variables";
 
+
+
 section#landing {
-  height: 100%;
+  height: calc(100% - #{$heightHeader});
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0;
-  left: 0;
   z-index: 1;
-  padding: 0 50px 0 50px;
   box-sizing: border-box;
   h1,
   h4 {

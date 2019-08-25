@@ -1,0 +1,45 @@
+@import 'utilities/variables.scss';
+
+.centralize{
+    height: calc(100% - #{$heightHeader});
+    width: 100%;
+    justify-content: center;
+    padding: 0;
+}
+
+.container{
+    display: flex;
+    width: $widthContainer;
+    figure.hero-image{
+        width: 50%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        img{
+            width: 100%;
+        }
+    }
+    .content-page{
+        height: 100%;
+        width: 50%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        margin-left: $margin4;
+        .title{
+            font-size: 3em;
+            font-weight: 800;
+        }
+        .text{
+            font-size: 1.7rem;
+            margin-top: $margin2;
+        }
+        form{
+            button[type="submit"]{
+                width: auto;
+                padding: 10px 20px 10px 20px;
+                margin: $margin2 0 0 0;
+            }
+        }
+    }
+}

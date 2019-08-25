@@ -22,7 +22,7 @@ section#main {
     &:last-child {
       width: 30%;
       justify-content: center;
-      background: #F2F2F2;
+      background: $lightColor;
 
       .title-aside{
         font-weight: 500;
