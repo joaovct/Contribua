@@ -22,6 +22,10 @@ const Ngo = db.sequelize.define("tbNgo", {
         allowNull: false,
         type: db.Sequelize.STRING(80)
     },
+    passwordNgo: {
+        allowNull: false,
+        type: db.Sequelize.STRING(250)
+    },
     siteNgo: {
         type: db.Sequelize.STRING(80)
     },
