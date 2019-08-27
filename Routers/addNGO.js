@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Ngo = require("../models/Ngo")
+const User = require("../models/Volunteer")
 const TelephoneNgo = require("../models/TelephoneNgo")
 const isCNPJ = require("../helpers/isCNPJ")
 
@@ -22,10 +23,20 @@ router.post("/registerNGO", (req,res) => {
         err.push({msg: "Preencha um nome"})
     }
 
+    if(req.body.ngoName.length < 4){
+        console.log("Nome muito curto!")
+        err.push({msg: "Nome muito curto!"})
+    }
+
     //address
     if(!req.body.ngoAddress || req.body.ngoAddress == undefined || req.body.ngoAddress == null){
         console.log("Preencha um endereço")
         err.push({msg: "Preencha um endereço"})
+    }
+
+    if(req.body.ngoAddress.length < 4){
+        console.log("Endereço muito curto!")
+        err.push({msg: "Endereço muito curto!"})
     }
 
     //Falta validar causas
@@ -48,9 +59,10 @@ router.post("/registerNGO", (req,res) => {
     }
 
     //email
-    if(!req.body.ngoEmail || req.body.ngoEmail == undefined || req.body.ngoEmail == null){
-        console.log("Preencha um Email")
-        err.push({msg: "Preecha um Email"})
+    let regex = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/)
+    if(!regex.test(req.body.ngoEmail)){
+        console.log("E-mail inválido")
+        err.push({msg: "E-mail inválido"})
     }
 
     //password
@@ -72,30 +84,55 @@ router.post("/registerNGO", (req,res) => {
 
     if(err.length > 0){
         console.log("Erro ao cadastrar: ")
-        res.redirect("/addNGO/")
+        res.redirect("/addNGO/add")
     }else{
-        Ngo.findOne({where: {emailNgo: req.body.ngoEmail}}).then((ngo) => {
-            if(ngo){
+        User.findOne({where: {emailVolunteer: req.body.ngoEmail}}).then((user)=>{
+            if(user){
                 console.log("Já existe uma conta com este email!")
-                res.redirect("/addNGO/")
+                res.redirect("/addNGO/add")
             }else{
-                Ngo.create({
-                    nameNgo: req.body.ngoName,
-                    descriptionNgo: req.body.ngoDescription,
-                    cnpjNgo: req.body.ngoCNPJ,
-                    emailNgo: req.body.ngoEmail,
-                    addressNgo: req.body.ngoAddress,
-                    averageStarsNgo: "0"
-                }).then(() => {
-                    console.log("Ong cadastrada com sucesso!")
-                    res.redirect("/")
+                Ngo.findOne({where: {emailNgo: req.body.ngoEmail}}).then((ngo) => {
+                    if(ngo){
+                        console.log("Já existe uma conta com este email!")
+                        res.redirect("/addNGO/add")
+                    }else{
+                        Ngo.findOne({where:{cnpjNgo: req.body.ngoCNPJ}}).then((ngo) => {
+                            if(ngo){
+                                console.log("Já existe uma ong com este CNPJ!")
+                                res.redirect("/addNGO/add")
+                            }else{
+                                //register ong
+                                Ngo.create({
+                                    nameNgo: req.body.ngoName,
+                                    descriptionNgo: req.body.ngoDescription,
+                                    cnpjNgo: req.body.ngoCNPJ,
+                                    emailNgo: req.body.ngoEmail,
+                                    addressNgo: req.body.ngoAddress,
+                                    averageStarsNgo: "0"
+                                }).then((ngo) => {
+                                    //register your telephone
+                                    TelephoneNgo.create({
+                                        idNgo: ngo.idNgo,
+                                        TelephoneNgo: req.body.ngoTelephone
+                                    })
+                                    console.log("Ong cadastrada com sucesso!")
+                                    res.redirect("/")
+                                }).catch((err) => {
+                                    console.log("Falha ao cadastrar, erro: ", err)
+                                    res.redirect("/addNGO/add")
+                                })
+                            }
+                        }).catch((err) => {
+                            console.log("Erro interno: ",err)
+                        })
+                    }
                 }).catch((err) => {
-                    console.log("Falha ao cadastrar, erro: ", err)
-                    res.redirect("/addNGO/")
+                    console.log("Erro interno: ",err)
                 })
             }
-        }).catch((err) => {
+        }).catch((err)=>{
             console.log("Erro interno: ",err)
+            res.redirect("/addNGO/add")
         })
     }
 }) 
