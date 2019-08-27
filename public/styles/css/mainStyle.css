@@ -152,7 +152,7 @@ header {
           position: relative; }
           header .container nav.nav-header ul li.availableVolunteer:after {
             content: "";
-            background: #32FF6A; }
+            background: #2bd659; }
         header .container nav.nav-header ul li.unavailableVolunteer {
           position: relative; }
           header .container nav.nav-header ul li.unavailableVolunteer:after {
@@ -252,9 +252,17 @@ a {
   text-decoration: none;
   color: #3171e0; }
 
+.centralize {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center; }
+
 div.container {
   box-sizing: border-box;
   position: relative; }
+
+.width-container {
+  width: 1320px; }
 
 div.overlay {
   position: fixed;
@@ -286,19 +294,14 @@ div.overlay {
 .blue {
   color: #3171e0; }
 
-.centralize {
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center; }
-
 div.icon-input {
   position: relative; }
   div.icon-input.alert-validation:after {
-    background-image: url("../../assets/imgs/close.png"); }
+    background-image: url("../../assets/imgs/error.svg"); }
   div.icon-input.caution-validation:after {
-    background-image: url("../../assets/imgs/exclamation.png"); }
+    background-image: url("../../assets/imgs/warning.svg"); }
   div.icon-input.success-validation:after {
-    background-image: url("../../assets/imgs/checked.png"); }
+    background-image: url("../../assets/imgs/success.svg"); }
   div.icon-input:after {
     content: "";
     height: 100%;
