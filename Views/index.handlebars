@@ -17,7 +17,20 @@
                 <input name="password" placeholder="Senha" type="password" class="form-input login-input" />
                 <button disabled type="submit" id="login-submit">Entrar</button>
                 <a href="#" class="form-link">Esqueci minha senha</a>
-                <span class="form-span-text" id="form-link-register"><span class="form-span-black">Não tem uma conta?
+                <span class="form-span-text" id="form-link-login-ong"><span class="form-span-black">Entre como
+                    </span><a href="#" class="form-link-register">Ong</a></span>
+                    <span class="form-span-text" id="form-link-register"><span class="form-span-black">Não tem uma conta?
+                    </span><a href="#" class="form-link-register">Registre-se</a></span>
+            </form>
+            <form style="display: none;" id="form-login-ong" name="index-login" action="/loginNgo" method="POST">
+                <h1 class="form-title">Entre no Contribua como Ong!</h1>
+                <input name="emailNgo" placeholder="Email" type="email" class="form-input login-input" />
+                <input name="passwordNgo" placeholder="Senha" type="password" class="form-input login-input" />
+                <button disabled type="submit" id="login-ong-submit">Entrar</button>
+                <a href="#" class="form-link">Esqueci minha senha</a>
+                <span class="form-span-text" id="form-link-login2"><span class="form-span-black">Entre como
+                    </span><a href="#" class="form-link-register">Voluntário</a></span>
+                <span class="form-span-text" id="form-link-register2"><span class="form-span-black">Não tem uma conta?
                     </span><a href="#" class="form-link-register">Registre-se</a></span>
             </form>
             <form id="form-register" name="index-register" action="/addUser/registerUser" method="POST">
@@ -34,6 +47,28 @@
     </div>
     </div>
 </section>
+
+{{#each errs}}
+    <div class="centralize centralize-alert">
+        <div class="container">
+            <div class="alert alert-error">
+                <figure class="alert-icon">
+                    <div class="icon"></div>
+                </figure>
+                <div class="alert-content">
+                    <h1 class="alert-title">Houve um erro...</h1>
+                    <p class="text">{{msg}}
+                    </p>
+                </div>
+                <figure class="alert-close" onclick="closeAlert(this)">
+                    <img src="/assets/imgs/close.svg" />
+                </figure>
+            </div>
+        </div>
+    </div>
+{{else}}
+
+{{/each}}
 <script src="/scripts/validations.js"></script>
 <script src="/scripts/indexScript.js"></script>
 <script>init()</script>
