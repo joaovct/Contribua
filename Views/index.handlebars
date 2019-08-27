@@ -2,37 +2,43 @@
 <script src="/scripts/indexScript.js"></script>
 <section id="landing">
     <div class="centralize">
-<div class="container">
-        <div class="group">
-            <h1 id="welcome-phrase">Bem vindo ao <span>Contribua!</span></h1>
-            <h4 id="effect-phrase">A forma mais fácil<br><span>se tornar um voluntário.</span></h4>
-            <img src="/assets/imgs/action-adult-care-339620.jpg" class="hero-image"
-                alt="Cuidadora segurando a mão de um idoso" />
-            <h3 class="label-hero-image"><img src="/assets/imgs/photo-camera.svg" />Foto de Matthias Zomer do Pexels
-            </h3>
+        <div class="container">
+            <div class="group">
+                <h1 id="welcome-phrase">Bem vindo ao <span>Contribua!</span></h1>
+                <h4 id="effect-phrase">A forma mais fácil<br><span>se tornar um voluntário.</span></h4>
+                <img src="/assets/imgs/action-adult-care-339620.jpg" class="hero-image"
+                    alt="Cuidadora segurando a mão de um idoso" />
+                <h3 class="label-hero-image"><img src="/assets/imgs/photo-camera.svg" />Foto de Matthias Zomer do Pexels
+                </h3>
+            </div>
+            <div class="group">
+                <form id="form-login" name="index-login" action="#" method="POST">
+                    <h1 class="form-title">Entre no Contribua!</h1>
+                    <input placeholder="Email" type="email" class="form-input login-input" />
+                    <input placeholder="Senha" type="password" class="form-input login-input" />
+                    <button disabled type="submit" id="login-submit">Entrar</button>
+                    <a href="#" class="form-link">Esqueci minha senha</a>
+                    <span class="form-span-text" id="form-link-register"><span class="form-span-black">Não tem uma
+                            conta?
+                        </span><a href="#" class="form-link-register">Registre-se</a></span>
+                </form>
+                <form id="form-register" name="index-register" action="#" method="POST">
+                    <h1 class="form-title">Comece a se voluntariar agora!</h1>
+                    <input placeholder="Nome" type="text" class="form-input register-input"
+                        name="register-nameVolunteer" />
+                    <input placeholder="Sobrenome" type="text" class="form-input register-input"
+                        name="register-lastNameVolunteer" />
+                    <input placeholder="Email" type="email" class="form-input register-input"
+                        name="register-emailVolunteer" />
+                    <input placeholder="Senha" type="password" class="form-input register-input"
+                        name="register-passwordVolunteer" />
+                    <input placeholder="Confirmar senha" type="password" class="form-input register-input"
+                        name="register-confirmPasswordVolunteer" />
+                    <button disabled type="submit" id="register-submit">Registrar</button>
+                    <a href="#" class="form-link" id="form-link-login">Já sou voluntário!</a>
+                </form>
+            </div>
         </div>
-        <div class="group">
-            <form id="form-login" name="index-login" action="#" method="POST">
-                <h1 class="form-title">Entre no Contribua!</h1>
-                <input placeholder="Email" type="email" class="form-input login-input" />
-                <input placeholder="Senha" type="password" class="form-input login-input" />
-                <button disabled type="submit" id="login-submit">Entrar</button>
-                <a href="#" class="form-link">Esqueci minha senha</a>
-                <span class="form-span-text" id="form-link-register"><span class="form-span-black">Não tem uma conta?
-                    </span><a href="#" class="form-link-register">Registre-se</a></span>
-            </form>
-            <form id="form-register" name="index-register" action="#" method="POST">
-                <h1 class="form-title">Comece a se voluntariar agora!</h1>
-                <input placeholder="Nome" type="text" class="form-input register-input" name="register-nameVolunteer"/>
-                <input placeholder="Sobrenome" type="text" class="form-input register-input" name="register-lastNameVolunteer"/>
-                <input placeholder="Email" type="email" class="form-input register-input" name="register-emailVolunteer"/>
-                <input placeholder="Senha" type="password" class="form-input register-input" name="register-passwordVolunteer"/>
-                <input placeholder="Confirmar senha" type="password" class="form-input register-input" name="register-confirmPasswordVolunteer"/>
-                <button disabled type="submit" id="register-submit">Registrar</button>
-                <a href="#" class="form-link" id="form-link-login">Já sou voluntário!</a>
-            </form>
-        </div>
-    </div>
     </div>
 </section>
 <script>init()</script>

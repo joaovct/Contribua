@@ -12,7 +12,6 @@ function getInputForms(){
     checksForm(inputLogin, btnLogin)
     inputRegister = document.getElementsByClassName("register-input")
     btnRegister = document.getElementById("register-submit")
-    console.log(btnRegister)
     addEventInput(inputRegister,btnRegister)
     checksForm(inputRegister, btnRegister)
 }
