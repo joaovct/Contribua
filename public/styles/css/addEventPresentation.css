@@ -1,63 +1,51 @@
 @font-face {
   font-family: Nunito;
   font-weight: normal;
-  src: url("../../assets/fonts/Nunito-Regular.ttf");
-}
+  src: url("../../assets/fonts/Nunito-Regular.ttf"); }
 @font-face {
   font-family: Nunito;
   font-weight: 500;
-  src: url("../../assets/fonts/Nunito-SemiBold.ttf");
-}
+  src: url("../../assets/fonts/Nunito-SemiBold.ttf"); }
 @font-face {
   font-family: Nunito;
   font-weight: 700;
-  src: url("../../assets/fonts/Nunito-Bold.ttf");
-}
+  src: url("../../assets/fonts/Nunito-Bold.ttf"); }
 @font-face {
   font-family: Nunito;
   font-weight: 800;
-  src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
-}
+  src: url("../../assets/fonts/Nunito-ExtraBold.ttf"); }
 .centralize {
   height: calc(100% - 155px);
   width: 100%;
   justify-content: center;
-  padding: 0;
-}
+  padding: 0; }
 
 .container {
   display: flex;
-  width: 1320px;
-}
-.container figure.hero-image {
-  width: 50%;
-  height: auto;
-  margin: 0;
-  padding: 0;
-}
-.container figure.hero-image img {
-  width: 100%;
-}
-.container .content-page {
-  height: 100%;
-  width: 50%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  margin-left: 40px;
-}
-.container .content-page .title {
-  font-size: 3em;
-  font-weight: 800;
-}
-.container .content-page .text {
-  font-size: 1.7rem;
-  margin-top: 20px;
-}
-.container .content-page form button[type=submit] {
-  width: auto;
-  padding: 10px 20px 10px 20px;
-  margin: 20px 0 0 0;
-}
+  width: 1320px; }
+  .container figure.hero-image {
+    width: 50%;
+    height: auto;
+    margin: 0;
+    padding: 0; }
+    .container figure.hero-image img {
+      width: 100%; }
+  .container .content-page {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    margin-left: 40px; }
+    .container .content-page .title {
+      font-size: 3em;
+      font-weight: 800; }
+    .container .content-page .text {
+      font-size: 1.7rem;
+      margin-top: 20px; }
+    .container .content-page form button[type="submit"] {
+      width: auto;
+      padding: 10px 20px 10px 20px;
+      margin: 20px 0 0 0; }
 
 /*# sourceMappingURL=addEventPresentation.css.map */

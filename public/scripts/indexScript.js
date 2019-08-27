@@ -12,7 +12,6 @@ function getInputForms(){
     checksForm(inputLogin, btnLogin)
     inputRegister = document.getElementsByClassName("register-input")
     btnRegister = document.getElementById("register-submit")
-    console.log(btnRegister)
     addEventInput(inputRegister,btnRegister)
     checksForm(inputRegister, btnRegister)
 }
@@ -46,4 +45,33 @@ function addEventForms(){
         formLogin.style.display = "none"
         
     })
+}
+
+//validations
+
+const name = document.getElementsByClassName("form-input")[2]
+const iconName = document.getElementsByClassName("icon-input")[0]
+const lastName = document.getElementsByClassName("form-input")[3]
+const iconLastName = document.getElementsByClassName("icon-input")[1]
+const email = document.getElementsByClassName("form-input")[4]
+const iconEmail = document.getElementsByClassName("icon-input")[2]
+const password = document.getElementsByClassName("form-input")[5]
+const iconPassword = document.getElementsByClassName("icon-input")[3]
+const confirmPassword = document.getElementsByClassName("form-input")[6]
+const iconConfirmPassword = document.getElementsByClassName("icon-input")[4]
+const submit = document.getElementById("register-submit")
+
+name.addEventListener("keyup", validationName)
+lastName.addEventListener("keyup", validationLastName)
+email.addEventListener("keyup", validationEmail)
+password.addEventListener("keyup", validationPassword)
+confirmPassword.addEventListener("keyup", validationConfirmPassword)
+submit.addEventListener("click", verifyForm)
+
+function verifyForm(e){
+    if(!validationName() || !validationLastName() || !validationEmail()
+        || !validationPassword() || !validationConfirmPassword()){
+        alert("Há campos incorretos ou vazios")
+        e.preventDefault()
+    }
 }

@@ -7,14 +7,14 @@
                 <form id="form-registerNGO" name="form-registerNGO" action="/addNGO/registerNGO" method="POST" onsubmit="changeForm(1)">
                     <div class="registerNGO">
                         <h1 class="form-title"><span>1° Passo</span><br>Dados da ONG</h1>
-                        <input name="ngoName" class="form-input" type="text" placeholder="Nome da ONG" length="150" />
-                        <textarea name="ngoDescription" type="text" class="form-input form-textarea"
-                            placeholder="Descrição da ONG" length="3000"></textarea>
+                        <div class="icon-input"><input name="ngoName" class="form-input" type="text" placeholder="Nome da ONG" length="150" /></div>
+                        {{!-- <textarea name="ngoDescription" type="text" class="form-input form-textarea"
+                            placeholder="Descrição da ONG" length="3000"></textarea> --}}
                         <label for="ngoLogo" class="form-btnFile">Logo da ONG</label>
                         <input id="ngoLogo" class="form-file" name="ngoLogo" class="form-image" type="file"
                             placeholder="Logo da ONG" />
-                        <input name="ngoAdress" class="form-input" type="text" placeholder="Endereço da ONG"
-                            length="200" />
+                        <div class="icon-input"><input name="ngoAddress" class="form-input" type="text" placeholder="Endereço da ONG"
+                            length="200" /></div>
                         <input name="ngoCases" class="form-input" type="text" placeholder="Causas" />
                         <div class="icon-input"><input name="ngoCNPJ" class="form-input" type="text" placeholder="CNPJ - __.___.___/____-__"
                             maxlength="18" /></div>
@@ -23,13 +23,13 @@
 
                     <div class="registerNGO">
                         <h1 class="form-title"><span>2° passo</span><br>Contato e registro</h1>
-                        <input name="ngoTelephone" class="form-input" type="number"
-                            placeholder="Telefone - (__) ____-____" length="150" />
-                        <input name="ngoEmail" class="form-input" type="email" placeholder="Email da ONG"
-                            length="200" />
-                        <input name="ngoPassword" class="form-input" type="password" placeholder="Senha" />
-                        <input name="ngoConfirmPassword" class="form-input" type="password"
-                            placeholder="Confirmar senha" length="18" />
+                        <div class="icon-input"><input name="ngoTelephone" class="form-input" type="text"
+                            placeholder="Telefone - (__) ____-____" maxlength="15" /></div>
+                        <div class="icon-input"><input name="ngoEmail" class="form-input" type="email" placeholder="Email da ONG"
+                            length="200" /></div>
+                        <div class="icon-input"><input name="ngoPassword" class="form-input" type="password" placeholder="Senha" /></div>
+                        <div class="icon-input"><input name="ngoConfirmPassword" class="form-input" type="password"
+                            placeholder="Confirmar senha" length="18" /></div>
                         <div class="form-submit" name="submitRegisterNGO-2">Próximo</div>
                     </div>
 
@@ -65,6 +65,7 @@
     </section>
 </div>
 
-<script src="/scripts/indexScript.js"></script>
+<script src="/scripts/validations.js"></script>
+{{!-- <script src="/scripts/indexScript.js"></script> --}}
 <script src="/scripts/addNGOScript.js"></script>
 <script>init()</script>
