@@ -10,13 +10,13 @@ module.exports = function (passport){
                 Ngo.findOne({where:{emailNgo: email}}).then((user) => {
                     if(!user){
                         console.log("Esta conta não existe!")
-                        return done(null, false, {msg: "Esta conta não existe"})
+                        return done(null, false, {error: "Esta conta não existe"})
                     }else{
                         if(password === user.passwordNgo){
                             return done(null, user)
                         }else{
                             console.log("Senha incorreta!")
-                            return done(null, false, {msg: "A senha está incorreta!"})
+                            return done(null, false, {error: "A senha está incorreta!"})
                         }
                     }
                 }).catch((err) => {
@@ -26,8 +26,8 @@ module.exports = function (passport){
                 if(password === user.passwordVolunteer){
                     return done(null, user)
                 }else{
-                    console.log("Esta conta não existe!")
-                    return done(null, false, {msg: "A senha está incorreta!"})
+                    console.log("Senha incorreta!")
+                    return done(null, false, {error: "A senha está incorreta!"})
                 }
             }
         }).catch((err) => {

@@ -33,6 +33,24 @@
         </figure>
     </div>
 {{/if}}
+
+{{#if error}}
+<div class="alert alert-error">
+        <figure class="alert-icon">
+            <div class="icon"></div>
+        </figure>
+        <div class="alert-content">
+            <h1 class="alert-title">Houve um erro...</h1>
+            <p class="text">{{error}}
+            </p>
+        </div>
+        <figure class="alert-close" onclick="closeAlert(this)">
+            <img src="/assets/imgs/close.svg" />
+        </figure>
+    </div>
+{{else}}
+{{/if}}
+
 {{#if warning_msg}}
     <div class="alert alert-warning">
         <figure class="alert-icon">

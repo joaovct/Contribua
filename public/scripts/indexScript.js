@@ -1,9 +1,9 @@
 function init(){
     linkLogin = document.querySelector("#form-link-login")
-    linkLogin2 = document.querySelector("#form-link-login2")
+    // linkLogin2 = document.querySelector("#form-link-login2")
     linkRegister = document.querySelector("#form-link-register")
-    linkRegister2 = document.querySelector("#form-link-register2")
-    linkLoginOng = document.querySelector("#form-link-login-ong")
+    // linkRegister2 = document.querySelector("#form-link-register2")
+    // linkLoginOng = document.querySelector("#form-link-login-ong")
     addEventForms();
     getInputForms();
 }
@@ -17,10 +17,10 @@ function getInputForms(){
     btnRegister = document.getElementById("register-submit")
     addEventInput(inputRegister,btnRegister)
     checksForm(inputRegister, btnRegister)
-    inputLoginOng = document.getElementsByClassName("login-input")[1]
-    btnLoginOng = document.getElementById("login-ong-submit")
-    addEventInput(inputLoginOng, btnLoginOng)
-    checksForm(inputLoginOng, btnLoginOng)
+    // inputLoginOng = document.getElementsByClassName("login-input")[1]
+    // btnLoginOng = document.getElementById("login-ong-submit")
+    // addEventInput(inputLoginOng, btnLoginOng)
+    // checksForm(inputLoginOng, btnLoginOng)
 }
 
 function addEventInput(input,btn){
@@ -49,26 +49,26 @@ function addEventForms(){
         formRegister.style.display = "none"
         formLoginOng.style.display = "none"
     })
-    window.linkLogin2.addEventListener("click", ()=>{
-        formLogin.style.display = "block"
-        formRegister.style.display = "none"
-        formLoginOng.style.display = "none"
-    })
+    // window.linkLogin2.addEventListener("click", ()=>{
+    //     formLogin.style.display = "block"
+    //     formRegister.style.display = "none"
+    //     formLoginOng.style.display = "none"
+    // })
     window.linkRegister.addEventListener("click", ()=> {
         formRegister.style.display = "block"
         formLogin.style.display = "none"
         formLoginOng.style.display = "none"
     })
-    window.linkRegister2.addEventListener("click", ()=> {
-        formRegister.style.display = "block"
-        formLogin.style.display = "none"
-        formLoginOng.style.display = "none"
-    })
-    window.linkLoginOng.addEventListener("click", ()=> {
-        formLoginOng.style.display = "block"
-        formLogin.style.display = "none"
-        formRegister.style.display = "none"
-    })
+    // window.linkRegister2.addEventListener("click", ()=> {
+    //     formRegister.style.display = "block"
+    //     formLogin.style.display = "none"
+    //     formLoginOng.style.display = "none"
+    // })
+    // window.linkLoginOng.addEventListener("click", ()=> {
+    //     formLoginOng.style.display = "block"
+    //     formLogin.style.display = "none"
+    //     formRegister.style.display = "none"
+    // })
 }
 
 //validations

@@ -17,12 +17,12 @@
                 <input name="password" placeholder="Senha" type="password" class="form-input login-input" />
                 <button disabled type="submit" id="login-submit">Entrar</button>
                 <a href="#" class="form-link">Esqueci minha senha</a>
-                <span class="form-span-text" id="form-link-login-ong"><span class="form-span-black">Entre como
-                    </span><a href="#" class="form-link-register">Ong</a></span>
+                {{!-- <span class="form-span-text" id="form-link-login-ong"><span class="form-span-black">Entre como
+                    </span><a href="#" class="form-link-register">Ong</a></span> --}}
                     <span class="form-span-text" id="form-link-register"><span class="form-span-black">Não tem uma conta?
                     </span><a href="#" class="form-link-register">Registre-se</a></span>
             </form>
-            <form style="display: none;" id="form-login-ong" name="index-login" action="/loginNgo" method="POST">
+            {{!-- <form style="display: none;" id="form-login-ong" name="index-login" action="/loginNgo" method="POST">
                 <h1 class="form-title">Entre no Contribua como Ong!</h1>
                 <input name="emailNgo" placeholder="Email" type="email" class="form-input login-input" />
                 <input name="passwordNgo" placeholder="Senha" type="password" class="form-input login-input" />
@@ -32,7 +32,7 @@
                     </span><a href="#" class="form-link-register">Voluntário</a></span>
                 <span class="form-span-text" id="form-link-register2"><span class="form-span-black">Não tem uma conta?
                     </span><a href="#" class="form-link-register">Registre-se</a></span>
-            </form>
+            </form> --}}
             <form id="form-register" name="index-register" action="/addUser/registerUser" method="POST">
                 <h1 class="form-title">Comece a se voluntariar agora!</h1>
                 <div class="icon-input"><input placeholder="Nome" type="text" class="form-input register-input" name="nameVolunteer"/></div>

@@ -95,6 +95,7 @@ router.post("/registerNGO", (req,res) => {
                                     descriptionNgo: req.body.ngoDescription,
                                     cnpjNgo: req.body.ngoCNPJ,
                                     emailNgo: req.body.ngoEmail,
+                                    passwordNgo: req.body.ngoPassword,
                                     addressNgo: req.body.ngoAddress,
                                     averageStarsNgo: "0"
                                 }).then((ngo) => {

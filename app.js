@@ -33,6 +33,7 @@ app.use((req, res, next) => {
     res.locals.success_msg = req.flash("success_msg")
     res.locals.error_msg = req.flash("error_msg")
     res.locals.warning_msg = req.flash("warning_msg")
+    res.locals.error = req.flash("error")
     next()
 })
 
@@ -62,18 +63,13 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
-app.post('/login', passport.authenticate('local', {failureRedirect: "/", failureFlash: true}),
+app.post('/login', passport.authenticate('local', {failureRedirect: "/", failureFlash: "Email ou Senha errados!"}),
 (req, res) => {
     if(req.user.cnpjNgo){
         res.redirect('/ngo')
     }else{
         res.redirect('/user')
     }
-})
-
-app.post('/loginNgo', passport.authenticate('local', {failureRedirect: "/", failureFlash: true}),
-(req, res) => {
-    res.redirect('/ngo')
 })
 
 app.get("/logout", (req,res) => {
