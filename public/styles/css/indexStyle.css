@@ -1,19 +1,23 @@
 @font-face {
   font-family: Nunito;
   font-weight: normal;
-  src: url("../../assets/fonts/Nunito-Regular.ttf"); }
+  src: url("../../assets/fonts/Nunito-Regular.ttf");
+}
 @font-face {
   font-family: Nunito;
   font-weight: 500;
-  src: url("../../assets/fonts/Nunito-SemiBold.ttf"); }
+  src: url("../../assets/fonts/Nunito-SemiBold.ttf");
+}
 @font-face {
   font-family: Nunito;
   font-weight: 700;
-  src: url("../../assets/fonts/Nunito-Bold.ttf"); }
+  src: url("../../assets/fonts/Nunito-Bold.ttf");
+}
 @font-face {
   font-family: Nunito;
   font-weight: 800;
-  src: url("../../assets/fonts/Nunito-ExtraBold.ttf"); }
+  src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
+}
 section#landing {
   height: calc(100% - 155px);
   width: 100%;
@@ -21,81 +25,103 @@ section#landing {
   justify-content: center;
   align-items: center;
   z-index: 1;
-  box-sizing: border-box; }
-  section#landing h1,
-  section#landing h4 {
-    margin: 0;
-    padding: 0; }
-  section#landing .container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 1320px; }
-  section#landing .group {
-    display: flex;
-    flex-flow: wrap column;
-    justify-content: center;
-    position: relative;
-    margin-right: 40px; }
-    section#landing .group h1#welcome-phrase {
-      font-size: 3.25rem;
-      font-weight: bolder; }
-    section#landing .group h4#effect-phrase {
-      font-size: 3em;
-      font-weight: normal;
-      margin-bottom: 40px; }
-    section#landing .group .hero-image {
-      margin: 0;
-      width: 600px;
-      border-radius: 7px;
-      box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.1); }
-    section#landing .group .label-hero-image {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      font-size: 1em;
-      margin: 10px 0 0 0;
-      font-weight: 500;
-      text-align: right; }
-      section#landing .group .label-hero-image img {
-        width: 1em;
-        margin-right: 5px;
-        opacity: 0.5; }
-    section#landing .group form {
-      height: auto;
-      width: 350px; }
-      section#landing .group form .form-span-text {
-        cursor: pointer; }
-    section#landing .group form#form-register {
-      display: none; }
-    section#landing .group:last-child {
-      height: 100% 100%;
-      display: flex;
-      align-items: center;
-      margin-left: 40px; }
-  section#landing span {
-    color: #3171e0; }
+  box-sizing: border-box;
+}
+section#landing h1,
+section#landing h4 {
+  margin: 0;
+  padding: 0;
+}
+section#landing .container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 1320px;
+}
+section#landing .group {
+  display: flex;
+  flex-flow: wrap column;
+  justify-content: center;
+  position: relative;
+  margin-right: 40px;
+}
+section#landing .group h1#welcome-phrase {
+  font-size: 3.25rem;
+  font-weight: bolder;
+}
+section#landing .group h4#effect-phrase {
+  font-size: 3em;
+  font-weight: normal;
+  margin-bottom: 40px;
+}
+section#landing .group .hero-image {
+  margin: 0;
+  width: 600px;
+  border-radius: 7px;
+  box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.1);
+}
+section#landing .group .label-hero-image {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1em;
+  margin: 10px 0 0 0;
+  font-weight: 500;
+  text-align: right;
+}
+section#landing .group .label-hero-image img {
+  width: 1em;
+  margin-right: 5px;
+  opacity: 0.5;
+}
+section#landing .group form {
+  height: auto;
+  width: 350px;
+}
+section#landing .group form .form-span-text {
+  cursor: pointer;
+}
+section#landing .group form#form-register {
+  display: none;
+}
+section#landing .group:last-child {
+  height: 100% 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+}
+section#landing span {
+  color: #3171e0;
+}
 
 @media screen and (max-width: 1288px) {
   .hero-image {
-    display: none; }
+    display: none;
+  }
 
   .label-hero-image {
-    display: none !important; }
+    display: none !important;
+  }
 
   .container {
     display: flex;
-    justify-content: center !important; }
+    justify-content: center !important;
+  }
 
   .group {
-    margin: 0; }
-    .group:last-child {
-      margin: 10px 0; }
+    margin: 0;
+  }
+  .group:last-child {
+    margin: 10px 0;
+  }
 
   #welcome-phrase {
-    font-size: 3em !important; }
+    font-size: 3em !important;
+  }
 
   #effect-phrase {
-    font-size: 3em !important; } }
+    font-size: 3em !important;
+  }
+}
 
 /*# sourceMappingURL=indexStyle.css.map */
