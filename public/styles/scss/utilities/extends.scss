@@ -1,9 +1,3 @@
-%bodyAbsolute {
-  height: calc(100% - 155px);
-  width: 100%;
-  position: relative;
-}
-
-%headerLoged {
-  height: 139px;
+%headerLogged {
+  height: auto !important;
 }

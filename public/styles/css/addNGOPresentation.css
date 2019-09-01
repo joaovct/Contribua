@@ -1,91 +1,18 @@
-@font-face {
-  font-family: Nunito;
-  font-weight: normal;
-  src: url("../../assets/fonts/Nunito-Regular.ttf"); }
-@font-face {
-  font-family: Nunito;
-  font-weight: 500;
-  src: url("../../assets/fonts/Nunito-SemiBold.ttf"); }
-@font-face {
-  font-family: Nunito;
-  font-weight: 700;
-  src: url("../../assets/fonts/Nunito-Bold.ttf"); }
-@font-face {
-  font-family: Nunito;
-  font-weight: 800;
-  src: url("../../assets/fonts/Nunito-ExtraBold.ttf"); }
-body {
-  height: calc(100% - 155px);
-  width: 100%;
-  position: relative; }
+/* Error: The target selector was not found.
+ * Use "@extend %bodyAbsolute !optional" to avoid this error.
+ *   ,
+ * 5 |   @extend %bodyAbsolute;
+ *   |   ^^^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   scss\addngopresentation.scss 5:3  root stylesheet */
 
-.container {
-  width: 90%; }
-
-section#main {
-  height: 100%;
-  width: 1320px;
-  position: relative;
-  display: flex;
-  justify-content: space-between; }
-  section#main aside {
-    background: white;
-    display: flex;
-    padding: 20px 0 0 0; }
-    section#main aside:last-child {
-      width: 30%;
-      justify-content: center;
-      background: #f9f9f9; }
-      section#main aside:last-child .title-aside {
-        font-weight: 500; }
-    section#main aside .title-aside {
-      margin: 20px 0 20px 0;
-      font-size: 2.6em;
-      color: #303030;
-      font-weight: bold; }
-    section#main aside p {
-      font-size: 1.3em; }
-    section#main aside .group .person {
-      display: flex;
-      align-items: center;
-      padding: 20px 20px 20px 0;
-      margin: 0; }
-      section#main aside .group .person .avatar img {
-        height: 100px;
-        width: 100px;
-        object-fit: cover;
-        object-position: center;
-        border-radius: 100%;
-        box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.1); }
-      section#main aside .group .person .content {
-        margin: 0 0 0 20px;
-        width: 100%;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center; }
-        section#main aside .group .person .content .message {
-          font-size: 1.2em;
-          font-weight: bold;
-          margin: 0;
-          color: #2e2e2e; }
-        section#main aside .group .person .content .name {
-          font-size: 1.2em;
-          font-weight: 500;
-          margin: 10px 0;
-          color: #505050; }
-    section#main aside form#letsgo {
-      width: 100%;
-      display: flex;
-      justify-content: center; }
-      section#main aside form#letsgo button[type=submit] {
-        width: auto;
-        margin: 20px 0;
-        padding: 10px 20px 10px 20px;
-        background: white;
-        text-transform: uppercase;
-        font-family: nunito;
-        font-weight: 500;
-        color: #303030;
-        box-shadow: 0 6px 10px 0px rgba(0, 0, 0, 0.2); }
-
-/*# sourceMappingURL=addNGOPresentation.css.map */
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: 'Error: The target selector was not found.\aUse "@extend %bodyAbsolute !optional" to avoid this error.\a   \2577 \a 5 \2502    @extend %bodyAbsolute;\d\a   \2502    ^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   scss\\addngopresentation.scss 5:3  root stylesheet';
+}

@@ -1,8 +1,13 @@
 @import "utilities/variables";
 @import "utilities/extends";
 
-header.headerRelative {
-  @extend %headerLoged;
+header{
+  @extend %headerLogged;
+  .container{
+    .logo{
+      height: 40px;
+    }
+  }
 }
 
 .centralize .container {
@@ -251,7 +256,7 @@ header.headerRelative {
           top: $margin2 / 2;
           right: $margin2 / 2;
           background: $lightColor;
-          color: $dangerColor;
+          color: $errorColor;
           position: absolute;
           border-radius: 7px;
           z-index: 2;

@@ -1,30 +1,38 @@
 <header class="headerRelative">
 </header>
 <script src="/scripts/globalScript.js"></script>
+{{#if userActive}}
+<div style="height: 150px"></div>
 <header>
     <div class="container">
-        {{#if userActive}}
         <a href="/user"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
-        {{else}}
-        <a href="/"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
-        {{/if}}
-        {{#if userActive}}
         <div class="search-field">
             <form class="search-form">
                 <img src="/assets/imgs/search.svg" />
                 <input type="text" placeholder="Procure um voluntário, ONG ou evento" class="search-input" />
             </form>
         </div>
-        {{/if}}
         <nav class="nav-header">
             <ul>
-                {{#if userActive}}
                 <a href="#">
                     <li class="icon"><img src="/assets/imgs/bell.svg"></li>
                 </a>
                 <a href="/user/profile">
-                    <li class="profile-pic availableVolunteer"><img src="/assets/imgs/man.jpg" </li> </a><li> <a href="/logout">Sair</a></li> {{else}} <a
-                            href="/addNGO">
+                    <li class="profile-pic availableVolunteer"><img src="/assets/imgs/user.svg" />
+                    </li>
+                </a>
+                <li> <a href="/logout">Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+{{else}}
+<header>
+    <div class="container">
+        <a href="/"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
+        <nav class="nav-header">
+            <ul>
+                <a href="/addNGO">
                     <li class="text">Sou uma ONG</li>
                 </a>
                 <a href="#">
@@ -33,8 +41,8 @@
                 <a href="/user">
                     <li class="text">Login</li>
                 </a>
-                {{/if}}
             </ul>
         </nav>
     </div>
 </header>
+{{/if}}
