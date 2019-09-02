@@ -10,9 +10,9 @@
                         <div class="icon-input"><input name="ngoName" class="form-input" type="text" placeholder="Nome da ONG" length="150" /></div>
                         {{!-- <textarea name="ngoDescription" type="text" class="form-input form-textarea"
                             placeholder="Descrição da ONG" length="3000"></textarea> --}}
-                        <label for="ngoLogo" class="form-btnFile">Logo da ONG</label>
-                        <input id="ngoLogo" class="form-file" name="ngoLogo" class="form-image" type="file"
-                            placeholder="Logo da ONG" />
+                        {{!-- <label for="ngoLogo" class="form-btnFile">Logo da ONG</label> --}}
+                        {{!-- <input id="ngoLogo" class="form-file" name="ngoLogo" class="form-image" type="file" --}}
+                            {{!-- placeholder="Logo da ONG" /> --}}
                         <div class="icon-input"><input name="ngoAddress" class="form-input" type="text" placeholder="Endereço da ONG"
                             length="200" /></div>
                         <input name="ngoCases" class="form-input" type="text" placeholder="Causas" />
@@ -64,6 +64,28 @@
         </aside>
     </section>
 </div>
+
+{{#each errs}}
+    <div class="centralize centralize-alert">
+        <div class="container">
+            <div class="alert alert-error">
+                <figure class="alert-icon">
+                    <div class="icon"></div>
+                </figure>
+                <div class="alert-content">
+                    <h1 class="alert-title">Houve um erro...</h1>
+                    <p class="text">{{msg}}
+                    </p>
+                </div>
+                <figure class="alert-close" onclick="closeAlert(this)">
+                    <img src="/assets/imgs/close.svg" />
+                </figure>
+            </div>
+        </div>
+    </div>
+{{else}}
+
+{{/each}}
 
 <script src="/scripts/validations.js"></script>
 {{!-- <script src="/scripts/indexScript.js"></script> --}}

@@ -32,6 +32,8 @@ app.use(flash())
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash("success_msg")
     res.locals.error_msg = req.flash("error_msg")
+    res.locals.warning_msg = req.flash("warning_msg")
+    res.locals.error = req.flash("error")
     next()
 })
 
@@ -68,12 +70,15 @@ app.get('/register',(req,res)=>{
 
 app.post('/login', passport.authenticate('local', {failureRedirect: "/", failureFlash: true}),
 (req, res) => {
-    res.redirect('/user')
+    if(req.user.cnpjNgo){
+        res.redirect('/ngo')
+    }else{
+        res.redirect('/user')
+    }
 })
 
 app.get("/logout", (req,res) => {
     req.logOut()
-    req.flash("success_msg", "Deslogado com sucesso!")
     res.redirect("/")
 })
 

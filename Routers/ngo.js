@@ -2,15 +2,15 @@ const express = require('express')
 const router = express.Router()
 userActive = true
 router.get('/', (req,res)=>{
-    res.render('ngo/ngoHome', {userActive})
+    res.render('ngo/ngoHome', {data: {userActive: true}})
 })
 
 router.get('/profile', (req,res)=>{
-    res.render('ngo/ngoProfile', {userActive})
+    res.render('ngo/ngoProfile', {data: {userActive: true}})
 })
 
 router.get('/addEvent', (req,res)=>{
-    res.render('ngo/addEventPresentation', {userActive})
+    res.render('ngo/addEventPresentation', {data: {userActive: true}})
 })
 
 router.get('/addEvent/add', (req,res)=>{

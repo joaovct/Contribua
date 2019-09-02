@@ -25,6 +25,28 @@
         </div>
     </div>
 </section>
+
+{{#each errs}}
+    <div class="centralize centralize-alert">
+        <div class="container">
+            <div class="alert alert-error">
+                <figure class="alert-icon">
+                    <div class="icon"></div>
+                </figure>
+                <div class="alert-content">
+                    <h1 class="alert-title">Houve um erro...</h1>
+                    <p class="text">{{msg}}
+                    </p>
+                </div>
+                <figure class="alert-close" onclick="closeAlert(this)">
+                    <img src="/assets/imgs/close.svg" />
+                </figure>
+            </div>
+        </div>
+    </div>
+{{else}}
+
+{{/each}}
 <script src="/scripts/validations.js"></script>
 <script src="/scripts/indexScript.js"></script>
 <script>init()</script>

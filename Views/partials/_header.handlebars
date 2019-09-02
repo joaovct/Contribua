@@ -5,7 +5,16 @@
 {{!-- <div style="height: 150px"></div> --}}
 <header>
     <div class="container">
+<<<<<<< HEAD
         <a href="/user"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
+=======
+        {{#if data.userActive}}
+        <a href="/user"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
+        {{else}}
+        <a href="/"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
+        {{/if}}
+        {{#if data.userActive}}
+>>>>>>> 83e5b9c7e50fe7c8d5c5e438c3ebe3187d7f7e4e
         <div class="search-field">
             <form class="search-form">
                 <img src="/assets/imgs/search.svg" />
@@ -14,12 +23,23 @@
         </div>
         <nav class="nav-header">
             <ul>
+<<<<<<< HEAD
+=======
+                {{#if data.userActive}}
+>>>>>>> 83e5b9c7e50fe7c8d5c5e438c3ebe3187d7f7e4e
                 <a href="#">
                     <li class="icon"><img src="/assets/imgs/bell.svg"></li>
                 </a>
                 <a href="/user/profile">
+<<<<<<< HEAD
                     <li class="profile-pic availableVolunteer"><img src="/assets/imgs/user.svg" />
                     </li>
+=======
+                    <li class="profile-pic availableVolunteer"><img src="/assets/imgs/man.jpg" </li> </a><li> <a href="/logout">Sair</a></li>
+                {{else}}
+                <a href="/addNGO">
+                    <li class="text">Sou uma ONG</li>
+>>>>>>> 83e5b9c7e50fe7c8d5c5e438c3ebe3187d7f7e4e
                 </a>
                 <li> <a href="/logout">Sair</a></li>
             </ul>
