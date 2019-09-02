@@ -27,7 +27,7 @@ aside {
   &:last-child {
     justify-content: flex-start;
     background: $lightColor;
-    padding: 0 0 0 $margin4;
+    padding: 0 $margin4 0 $margin4;
     box-sizing: border-box;
     position: relative;
     .title-aside {
@@ -74,7 +74,7 @@ aside {
       }
     }
   }
-  #form-registerNGO{
+  form{
     height: 100%;
     .registerNGO{
       display: block;

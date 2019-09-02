@@ -45,7 +45,7 @@ aside:first-child {
 aside:last-child {
   justify-content: flex-start;
   background: #f9f9f9;
-  padding: 0 0 0 40px;
+  padding: 0 40px 0 40px;
   box-sizing: border-box;
   position: relative;
 }
@@ -90,20 +90,20 @@ aside .container .steps .disabled {
   opacity: 0.5;
   transform: scale(0.9);
 }
-aside #form-registerNGO {
+aside form {
   height: 100%;
 }
-aside #form-registerNGO .registerNGO {
+aside form .registerNGO {
   display: block;
   position: relative;
 }
-aside #form-registerNGO .registerNGO .form-title span {
+aside form .registerNGO .form-title span {
   font-size: 1.5rem;
   font-weight: 500;
   color: #818181;
 }
-aside #form-registerNGO .registerNGO:nth-child(2),
-aside #form-registerNGO .registerNGO:nth-child(3) {
+aside form .registerNGO:nth-child(2),
+aside form .registerNGO:nth-child(3) {
   display: none;
 }
 

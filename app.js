@@ -54,11 +54,16 @@ app.use(express.static(path.join(__dirname, "public")))
 
 app.use('/ngo', ngo)
 app.use('/user', isUser, user)
+// app.use('/user', user)
 app.use('/addNGO', addNGO)
 app.use('/addUser', addUser)
 
 app.get('/', (req, res) => {
     res.render('index')
+})
+
+app.get('/register',(req,res)=>{
+    res.render('user/registerUser')
 })
 
 app.post('/login', passport.authenticate('local', {failureRedirect: "/", failureFlash: true}),

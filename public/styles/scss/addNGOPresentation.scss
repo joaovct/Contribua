@@ -1,10 +1,6 @@
 @import "utilities/variables";
 @import "utilities/extends.scss";
 
-body {
-  @extend %bodyAbsolute;
-}
-
 .container{
   width: 90%;
 }

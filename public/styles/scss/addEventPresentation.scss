@@ -1,7 +1,6 @@
 @import 'utilities/variables.scss';
 
 .centralize{
-    height: calc(100% - #{$heightHeader});
     width: 100%;
     justify-content: center;
     padding: 0;

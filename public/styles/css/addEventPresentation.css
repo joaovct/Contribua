@@ -19,7 +19,6 @@
   src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
 }
 .centralize {
-  height: calc(100% - 155px);
   width: 100%;
   justify-content: center;
   padding: 0;

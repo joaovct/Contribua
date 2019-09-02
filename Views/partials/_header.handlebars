@@ -2,7 +2,7 @@
 </header>
 <script src="/scripts/globalScript.js"></script>
 {{#if userActive}}
-<div style="height: 150px"></div>
+{{!-- <div style="height: 150px"></div> --}}
 <header>
     <div class="container">
         <a href="/user"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
@@ -26,6 +26,32 @@
         </nav>
     </div>
 </header>
+
+{{!-- Ignore this --}}
+<header class="header-relative">
+    <div class="container">
+        <a href="/user"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
+        <div class="search-field">
+            <form class="search-form">
+                <img src="/assets/imgs/search.svg" />
+                <input type="text" placeholder="Procure um voluntário, ONG ou evento" class="search-input" />
+            </form>
+        </div>
+        <nav class="nav-header">
+            <ul>
+                <a href="#">
+                    <li class="icon"><img src="/assets/imgs/bell.svg"></li>
+                </a>
+                <a href="/user/profile">
+                    <li class="profile-pic availableVolunteer"><img src="/assets/imgs/user.svg" />
+                    </li>
+                </a>
+                <li> <a href="/logout">Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
 {{else}}
 <header>
     <div class="container">
@@ -35,11 +61,25 @@
                 <a href="/addNGO">
                     <li class="text">Sou uma ONG</li>
                 </a>
-                <a href="#">
+                <a href="/register">
                     <li class="text">Sou novo</li>
                 </a>
-                <a href="/user">
-                    <li class="text">Login</li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+{{!-- Ignore this --}}
+<header class="header-relative">
+    <div class="container">
+        <a href="/"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
+        <nav class="nav-header">
+            <ul>
+                <a href="/addNGO">
+                    <li class="text">Sou uma ONG</li>
+                </a>
+                <a href="/register">
+                    <li class="text">Sou novo</li>
                 </a>
             </ul>
         </nav>
