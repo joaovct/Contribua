@@ -4,16 +4,13 @@ const handlebars = require("express-handlebars")
 const bodyParser = require("body-parser")
 const app = express()
 const path = require('path')
-const passport = require("passport")
 const session = require('express-session')
 const flash = require('connect-flash')
 const user = require('./Routers/user.js')
 const ngo = require('./Routers/ngo.js')
 const CRUD = require('./Routers/CRUD.js')
-const addUser = require('./Routers/addUser')
-require("./config/auth")(passport)
-const {isNgo} = require("./helpers/isNGO")
-const {isUser} = require("./helpers/isUser")
+// const addUser = require('./Routers/addUser')
+const isLogged = require('./helpers/isLogged')
 
 //**Configs**//
 // Session
@@ -22,9 +19,6 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
-
-app.use(passport.initialize())
-app.use(passport.session())
 
 app.use(flash())
 
@@ -54,13 +48,14 @@ app.use(express.static(path.join(__dirname, "public")))
 
 // Routers
 
-app.use('/ngo', ngo)
-app.use('/user', isUser, user)
-// app.use('/user', user)
+app.use('/ngo', isLogged, ngo)
+app.use('/user', isLogged, user)
 app.use('/CRUD', CRUD)
-app.use('/addUser', addUser)
+// app.use('/addUser', addUser)
+// app.use('/login', login)
 
 app.get('/', (req, res) => {
+    req.session.destroy()
     res.render('index')
 })
 

@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const passport = require("passport")
 const Ngo = require("../models/Ngo")
 const User = require("../models/Volunteer")
 const TelephoneNgo = require("../models/TelephoneNgo")
 const isCNPJ = require("../helpers/isCNPJ")
+const login = require('./login')
 
 router.get('/', ()=>{})
 
@@ -215,17 +215,10 @@ router.post("/registerUser", (req, res) => {
     
 })
 
-router.post('/login', passport.authenticate('local', {failureRedirect: "/", failureFlash: true}),
-(req, res) => {
-    if(req.user.cnpjNgo){
-        res.redirect('/ngo')
-    }else{
-        res.redirect('/user')
-    }
-})
+router.use("/login", login)
 
 router.get("/logout", (req,res) => {
-    req.logOut()
+    req.session.destroy()
     res.redirect("/")
 })
 

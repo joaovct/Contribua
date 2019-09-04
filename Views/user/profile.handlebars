@@ -8,7 +8,7 @@
                     <img src="/assets/imgs/user.svg" />
                 </figure>
                 <div class="profile-name">
-                    <h1 class="username">{{data.userName}} {{data.userLastName}}</h1>
+                    <h1 class="username">{{data.nameVolunteer}} {{data.lastNameVolunteer}}</h1>
                     <div class="feed-header">
                         <div class="filters">
                             <ul class="group-categories">
@@ -32,16 +32,12 @@
                     <h3 class="content">São Paulo, SP. Desde jul de 2019.</h3>
                 </div>
                 <div class="profile-about">
-                    <p class="content">Irure dolore officia culpa irure sint cillum tempor culpa ex eu officia aute. Eu
-                        occaecat dolore anim est. Nostrud excepteur minim cillum culpa ullamco irure sit non Lorem.
-                        Lorem deserunt consequat consequat fugiat occaecat aliqua sit. Ad aliquip Lorem adipisicing sunt
-                        quis et reprehenderit irure laboris irure nulla adipisicing qui. Enim enim fugiat irure et in
-                        amet velit aliqua aute mollit.</p>
+                    <p class="content">{{data.biographyVolunteer}}</p>
                 </div>
             </div>
             <div class="profile-stats">
                 <ul>
-                    <li><span class="number">4,5/5</span>média de estrelas</li>
+                    <li><span class="number">{{data.averageStarsVolunteer}}/5</span>média de estrelas</li>
                     <li><span class="number">12</span> ações em eventos</li>
                     <li><span class="number">4</span> ONGs é inscrito</li>
                 </ul>
