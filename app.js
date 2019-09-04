@@ -51,8 +51,6 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use('/ngo', isLogged, ngo)
 app.use('/user', isLogged, user)
 app.use('/CRUD', CRUD)
-// app.use('/addUser', addUser)
-// app.use('/login', login)
 
 app.get('/', (req, res) => {
     req.session.destroy()

@@ -82,22 +82,22 @@ router.post("/registerNGO", (req,res) => {
     }
 
     if(err.length > 0){
-        res.render("addNGO/addNGO", {errs: err})
+        res.render("CRUD/addNGO", {errs: err})
     }else{
         User.findOne({where: {emailVolunteer: req.body.ngoEmail}}).then((user)=>{
             if(user){
                 req.flash("error_msg", "Já existe uma conta com este email!")
-                res.redirect("/addNGO/add")
+                res.redirect("/CRUD/add")
             }else{
                 Ngo.findOne({where: {emailNgo: req.body.ngoEmail}}).then((ngo) => {
                     if(ngo){
                         req.flash("error_msg", "Já existe uma conta com este email!")
-                        res.redirect("/addNGO/add")
+                        res.redirect("/CRUD/add")
                     }else{
                         Ngo.findOne({where:{cnpjNgo: req.body.ngoCNPJ}}).then((ngo) => {
                             if(ngo){
                                 console.log("Já existe uma ong com este CNPJ!")
-                                res.redirect("/addNGO/add")
+                                res.redirect("/CRUD/add")
                             }else{
                                 //register ong
                                 Ngo.create({
@@ -118,7 +118,7 @@ router.post("/registerNGO", (req,res) => {
                                     res.redirect("/")
                                 }).catch((err) => {
                                     console.log("Falha ao cadastrar, erro: ", err)
-                                    res.redirect("/addNGO/add")
+                                    res.redirect("/CRUD/add")
                                 })
                             }
                         }).catch((err) => {
@@ -131,7 +131,7 @@ router.post("/registerNGO", (req,res) => {
             }
         }).catch((err)=>{
             console.log("Erro interno: ",err)
-            res.redirect("/addNGO/add")
+            res.redirect("/CRUD/add")
         })
     }
 }) 
