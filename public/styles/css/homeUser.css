@@ -126,27 +126,24 @@ header .container .logo {
   cursor: pointer;
 }
 
-.group-nav {
-  transition: opacity 0.3s;
-}
-.group-nav .nav-articles {
+.nav-articles {
   width: 100%;
   margin: 0 0 0 0;
 }
-.group-nav .nav-articles .title-nav {
+.nav-articles .title-nav {
   font-size: 2.4em;
   font-weight: bold;
   text-align: left;
   margin: 20px 0 10px 0;
 }
-.group-nav .nav-articles .group-articles {
+.nav-articles .group-articles {
   display: flex;
   flex-flow: row wrap;
   padding: 0;
 }
-.group-nav .nav-articles .group-articles .feed-article {
+.nav-articles .group-articles .feed-article {
   display: inline-block;
-  width: 400px;
+  width: calc(31% - 10px);
   margin-top: 20px;
   margin-bottom: 20px;
   padding-bottom: 60px;
@@ -155,11 +152,11 @@ header .container .logo {
   background: white;
   cursor: pointer;
 }
-.group-nav .nav-articles .group-articles .feed-article:nth-child(3n-1) {
-  margin-left: 60px;
-  margin-right: 60px;
+.nav-articles .group-articles .feed-article:nth-child(3n-1) {
+  margin-left: 30px;
+  margin-right: 30px;
 }
-.group-nav .nav-articles .group-articles .feed-article .article-image {
+.nav-articles .group-articles .feed-article .article-image {
   height: 250px;
   width: 100%;
   padding: 0;
@@ -167,91 +164,91 @@ header .container .logo {
   display: block;
   position: relative;
 }
-.group-nav .nav-articles .group-articles .feed-article .article-image img {
+.nav-articles .group-articles .feed-article .article-image img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
 }
-.group-nav .nav-articles .group-articles .feed-article .article-content {
+.nav-articles .group-articles .feed-article .article-content {
   width: 100%;
   padding: 20px 20px 0 20px;
   box-sizing: border-box;
 }
-.group-nav .nav-articles .group-articles .feed-article .article-content .article-title {
+.nav-articles .group-articles .feed-article .article-content .article-title {
   font-size: 1.8em;
   font-weight: bolder;
   padding: 0;
   margin: 0 0 0 0;
 }
-.group-nav .nav-articles .group-articles .feed-article .article-content .article-subitle {
+.nav-articles .group-articles .feed-article .article-content .article-subitle {
   font-size: 1.15em;
   font-weight: normal;
   color: #818181;
   margin: 5px 0 0 0;
   position: relative;
 }
-.group-nav .nav-articles .group-articles .feed-article .article-content .article-ngo {
+.nav-articles .group-articles .feed-article .article-content .article-ngo {
   display: flex;
   align-items: center;
   margin: 20px 0 0 0;
 }
-.group-nav .nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-avatar {
+.nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-avatar {
   padding: 0;
   margin: 0;
   height: 70px;
   width: 70px;
   display: block;
 }
-.group-nav .nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-avatar img {
+.nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-avatar img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   border-radius: 100%;
 }
-.group-nav .nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-details {
+.nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-details {
   margin-left: 20px;
 }
-.group-nav .nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-details .article-ngo-name {
+.nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-details .article-ngo-name {
   font-weight: 500;
   font-size: 1.1em;
   margin: 0 0 5px 0;
 }
-.group-nav .nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-details .article-ngo-date {
+.nav-articles .group-articles .feed-article .article-content .article-ngo .article-ngo-details .article-ngo-date {
   margin: 0;
   font-size: 1em;
   font-weight: 500;
 }
-.group-nav .nav-articles .group-articles .feed-ngo {
+.nav-articles .group-articles .feed-ngo {
   margin: 0 40px 0 0;
   background: white;
 }
-.group-nav .nav-articles .group-articles .feed-ngo .ngo-pic {
+.nav-articles .group-articles .feed-ngo .ngo-pic {
   margin: 0;
   padding: 0;
   display: block;
 }
-.group-nav .nav-articles .group-articles .feed-ngo .ngo-pic img {
+.nav-articles .group-articles .feed-ngo .ngo-pic img {
   height: 200px;
   width: 200px;
   border-radius: 100%;
   object-fit: cover;
   display: block;
 }
-.group-nav .nav-articles .group-articles .feed-ngo .ngo-name {
+.nav-articles .group-articles .feed-ngo .ngo-name {
   font-size: 2em;
   text-align: center;
   margin: 20px 0 0 0;
   padding: 0;
 }
-.group-nav .nav-articles .group-articles .feed-ngo .ngo-members {
+.nav-articles .group-articles .feed-ngo .ngo-members {
   font-size: 1.2em;
   text-align: center;
   margin: 0;
   padding: 0;
 }
-.group-nav .nav-articles .group-articles .event-closed .article-image::after {
+.nav-articles .group-articles .event-closed .article-image::after {
   content: "";
   position: absolute;
   height: 100%;
@@ -263,7 +260,7 @@ header .container .logo {
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
 }
-.group-nav .nav-articles .group-articles .event-closed .article-image::before {
+.nav-articles .group-articles .event-closed .article-image::before {
   content: "Encerrado";
   font-size: 1.1em;
   font-weight: 500;

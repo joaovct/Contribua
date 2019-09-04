@@ -4,13 +4,13 @@ const handlebars = require("express-handlebars")
 const bodyParser = require("body-parser")
 const app = express()
 const path = require('path')
+const passport = require("passport")
 const session = require('express-session')
 const flash = require('connect-flash')
 const user = require('./Routers/user.js')
 const ngo = require('./Routers/ngo.js')
-const addNGO = require('./Routers/addNGO.js')
+const CRUD = require('./Routers/CRUD.js')
 const addUser = require('./Routers/addUser')
-const passport = require("passport")
 require("./config/auth")(passport)
 const {isNgo} = require("./helpers/isNGO")
 const {isUser} = require("./helpers/isUser")
@@ -57,30 +57,16 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use('/ngo', ngo)
 app.use('/user', isUser, user)
 // app.use('/user', user)
-app.use('/addNGO', addNGO)
+app.use('/CRUD', CRUD)
 app.use('/addUser', addUser)
 
 app.get('/', (req, res) => {
     res.render('index')
 })
 
-app.get('/register',(req,res)=>{
-    res.render('user/registerUser')
-})
-
-app.post('/login', passport.authenticate('local', {failureRedirect: "/", failureFlash: true}),
-(req, res) => {
-    if(req.user.cnpjNgo){
-        res.redirect('/ngo')
-    }else{
-        res.redirect('/user')
-    }
-})
-
-app.get("/logout", (req,res) => {
-    req.logOut()
-    res.redirect("/")
-})
+// app.get('/register',(req,res)=>{
+//     res.render('user/registerUser')
+// })
 
 // Localhost
 const PORT = 3000;
