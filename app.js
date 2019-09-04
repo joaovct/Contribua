@@ -10,10 +10,8 @@ const user = require('./Routers/user.js')
 const ngo = require('./Routers/ngo.js')
 const addNGO = require('./Routers/addNGO.js')
 const addUser = require('./Routers/addUser')
-const passport = require("passport")
-require("./config/auth")(passport)
-const {isNgo} = require("./helpers/isNGO")
-const {isUser} = require("./helpers/isUser")
+const login = require('./Routers/login')
+const isLogged = require('./helpers/isLogged')
 
 //**Configs**//
 // Session
@@ -22,9 +20,6 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
-
-app.use(passport.initialize())
-app.use(passport.session())
 
 app.use(flash())
 
@@ -54,13 +49,14 @@ app.use(express.static(path.join(__dirname, "public")))
 
 // Routers
 
-app.use('/ngo', ngo)
-app.use('/user', isUser, user)
-// app.use('/user', user)
+app.use('/ngo', isLogged, ngo)
+app.use('/user', isLogged, user)
 app.use('/addNGO', addNGO)
 app.use('/addUser', addUser)
+app.use('/login', login)
 
 app.get('/', (req, res) => {
+    req.session.destroy()
     res.render('index')
 })
 
@@ -68,17 +64,8 @@ app.get('/register',(req,res)=>{
     res.render('user/registerUser')
 })
 
-app.post('/login', passport.authenticate('local', {failureRedirect: "/", failureFlash: true}),
-(req, res) => {
-    if(req.user.cnpjNgo){
-        res.redirect('/ngo')
-    }else{
-        res.redirect('/user')
-    }
-})
-
-app.get("/logout", (req,res) => {
-    req.logOut()
+app.get('/logout', (req, res) => {
+    req.session.destroy()
     res.redirect("/")
 })
 
