@@ -1,10 +1,6 @@
 @import "utilities/variables";
 @import "utilities/extends.scss";
 
-.centralize{
-  height: calc(100% - 99px);
-}
-
 #main {
   height: 100%;
   width: $widthContainer;
@@ -15,23 +11,27 @@
 
 aside {
   height: 100%;
-  width: 50%;
-  background: white;
   display: flex;
   position: relative;
   &:first-child{
+    width: 55%;
     justify-content: center;
     position: relative;
     overflow-y: scroll;
   }
   &:last-child {
+    width: 50%;
     justify-content: flex-start;
-    background: $lightColor;
-    padding: 0 $margin4 0 $margin4;
-    box-sizing: border-box;
     position: relative;
     .title-aside {
       font-weight: 500;
+    }
+    .container{
+      height: 100%;
+      position: fixed;
+      padding: $margin2 $margin4 $margin2 $margin4;
+      box-sizing: border-box;
+      background: $lightColor;
     }
   }
 

@@ -18,13 +18,9 @@
   font-weight: 800;
   src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
 }
-.centralize {
-  height: calc(100% - 99px);
-}
-
 #main {
   height: 100%;
-  width: 1320px;
+  width: 80%;
   display: flex;
   padding-bottom: 40px;
   box-sizing: border-box;
@@ -32,25 +28,29 @@
 
 aside {
   height: 100%;
-  width: 50%;
-  background: white;
   display: flex;
   position: relative;
 }
 aside:first-child {
+  width: 55%;
   justify-content: center;
   position: relative;
   overflow-y: scroll;
 }
 aside:last-child {
+  width: 50%;
   justify-content: flex-start;
-  background: #f9f9f9;
-  padding: 0 40px 0 40px;
-  box-sizing: border-box;
   position: relative;
 }
 aside:last-child .title-aside {
   font-weight: 500;
+}
+aside:last-child .container {
+  height: 100%;
+  position: fixed;
+  padding: 20px 40px 20px 40px;
+  box-sizing: border-box;
+  background: #f9f9f9;
 }
 aside .title-aside {
   margin: 20px 0 20px 0;

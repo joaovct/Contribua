@@ -47,7 +47,7 @@ div.spacing {
   display: block;
 }
 
-header.header-relative{
+header.header-relative {
   position: relative;
   z-index: 1;
   box-shadow: 0;
@@ -131,13 +131,17 @@ header {
           }
         }
         li.text {
-          font-size: 1.3rem;
+          font-size: 1.2rem;
           font-weight: 500;
           color: black;
           border-radius: 7px;
+          margin-right: $margin2;
           &:hover {
             color: $mainColor;
             background: rgba(49, 113, 224, 0.1);
+          }
+          &:last-child{
+            margin-right: 0;
           }
         }
         li.icon {
@@ -187,8 +191,9 @@ form {
   height: auto;
   width: 400px;
   .form-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
+    margin: 0;
   }
   .form-textarea {
     height: 150px;
@@ -201,13 +206,17 @@ form {
     margin: $margin2 0;
     display: block;
     width: 100%;
-    border: 1.5px solid $lightGray;
+    border: 1.4px solid $lightGray;
     background: $lightBlue2;
     padding: 10px 15px 10px 15px;
     box-sizing: border-box;
     outline: 0;
     border-radius: 5px;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+    &::placeholder {
+      color: black;
+      opacity: 0.9;
+    }
   }
 
   .form-input-icon {
@@ -231,10 +240,11 @@ form {
     width: 150px;
     padding: $margin4 $margin2 0 $margin2;
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    opacity: 0.9;
     text-align: center;
-    background: #fcfcfc;
-    border: 1.5px solid $lightBlue2;
+    background: $lightBlue2;
+    border: 1.5px solid $lightGray;
     border-radius: 5px;
     box-sizing: border-box;
     cursor: pointer;
@@ -242,6 +252,41 @@ form {
 
   .form-file {
     display: none;
+  }
+  .groupSelect-label {
+    font-size: 1.25em;
+    font-weight: 500;
+    width: 100%;
+    display: block;
+    margin: 0 0 $margin2 / 2 0;
+  }
+  .form-groupSelect {
+    display: flex;
+    flex-flow: row wrap;
+    // grid-gap: 20px;
+    width: 100%;
+    .form-btnCheckbox {
+      flex-grow: 1;
+      text-align: center;
+      font-size: 1.05em;
+      padding: 5px 10px 5px 10px;
+      background: white;
+      color: $mainColor;
+      border: 1px solid $lightBlue;
+      box-shadow: 0 1px 5px -2px $lightBlue;
+      border-radius: 10px;
+      margin: 3.5px 5px 3.5px 5px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    input[type="checkbox"].form-checkbox {
+      display: none;
+    }
+    input:checked + .form-btnCheckbox {
+      background: $mainColor;
+      color: white;
+      border-color: $mainColor;
+    }
   }
 
   .form-submit,
@@ -252,7 +297,7 @@ form {
     background: $mainColor;
     box-shadow: 0 6px 16px 0 rgba(49, 113, 224, 0.3);
     color: white;
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     font-weight: 100;
     text-align: center;
     padding: 10px 15px 10px 15px;

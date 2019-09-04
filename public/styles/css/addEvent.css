@@ -1,27 +1,3 @@
-/* 
-  ##Device = Desktops
-  ##Screen = 1281px to higher resolution desktops
-*/
-/* 
-  ##Device = Laptops, Desktops
-  ##Screen = B/w 1025px to 1280px
-*/
-/* 
-  ##Device = Tablets, Ipads (portrait)
-  ##Screen = B/w 768px to 1024px
-*/
-/* 
-  ##Device = Tablets, Ipads (landscape)
-  ##Screen = B/w 768px to 1024px
-*/
-/* 
-  ##Device = Low Resolution Tablets, Mobiles (Landscape)
-  ##Screen = B/w 481px to 767px
-*/
-/* 
-  ##Device = Most of the Smartphones Mobiles (Portrait)
-  ##Screen = B/w 320px to 479px
-*/
 @font-face {
   font-family: Nunito;
   font-weight: normal;
@@ -43,9 +19,14 @@
   src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
 }
 .centralize {
-  height: calc(100% - 155px);
+  height: 100%;
   width: 100%;
   padding: 0;
+}
+
+.container {
+  height: 100%;
+  width: 80%;
 }
 
 #addEvent {
@@ -129,30 +110,25 @@
   margin-top: 0;
 }
 #addEvent .addEvent-step:nth-child(1) .flex-inputs {
-  height: calc((43px + 1.25rem) * 6);
   width: 100%;
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
   box-sizing: border-box;
 }
-#addEvent .addEvent-step:nth-child(1) .flex-inputs .form-input {
-  width: calc(50% - 20px);
-}
-#addEvent .addEvent-step:nth-child(1) .flex-inputs .form-input:nth-child(n-4) {
-  margin-right: 20px;
-}
-#addEvent .addEvent-step:nth-child(1) .flex-inputs .form-input:nth-child(n+5) {
-  margin-left: 20px;
-}
 #addEvent .addEvent-step:nth-child(1) .flex-inputs .form-input-icon {
-  margin-right: 20px;
+  margin: 20px 0 0 0;
+  padding: 0;
+  width: 100%;
 }
 #addEvent .addEvent-step:nth-child(1) .flex-inputs .form-input-icon .form-input {
   width: 100%;
   margin: 0;
 }
+#addEvent .addEvent-step:nth-child(1) .flex-inputs .form-input,
+#addEvent .addEvent-step:nth-child(1) .flex-inputs .form-textarea {
+  margin: 20px 0 0 0;
+}
 #addEvent .addEvent-step:nth-child(1) .flex-inputs textarea#description-event {
-  height: calc(100% - 76px - 1.25rem);
   grid-area: 6;
 }
 #addEvent .addEvent-step:nth-child(2) {
@@ -170,6 +146,9 @@
   display: flex;
   justify-content: space-between;
   width: 600px;
+}
+#addEvent .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-label {
+  transition: opacity 0.25s;
 }
 #addEvent .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-Radio {
   display: none;

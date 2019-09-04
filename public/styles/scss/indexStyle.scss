@@ -18,17 +18,19 @@ h4 {
   position: relative;
   margin-right: $margin4;
   h1#welcome-phrase {
-    font-size: 3.25rem;
+    font-size: 2.5rem;
     font-weight: bolder;
   }
   h4#effect-phrase {
-    font-size: 3em;
+    font-size: 2.5em;
     font-weight: normal;
     margin-bottom: $margin4;
   }
   .hero-image {
     margin: 0;
-    width: 600px;
+    height: 250px;
+    width: auto;
+    object-fit: cover;
     border-radius: 7px;
     box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.1);
   }

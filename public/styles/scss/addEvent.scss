@@ -1,12 +1,13 @@
 @import "utilities/variables.scss";
 
 .centralize {
-  height: calc(100% - #{$heightHeader});
+  height: 100%;
   width: 100%;
   padding: 0;
 }
 
 .container {
+  height: 100%;
   width: $widthContainer;
 }
 
@@ -86,37 +87,34 @@
       }
     }
     &:nth-child(1) {
-      // display: none;
+      // First form
       margin-top: 0;
       .flex-inputs {
-        height: calc((43px + 1.25rem) * 6);
         width: 100%;
         display: flex;
-        flex-flow: column wrap;
+        flex-flow: row wrap;
         box-sizing: border-box;
-        .form-input {
-          width: calc(50% - #{$margin2});
-          &:nth-child(n-4) {
-            margin-right: $margin2;
-          }
-          &:nth-child(n + 5) {
-            margin-left: $margin2;
-          }
-        }
         .form-input-icon {
-          margin-right: $margin2;
+          margin: $margin2 0 0 0;
+          padding: 0;
+          width: 100%;
           .form-input {
             width: 100%;
             margin: 0;
           }
         }
+        .form-input,
+        .form-textarea {
+          margin: $margin2 0 0 0;
+        }
         textarea#description-event {
-          height: calc(100% - 76px - 1.25rem);
+          // height: calc(100% - 76px - 1.25rem);
           grid-area: 6;
         }
       }
     }
     &:nth-child(2) {
+      // Second form
       display: none;
       .flex-inputs {
         min-height: calc((43px + 1.25rem) * 6);
@@ -131,6 +129,7 @@
           width: 600px;
           .typeEvent-label {
             @extend %card;
+            transition: opacity 0.25s;
           }
           .typeEvent-Radio {
             display: none;

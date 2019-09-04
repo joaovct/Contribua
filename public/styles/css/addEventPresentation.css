@@ -26,7 +26,7 @@
 
 .container {
   display: flex;
-  width: 1320px;
+  width: 80%;
 }
 .container figure.hero-image {
   width: 50%;

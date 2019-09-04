@@ -4,32 +4,76 @@
     <section id="main">
         <aside>
             <div class="container">
-                <form id="form-registerNGO" name="form-registerNGO" action="/addNGO/registerNGO" method="POST" onsubmit="changeForm(1)">
+                <form id="form-registerNGO" name="form-registerNGO" action="/addNGO/registerNGO" method="POST"
+                    onsubmit="changeForm(1)">
                     <div class="registerNGO">
                         <h1 class="form-title"><span>1° Passo</span><br>Dados da ONG</h1>
-                        <div class="icon-input"><input name="ngoName" class="form-input" type="text" placeholder="Nome da ONG" length="150" /></div>
+                        <div class="icon-input"><input name="ngoName" class="form-input" type="text"
+                                placeholder="Nome da ONG" length="150" /></div>
                         {{!-- <textarea name="ngoDescription" type="text" class="form-input form-textarea"
                             placeholder="Descrição da ONG" length="3000"></textarea> --}}
-                        {{!-- <label for="ngoLogo" class="form-btnFile">Logo da ONG</label> --}}
-                        {{!-- <input id="ngoLogo" class="form-file" name="ngoLogo" class="form-image" type="file" --}}
-                            {{!-- placeholder="Logo da ONG" /> --}}
-                        <div class="icon-input"><input name="ngoAddress" class="form-input" type="text" placeholder="Endereço da ONG"
-                            length="200" /></div>
-                        <input name="ngoCases" class="form-input" type="text" placeholder="Causas" />
-                        <div class="icon-input"><input name="ngoCNPJ" class="form-input" type="text" placeholder="CNPJ - __.___.___/____-__"
-                            maxlength="18" /></div>
+                        <label for="ngoLogo" class="form-btnFile">Logo da ONG</label>
+                        <input id="ngoLogo" class="form-file" name="ngoLogo" class="form-image" type="file"
+                            placeholder="Logo da ONG" />
+                        <div class="icon-input"><input name="ngoAddress" class="form-input" type="text"
+                                placeholder="Endereço da ONG" length="200" /></div>
+                        {{!-- <input name="ngoCases" class="form-input" type="text" placeholder="Causas" /> --}}
+                        <label class="groupSelect-label">Causas da ONG</label>
+                        <div class="form-groupSelect">
+                            <input type="checkbox" id="direitosHumanos" class="form-checkbox">
+                            <label for="direitosHumanos" class="form-btnCheckbox">Direitos humanos</label>
+
+                            <input type="checkbox" id="culturaearte" class="form-checkbox">
+                            <label for="culturaearte" class="form-btnCheckbox">Cultura e arte</label>
+
+                            <input type="checkbox" id="educação" class="form-checkbox">
+                            <label for="educação" class="form-btnCheckbox">Educação</label>
+
+                            <input type="checkbox" id="crianças" class="form-checkbox">
+                            <label for="crianças" class="form-btnCheckbox">Crianças</label>
+
+                            <input type="checkbox" id="meioambiente" class="form-checkbox">
+                            <label for="meioambiente" class="form-btnCheckbox">Meio ambiente</label>
+
+                            <input type="checkbox" id="combateàpobreza" class="form-checkbox">
+                            <label for="combateàpobreza" class="form-btnCheckbox">Combate à pobreza</label>
+
+                            <input type="checkbox" id="proteçãoanimal" class="form-checkbox">
+                            <label for="proteçãoanimal" class="form-btnCheckbox">Proteção animal</label>
+
+                            <input type="checkbox" id="política" class="form-checkbox">
+                            <label for="política" class="form-btnCheckbox">Política</label>
+
+                            <input type="checkbox" id="mulheres" class="form-checkbox">
+                            <label for="mulheres" class="form-btnCheckbox">Mulheres</label>
+
+                            <input type="checkbox" id="esportes" class="form-checkbox">
+                            <label for="esportes" class="form-btnCheckbox">Esportes</label>
+
+                            <input type="checkbox" id="refugiados" class="form-checkbox">
+                            <label for="refugiados" class="form-btnCheckbox">Refugiados</label>
+
+                            <input type="checkbox" id="saúde" class="form-checkbox">
+                            <label for="saúde" class="form-btnCheckbox">Saúde</label>
+
+                            <input type="checkbox" id="jovens" class="form-checkbox">
+                            <label for="jovens" class="form-btnCheckbox">Jovens</label>
+                        </div>
+                        <div class="icon-input"><input name="ngoCNPJ" class="form-input" type="text"
+                                placeholder="CNPJ - __.___.___/____-__" maxlength="18" /></div>
                         <div class="form-submit" name="submitRegisterNGO-1">Próximo</div>
                     </div>
 
                     <div class="registerNGO">
                         <h1 class="form-title"><span>2° passo</span><br>Contato e registro</h1>
                         <div class="icon-input"><input name="ngoTelephone" class="form-input" type="text"
-                            placeholder="Telefone - (__) ____-____" maxlength="15" /></div>
-                        <div class="icon-input"><input name="ngoEmail" class="form-input" type="email" placeholder="Email da ONG"
-                            length="200" /></div>
-                        <div class="icon-input"><input name="ngoPassword" class="form-input" type="password" placeholder="Senha" /></div>
+                                placeholder="Telefone - (__) ____-____" maxlength="15" /></div>
+                        <div class="icon-input"><input name="ngoEmail" class="form-input" type="email"
+                                placeholder="Email da ONG" length="200" /></div>
+                        <div class="icon-input"><input name="ngoPassword" class="form-input" type="password"
+                                placeholder="Senha" /></div>
                         <div class="icon-input"><input name="ngoConfirmPassword" class="form-input" type="password"
-                            placeholder="Confirmar senha" length="18" /></div>
+                                placeholder="Confirmar senha" length="18" /></div>
                         <div class="form-submit" name="submitRegisterNGO-2">Próximo</div>
                     </div>
 
@@ -66,23 +110,23 @@
 </div>
 
 {{#each errs}}
-    <div class="centralize centralize-alert">
-        <div class="container">
-            <div class="alert alert-error">
-                <figure class="alert-icon">
-                    <div class="icon"></div>
-                </figure>
-                <div class="alert-content">
-                    <h1 class="alert-title">Houve um erro...</h1>
-                    <p class="text">{{msg}}
-                    </p>
-                </div>
-                <figure class="alert-close" onclick="closeAlert(this)">
-                    <img src="/assets/imgs/close.svg" />
-                </figure>
+<div class="centralize centralize-alert">
+    <div class="container">
+        <div class="alert alert-error">
+            <figure class="alert-icon">
+                <div class="icon"></div>
+            </figure>
+            <div class="alert-content">
+                <h1 class="alert-title">Houve um erro...</h1>
+                <p class="text">{{msg}}
+                </p>
             </div>
+            <figure class="alert-close" onclick="closeAlert(this)">
+                <img src="/assets/imgs/close.svg" />
+            </figure>
         </div>
     </div>
+</div>
 {{else}}
 
 {{/each}}

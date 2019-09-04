@@ -36,12 +36,17 @@ function clickTypeEvent(e){
 
 function changeTypeEventInputs(n){
     e = document.getElementsByClassName("typeEvent-inputs")
+    e2 = document.getElementsByClassName("typeEvent-label")
     if(n==0){
         e[n].style.display = "block"
+        e2[0].style.opacity = 1
         e[1].style.display = "none"
+        e2[1].style.opacity = .5
     }else{
         e[n].style.display = "block"
+        e2[1].style.opacity = 1
         e[0].style.display = "none"
+        e2[0].style.opacity = .5
     }
 }
 
