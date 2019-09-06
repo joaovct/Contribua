@@ -8,10 +8,11 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const user = require('./Routers/user.js')
 const ngo = require('./Routers/ngo.js')
-const CRUD = require('./Routers/CRUD.js')
-// const addUser = require('./Routers/addUser')
+const register = require('./Routers/register')
 const isLogged = require('./helpers/isLogged')
 const search = require('./helpers/doSearch')
+const login = require('./Routers/login')
+
 //**Configs**//
 // Session
 app.use(session({
@@ -49,13 +50,23 @@ app.use(express.static(path.join(__dirname, "public")))
 // Routers
 
 app.use('/ngo', isLogged, ngo)
-// app.use('/user', isLogged, user)
-app.use('/user', user)
-app.use('/CRUD', CRUD)
+app.use('/user', isLogged, user)
+app.use('/register', register)
+app.use("/login", login)
 
 app.get('/', (req, res) => {
-    req.session.destroy()
+    if(req.session.user){
+        return res.redirect("/user")
+    }
+    if(req.session.ngo){
+        return res.redirect("/ngo")
+    }
     res.render('index')
+})
+
+app.get("/logout", (req,res) => {
+    req.session.destroy()
+    res.redirect("/")
 })
 
 app.get('/search', async function(req,res){

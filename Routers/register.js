@@ -4,24 +4,17 @@ const Ngo = require("../models/Ngo")
 const User = require("../models/Volunteer")
 const TelephoneNgo = require("../models/TelephoneNgo")
 const isCNPJ = require("../helpers/isCNPJ")
-const login = require('./login')
 
-router.get('/', ()=>{})
+router.get('/', (req, res)=>{
+    res.render('register/registerUser')
+})
 
 router.get('/addNGO', (req,res) => {
-    res.render('CRUD/presentation')
+    res.render('register/presentation')
 })
 
 router.get('/addNGO/add',(req,res)=>{
-    res.render('CRUD/addNGO')
-})
-
-router.get('/addUser', (req,res)=>{
-    res.render('CRUD/registerUser')
-})
-
-router.get('/loginForm', (req,res)=>{
-    res.render('CRUD/login')
+    res.render('register/addNGO')
 })
 
 router.post("/registerNGO", (req,res) => {
@@ -213,13 +206,6 @@ router.post("/registerUser", (req, res) => {
         })
     }
     
-})
-
-router.use("/login", login)
-
-router.get("/logout", (req,res) => {
-    req.session.destroy()
-    res.redirect("/")
 })
 
 module.exports = router

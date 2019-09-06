@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-userActive = true
+
 router.get('/', (req,res)=>{
     res.render('ngo/ngoHome', {data: req.session.ngo})
 })

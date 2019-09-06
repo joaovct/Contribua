@@ -3,6 +3,10 @@ const router = express.Router()
 const Ngo = require("../models/Ngo")
 const User = require("../models/Volunteer")
 
+router.get('/', (req, res) => {
+    res.render('register/login')
+})
+
 router.post('/', (req,res) => {
     const {email, password} = req.body
 
