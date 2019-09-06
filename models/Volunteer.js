@@ -15,6 +15,10 @@ const Volunteer = db.sequelize.define("tbVolunteer" ,{
         allowNull: false,
         type: db.Sequelize.STRING(40)
     },
+    cpfVolunteer:{
+        allowNull: false,
+        type: db.Sequelize.STRING(15)
+    },
     emailVolunteer: {
         allowNull: false,
         type: db.Sequelize.STRING(80)
@@ -35,6 +39,15 @@ const Volunteer = db.sequelize.define("tbVolunteer" ,{
         type: db.Sequelize.DATE
     },
     photoVolunteer: {
+        type: db.Sequelize.STRING(80)
+    },
+    cepVolunteer: {
+        type: db.Sequelize.STRING(10)
+    },
+    cityVolunteer: {
+        type: db.Sequelize.STRING(80)
+    },
+    districtVolunteer: {
         type: db.Sequelize.STRING(80)
     },
     addressVolunteer: {
