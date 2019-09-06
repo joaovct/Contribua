@@ -3,7 +3,8 @@ const router = express.Router()
 
 router.get('/', (req,res)=>{
     userActive = true
-    res.render('user/home', {data: req.session.user})
+    // res.render('user/home', {data: req.session.user})
+    res.render('user/home', {data: true})
 })
 
 router.get('/profile', (req,res)=>{

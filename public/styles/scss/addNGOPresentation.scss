@@ -10,25 +10,32 @@ section#main {
   width: $widthContainer;
   position: relative;
   display: flex;
-  justify-content: space-between;
+  flex-flow: column nowrap;
+  // justify-content: space-between;
   aside {
+    width: 100%;
     background: white;
     display: flex;
     padding: $margin2 0 0 0;
-    &:last-child {
-      width: 30%;
+    &:first-child {
+      // width: 30%;
+      border-radius: 14px;
       justify-content: center;
       background: $lightColor;
+      padding: $margin2;
+      box-sizing: border-box;
 
       .title-aside{
-        font-weight: 500;
+        margin: 0;
+        font-weight: 900;
+        text-align: center;
       }
     }
 
     .title-aside {
       margin: $margin2 0 $margin2 0;
       font-size: 2.6em;
-      color: rgb(48, 48, 48);
+      // color: rgb(48, 48, 48);
       font-weight: bold;
     }
     p{
@@ -80,12 +87,12 @@ section#main {
             width: auto;
             margin: $margin2 0;
             padding: $margin2 / 2 $margin4 / 2 $margin2 / 2 $margin4 / 2;
-            background: white;
+            background: $mainColor;
             text-transform: uppercase;
             font-family: nunito;
             font-weight: 500;
-            color: rgb(48, 48, 48);
-            box-shadow: 0 6px 10px 0px rgba(0,0,0,0.2);
+            color: white;
+            box-shadow: 0 6px 10px 0px rgba(0,0,0,0.16);
         }
     }
   }

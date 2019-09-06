@@ -11,7 +11,7 @@ const ngo = require('./Routers/ngo.js')
 const CRUD = require('./Routers/CRUD.js')
 // const addUser = require('./Routers/addUser')
 const isLogged = require('./helpers/isLogged')
-
+const search = require('./helpers/doSearch')
 //**Configs**//
 // Session
 app.use(session({
@@ -49,7 +49,8 @@ app.use(express.static(path.join(__dirname, "public")))
 // Routers
 
 app.use('/ngo', isLogged, ngo)
-app.use('/user', isLogged, user)
+// app.use('/user', isLogged, user)
+app.use('/user', user)
 app.use('/CRUD', CRUD)
 
 app.get('/', (req, res) => {
@@ -57,9 +58,9 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
-// app.get('/register',(req,res)=>{
-//     res.render('user/registerUser')
-// })
+app.get('/search', async function(req,res){
+    res.json(await search.doSearch(req.query.key))
+});
 
 // Localhost
 const PORT = 3000;

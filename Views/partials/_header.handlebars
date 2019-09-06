@@ -1,15 +1,60 @@
 <header class="headerRelative">
 </header>
 <script src="/scripts/globalScript.js"></script>
+</script>
 {{#if data}}
-{{!-- <div style="height: 150px"></div> --}}
 <header>
     <div class="container">
         <a href="/user"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
         <div class="search-field">
             <form class="search-form">
                 <img src="/assets/imgs/search.svg" />
-                <input type="text" placeholder="Procure um voluntário, ONG ou evento" class="search-input" />
+                <input placeholder="Pesquise por alguém ou algo..." oninput="doSearch(this)" class="search-input" name="search-input" type="text"/>
+                {{!-- <ul class="search-results">
+                    <h1 class="title-type-result">Voluntários</h1>
+                    <li class="volunteer">
+                        <img src="/assets/imgs/man2.jpg"/>
+                        <div class="item-content">
+                            <h3 class="item-title">João Victor</h3>
+                        </div>
+                    </li>
+                    <li class="volunteer">
+                        <img src="/assets/imgs/man3.jpg"/>
+                        <div class="item-content">
+                            <h3 class="item-title">Jason Silva</h3>
+                        </div>
+                    </li>
+                    <h1 class="title-type-result">ONGs</h1>
+                    <li class="ngo">
+                        <img src="/assets/imgs/animal-cat-cute-46024.jpg"/>
+                        <div class="item-content">
+                            <h3 class="item-title">Cães e gatos</h3>
+                        </div>
+                    </li>
+                    <h1 class="title-type-result">Eventos</h1>
+                    <li class="event">
+                        <div class="item-content">
+                            <h3 class="item-title">Ajuda no canil</h3>
+                            <p class="item-description">Adipisicing et esse cillum eu fugiat et aliqua duis culpa aute ea officia...</p>
+                            <p class="item-author">Por Cães e gatos</p>
+                        </div>
+                    </li>
+                    <li class="event">
+                        <div class="item-content">
+                            <h3 class="item-title">Adoção de gatos</h3>
+                            <h3 class="item-description">Adipisicing et esse cillum eu fugiat et aliqua duis culpa aute ea officia...</h3>
+                            <p class="item-author">Por Cães e gatos</p>
+                        </div>
+                    </li>
+                    <h1 class="title-type-result">Causas</h1>
+                    <ul class="cases">
+                        <li class="case">Direitos humanos</li>
+                        <li class="case">Política</li>
+                        <li class="case">Animal</li>
+                        <li class="case">Educação</li>
+                        <li class="case">Pobreza</li>
+                    </ul>
+                </ul> --}}
             </form>
         </div>
         <nav class="nav-header">

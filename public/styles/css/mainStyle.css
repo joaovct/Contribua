@@ -108,19 +108,121 @@ header .container .search-field .search-form {
 }
 header .container .search-field .search-form img {
   height: 1.2em;
-  left: 13.5px;
+  left: 20px;
   position: absolute;
   z-index: 999;
 }
 header .container .search-field .search-form .search-input {
   width: 400px;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 100;
   text-align: left;
-  padding: 10px 10px 10px 44px;
+  padding: 12px 12px 12px 50px;
   outline: none;
-  border: 1px solid #E0EAFB;
+  border: none;
+  background: #eeeeee;
+  border-radius: 25px;
+}
+header .container .search-field .search-form .search-results {
+  position: absolute;
+  height: 350px;
+  width: 100%;
+  left: 0;
+  bottom: -360px;
+  margin: 0;
+  padding: 0;
+  border-radius: 5px;
+  padding: 10px 15px 10px 15px;
+  box-sizing: border-box;
+  background: #f9f9f9;
+  z-index: 998;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
+  list-style: none;
+  overflow-y: scroll;
+}
+header .container .search-field .search-form .search-results h1.title-type-result {
+  font-size: 1.5em;
+  color: #818181;
+  margin: 20px 0 10px 0;
+}
+header .container .search-field .search-form .search-results h1.title-type-result:first-child {
+  margin-top: 10px;
+}
+header .container .search-field .search-form .search-results li.volunteer, header .container .search-field .search-form .search-results li.ngo, header .container .search-field .search-form .search-results li.event {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  transition: 0.25s;
+  cursor: pointer;
+}
+header .container .search-field .search-form .search-results li.volunteer img, header .container .search-field .search-form .search-results li.ngo img, header .container .search-field .search-form .search-results li.event img {
+  position: relative;
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  border-radius: 100%;
+}
+header .container .search-field .search-form .search-results li.volunteer .item-content, header .container .search-field .search-form .search-results li.ngo .item-content, header .container .search-field .search-form .search-results li.event .item-content {
+  margin-left: 20px;
+}
+header .container .search-field .search-form .search-results li.volunteer .item-content .item-title, header .container .search-field .search-form .search-results li.ngo .item-content .item-title, header .container .search-field .search-form .search-results li.event .item-content .item-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin: 0 0 0 0;
+}
+header .container .search-field .search-form .search-results li.volunteer .item-content .item-description, header .container .search-field .search-form .search-results li.ngo .item-content .item-description, header .container .search-field .search-form .search-results li.event .item-content .item-description {
+  font-size: 1em;
+  font-weight: 100;
+  margin: 10px 0 0 0;
+}
+header .container .search-field .search-form .search-results li.volunteer .item-content .item-author, header .container .search-field .search-form .search-results li.ngo .item-content .item-author, header .container .search-field .search-form .search-results li.event .item-content .item-author {
+  font-size: 1em;
+  font-weight: 100;
+  margin: 10px 0 0 0;
+  text-decoration: underline;
+}
+header .container .search-field .search-form .search-results li.volunteer:last-child, header .container .search-field .search-form .search-results li.ngo:last-child, header .container .search-field .search-form .search-results li.event:last-child {
+  margin-top: 0;
+}
+header .container .search-field .search-form .search-results li.volunteer, header .container .search-field .search-form .search-results li.ngo {
+  background: none;
+  padding: 10px;
+  box-shadow: none;
+}
+header .container .search-field .search-form .search-results li.volunteer:hover .item-title, header .container .search-field .search-form .search-results li.ngo:hover .item-title {
+  text-decoration: underline;
+}
+header .container .search-field .search-form .search-results li.event {
   background: white;
-  border-radius: 14px;
+  box-shadow: 0 5px 5px -2.5px rgba(0, 0, 0, 0.05);
+  padding: 15px 10px 15px 10px;
+  border-radius: 5px;
+}
+header .container .search-field .search-form .search-results li.event:hover {
+  box-shadow: 0 7px 5px -2.5px rgba(0, 0, 0, 0.16);
+}
+header .container .search-field .search-form .search-results ul.cases {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  margin-top: 5px;
+}
+header .container .search-field .search-form .search-results ul.cases li.case {
+  font-size: 0.9em;
+  text-align: center;
+  background: #E0EAFB;
+  margin: 0 10px 10px 0;
+  padding: 2.5px 5px 2.5px 5px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 header .container nav.nav-header {
   display: flex;

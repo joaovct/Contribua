@@ -13,20 +13,20 @@ aside {
   height: 100%;
   display: flex;
   position: relative;
-  &:first-child{
+  &:first-child {
     width: 55%;
     justify-content: center;
     position: relative;
-    overflow-y: scroll;
   }
   &:last-child {
+    height: 100%;
     width: 50%;
     justify-content: flex-start;
     position: relative;
     .title-aside {
       font-weight: 500;
     }
-    .container{
+    .container {
       height: 100%;
       position: fixed;
       padding: $margin2 $margin4 $margin2 $margin4;
@@ -46,14 +46,15 @@ aside {
   }
   .container {
     display: flex;
-    align-items: center;
-  
+    padding: $margin2 $margin4 $margin2 $margin4;
+    box-sizing: border-box;
     .steps {
       width: 100%;
-      padding: 0 0 0 $margin2;
       box-sizing: border-box;
+      padding: 0;
+      margin: 0;
       .step {
-        margin: $margin2 * 1.5 0;
+        margin: $margin2 * 1.5 0 0 0;
         cursor: pointer;
         transition: all 0.25s;
         h1 {
@@ -66,6 +67,7 @@ aside {
           margin: 5px 0;
           padding: 0;
           transition: all 0.5s;
+          color: $mainColor;
         }
       }
       .disabled {
@@ -74,16 +76,16 @@ aside {
       }
     }
   }
-  form{
+  form {
     height: 100%;
-    .registerNGO{
+    .registerNGO {
       display: block;
       position: relative;
-      .form-title{
-        span{
+      .form-title {
+        span {
           font-size: 1.5rem;
           font-weight: 500;
-          color: $gray;
+          color: $mainColor;
         }
       }
     }
@@ -92,5 +94,4 @@ aside {
       display: none;
     }
   }
-  
 }
