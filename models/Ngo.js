@@ -33,9 +33,11 @@ const Ngo = db.sequelize.define("tbNgo", {
         type: db.Sequelize.STRING(10)
     },
     cityNgo: {
+        allowNull: false,
         type: db.Sequelize.STRING(80)
     },
     districtNgo: {
+        allowNull: false,
         type: db.Sequelize.STRING(80)
     },
     addressNgo: {

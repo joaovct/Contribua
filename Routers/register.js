@@ -18,6 +18,8 @@ router.get('/addNGO/add',(req,res)=>{
 })
 
 router.post("/registerNGO", (req,res) => {
+    req.body.ngoCNPJ = req.body.ngoCNPJ.replace(/\D/g,"")
+
     let err = []
 
     //name
@@ -75,22 +77,22 @@ router.post("/registerNGO", (req,res) => {
     }
 
     if(err.length > 0){
-        res.render("CRUD/addNGO", {errs: err})
+        res.render("/register/addNGO/add", {errs: err})
     }else{
         User.findOne({where: {emailVolunteer: req.body.ngoEmail}}).then((user)=>{
             if(user){
                 req.flash("error_msg", "Já existe uma conta com este email!")
-                res.redirect("/CRUD/add")
+                res.redirect("/register/addNGO/add")
             }else{
                 Ngo.findOne({where: {emailNgo: req.body.ngoEmail}}).then((ngo) => {
                     if(ngo){
                         req.flash("error_msg", "Já existe uma conta com este email!")
-                        res.redirect("/CRUD/add")
+                        res.redirect("/register/addNGO/add")
                     }else{
                         Ngo.findOne({where:{cnpjNgo: req.body.ngoCNPJ}}).then((ngo) => {
                             if(ngo){
                                 console.log("Já existe uma ong com este CNPJ!")
-                                res.redirect("/CRUD/add")
+                                res.redirect("/register/addNGO/add")
                             }else{
                                 //register ong
                                 Ngo.create({
@@ -99,6 +101,10 @@ router.post("/registerNGO", (req,res) => {
                                     cnpjNgo: req.body.ngoCNPJ,
                                     emailNgo: req.body.ngoEmail,
                                     passwordNgo: req.body.ngoPassword,
+                                    siteNgo: "www.site.com",
+                                    cepNgo: "084604300",
+                                    cityNgo: "SP",
+                                    districtNgo: "Guaianases",
                                     addressNgo: req.body.ngoAddress,
                                     averageStarsNgo: "0"
                                 }).then((ngo) => {
@@ -111,7 +117,7 @@ router.post("/registerNGO", (req,res) => {
                                     res.redirect("/")
                                 }).catch((err) => {
                                     console.log("Falha ao cadastrar, erro: ", err)
-                                    res.redirect("/CRUD/add")
+                                    res.redirect("/register/addNGO/add")
                                 })
                             }
                         }).catch((err) => {
@@ -124,7 +130,7 @@ router.post("/registerNGO", (req,res) => {
             }
         }).catch((err)=>{
             console.log("Erro interno: ",err)
-            res.redirect("/CRUD/add")
+            res.redirect("/register/addNGO/add")
         })
     }
 }) 

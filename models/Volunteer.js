@@ -42,12 +42,15 @@ const Volunteer = db.sequelize.define("tbVolunteer" ,{
         type: db.Sequelize.STRING(80)
     },
     cepVolunteer: {
+        allowNull: false,
         type: db.Sequelize.STRING(10)
     },
     cityVolunteer: {
+        allowNull: false,
         type: db.Sequelize.STRING(80)
     },
     districtVolunteer: {
+        allowNull: false,
         type: db.Sequelize.STRING(80)
     },
     addressVolunteer: {
