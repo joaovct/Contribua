@@ -54,6 +54,30 @@ function removeDiv(el){
     })
 }
 
+function removeClass(el, Class, n){
+    if(n!=undefined && n > -1){
+        el = document.getElementsByClassName(el)[n]
+        el.classList.remove(Class)
+    }else{
+        el = document.getElementsByClassName(el)
+        for(let i of el){
+            i.classList.remove(Class)
+        }
+    }
+}
+
+function addClass(el, Class, n){
+    if(n!=undefined && n > -1){
+        el = document.getElementsByClassName(el)[n]
+        el.classList.add(Class)
+    }else{
+        el = document.getElementsByClassName(el)
+        for(let i of el){
+            i.classList.add(Class)
+        }
+    }
+}
+
 $(document).mouseup((e)=>{
     if(!$('.search-results').is(e.target) && $('.search-results').has(e.target).length === 0){
         removeDiv('.search-results')

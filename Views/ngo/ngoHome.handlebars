@@ -1,18 +1,18 @@
 <link rel="stylesheet" href="/styles/css/homeUser.css" />
 <script src="/scripts/homeScript.js"></script>
-<div class="centralize">
+<div class="centralize padding-top2">
     <div class="container">
         <h1 class="title">Bem-vindo de volta <span class="blue"></span></h1>
         <div class="feed-header">
             <div class="filters">
                 <ul class="group-categories">
-                    <a title="ngo-events" href="#" class="category-link active-link">
+                    <a onclick="hide('group-nav'); show('group-nav',0); removeClass('category-link','active-link'); addClass('category-link', 'active-link', 0)" title="ngo-events" href="#" class="category-link active-link">
                         <li title="ngo-events" target="my-events">Meus eventos</li>
                     </a>
-                    <a title="ngo-members" href="#" class="category-link">
+                    <a onclick="hide('group-nav'); show('group-nav',1); removeClass('category-link','active-link'); addClass('category-link', 'active-link', 1)" title="ngo-members" href="#" class="category-link">
                         <li title="ngo-members">Membros</li>
                     </a>
-                    <a title="search-volunteers" href="#" class="category-link">
+                    <a onclick="hide('group-nav'); show('group-nav',2); removeClass('category-link','active-link'); addClass('category-link', 'active-link', 2)" title="search-volunteers" href="#" class="category-link">
                         <li title="search-volunteers">Procurar voluntários</li>
                     </a>
                 </ul>
