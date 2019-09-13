@@ -8,7 +8,6 @@ function hide(el, n){
             $(i).hide()
         }
     }
-    console.log(el)
 }
 
 function show(el, n){
@@ -21,7 +20,6 @@ function show(el, n){
             $(i).show()
         }
     }
-    console.log(el)
 }
 
 function changeOpacity(x, el, n){

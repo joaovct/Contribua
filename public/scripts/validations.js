@@ -1,4 +1,4 @@
-function validationName(){
+function validationName(name, iconName){
     if(name.value.length < 4){
         iconName.classList.remove("success-validation")
         iconName.classList.add("alert-validation")
@@ -22,7 +22,7 @@ function validationLastName(){
     }
 }
 
-function validationAddress(){
+function validationAddress(address, iconAddress){
     if(address.value.length < 5){
         iconAddress.classList.remove("success-validation")
         iconAddress.classList.add("alert-validation")
@@ -34,10 +34,25 @@ function validationAddress(){
     }
 }
 
-function validatioCases(){
+function validationCases(cases){
+    let checks = 0
+    for(let Case of cases){
+        if(Case.checked) checks++
+    }
+    console.log(checks)
+    if(checks<2) return false
+    else return true
 }
 
-function validationCNPJ(){
+function validationDescription(description){
+    return true
+}
+
+function validationCep(cep, iconCep){
+    return true
+}
+
+function validationCNPJ(cnpj, iconCnpj){
 
     formatCNPJ(cnpj)
     
@@ -52,7 +67,7 @@ function validationCNPJ(){
     }
 }
 
-function validationTelephone(){
+function validationTelephone(telephone, iconTelephone){
     formatTelephone(telephone)
     if(telephone.value.length < 14){
         iconTelephone.classList.remove("success-validation")
@@ -65,7 +80,7 @@ function validationTelephone(){
     }
 }
 
-function validationEmail(email){
+function validationEmail(email, iconEmail){
     let regex = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
     if(!regex.test(email.value)){
         iconEmail.classList.remove("success-validation")
@@ -78,7 +93,7 @@ function validationEmail(email){
     }
 }
 
-function validationPassword(password){
+function validationPassword(password, iconPassword){
     let lowerWord = new RegExp(/[a-z]+/)
     let upperWord = new RegExp(/[A-Z]+/)
     let numbers = new RegExp(/\d/)
@@ -120,7 +135,7 @@ function validationPassword(password){
     }
 }
 
-function validationConfirmPassword(){
+function validationConfirmPassword(confirmPassword, iconConfirmPassword){
     if(confirmPassword.value === password.value && confirmPassword.value.length != 0){
         iconConfirmPassword.classList.remove("alert-validation")
         iconConfirmPassword.classList.add("success-validation")
@@ -133,7 +148,7 @@ function validationConfirmPassword(){
 }
 
 //gambiarra 
-function isCNPJ(cnpj) {
+function isCNPJ(cnpj, iconCnpj) {
     let base = cnpj.substr(0, 12).split("")
     let dvs = cnpj.substr(12, 14).split("")
     let weights = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]

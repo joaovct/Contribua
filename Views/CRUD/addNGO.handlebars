@@ -31,6 +31,7 @@
                 <label for="ngoLogo" class="form-btnFile">Logo da ONG</label>
                 <input id="ngoLogo" class="form-file" name="ngoLogo" class="form-image" type="file"
                     placeholder="Logo da ONG" />
+                <div class="icon-input"><input name="ngoCEP" placeholder="CEP da ONG" class="form-input" type="text"/></div>
                 <div class="icon-input"><input name="ngoAddress" class="form-input" type="text"
                         placeholder="Endereço da ONG" length="200" /></div>
                 <div class="form-groupSelect">
@@ -86,10 +87,6 @@
                         placeholder="Telefone - (__) ____-____" maxlength="15" /></div>
                 <div class="icon-input"><input name="ngoEmail" class="form-input" type="email"
                         placeholder="Email da ONG" length="200" /></div>
-                <div class="icon-input"><input name="ngoPassword" class="form-input" type="password"
-                        placeholder="Senha" /></div>
-                <div class="icon-input"><input name="ngoConfirmPassword" class="form-input" type="password"
-                        placeholder="Confirmar senha" length="18" /></div>
                 <div onclick="hide('ngoRegister'); show('ngoRegister', 2); progressStep('step', 2); changeOpacity(1, 'step', 2)"
                     class="form-submit" name="submitRegisterNGO-2">Próximo</div>
             </div>
@@ -99,12 +96,12 @@
                 <textarea name="ngoDescription" type="text" class="form-input form-textarea"
                     placeholder="Descreva brevemente sua ONG; Onde atua, trabalhos realizados, causas, etc"
                     length="5000" style="height: 300px"></textarea>
-                <button id="registerNGO-submit" disabled type="submit">Enviar dados</button>
+                <button name="registerNGO-submit" id="registerNGO-submit" disabled type="submit">Enviar dados</button>
             </div>
         </form>
     </div>
 </div>
-
 <script src="/scripts/validations.js"></script>
 <script src="/scripts/globalScript.js"></script>
+<script src="/scripts/addNGOScript.js"></script>
 <script>hide( "ngoRegister" ); show( "ngoRegister", 0 )</script>
