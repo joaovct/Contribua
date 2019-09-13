@@ -52,6 +52,21 @@ function validationCNPJ(){
     }
 }
 
+function validationCPF(){
+    
+    formatCPF(cpf)
+    
+    if(!isCPF(cpf.value.replace(/\D/g,""))){
+        iconCpf.classList.remove("success-validation")
+        iconCpf.classList.add("alert-validation")
+        return false
+    }else{
+        iconCpf.classList.remove("alert-validation")
+        iconCpf.classList.add("success-validation")
+        return true
+    }
+}
+
 function validationTelephone(){
     formatTelephone(telephone)
     if(telephone.value.length < 14){
@@ -65,13 +80,14 @@ function validationTelephone(){
     }
 }
 
-function validationEmail(email){
-    let regex = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
+function validationEmail(){
+    let regex = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/)
     if(!regex.test(email.value)){
         iconEmail.classList.remove("success-validation")
         iconEmail.classList.add("alert-validation")
         return false
     }else{
+        console.log("passou")
         iconEmail.classList.remove("alert-validation")
         iconEmail.classList.add("success-validation")
         return true
@@ -134,77 +150,93 @@ function validationConfirmPassword(){
 
 //gambiarra 
 function isCNPJ(cnpj) {
-    let base = cnpj.substr(0, 12).split("")
-    let dvs = cnpj.substr(12, 14).split("")
-    let weights = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
-    let baseMultiplied = []
-    let baseSum
-    let dv1
-    let dv2
-
-    if(cnpj === "00000000000000" || cnpj === "11111111111111" ||
-    cnpj === "22222222222222" || cnpj === "33333333333333" ||
-    cnpj === "44444444444444" || cnpj === "55555555555555" ||
-    cnpj === "66666666666666" || cnpj === "77777777777777" ||
-    cnpj === "88888888888888" || cnpj === "99999999999999" ||
-    cnpj.length != 14){
-        return false
+    cnpj = cnpj.replace(/[^\d]+/g,'');
+ 
+    if(cnpj == '') return false;
+     
+    if (cnpj.length != 14)
+        return false;
+ 
+    // Elimina CNPJs invalidos conhecidos
+    if (cnpj == "00000000000000" || 
+        cnpj == "11111111111111" || 
+        cnpj == "22222222222222" || 
+        cnpj == "33333333333333" || 
+        cnpj == "44444444444444" || 
+        cnpj == "55555555555555" || 
+        cnpj == "66666666666666" || 
+        cnpj == "77777777777777" || 
+        cnpj == "88888888888888" || 
+        cnpj == "99999999999999")
+        return false;
+         
+    // Valida DVs
+    size = cnpj.length - 2
+    numbers = cnpj.substring(0,size);
+    digits = cnpj.substring(size);
+    sum = 0;
+    pos = size - 7;
+    for (i = size; i >= 1; i--) {
+      sum += numbers.charAt(size - i) * pos--;
+      if (pos < 2)
+            pos = 9;
     }
-
-    //dv1
-    baseMultiplied = base.map((elem, i) => {
-        return weights[i] * parseInt(base[i])
-    })
-
-    baseSum = baseMultiplied.reduce((prevVal, elem) => {
-        return prevVal + elem
-    }, 0)
-
-    dv1 = (baseSum%11)
-    if(dv1 < 11){
-        dv1 = 11-dv1
-    }else{
-        dv1 = dv1-11
+    resultado = sum % 11 < 2 ? 0 : 11 - sum % 11;
+    if (resultado != digits.charAt(0))
+        return false;
+         
+    size = size + 1;
+    numbers = cnpj.substring(0,size);
+    sum = 0;
+    pos = size - 7;
+    for (i = size; i >= 1; i--) {
+      sum += numbers.charAt(size - i) * pos--;
+      if (pos < 2)
+            pos = 9;
     }
+    resultado = sum % 11 < 2 ? 0 : 11 - sum % 11;
+    if (resultado != digits.charAt(1))
+          return false;
+           
+    return true;
+}
 
-    base.push(dv1.toString())
-    weights.unshift(6)
-
-    //dv2
-    baseMultiplied = base.map((elem, i) => {
-        return weights[i] * parseInt(base[i])
-    })
-
-    baseSum = baseMultiplied.reduce((prevVal, elem) => {
-        return prevVal + elem
-    }, 0)
-
-    dv2 = (baseSum%11)
-    if(dv2 < 11){
-        dv2 = 11 - dv2
-    }else{
-        dv2 = dv2 - 11
+function isCPF(cpf){
+    let sum
+    let rest
+    sum = 0;
+    if (cpf === "00000000000") return false
+     
+    for (i=1; i<=9; i++){
+        sum = sum + parseInt(cpf.substring(i-1, i)) * (11 - i)
+        rest = (sum * 10) % 11;
     }
-
-    //verify dvs
-    if(dv1.toString() != dvs[0]){
-        return false
+   
+    if ((rest == 10) || (rest == 11))  rest = 0
+    if (rest != parseInt(cpf.substring(9, 10)) ) return false
+   
+    sum = 0
+    for (i = 1; i <= 10; i++){
+        sum = sum + parseInt(cpf.substring(i-1, i)) * (12 - i)
+        rest = (sum * 10) % 11
     }
-
-    if(dv2.toString() != dvs[1]){
-        return false
-    }
-
-    return true
+   
+    if ((rest == 10) || (rest == 11)) rest = 0
+    if (rest != parseInt(cpf.substring(10, 11))) return false;
+    return true;
 }
 
 //formatations
 function formatCNPJ(cnpj){
-    cnpj.value = cnpj.value.replace(/\D/g,"")
-    cnpj.value = cnpj.value.replace(/^(\d{2})(\d)/,"$1.$2")
-    cnpj.value = cnpj.value.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3")
-    cnpj.value = cnpj.value.replace(/\.(\d{3})(\d)/,".$1/$2")
-    cnpj.value = cnpj.value.replace(/(\d{4})(\d)/,"$1-$2")
+//     cnpj.value = cnpj.value.replace(/^(\d{2})(\d)/,"$1.$2")
+//     cnpj.value = cnpj.value.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3")
+//     cnpj.value = cnpj.value.replace(/\.(\d{3})(\d)/,".$1/$2")
+//     cnpj.value = cnpj.value.replace(/(\d{4})(\d)/,"$1-$2")
+   cnpj.value = cnpj.value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,"\$1.\$2.\$3\/\$4\-\$5");
+}
+
+function formatCPF(cpf){
+    cpf.value = cpf.value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"\$1.\$2.\$3\-\$4");
 }
 
 function formatTelephone(telephone){

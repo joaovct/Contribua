@@ -4,7 +4,7 @@
     <section id="main">
         <aside>
             <div class="container">
-                <form id="form-registerNGO" name="form-registerNGO" action="/register/registerNGO" method="POST"
+                <form id="form-registerNGO" name="form-registerNGO" action="/user/starting-ong/register" method="POST"
                     onsubmit="changeForm(1)">
                     <div class="registerNGO">
                         <h1 class="form-title"><span>1° Passo</span><br>Dados da ONG</h1>
@@ -17,43 +17,43 @@
                                 placeholder="Endereço da ONG" length="200" /></div>
                         <label class="groupSelect-label">Causas da ONG</label>
                         <div class="form-groupSelect">
-                            <input type="checkbox" id="direitosHumanos" class="form-checkbox">
+                            <input name="categories" value="direitos humanos" type="checkbox" id="direitosHumanos" class="form-checkbox">
                             <label for="direitosHumanos" class="form-btnCheckbox">Direitos humanos</label>
 
-                            <input type="checkbox" id="culturaearte" class="form-checkbox">
+                            <input name="categories" value="cultura e arte" type="checkbox" id="culturaearte" class="form-checkbox">
                             <label for="culturaearte" class="form-btnCheckbox">Cultura e arte</label>
 
-                            <input type="checkbox" id="educação" class="form-checkbox">
+                            <input name="categories" value="educação" type="checkbox" id="educação" class="form-checkbox">
                             <label for="educação" class="form-btnCheckbox">Educação</label>
 
-                            <input type="checkbox" id="crianças" class="form-checkbox">
+                            <input name="categories" value="crianças" type="checkbox" id="crianças" class="form-checkbox">
                             <label for="crianças" class="form-btnCheckbox">Crianças</label>
 
-                            <input type="checkbox" id="meioambiente" class="form-checkbox">
+                            <input name="categories" value="meio ambiente" type="checkbox" id="meioambiente" class="form-checkbox">
                             <label for="meioambiente" class="form-btnCheckbox">Meio ambiente</label>
 
-                            <input type="checkbox" id="combateàpobreza" class="form-checkbox">
+                            <input name="categories" value="combate à pobreza" type="checkbox" id="combateàpobreza" class="form-checkbox">
                             <label for="combateàpobreza" class="form-btnCheckbox">Combate à pobreza</label>
 
-                            <input type="checkbox" id="proteçãoanimal" class="form-checkbox">
+                            <input name="categories" value="proteção animal" type="checkbox" id="proteçãoanimal" class="form-checkbox">
                             <label for="proteçãoanimal" class="form-btnCheckbox">Proteção animal</label>
 
-                            <input type="checkbox" id="política" class="form-checkbox">
+                            <input name="categories" value="política" type="checkbox" id="política" class="form-checkbox">
                             <label for="política" class="form-btnCheckbox">Política</label>
 
-                            <input type="checkbox" id="mulheres" class="form-checkbox">
+                            <input name="categories" value="mulheres" type="checkbox" id="mulheres" class="form-checkbox">
                             <label for="mulheres" class="form-btnCheckbox">Mulheres</label>
 
-                            <input type="checkbox" id="esportes" class="form-checkbox">
+                            <input name="categories" value="esportes" type="checkbox" id="esportes" class="form-checkbox">
                             <label for="esportes" class="form-btnCheckbox">Esportes</label>
 
-                            <input type="checkbox" id="refugiados" class="form-checkbox">
+                            <input name="categories" value="refugiados" type="checkbox" id="refugiados" class="form-checkbox">
                             <label for="refugiados" class="form-btnCheckbox">Refugiados</label>
 
-                            <input type="checkbox" id="saúde" class="form-checkbox">
+                            <input name="categories" value="saúde" type="checkbox" id="saúde" class="form-checkbox">
                             <label for="saúde" class="form-btnCheckbox">Saúde</label>
 
-                            <input type="checkbox" id="jovens" class="form-checkbox">
+                            <input name="categories" value="jovens" type="checkbox" id="jovens" class="form-checkbox">
                             <label for="jovens" class="form-btnCheckbox">Jovens</label>
                         </div>
                         <div class="icon-input"><input name="ngoCNPJ" class="form-input" type="text"
@@ -67,10 +67,6 @@
                                 placeholder="Telefone - (__) ____-____" maxlength="15" /></div>
                         <div class="icon-input"><input name="ngoEmail" class="form-input" type="email"
                                 placeholder="Email da ONG" length="200" /></div>
-                        <div class="icon-input"><input name="ngoPassword" class="form-input" type="password"
-                                placeholder="Senha" /></div>
-                        <div class="icon-input"><input name="ngoConfirmPassword" class="form-input" type="password"
-                                placeholder="Confirmar senha" length="18" /></div>
                         <div class="form-submit" name="submitRegisterNGO-2">Próximo</div>
                     </div>
 

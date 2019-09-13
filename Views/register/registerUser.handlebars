@@ -6,54 +6,54 @@
             <div class="container">
                 <form id="form-registerUser" name="form-registerUser" action="/register/registerUser" method="POST">
                         <h1 class="form-title">Cadastro</h1>
-                        <input class="form-input" placeholder="Nome">
-                        <input class="form-input" placeholder="Sobrenome">
-                        <input class="form-input" placeholder="Email">
-                        <input class="form-input" placeholder="CPF - ___.___.___-__">
+                        <div class="icon-input"><input name="nameVolunteer" id="nameVolunteer" class="form-input" placeholder="Nome"></div>
+                        <div class="icon-input"><input name="lastNameVolunteer" id="lastNameVolunteer" class="form-input" placeholder="Sobrenome"></div>
+                        <div class="icon-input"><input name="emailVolunteer" id="emailVolunteer" class="form-input" placeholder="Email"></div>
+                        <div class="icon-input"><input name="cpfVolunteer" id="cpfVolunteer" class="form-input" placeholder="CPF - ___.___.___-__" maxlength="14"></div>
                         <label class="groupSelect-label">Causas</label>
                         <div class="form-groupSelect">
-                            <input type="checkbox" id="direitosHumanos" class="form-checkbox">
+                            <input name="categories" value="direitos humanos" type="checkbox" id="direitosHumanos" class="form-checkbox">
                             <label for="direitosHumanos" class="form-btnCheckbox">Direitos humanos</label>
 
-                            <input type="checkbox" id="culturaearte" class="form-checkbox">
+                            <input name="categories" value="cultura e arte" type="checkbox" id="culturaearte" class="form-checkbox">
                             <label for="culturaearte" class="form-btnCheckbox">Cultura e arte</label>
 
-                            <input type="checkbox" id="educação" class="form-checkbox">
+                            <input name="categories" value="educação" type="checkbox" id="educação" class="form-checkbox">
                             <label for="educação" class="form-btnCheckbox">Educação</label>
 
-                            <input type="checkbox" id="crianças" class="form-checkbox">
+                            <input name="categories" value="crianças" type="checkbox" id="crianças" class="form-checkbox">
                             <label for="crianças" class="form-btnCheckbox">Crianças</label>
 
-                            <input type="checkbox" id="meioambiente" class="form-checkbox">
+                            <input name="categories" value="meio ambiente" type="checkbox" id="meioambiente" class="form-checkbox">
                             <label for="meioambiente" class="form-btnCheckbox">Meio ambiente</label>
 
-                            <input type="checkbox" id="combateàpobreza" class="form-checkbox">
+                            <input name="categories" value="combate à pobreza" type="checkbox" id="combateàpobreza" class="form-checkbox">
                             <label for="combateàpobreza" class="form-btnCheckbox">Combate à pobreza</label>
 
-                            <input type="checkbox" id="proteçãoanimal" class="form-checkbox">
+                            <input name="categories" value="proteção animal" type="checkbox" id="proteçãoanimal" class="form-checkbox">
                             <label for="proteçãoanimal" class="form-btnCheckbox">Proteção animal</label>
 
-                            <input type="checkbox" id="política" class="form-checkbox">
+                            <input name="categories" value="política" type="checkbox" id="política" class="form-checkbox">
                             <label for="política" class="form-btnCheckbox">Política</label>
 
-                            <input type="checkbox" id="mulheres" class="form-checkbox">
+                            <input name="categories" value="mulheres" type="checkbox" id="mulheres" class="form-checkbox">
                             <label for="mulheres" class="form-btnCheckbox">Mulheres</label>
 
-                            <input type="checkbox" id="esportes" class="form-checkbox">
+                            <input name="categories" value="esportes" type="checkbox" id="esportes" class="form-checkbox">
                             <label for="esportes" class="form-btnCheckbox">Esportes</label>
 
-                            <input type="checkbox" id="refugiados" class="form-checkbox">
+                            <input name="categories" value="refugiados" type="checkbox" id="refugiados" class="form-checkbox">
                             <label for="refugiados" class="form-btnCheckbox">Refugiados</label>
 
-                            <input type="checkbox" id="saúde" class="form-checkbox">
+                            <input name="categories" value="saúde" type="checkbox" id="saúde" class="form-checkbox">
                             <label for="saúde" class="form-btnCheckbox">Saúde</label>
 
-                            <input type="checkbox" id="jovens" class="form-checkbox">
+                            <input name="categories" value="jovens" type="checkbox" id="jovens" class="form-checkbox">
                             <label for="jovens" class="form-btnCheckbox">Jovens</label>
                         </div>
-                        <input class="form-input" placeholder="Senha">
-                        <input class="form-input" placeholder="Confirmar senha">
-                        <button type="submit">Registrar-se</button>
+                        <div class="icon-input"><input name="passwordVolunteer" type="password" id="passwordVolunteer" class="form-input" placeholder="Senha"></div>
+                        <div class="icon-input"><input name="confirmPasswordVolunteer" type="password" id="confirmPasswordVolunteer" class="form-input" placeholder="Confirmar senha"></div>
+                        <button id="submit" type="submit">Registrar-se</button>
                         <span class="form-link form-span-text"><a href="/CRUD/loginForm" class="form-link-register">Já tenho uma conta</a></span>
                         <span class="form-link form-span-text"><a href="/CRUD/addNGO" class="form-link-register">Sou uma ONG</a></span>
                         
@@ -68,4 +68,25 @@
     </section>
 </div>
 
-<script>init()</script>
+{{#each errs}}
+<div class="centralize centralize-alert">
+    <div class="container">
+        <div class="alert alert-error">
+            <figure class="alert-icon">
+                <div class="icon"></div>
+            </figure>
+            <div class="alert-content">
+                <h1 class="alert-title">Houve um erro...</h1>
+                <p class="text">{{msg}}
+                </p>
+            </div>
+            <figure class="alert-close" onclick="closeAlert(this)">
+                <img src="/assets/imgs/close.svg" />
+            </figure>
+        </div>
+    </div>
+</div>
+{{/each}}
+
+<script src="/scripts/validations.js"></script>
+<script src="/scripts/registerUserScript.js"></script>
