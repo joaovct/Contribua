@@ -19,7 +19,7 @@
   src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
 }
 .container {
-  width: 80%;
+  width: 80vmax;
 }
 
 .profile-data {

@@ -48,7 +48,8 @@ app.use(express.static(path.join(__dirname, "public")))
 
 // Routers
 
-app.use('/ngo', isLogged, ngo)
+// app.use('/ngo', isLogged, ngo)
+app.use('/ngo', ngo)
 // app.use('/user', isLogged, user)
 app.use('/user', user)
 app.use('/CRUD', CRUD)

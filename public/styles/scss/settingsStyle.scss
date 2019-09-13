@@ -1,0 +1,152 @@
+@import "utilities/variables";
+
+body {
+  background: #f9f9f9;
+}
+
+.settings-container {
+  display: flex;
+  align-items: flex-start;
+  background: white;
+  border: 2px solid #f2f2f2;
+  border-radius: 7px;
+  min-height: 50vh;
+  margin-top: $margin4;
+  box-sizing: border-box;
+  position: relative;
+  ul.settings-menu {
+    min-height: 50vh;
+    position: relative;
+    padding: $margin2 $margin2 $margin2 0;
+    margin: 0;
+    list-style: none;
+    li {
+      display: flex;
+      align-items: center;
+      padding: $margin2;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
+      // background: #f9f9f9;
+      font-size: 1.35em;
+      transition: 0.5s;
+      cursor: pointer;
+      img {
+        height: 1.35em;
+        margin-right: $margin2 / 2;
+        opacity: .5;
+        transition: .5s;
+      }
+    }
+    li.active {
+      background: #f9f9f9;
+      font-weight: 500;
+      img {
+        opacity: 1;
+      }
+    }
+  }
+  form.settings-form:first-of-type{
+      display: flex;
+  }
+  .settings-form {
+    min-height: 50vh;
+    display: none;
+    // display: flex;
+    flex-flow: row wrap;
+    grid-template-rows: 225px auto;
+    grid-column-gap: $margin2;
+    padding: $margin2 $margin2 $margin2 $margin2;
+    border-left: 2px solid #f2f2f2;
+    flex-grow: 1;
+    .figure-profile-pic {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      margin-bottom: $margin2;
+      .label-profile-pic {
+        grid-area: pic;
+        height: 225px;
+        width: 225px;
+        border-radius: 7px;
+        position: relative;
+        display: inline-flex;
+        align-items: flex-end;
+        background: url("../../assets/imgs/man2.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        p {
+          flex-grow: 1;
+          border-bottom-left-radius: 7px;
+          border-bottom-right-radius: 7px;
+          background: rgba(0, 0, 0, 0.64);
+          text-align: center;
+          padding: 5px;
+          color: white;
+          margin: 0;
+        }
+      }
+      #profile-pic {
+        display: none;
+      }
+    }
+    .fields {
+      grid-area: fields;
+      height: 100%;
+      display: flex;
+      flex-flow: row wrap;
+      .settings-field {
+        flex-grow: 1;
+        margin: 0 0 0 $margin2;
+        &:first-child {
+          margin-left: 0;
+        }
+        label {
+          font-size: 1.1em;
+          margin: 0 0 $margin2 / 2 0;
+          display: block;
+        }
+        .form-input {
+          margin: 0;
+          width: 100%;
+        }
+        .form-textarea {
+          width: 100%;
+        }
+      }
+      .block-field {
+        width: auto;
+        flex-grow: 1;
+        margin-bottom: $margin2;
+        display: flex;
+        flex-flow: column nowrap;
+        margin: $margin2 0 0 0;
+        padding: 0;
+        box-sizing: border-box;
+        label.groupSelect-label {
+          height: 1.1em;
+        }
+        .form-groupSelect {
+          width: 100%;
+          label.form-btnCheckbox {
+            margin-left: $margin2 / 2;
+          }
+          input[type="checkbox"].form-checkbox {
+            display: none;
+          }
+          input:checked + .form-btnCheckbox {
+            background: $mainColor;
+            color: white;
+            border-color: $mainColor;
+          }
+        }
+      }
+    }
+  }
+  .short-number{
+    width: 50px;
+    .form-input{
+      text-align: center;
+    }
+  }
+}

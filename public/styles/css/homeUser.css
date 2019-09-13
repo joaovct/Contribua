@@ -27,7 +27,7 @@ header .container .logo {
 }
 
 .container {
-  width: 80%;
+  width: 80vmax;
   margin: 0;
 }
 

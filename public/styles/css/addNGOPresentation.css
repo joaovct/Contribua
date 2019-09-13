@@ -24,7 +24,7 @@
 
 section#main {
   height: 100%;
-  width: 80%;
+  width: 80vmax;
   position: relative;
   display: flex;
   flex-flow: column nowrap;
