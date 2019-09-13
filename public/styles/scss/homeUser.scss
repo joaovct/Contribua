@@ -1,19 +1,5 @@
 @import "utilities/variables";
-@import "utilities/extends";
 
-header {
-  @extend %headerLogged;
-  .container {
-    .logo {
-      height: 40px;
-    }
-  }
-}
-
-.container {
-  width: $widthContainer;
-  margin: 0;
-}
 
 .title {
   margin: 0 0 $margin2 0;

@@ -57,11 +57,21 @@ body {
   background: #818181;
 }
 
-div.spacing {
-  height: 150px;
-  width: 100%;
-  position: relative;
-  display: block;
+.btn-danger, form .form-submit,
+form button[type=submit],
+form input[type=submit],
+.form .form-submit,
+.form button[type=submit],
+.form input[type=submit] {
+  font-size: 1.25rem;
+  font-weight: 100;
+  text-align: center;
+  padding: 10px 15px 10px 15px;
+  border-radius: 7px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block !important;
+  margin-top: 20px;
 }
 
 header.header-relative {
@@ -394,7 +404,8 @@ form .form-file,
 .form .form-file {
   display: none;
 }
-form .groupSelect-label, form .form-label,
+form .groupSelect-label,
+form .form-label,
 .form .groupSelect-label,
 .form .form-label {
   font-size: 1.25em;
@@ -441,19 +452,10 @@ form input[type=submit],
 .form button[type=submit],
 .form input[type=submit] {
   width: 100%;
+  box-shadow: 0 6px 16px 0 rgba(49, 113, 224, 0.3);
   border: none;
   background: #3171e0;
-  box-shadow: 0 6px 16px 0 rgba(49, 113, 224, 0.3);
   color: white;
-  font-size: 1.25rem;
-  font-weight: 100;
-  text-align: center;
-  padding: 10px 15px 10px 15px;
-  border-radius: 7px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block !important;
-  margin-top: 20px;
 }
 form .form-submit:disabled,
 form button[type=submit]:disabled,
@@ -609,6 +611,19 @@ div.overlay .modal {
   box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.16);
 }
 
+.btn-danger {
+  width: 100%;
+  box-shadow: 0 3px 12px -6px rgba(0, 0, 0, 0.16);
+  background: #f9f9f9;
+  color: red;
+  border: 1px solid #eeeeee;
+}
+
+.width-auto {
+  width: auto;
+  flex-grow: 0;
+}
+
 .title {
   font-size: 2rem;
   font-weight: 800;
@@ -654,6 +669,10 @@ div.overlay .modal {
   background: #fafaff;
 }
 
+.margin-top1 {
+  margin-top: 10px;
+}
+
 .margin-top2 {
   margin-top: 20px;
 }
@@ -668,6 +687,10 @@ div.overlay .modal {
 
 .margin-btm2 {
   margin-bottom: 40px;
+}
+
+.margin-btm1 {
+  margin-bottom: 10px;
 }
 
 .padding-top2 {

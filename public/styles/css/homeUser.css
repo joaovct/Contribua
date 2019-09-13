@@ -18,19 +18,6 @@
   font-weight: 800;
   src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
 }
-header {
-  height: auto !important;
-}
-
-header .container .logo {
-  height: 40px;
-}
-
-.container {
-  width: 80vmax;
-  margin: 0;
-}
-
 .title {
   margin: 0 0 20px 0;
   font-size: 2.2em;

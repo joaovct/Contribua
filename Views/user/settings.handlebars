@@ -5,109 +5,164 @@
         <h1 class="title big-text">Configurações</h1>
         <div class="container settings-container">
             <ul class="settings-menu">
-                <li class="settings-link" onclick="changeSettingsForm(0, this)" class="active"><img src="/assets/imgs/clock.svg"/>Perfil</li>
-                <li class="settings-link" onclick="changeSettingsForm(1, this)"><img src="/assets/imgs/clock.svg"/>Dados pessoais</li>
-                <li class="settings-link" onclick="changeSettingsForm(2, this)"><img src="/assets/imgs/clock.svg"/>Dados da ONG</li>
+                <li class="settings-link active" onclick="changeSettingsForm(0, this)"><img
+                        src="/assets/imgs/userBlue.svg" />Perfil</li>
+                <li class="settings-link" onclick="changeSettingsForm(1, this)"><img src="/assets/imgs/key.svg" />Dados
+                    pessoais</li>
+                <li class="settings-link" onclick="changeSettingsForm(2, this)"><img src="/assets/imgs/ngo.svg" />Dados
+                    da ONG</li>
             </ul>
+
             <form name="settings-profile" class="settings-form">
-                <figure class="figure-profile-pic">
+                <figure class="block figure-profile-pic">
                     <label for="profile-pic" class="label-profile-pic">
                         <p>Mudar foto de perfil</p>
                     </label>
-                    <input id="profile-pic" type="file"/>
+                    <input id="profile-pic" type="file" />
                 </figure>
-                <div class="fields">
+                <div class="block fields">
                     <div class="settings-field">
-                        <label>Primeiro nome</label>
+                        <label class="form-label">Primeiro nome</label>
                         <input class="form-input" value="João Victor">
                     </div>
                     <div class="settings-field">
-                        <label>Último nome</label>
+                        <label class="form-label">Último nome</label>
                         <input class="form-input" value="da Silva Pereira">
                     </div>
                     <div class="settings-field">
-                        <label>Data de nascimento</label>
+                        <label class="form-label">Data de nascimento</label>
                         <input type="date" class="form-input">
                     </div>
-                    <div class="settings-field block-field">
-                        <label>Biografia</label>
+                </div>
+                <div class="block margin-top2">
+                    <div class="settings-field">
+                        <label class="form-label">Biografia</label>
                         <textarea class="form-input form-textarea"></textarea>
-                    </div>
-                    <div class="settings-field block-field">
-                        <label class="groupSelect-label">Causas</label>
-                        <div class="form-groupSelect">
-                            <input type="checkbox" id="direitosHumanos" class="form-checkbox">
-                            <label for="direitosHumanos" class="form-btnCheckbox">Direitos humanos</label>
-
-                            <input type="checkbox" id="culturaearte" class="form-checkbox">
-                            <label for="culturaearte" class="form-btnCheckbox">Cultura e arte</label>
-
-                            <input type="checkbox" id="educação" class="form-checkbox">
-                            <label for="educação" class="form-btnCheckbox">Educação</label>
-
-                            <input type="checkbox" id="crianças" class="form-checkbox">
-                            <label for="crianças" class="form-btnCheckbox">Crianças</label>
-
-                            <input type="checkbox" id="meioambiente" class="form-checkbox">
-                            <label for="meioambiente" class="form-btnCheckbox">Meio ambiente</label>
-
-                            <input type="checkbox" id="combateàpobreza" class="form-checkbox">
-                            <label for="combateàpobreza" class="form-btnCheckbox">Combate à pobreza</label>
-
-                            <input type="checkbox" id="proteçãoanimal" class="form-checkbox">
-                            <label for="proteçãoanimal" class="form-btnCheckbox">Proteção animal</label>
-
-                            <input type="checkbox" id="política" class="form-checkbox">
-                            <label for="política" class="form-btnCheckbox">Política</label>
-
-                            <input type="checkbox" id="mulheres" class="form-checkbox">
-                            <label for="mulheres" class="form-btnCheckbox">Mulheres</label>
-
-                            <input type="checkbox" id="esportes" class="form-checkbox">
-                            <label for="esportes" class="form-btnCheckbox">Esportes</label>
-
-                            <input type="checkbox" id="refugiados" class="form-checkbox">
-                            <label for="refugiados" class="form-btnCheckbox">Refugiados</label>
-
-                            <input type="checkbox" id="saúde" class="form-checkbox">
-                            <label for="saúde" class="form-btnCheckbox">Saúde</label>
-
-                            <input type="checkbox" id="jovens" class="form-checkbox">
-                            <label for="jovens" class="form-btnCheckbox">Jovens</label>
-                        </div>
                     </div>
                 </div>
             </form>
+
             <div name="settings-personalData" class="settings-form form">
                 <div class="fields">
                     <div class="settings-field">
-                        <label>CEP</label>
-                        <input class="form-input" type="text" value="08461-170"> 
+                        <label class="form-label">CEP</label>
+                        <input class="form-input" type="text" value="08461-170">
                     </div>
                     <Div class="settings-field">
-                        <label>Endereço</label>
+                        <label class="form-label">Endereço</label>
                         <input class="form-input" type="text" value="Rua caçarema">
                     </Div>
                     <div class="settings-field">
-                        <label>Estado</label>
+                        <label class="form-label">Estado</label>
                         <select>
                             <option>SP</option>
                         </select>
                     </div>
                     <div class="settings-field short-number">
-                        <label>Número</label>
+                        <label class="form-label">Número</label>
                         <input class="form-input" type="text" value="279">
                     </div>
+                </div>
+                <div class="fields block margin-top2">
                     <div class="settings-field block-field">
                         <h1 class="title">Área de risco</h1>
                     </div>
+                </div>
+                <div class="fields block margin-top2">
                     <div class="settings-field">
-                        <label>Nova senha</label>
+                        <label class="form-label">Nova senha</label>
                         <input class="form-input" type="password">
                     </div>
                     <div class="settings-field">
-                        <label>Confirmar senha</label>
+                        <label class="form-label">Confirmar senha</label>
                         <input class="form-input" type="password">
+                    </div>
+                    <div class="settings-field">
+                        <button class="btn-danger">Salvar</button>
+                    </div>
+                </div>
+                <div class="fields block width-auto margin-top2">
+                    <div class="settings-field">
+                        <label class="form-label medium-text medium-weight-text">Desativar esta conta</label>
+                        <button class="btn-danger margin-top1">Desativar conta</button>
+                    </div>
+                </div>
+            </div>
+
+            <div name="settings-ngoData" class="settings-form form">
+                <div class="fields block">
+                    <div class="settings-field">
+                        <label class="form-label">Nome da ONG</label>
+                        <input value="Ong de teste" class="form-input" />
+                    </div>
+                </div>
+                <div class="fields block margin-btm2">
+                    <div class="form-groupSelect">
+                        <label class="form-label">Causas da ONG</label>
+                        <input type="checkbox" id="direitosHumanos" class="form-checkbox">
+                        <label for="direitosHumanos" class="form-btnCheckbox">Direitos humanos</label>
+
+                        <input type="checkbox" id="culturaearte" class="form-checkbox">
+                        <label for="culturaearte" class="form-btnCheckbox">Cultura e arte</label>
+
+                        <input type="checkbox" id="educação" class="form-checkbox">
+                        <label for="educação" class="form-btnCheckbox">Educação</label>
+
+                        <input type="checkbox" id="crianças" class="form-checkbox">
+                        <label for="crianças" class="form-btnCheckbox">Crianças</label>
+
+                        <input type="checkbox" id="meioambiente" class="form-checkbox">
+                        <label for="meioambiente" class="form-btnCheckbox">Meio ambiente</label>
+
+                        <input type="checkbox" id="combateàpobreza" class="form-checkbox">
+                        <label for="combateàpobreza" class="form-btnCheckbox">Combate à pobreza</label>
+
+                        <input type="checkbox" id="proteçãoanimal" class="form-checkbox">
+                        <label for="proteçãoanimal" class="form-btnCheckbox">Proteção animal</label>
+
+                        <input type="checkbox" id="política" class="form-checkbox">
+                        <label for="política" class="form-btnCheckbox">Política</label>
+
+                        <input type="checkbox" id="mulheres" class="form-checkbox">
+                        <label for="mulheres" class="form-btnCheckbox">Mulheres</label>
+
+                        <input type="checkbox" id="esportes" class="form-checkbox">
+                        <label for="esportes" class="form-btnCheckbox">Esportes</label>
+
+                        <input type="checkbox" id="refugiados" class="form-checkbox">
+                        <label for="refugiados" class="form-btnCheckbox">Refugiados</label>
+
+                        <input type="checkbox" id="saúde" class="form-checkbox">
+                        <label for="saúde" class="form-btnCheckbox">Saúde</label>
+
+                        <input type="checkbox" id="jovens" class="form-checkbox">
+                        <label for="jovens" class="form-btnCheckbox">Jovens</label>
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="settings-field">
+                        <label class="form-label">CEP</label>
+                        <input class="form-input" type="text" value="08461-170">
+                    </div>
+                    <Div class="settings-field">
+                        <label class="form-label">Endereço</label>
+                        <input class="form-input" type="text" value="Rua caçarema">
+                    </Div>
+                    <div class="settings-field">
+                        <label class="form-label">Estado</label>
+                        <select>
+                            <option>SP</option>
+                        </select>
+                    </div>
+                    <div class="settings-field short-number">
+                        <label class="form-label">Número</label>
+                        <input class="form-input" type="text" value="279">
+                    </div>
+                </div>
+                <div class="fields block width-auto margin-top2">
+                    <div class="settings-field">
+                        <label class="form-label medium-text medium-weight-text">Desativar esta conta</label>
+                        <button class="btn-danger margin-top1">Desativar conta</button>
                     </div>
                 </div>
             </div>
