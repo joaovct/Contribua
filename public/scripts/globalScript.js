@@ -1,7 +1,79 @@
+function hide(el, n){
+    if(n!=undefined && n > -1){
+        el = document.getElementsByClassName(el)[n]
+        $(el).hide()
+    }else{
+        el = document.getElementsByClassName(el)
+        for(let i of el){
+            $(i).hide()
+        }
+    }
+}
+
+function show(el, n){
+    if(n!=undefined && n > -1){
+        el = document.getElementsByClassName(el)[n]
+        $(el).show()
+    }else{
+        el = document.getElementsByClassName(el)
+        for(let i of el){
+            $(i).show()
+        }
+    }
+}
+
+function changeOpacity(x, el, n){
+    if(n!=undefined && n > -1){
+        el = document.getElementsByClassName(el)[n]
+        el.style.opacity = x
+    }else{
+        el = document.getElementsByClassName(el)
+        for(let i of el){
+            i.style.opacity = x
+        }
+    }
+}
+
+function progressStep(el, n){
+    if(n!=undefined && n > -1){
+        el = document.getElementsByClassName(el)[n]
+        el.classList.add('progress')
+    }else{
+        el = document.getElementsByClassName(el)
+        for(let i of el){
+            i.classList.add('progress')
+        }
+    }
+}
+
 function removeDiv(el){
     $(el).fadeOut(300,()=>{
         $(this).remove()
     })
+}
+
+function removeClass(el, Class, n){
+    if(n!=undefined && n > -1){
+        el = document.getElementsByClassName(el)[n]
+        el.classList.remove(Class)
+    }else{
+        el = document.getElementsByClassName(el)
+        for(let i of el){
+            i.classList.remove(Class)
+        }
+    }
+}
+
+function addClass(el, Class, n){
+    if(n!=undefined && n > -1){
+        el = document.getElementsByClassName(el)[n]
+        el.classList.add(Class)
+    }else{
+        el = document.getElementsByClassName(el)
+        for(let i of el){
+            i.classList.add(Class)
+        }
+    }
 }
 
 $(document).mouseup((e)=>{
@@ -51,6 +123,20 @@ function writeNgos(data){
         $('.search-results').append(`<li class="ngo"> <img src="/assets/imgs/animal-cat-cute-46024.jpg"/> <div class="item-content"> <h3 class="item-title">${object.name}</h3> </div> </li>`)
         i++
     }
+}
+
+function changeSettingsForm(n, e){
+    items = document.getElementsByClassName("settings-link")
+    forms = document.getElementsByClassName("settings-form")
+    for(let i of items){
+        i.classList.remove('active')
+    }
+    // for(let i of forms){
+    //     $(i).hide()
+    // }
+    $(forms).hide()
+    $(forms[n]).show()
+    e.classList.add('active')
 }
 
 function closeAlert(e){
