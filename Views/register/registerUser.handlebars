@@ -1,24 +1,29 @@
 <style>
     body {
-        background-image: url('../../assets/imgs/adult-backlit-beach-1000445.jpg');
+        background-image: linear-gradient(rgba(224, 234, 251, 0.5), rgba(224, 234, 251, 0.9)),
+            url("../../assets/imgs/adult-backlit-beach-1000445.jpg");
         background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
     }
 </style>
 
-<div class="centralize padding-top4">
+<div class="centralize padding-4 border-box">
     <form class="box" id="form-registerUser" name="form-registerUser" action="/register/registerUser" method="POST">
         <h1 class="form-title">Cadastro de voluntário</h1>
-        <div class="icon-input"><input class="form-input" name="nameVolunteer" placeholder="Primeiro Nome" type="text" /></div>
-        <div class="icon-input"><input class="form-input" name="lastNameVolunteer" placeholder="Sobrenome" type="text" /></div>
-        <div class="icon-input"><input class="form-input" name="emailVolunteer" placeholder="Email" type="email" /></div>
-        <div class="icon-input"><input class="form-input" name="cpfVolunteer" placeholder="CPF - ___.___.___-__" type="text" /></div>
+        <div class="icon-input"><input class="form-input" name="nameVolunteer" placeholder="Primeiro Nome"
+                type="text" /></div>
+        <div class="icon-input"><input class="form-input" name="lastNameVolunteer" placeholder="Sobrenome"
+                type="text" /></div>
+        <div class="icon-input"><input class="form-input" name="emailVolunteer" placeholder="Email" type="email" />
+        </div>
+        <div class="icon-input"><input class="form-input" name="cpfVolunteer" placeholder="CPF - ___.___.___-__"
+                type="text" /></div>
         <div class="icon-input"><input class="form-input" name="cepVolunteer" placeholder="CEP" /></div>
         <div class="icon-input"><input class="form-input" name="addressVolunteer" placeholder="Logradouro"></div>
         <div class="icon-input"><input class="form-input" name="numberAddressVolunteer" placeholder="Número"></div>
-        <div class="icon-input"><label class="form-label" name="dateBornVolunteer">Data de nascimento</label><input class="form-input"
-                placeholder="Data de nascimento" type="date" /></div>
+        <div class="icon-input"><label class="form-label" name="dateBornVolunteer">Data de nascimento</label><input
+                class="form-input" placeholder="Data de nascimento" type="date" /></div>
         <div class="form-groupSelect margin-top2">
             <label class="form-label">Causas</label>
 
@@ -61,11 +66,14 @@
             <input type="checkbox" id="jovens" class="form-checkbox">
             <label for="jovens" class="form-btnCheckbox">Jovens</label>
         </div>
-        <div class="icon-input"><input class="form-input" name="passwordVolunteer" placeholder="Senha" type="password" /></div>
-        <div class="icon-input"><input class="form-input" name="confirmPasswordVolunteer" placeholder="Confirmar senha" type="password" /></div>
+        <div class="icon-input"><input class="form-input" name="passwordVolunteer" placeholder="Senha"
+                type="password" /></div>
+        <div class="icon-input"><input class="form-input" name="confirmPasswordVolunteer" placeholder="Confirmar senha"
+                type="password" /></div>
         <button class="margin-top2" type="submit">Registrar-se</button>
         <span class="form-link form-span-text"><a href="/" class="form-link-register">Já tenho uma
                 conta</a></span>
-        <span class="form-link form-span-text"><a href="/register/addNGO" class="form-link-register">Sou uma ONG</a></span>
+        <span class="form-link form-span-text"><a href="/register/addNGO" class="form-link-register">Sou uma
+                ONG</a></span>
     </form>
 </div>

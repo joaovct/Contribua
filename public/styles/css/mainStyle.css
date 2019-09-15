@@ -18,24 +18,17 @@
   font-weight: 800;
   src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
 }
-html {
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
 * {
   z-index: 1;
 }
 
 body {
   height: 100%;
-  width: 100%;
-  padding: 0;
+  padding: 0 0 40px 0;
   margin: 0;
   font-family: Nunito;
   overflow-x: hidden;
+  position: relative;
 }
 
 /* width */
@@ -96,7 +89,6 @@ header {
   top: 0;
 }
 header .container {
-  width: 80vmax;
   padding: 12px 0 12px 0;
   display: flex;
   justify-content: space-between;
@@ -198,7 +190,7 @@ header .container .search-field .search-form .search-results li.event .item-cont
 header .container .search-field .search-form .search-results li.volunteer .item-content .item-description,
 header .container .search-field .search-form .search-results li.ngo .item-content .item-description,
 header .container .search-field .search-form .search-results li.event .item-content .item-description {
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: 100;
   margin: 10px 0 0 0;
 }
@@ -332,7 +324,7 @@ header .container nav.nav-header ul li.unavailableVolunteer:after {
 form,
 .form {
   height: auto;
-  width: 400px;
+  width: 350px;
 }
 form .form-title,
 .form .form-title {
@@ -359,7 +351,7 @@ form .form-input,
   box-sizing: border-box;
   outline: 0;
   border-radius: 5px;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 form .form-input::placeholder,
 .form .form-input::placeholder {
@@ -473,13 +465,13 @@ form .form-link,
   text-align: center;
   text-decoration: underline;
   color: #3171e0;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 form .form-span-text,
 .form .form-span-text {
   width: 100%;
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
   display: block;
 }
 form .form-span-text .form-span-black,
@@ -525,23 +517,23 @@ a {
   color: #3171e0;
 }
 
-.centralize {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-}
-
 .align-center {
-  height: calc(100vh - 150px);
   display: flex;
   flex-flow: row wrap;
   align-items: center;
 }
 
+.centralize {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 100vmax !important;
+}
+
 .container {
   box-sizing: border-box;
   position: relative;
-  width: 80vmax;
+  width: 80vw;
 }
 
 .steps {
@@ -626,7 +618,7 @@ div.overlay .modal {
 
 .title {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 900;
   margin: 0 0 0 0;
 }
 
@@ -669,6 +661,10 @@ div.overlay .modal {
   background: #fafaff;
 }
 
+.margin0 {
+  margin: 0;
+}
+
 .margin-top1 {
   margin-top: 10px;
 }
@@ -686,7 +682,7 @@ div.overlay .modal {
 }
 
 .margin-btm2 {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .margin-btm1 {
@@ -709,47 +705,42 @@ div.overlay .modal {
   padding-bottom: 40px;
 }
 
+.padding-4 {
+  padding: 40px;
+}
+
+.border-box {
+  box-sizing: border-box;
+}
+
 .block {
   display: block;
-}
-
-.blob-shape {
-  width: 50vmax;
-  left: 0;
-  top: 0;
-  position: absolute;
-  opacity: 0.5;
-}
-
-.blob-shape2 {
-  width: 35vmax;
-  top: auto;
-  left: auto;
-  right: 0;
-  bottom: 0;
-  opacity: 0.5;
 }
 
 .group-asides {
   display: flex;
   flex-flow: row wrap;
   height: 100vh;
-  width: 100vmax;
+  width: 100vw;
 }
 .group-asides .aside {
   height: 100%;
 }
 
+.width-70 {
+  width: 70;
+}
+
 .width-60 {
-  width: 60vmax;
+  width: 60vw;
 }
 
 .width-50 {
-  width: 50vmax;
+  width: 50vw;
 }
 
 .width-40 {
-  width: 40vmax;
+  width: 40vw;
 }
 
 /*# sourceMappingURL=mainStyle.css.map */

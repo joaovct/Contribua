@@ -28,7 +28,7 @@
 .container {
   display: flex;
   align-items: center;
-  width: 80vmax;
+  width: 80vw;
 }
 .container figure.hero-image {
   height: 100%;

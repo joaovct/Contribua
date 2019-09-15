@@ -1,23 +1,16 @@
 @import "utilities/variables";
 
-html {
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
 * {
   z-index: 1;
 }
 
 body {
   height: 100%;
-  width: 100%;
-  padding: 0;
+  padding: 0 0 $margin4 0;
   margin: 0;
   font-family: $fontFamily;
   overflow-x: hidden;
+  position: relative;
 }
 
 /* width */
@@ -73,7 +66,7 @@ header {
   position: fixed;
   top: 0;
   .container {
-    width: $widthContainer;
+    // width: $widthContainer;
     padding: 12px 0 12px 0;
     display: flex;
     justify-content: space-between;
@@ -163,7 +156,7 @@ header {
                 margin: 0 0 0 0;
               }
               .item-description {
-                font-size: 1em;
+                font-size: $fontBase;
                 font-weight: 100;
                 margin: 10px 0 0 0;
               }
@@ -304,7 +297,7 @@ header {
 form,
 .form {
   height: auto;
-  width: 400px;
+  width: 350px;
   .form-title {
     font-size: 2rem;
     font-weight: bold;
@@ -313,7 +306,7 @@ form,
   .form-textarea {
     height: 150px;
     width: 100%;
-    font-size: 1rem;
+    font-size: $fontBase;
     font-family: Nunito;
     resize: none;
   }
@@ -327,7 +320,7 @@ form,
     box-sizing: border-box;
     outline: 0;
     border-radius: 5px;
-    font-size: 1.1rem;
+    font-size: $fontBase;
     &::placeholder {
       color: black;
       opacity: 0.9;
@@ -427,12 +420,12 @@ form,
     text-align: center;
     text-decoration: underline;
     color: $mainColor;
-    font-size: 1.1rem;
+    font-size: $fontBase;
   }
   .form-span-text {
     width: 100%;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: $fontBase;
     display: block;
     .form-span-black {
       color: black !important;
@@ -477,17 +470,17 @@ a {
   color: $mainColor;
 }
 
+.align-center {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
 .centralize {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-}
-
-.align-center {
-  height: calc(100vh - 150px);
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
+  width: 100vmax !important;
 }
 
 .container {
@@ -541,7 +534,6 @@ div.overlay {
   position: fixed;
   top: 0;
   left: 0;
-  // display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -573,19 +565,19 @@ div.overlay {
   border: 1px solid #eeeeee;
 }
 
-.width-auto{
+.width-auto {
   width: auto;
   flex-grow: 0;
 }
 
 .title {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 900;
   margin: 0 0 0 0;
 }
 
 .small-text {
-  font-size: 1rem;
+  font-size: $fontBase;
 }
 
 .medium-text {
@@ -623,6 +615,10 @@ div.overlay {
   background: $lightBlue2;
 }
 
+.margin0{
+  margin: 0;
+}
+
 .margin-top1 {
   margin-top: $margin2 / 2;
 }
@@ -640,7 +636,7 @@ div.overlay {
 }
 
 .margin-btm2 {
-  margin-bottom: $margin4;
+  margin-bottom: $margin2;
 }
 
 .margin-btm1 {
@@ -663,45 +659,40 @@ div.overlay {
   padding-bottom: $margin4;
 }
 
+.padding-4 {
+  padding: $margin4;
+}
+
+.border-box {
+  box-sizing: border-box;
+}
+
 .block {
   display: block;
-}
-
-.blob-shape {
-  width: 50vmax;
-  left: 0;
-  top: 0;
-  position: absolute;
-  opacity: 0.5;
-}
-
-.blob-shape2 {
-  width: 35vmax;
-  top: auto;
-  left: auto;
-  right: 0;
-  bottom: 0;
-  opacity: 0.5;
 }
 
 .group-asides {
   display: flex;
   flex-flow: row wrap;
   height: 100vh;
-  width: 100vmax;
+  width: 100vw;
   .aside {
     height: 100%;
   }
 }
 
+.width-70{
+  width: 70;
+}
+
 .width-60 {
-  width: 60vmax;
+  width: 60vw;
 }
 
 .width-50 {
-  width: 50vmax;
+  width: 50vw;
 }
 
 .width-40 {
-  width: 40vmax;
+  width: 40vw;
 }

@@ -1,71 +1,33 @@
 @import "utilities/variables";
 
-h1,
-h4 {
-  margin: 0;
-  padding: 0;
-}
-.container {
-  display: flex;
-  justify-content: space-between;
-  width: $widthContainer;
-}
-.group {
-  width: 50%;
-  display: flex;
-  flex-flow: wrap column;
-  justify-content: center;
-  position: relative;
-  margin-right: $margin4;
-  h1#welcome-phrase {
-    font-size: 2.5rem;
-    font-weight: bolder;
-  }
-  h4#effect-phrase {
-    font-size: 2.5em;
-    font-weight: normal;
-    margin-bottom: $margin4;
-  }
-  .hero-image {
-    margin: 0;
-    height: auto;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 7px;
-    box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.1);
-  }
-  .label-hero-image {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    font-size: 1em;
-    margin: $margin2 / 2 0 0 0;
-    font-weight: 500;
-    text-align: right;
-    img {
-      width: 1em;
-      margin-right: 5px;
-      opacity: 0.5;
-    }
-  }
-  form {
-    height: auto;
-    width: 350px;
-    .form-span-text {
-      cursor: pointer;
-    }
-  }
-  form#form-register {
-    display: none;
-  }
-  &:last-child {
-    height: 100% 100%;
-    display: flex;
-    align-items: center;
-    margin-left: $margin4;
+@media screen and (max-width: 768px) {
+  body {
+    background-image: linear-gradient(rgba(224, 234, 251, 0.9), rgba(224, 234, 251, 0.9)),
+      url("../../assets/imgs/adult-backlit-beach-1000445.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 }
 
-span {
-  color: $mainColor;
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.bg-lightBlue {
+  background-image: linear-gradient(rgba(224, 234, 251, 0.9), rgba(224, 234, 251, 0.9)),
+    url("../../assets/imgs/adorable-bath-bathed-2903236.jpg");
+  background-size: cover;
+}
+.group-asides {
+  margin: 0;
+  padding: 0;
+  .aside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $margin2 $margin4 $margin2 $margin4 !important;
+    box-sizing: border-box;
+  }
 }
