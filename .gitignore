@@ -1,6 +1,5 @@
 # Ignore css
-*.css
-*.css.map
+public/styles/css/*
 
 # Ignore sass cache
 public/styles/.sass-cache
