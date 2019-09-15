@@ -22,6 +22,10 @@ const UserNgo = db.sequelize.define("tbUserNgo", {
             model: "tbNgo",
             key: "idNgo"
         }
+    },
+    isCreator: {
+        type: db.Sequelize.BOOLEAN,
+        allowNull: false
     }
 }, {
     freezeTableName: true,
