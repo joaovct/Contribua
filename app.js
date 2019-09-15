@@ -50,7 +50,8 @@ app.use(express.static(path.join(__dirname, "public")))
 // Routers
 
 app.use('/ngo', isLogged, ngo)
-app.use('/user', isLogged, user)
+// app.use('/user', isLogged, user)
+app.use('/user', user)
 app.use('/register', register)
 app.use("/login", login)
 
