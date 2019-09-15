@@ -7,13 +7,13 @@ const validations = require("../helpers/validations")
 const ngoController = require("../controllers/ngoController")
 
 router.get('/', (req,res)=>{
-    userActive = true
+    // userActive = true
     // res.render('user/home', {data: req.session.user})
     res.render('user/home', {data: true})
 })
 
 router.get('/profile', (req,res)=>{
-    userActive = true
+    // userActive = true
     res.render('user/profile', {data: req.session.user})
 })
 
@@ -92,6 +92,11 @@ router.post('/starting-ong/register', async (req, res) => {
         else
             return res.redirect("/user/starting-ong/register")
     }
+})
+
+router.get('/settings', (req,res)=>{
+    // userActive = true
+    res.render('user/settings', {data: req.session.user})
 })
 
 module.exports = router

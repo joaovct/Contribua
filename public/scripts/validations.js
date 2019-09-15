@@ -1,7 +1,8 @@
-function validationName(){
+function validationName(name, iconName){
     if(name.value.length < 4){
         iconName.classList.remove("success-validation")
         iconName.classList.add("alert-validation")
+        name.focus()
         return false
     }else{
         iconName.classList.remove("alert-validation")
@@ -14,6 +15,7 @@ function validationLastName(){
     if(lastName.value.length < 4){
         iconLastName.classList.remove("success-validation")
         iconLastName.classList.add("alert-validation")
+        lastName.focus()
         return false
     }else{
         iconLastName.classList.remove("alert-validation")
@@ -22,10 +24,11 @@ function validationLastName(){
     }
 }
 
-function validationAddress(){
+function validationAddress(address, iconAddress){
     if(address.value.length < 5){
         iconAddress.classList.remove("success-validation")
         iconAddress.classList.add("alert-validation")
+        address.focus()
         return false
     }else{
         iconAddress.classList.remove("alert-validation")
@@ -34,16 +37,69 @@ function validationAddress(){
     }
 }
 
-function validatioCases(){
+function validationCauses(causes){
+    let checks = 0
+    for(let Cause of causes){
+        if(Cause.checked) checks++
+    }
+    console.log(checks)
+    if(checks<1) return false
+    else return true
 }
 
-function validationCNPJ(){
+function validationDescription(description){
+    return true
+}
+
+function validationCep(cep, iconCep){
+    formatCEP(cep)
+    if(cep.value.length < 8){
+        iconCep.classList.remove("success-validation")
+        iconCep.classList.add("alert-validation")
+        cep.focus()
+        return false
+    }else{
+        iconCep.classList.add("alert-validation")
+        iconCep.classList.add("success-validation")
+        return true
+    }
+}
+
+function validationCity(city, iconCity){
+    if(city.value.length < 4){
+        iconCity.classList.remove("success-validation")
+        iconCity.classList.add("alert-validation")
+        city.focus()
+        return false
+    }
+    iconCity.classList.remove("alert-validation")
+    iconCity.classList.add("success-validation")
+    return true
+}
+
+function validationDistrict(district, iconDistrict){
+    if(district.value.length < 4){
+        iconDistrict.classList.remove("success-validation")
+        iconDistrict.classList.add("alert-validation")
+        return false
+    }
+    iconDistrict.classList.remove("alert-validation")
+    iconDistrict.classList.add("success-validation")
+    return true
+}
+
+function validationDateBorn(date){
+    return true
+}
+
+function validationCNPJ(cnpj, iconCnpj){
 
     formatCNPJ(cnpj)
     
     if(!isCNPJ(cnpj.value.replace(/\D/g,""))){
         iconCnpj.classList.remove("success-validation")
         iconCnpj.classList.add("alert-validation")
+        cnpj.focus()
         return false
     }else{
         iconCnpj.classList.remove("alert-validation")
@@ -52,13 +108,14 @@ function validationCNPJ(){
     }
 }
 
-function validationCPF(){
+function validationCPF(cpf){
     
     formatCPF(cpf)
     
     if(!isCPF(cpf.value.replace(/\D/g,""))){
         iconCpf.classList.remove("success-validation")
         iconCpf.classList.add("alert-validation")
+        cpf.focus()
         return false
     }else{
         iconCpf.classList.remove("alert-validation")
@@ -67,11 +124,12 @@ function validationCPF(){
     }
 }
 
-function validationTelephone(){
+function validationTelephone(telephone, iconTelephone){
     formatTelephone(telephone)
     if(telephone.value.length < 14){
         iconTelephone.classList.remove("success-validation")
         iconTelephone.classList.add("alert-validation")
+        telephone.focus()
         return false
     }else{
         iconTelephone.classList.remove("alert-validation")
@@ -80,11 +138,12 @@ function validationTelephone(){
     }
 }
 
-function validationEmail(){
-    let regex = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/)
+function validationEmail(email, iconEmail){
+    let regex = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
     if(!regex.test(email.value)){
         iconEmail.classList.remove("success-validation")
         iconEmail.classList.add("alert-validation")
+        email.focus()
         return false
     }else{
         console.log("passou")
@@ -94,7 +153,7 @@ function validationEmail(){
     }
 }
 
-function validationPassword(password){
+function validationPassword(password, iconPassword){
     let lowerWord = new RegExp(/[a-z]+/)
     let upperWord = new RegExp(/[A-Z]+/)
     let numbers = new RegExp(/\d/)
@@ -122,6 +181,7 @@ function validationPassword(password){
         iconPassword.classList.remove("success-validation")
         iconPassword.classList.remove("caution-validation")
         iconPassword.classList.add("alert-validation")
+        password.focus()
         return false
     }else if(force < 4){
         iconPassword.classList.remove("success-validation")
@@ -136,7 +196,7 @@ function validationPassword(password){
     }
 }
 
-function validationConfirmPassword(){
+function validationConfirmPassword(confirmPassword, iconConfirmPassword){
     if(confirmPassword.value === password.value && confirmPassword.value.length != 0){
         iconConfirmPassword.classList.remove("alert-validation")
         iconConfirmPassword.classList.add("success-validation")
@@ -144,6 +204,7 @@ function validationConfirmPassword(){
     }else{
         iconConfirmPassword.classList.remove("success-validation")
         iconConfirmPassword.classList.add("alert-validation")
+        confirmPassword.focus()
         return false
     }
 }
@@ -206,6 +267,15 @@ function isCPF(cpf){
     let rest
     sum = 0;
     if (cpf === "00000000000") return false
+    if (cpf === "11111111111") return false
+    if (cpf === "22222222222") return false
+    if (cpf === "33333333333") return false
+    if (cpf === "44444444444") return false
+    if (cpf === "55555555555") return false
+    if (cpf === "66666666666") return false
+    if (cpf === "77777777777") return false
+    if (cpf === "88888888888") return false
+    if (cpf === "99999999999") return false
      
     for (i=1; i<=9; i++){
         sum = sum + parseInt(cpf.substring(i-1, i)) * (11 - i)
@@ -232,11 +302,18 @@ function formatCNPJ(cnpj){
 //     cnpj.value = cnpj.value.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3")
 //     cnpj.value = cnpj.value.replace(/\.(\d{3})(\d)/,".$1/$2")
 //     cnpj.value = cnpj.value.replace(/(\d{4})(\d)/,"$1-$2")
-   cnpj.value = cnpj.value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,"\$1.\$2.\$3\/\$4\-\$5");
+    cnpj.value = cnpj.value.replace(/\D/g,"")
+    cnpj.value = cnpj.value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,"\$1.\$2.\$3\/\$4\-\$5");
 }
 
 function formatCPF(cpf){
-    cpf.value = cpf.value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"\$1.\$2.\$3\-\$4");
+    cpf.value = cpf.value.replace(/\D/g,"")
+    cpf.value = cpf.value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"\$1.\$2.\$3\-\$4")
+}
+
+function formatCEP(cep){
+    cep.value = cep.value.replace(/\D/g, "")
+    cep.value = cep.value.replace(/^([\d]{2})\.*([\d]{3})-*([\d]{3})/, "$1$2-$3")
 }
 
 function formatTelephone(telephone){

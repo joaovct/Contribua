@@ -1,71 +1,76 @@
-<link rel="stylesheet" href="/styles/css/addNGO.css" />
+<style>
+    body {
+        background-image: url('../../assets/imgs/adult-backlit-beach-1000445.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+</style>
 
-<div class="centralize">
-    <section id="main">
-        <aside>
-            <div class="container">
-                <form id="form-registerUser" name="form-registerUser" action="/register/registerUser" method="POST">
-                        <h1 class="form-title">Cadastro</h1>
-                        <div class="icon-input"><input name="nameVolunteer" id="nameVolunteer" class="form-input" placeholder="Nome"></div>
-                        <div class="icon-input"><input name="lastNameVolunteer" id="lastNameVolunteer" class="form-input" placeholder="Sobrenome"></div>
-                        <div class="icon-input"><input name="emailVolunteer" id="emailVolunteer" class="form-input" placeholder="Email"></div>
-                        <div class="icon-input"><input name="cpfVolunteer" id="cpfVolunteer" class="form-input" placeholder="CPF - ___.___.___-__" maxlength="14"></div>
-                        <label class="groupSelect-label">Causas</label>
-                        <div class="form-groupSelect">
-                            <input name="categories" value="direitos humanos" type="checkbox" id="direitosHumanos" class="form-checkbox">
-                            <label for="direitosHumanos" class="form-btnCheckbox">Direitos humanos</label>
+<div class="centralize padding-top4">
+    <form class="box" id="form-registerUser" name="form-registerUser" action="/register/registerUser" method="POST">
+        <h1 class="form-title">Cadastro de voluntário</h1>
+        <div class="icon-input"><input class="form-input" name="nameVolunteer" placeholder="Primeiro Nome" type="text" /></div>
+        <div class="icon-input"><input class="form-input" name="lastNameVolunteer" placeholder="Sobrenome" type="text" /></div>
+        <div class="icon-input"><input class="form-input" name="emailVolunteer" placeholder="Email" type="email" /></div>
+        <div class="icon-input"><input class="form-input" name="cpfVolunteer" placeholder="CPF - ___.___.___-__" type="text" maxlength="14"/></div>
+        <div class="icon-input"><input class="form-input" name="cepVolunteer" placeholder="CEP" maxlength="9"/></div>
+        <div class="icon-input"><input class="form-input" name="cityVolunteer" placeholder="Cidade" /></div>
+        <div class="icon-input"><input class="form-input" name="districtVolunteer" placeholder="Bairro" /></div>
+        <div class="icon-input"><input class="form-input" name="addressVolunteer" placeholder="Rua"></div>
+        {{!-- <div class="icon-input"> --}}
+            {{!-- <label class="form-label">Data de nascimento</label> --}}
+            <input class="form-input" placeholder="Data de nascimento" name="dateBornVolunteer" type="date" />
+        {{!-- </div> --}}
+        <div class="form-groupSelect margin-top2">
+            <label class="form-label">Causas</label>
 
-                            <input name="categories" value="cultura e arte" type="checkbox" id="culturaearte" class="form-checkbox">
-                            <label for="culturaearte" class="form-btnCheckbox">Cultura e arte</label>
+            <input name="categories" value="direitos humanos" type="checkbox" id="direitosHumanos" class="form-checkbox">
+            <label for="direitosHumanos" class="form-btnCheckbox">Direitos humanos</label>
 
-                            <input name="categories" value="educação" type="checkbox" id="educação" class="form-checkbox">
-                            <label for="educação" class="form-btnCheckbox">Educação</label>
+            <input name="categories" value="cultura e arte" type="checkbox" id="culturaearte" class="form-checkbox">
+            <label for="culturaearte" class="form-btnCheckbox">Cultura e arte</label>
 
-                            <input name="categories" value="crianças" type="checkbox" id="crianças" class="form-checkbox">
-                            <label for="crianças" class="form-btnCheckbox">Crianças</label>
+            <input name="categories" value="educação" type="checkbox" id="educação" class="form-checkbox">
+            <label for="educação" class="form-btnCheckbox">Educação</label>
 
-                            <input name="categories" value="meio ambiente" type="checkbox" id="meioambiente" class="form-checkbox">
-                            <label for="meioambiente" class="form-btnCheckbox">Meio ambiente</label>
+            <input name="categories" value="crianças" type="checkbox" id="crianças" class="form-checkbox">
+            <label for="crianças" class="form-btnCheckbox">Crianças</label>
 
-                            <input name="categories" value="combate à pobreza" type="checkbox" id="combateàpobreza" class="form-checkbox">
-                            <label for="combateàpobreza" class="form-btnCheckbox">Combate à pobreza</label>
+            <input name="categories" value="meio ambiente" type="checkbox" id="meioambiente" class="form-checkbox">
+            <label for="meioambiente" class="form-btnCheckbox">Meio ambiente</label>
 
-                            <input name="categories" value="proteção animal" type="checkbox" id="proteçãoanimal" class="form-checkbox">
-                            <label for="proteçãoanimal" class="form-btnCheckbox">Proteção animal</label>
+            <input name="categories" value="combate à pobreza" type="checkbox" id="combateàpobreza" class="form-checkbox">
+            <label for="combateàpobreza" class="form-btnCheckbox">Combate à pobreza</label>
 
-                            <input name="categories" value="política" type="checkbox" id="política" class="form-checkbox">
-                            <label for="política" class="form-btnCheckbox">Política</label>
+            <input name="categories" value="proteção animal" type="checkbox" id="proteçãoanimal" class="form-checkbox">
+            <label for="proteçãoanimal" class="form-btnCheckbox">Proteção animal</label>
 
-                            <input name="categories" value="mulheres" type="checkbox" id="mulheres" class="form-checkbox">
-                            <label for="mulheres" class="form-btnCheckbox">Mulheres</label>
+            <input name="categories" value="política" type="checkbox" id="política" class="form-checkbox">
+            <label for="política" class="form-btnCheckbox">Política</label>
 
-                            <input name="categories" value="esportes" type="checkbox" id="esportes" class="form-checkbox">
-                            <label for="esportes" class="form-btnCheckbox">Esportes</label>
+            <input name="categories" value="mulheres" type="checkbox" id="mulheres" class="form-checkbox">
+            <label for="mulheres" class="form-btnCheckbox">Mulheres</label>
 
-                            <input name="categories" value="refugiados" type="checkbox" id="refugiados" class="form-checkbox">
-                            <label for="refugiados" class="form-btnCheckbox">Refugiados</label>
+            <input name="categories" value="esportes" type="checkbox" id="esportes" class="form-checkbox">
+            <label for="esportes" class="form-btnCheckbox">Esportes</label>
 
-                            <input name="categories" value="saúde" type="checkbox" id="saúde" class="form-checkbox">
-                            <label for="saúde" class="form-btnCheckbox">Saúde</label>
+            <input name="categories" value="refugiados" type="checkbox" id="refugiados" class="form-checkbox">
+            <label for="refugiados" class="form-btnCheckbox">Refugiados</label>
 
-                            <input name="categories" value="jovens" type="checkbox" id="jovens" class="form-checkbox">
-                            <label for="jovens" class="form-btnCheckbox">Jovens</label>
-                        </div>
-                        <div class="icon-input"><input name="passwordVolunteer" type="password" id="passwordVolunteer" class="form-input" placeholder="Senha"></div>
-                        <div class="icon-input"><input name="confirmPasswordVolunteer" type="password" id="confirmPasswordVolunteer" class="form-input" placeholder="Confirmar senha"></div>
-                        <button id="submit" type="submit">Registrar-se</button>
-                        <span class="form-link form-span-text"><a href="/CRUD/loginForm" class="form-link-register">Já tenho uma conta</a></span>
-                        <span class="form-link form-span-text"><a href="/CRUD/addNGO" class="form-link-register">Sou uma ONG</a></span>
-                        
-                </form>
-            </div>
-        </aside>
-        <aside>
-            <div class="container">
-                <h1 class="title" style="font-weight: 500;">O <span class="blue">Contribua!</span> ajuda voluntários a achar eventos de seus interesses.</h1>
-            </div>
-        </aside>
-    </section>
+            <input name="categories" value="saúde" type="checkbox" id="saúde" class="form-checkbox">
+            <label for="saúde" class="form-btnCheckbox">Saúde</label>
+
+            <input name="categories" value="jovens" type="checkbox" id="jovens" class="form-checkbox">
+            <label for="jovens" class="form-btnCheckbox">Jovens</label>
+        </div>
+        <div class="icon-input"><input class="form-input" name="passwordVolunteer" placeholder="Senha" type="password" /></div>
+        <div class="icon-input"><input class="form-input" name="confirmPasswordVolunteer" placeholder="Confirmar senha" type="password" /></div>
+        <button class="margin-top2" type="submit" id="submit">Registrar-se</button>
+        <span class="form-link form-span-text"><a href="/" class="form-link-register">Já tenho uma
+                conta</a></span>
+        <span class="form-link form-span-text"><a href="/register/addNGO" class="form-link-register">Sou uma ONG</a></span>
+    </form>
 </div>
 
 {{#each errs}}
