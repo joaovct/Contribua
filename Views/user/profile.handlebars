@@ -2,136 +2,138 @@
 <link rel="stylesheet" href="/styles/css/profile.css" />
 
 <div class="centralize">
-        <div class="container">
-            <div class="profile-data">
-                <figure class="profile-pic availableVolunteer">
-                    <img src="/assets/imgs/user.svg" />
-                </figure>
-                <div class="profile-name">
-                    <h1 class="username">{{data.nameVolunteer}} {{data.lastNameVolunteer}}</h1>
-                    <div class="feed-header">
-                        <div class="filters">
-                            <ul class="group-categories">
-                                <a class="item-category category-filter filter-active" href="#">
-                                    <li>Direitos Humanos</li>
-                                </a>
-                                <a class="item-category category-filter filter-active" href="#">
-                                    <li>Ambiental</li>
-                                </a>
-                                <a class="item-category category-filter filter-active" href="#">
-                                    <li>Animal</li>
-                                </a>
-                            </ul>
-                        </div>
+    <div class="container">
+        <div class="profile-data">
+            <figure class="profile-pic availableVolunteer">
+                <img src="/assets/imgs/user.svg" />
+            </figure>
+            <div class="profile-name">
+                <h1 class="username">{{data.nameVolunteer}} {{data.lastNameVolunteer}}</h1>
+                <div class="feed-header">
+                    <div class="filters">
+                        <ul class="group-categories">
+                            <a class="item-category category-filter filter-active" href="#">
+                                <li>Direitos Humanos</li>
+                            </a>
+                            <a class="item-category category-filter filter-active" href="#">
+                                <li>Ambiental</li>
+                            </a>
+                            <a class="item-category category-filter filter-active" href="#">
+                                <li>Animal</li>
+                            </a>
+                        </ul>
                     </div>
                 </div>
+            </div>
+            <a href="/user/settings">
                 <figure class="linkSettings">
                     <img src="/assets/imgs/settings.svg" />
                 </figure>
-                <div class="profile-location-since">
-                    <h3 class="content">São Paulo, SP. Desde jul de 2019.</h3>
-                </div>
-                <div class="profile-about">
-                    <p class="content">{{data.biographyVolunteer}}</p>
-                </div>
+            </a>
+            <div class="profile-location-since">
+                <h3 class="content">São Paulo, SP. Desde jul de 2019.</h3>
             </div>
-            <div class="profile-stats">
-                <ul>
-                    <li><span class="number">{{data.averageStarsVolunteer}}/5</span>média de estrelas</li>
-                    <li><span class="number">12</span> ações em eventos</li>
-                    <li><span class="number">4</span> ONGs é inscrito</li>
-                </ul>
-            </div>
-            <div class="group-nav">
-                <nav class="nav-articles">
-                    <h1 class="title-nav">Eventos participados</h1>
-                    <div class="group-articles">
-                        <article class="feed-article">
-                            <figure class="article-image">
-                                <img src="/assets/imgs/animals-cats-cute-45170.jpg" />
-                            </figure>
-                            <div class="article-content">
-                                <h1 class="article-title">Salve os Gatíneos</h1>
-                                <h3 class="article-subitle">Venha salvar os gatíneos e eles serão os seus donos para
-                                    sempre.
-                                </h3>
-                                <div class="article-ngo">
-                                    <figure class="article-ngo-avatar">
-                                        <img src="/assets/imgs/adorable-animal-baby-1851164.jpg" />
-                                    </figure>
-                                    <div class="article-ngo-details">
-                                        <p class="article-ngo-name">Por <a href="#">Cães e Gatos</a></p>
-                                        <p class="article-ngo-date">12/06/2019</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </article>
-                        <article class="feed-article event-closed">
-                            <figure class="article-image">
-                                <img src="/assets/imgs/animals-cats-cute-45170.jpg" />
-                            </figure>
-                            <div class="article-content">
-                                <h1 class="article-title">Salve os Gatíneos</h1>
-                                <h3 class="article-subitle">Venha salvar os gatíneos e eles serão os seus donos para
-                                    sempre.
-                                </h3>
-                                <div class="article-ngo">
-                                    <figure class="article-ngo-avatar">
-                                        <img src="/assets/imgs/adorable-animal-baby-1851164.jpg" />
-                                    </figure>
-                                    <div class="article-ngo-details">
-                                        <p class="article-ngo-name">Por <a href="#">Cães e Gatos</a></p>
-                                        <p class="article-ngo-date">12/06/2019</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </article>
-                        <article class="feed-article event-closed">
-                            <figure class="article-image">
-                                <img src="/assets/imgs/animals-cats-cute-45170.jpg" />
-                            </figure>
-                            <div class="article-content">
-                                <h1 class="article-title">Salve os Gatíneos</h1>
-                                <h3 class="article-subitle">Venha salvar os gatíneos e eles serão os seus donos para
-                                    sempre.
-                                </h3>
-                                <div class="article-ngo">
-                                    <figure class="article-ngo-avatar">
-                                        <img src="/assets/imgs/adorable-animal-baby-1851164.jpg" />
-                                    </figure>
-                                    <div class="article-ngo-details">
-                                        <p class="article-ngo-name">Por <a href="#">Cães e Gatos</a></p>
-                                        <p class="article-ngo-date">12/06/2019</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </article>
-                        <article class="feed-article event-closed">
-                            <figure class="article-image">
-                                <img src="/assets/imgs/animals-cats-cute-45170.jpg" />
-                            </figure>
-                            <div class="article-content">
-                                <h1 class="article-title">Salve os Gatíneos</h1>
-                                <h3 class="article-subitle">Venha salvar os gatíneos e eles serão os seus donos para
-                                    sempre.
-                                </h3>
-                                <div class="article-ngo">
-                                    <figure class="article-ngo-avatar">
-                                        <img src="/assets/imgs/adorable-animal-baby-1851164.jpg" />
-                                    </figure>
-                                    <div class="article-ngo-details">
-                                        <p class="article-ngo-name">Por <a href="#">Cães e Gatos</a></p>
-                                        <p class="article-ngo-date">12/06/2019</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </article>
-                    </div>
-                </nav>
+            <div class="profile-about">
+                <p class="content">{{data.biographyVolunteer}}</p>
             </div>
         </div>
+        <div class="profile-stats">
+            <ul>
+                <li><span class="number">{{data.averageStarsVolunteer}}/5</span>média de estrelas</li>
+                <li><span class="number">12</span> ações em eventos</li>
+                <li><span class="number">4</span> ONGs é inscrito</li>
+            </ul>
+        </div>
+        <div class="group-nav">
+            <nav class="nav-articles">
+                <h1 class="title-nav">Eventos participados</h1>
+                <div class="group-articles">
+                    <article class="feed-article">
+                        <figure class="article-image">
+                            <img src="/assets/imgs/animals-cats-cute-45170.jpg" />
+                        </figure>
+                        <div class="article-content">
+                            <h1 class="article-title">Salve os Gatíneos</h1>
+                            <h3 class="article-subitle">Venha salvar os gatíneos e eles serão os seus donos para
+                                sempre.
+                            </h3>
+                            <div class="article-ngo">
+                                <figure class="article-ngo-avatar">
+                                    <img src="/assets/imgs/adorable-animal-baby-1851164.jpg" />
+                                </figure>
+                                <div class="article-ngo-details">
+                                    <p class="article-ngo-name">Por <a href="#">Cães e Gatos</a></p>
+                                    <p class="article-ngo-date">12/06/2019</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </article>
+                    <article class="feed-article event-closed">
+                        <figure class="article-image">
+                            <img src="/assets/imgs/animals-cats-cute-45170.jpg" />
+                        </figure>
+                        <div class="article-content">
+                            <h1 class="article-title">Salve os Gatíneos</h1>
+                            <h3 class="article-subitle">Venha salvar os gatíneos e eles serão os seus donos para
+                                sempre.
+                            </h3>
+                            <div class="article-ngo">
+                                <figure class="article-ngo-avatar">
+                                    <img src="/assets/imgs/adorable-animal-baby-1851164.jpg" />
+                                </figure>
+                                <div class="article-ngo-details">
+                                    <p class="article-ngo-name">Por <a href="#">Cães e Gatos</a></p>
+                                    <p class="article-ngo-date">12/06/2019</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </article>
+                    <article class="feed-article event-closed">
+                        <figure class="article-image">
+                            <img src="/assets/imgs/animals-cats-cute-45170.jpg" />
+                        </figure>
+                        <div class="article-content">
+                            <h1 class="article-title">Salve os Gatíneos</h1>
+                            <h3 class="article-subitle">Venha salvar os gatíneos e eles serão os seus donos para
+                                sempre.
+                            </h3>
+                            <div class="article-ngo">
+                                <figure class="article-ngo-avatar">
+                                    <img src="/assets/imgs/adorable-animal-baby-1851164.jpg" />
+                                </figure>
+                                <div class="article-ngo-details">
+                                    <p class="article-ngo-name">Por <a href="#">Cães e Gatos</a></p>
+                                    <p class="article-ngo-date">12/06/2019</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </article>
+                    <article class="feed-article event-closed">
+                        <figure class="article-image">
+                            <img src="/assets/imgs/animals-cats-cute-45170.jpg" />
+                        </figure>
+                        <div class="article-content">
+                            <h1 class="article-title">Salve os Gatíneos</h1>
+                            <h3 class="article-subitle">Venha salvar os gatíneos e eles serão os seus donos para
+                                sempre.
+                            </h3>
+                            <div class="article-ngo">
+                                <figure class="article-ngo-avatar">
+                                    <img src="/assets/imgs/adorable-animal-baby-1851164.jpg" />
+                                </figure>
+                                <div class="article-ngo-details">
+                                    <p class="article-ngo-name">Por <a href="#">Cães e Gatos</a></p>
+                                    <p class="article-ngo-date">12/06/2019</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </article>
+                </div>
+            </nav>
+        </div>
+    </div>
 </div>
