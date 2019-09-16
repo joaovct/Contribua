@@ -1,12 +1,13 @@
 @import "utilities/variables";
 
+
 .feed-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   width: 100%;
   padding-bottom: $margin2;
-  border-bottom: 1px solid $lightGray;
+  border-bottom: $border;
   .group-categories {
     display: flex;
     flex-flow: row wrap;

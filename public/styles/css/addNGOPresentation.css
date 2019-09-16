@@ -1,3 +1,203 @@
+.box {
+  padding: 20px 40px 20px 40px;
+  background: white;
+  border-radius: 7px;
+  border: 1px solid #eeeeee;
+  box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.16);
+}
+
+.width-auto {
+  width: auto;
+  flex-grow: 0;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0 0 0 0;
+}
+
+.small-text {
+  font-size: 1rem;
+}
+
+.medium-text {
+  font-size: 1.5rem;
+}
+
+.big-text {
+  font-size: 2.5rem;
+}
+
+.light-weight-text {
+  font-weight: 100;
+}
+
+.medium-weight-text {
+  font-weight: 500;
+}
+
+.large-weight-text {
+  font-weight: 800;
+}
+
+.text {
+  font-size: 1.25rem;
+  text-align: left;
+  font-weight: normal;
+  margin: 0 0 0 0;
+}
+
+.blue {
+  color: #3171e0;
+}
+
+.bg-lightBlue {
+  background: #fafaff;
+}
+
+.margin0 {
+  margin: 0;
+}
+
+.margin-top1 {
+  margin-top: 10px;
+}
+
+.margin-top2 {
+  margin-top: 20px;
+}
+
+.margin-top4 {
+  margin-top: 40px;
+}
+
+.margin-btm4 {
+  margin-bottom: 40px;
+}
+
+.margin-btm2 {
+  margin-bottom: 20px;
+}
+
+.margin-btm1 {
+  margin-bottom: 10px;
+}
+
+.padding-top2 {
+  padding-top: 20px;
+}
+
+.padding-top4 {
+  padding-top: 40px;
+}
+
+.padding-btm2 {
+  padding-bottom: 20px;
+}
+
+.padding-btm4 {
+  padding-bottom: 40px;
+}
+
+.padding-4 {
+  padding: 40px;
+}
+
+.border-box {
+  box-sizing: border-box;
+}
+
+.block {
+  display: block;
+}
+
+.group-asides {
+  display: flex;
+  flex-flow: row wrap;
+  height: 100vh;
+  width: 100vw;
+}
+.group-asides .aside {
+  height: 100%;
+}
+
+.width-70 {
+  width: 70;
+}
+
+.width-60 {
+  width: 60vw;
+}
+
+.width-50 {
+  width: 50vw;
+}
+
+.width-40 {
+  width: 40vw;
+}
+
+.align-center {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.centralize {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 100vmax !important;
+}
+
+.container {
+  box-sizing: border-box;
+  position: relative;
+  width: 80vw;
+}
+
+.steps {
+  padding: 0;
+  margin: 0 0 40px 0;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.steps li {
+  position: relative;
+  display: flex;
+  padding: 0 0 0 20px;
+  font-size: 1.75em;
+  font-weight: 500;
+  color: black;
+  border-bottom: 3px solid #f2f2f2;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.5s;
+}
+.steps li:after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  height: 3px;
+  width: 0;
+  transition: width 1s ease;
+  transform-origin: left right;
+}
+.steps li:first-child {
+  padding: 0 20px 0 0;
+}
+.steps li.progress {
+  opacity: 1;
+}
+.steps li.progress:after {
+  width: 100%;
+  background: #3171e0;
+}
+
 @font-face {
   font-family: Nunito;
   font-weight: normal;

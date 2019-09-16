@@ -32,89 +32,89 @@ body {
   background: $gray;
 }
 
-
-
 header.header-relative {
   position: relative;
   z-index: 1;
   box-shadow: 0;
   opacity: 0;
   display: hidden;
-  // margin-bottom: 20px;
 }
 
 header {
   width: 100%;
   background: white;
-  box-shadow: 0 3px 12px -3px rgba(0, 0, 0, 0.05);
-  border-bottom: 1px solid #eeeeee;
+  // box-shadow: 0 3px 12px -3px rgba(0, 0, 0, 0.05);
+  border-bottom: $border;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  z-index: 999;
+  z-index: 998;
   position: fixed;
   top: 0;
   .container {
-    // width: $widthContainer;
     padding: 12px 0 12px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     .logo {
-      height: 44px;
+      height: 40px;
     }
     .search-field {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+      $widthInput: 300px;
       .search-form {
         display: flex;
         align-items: center;
         position: relative;
+        width: $widthInput;
         img {
-          height: 1.2em;
+          height: 1rem;
           left: 20px;
           position: absolute;
           z-index: 999;
         }
         .search-input {
-          width: 400px;
-          // letter-spacing: .16px;
+          width: 100%;
           font-size: 1rem;
           font-weight: 100;
           text-align: left;
           padding: 12px 12px 12px 50px;
           outline: none;
           border: none;
-          border: 1.4px solid $lightGray;
-          background: $lightBlue2;
-          border-radius: 25px;
+          background: #fafafa;
+          border: $border;
+          border-radius: 14px;
+          &::placeholder {
+            text-align: center;
+            position: relative;
+            right: 25px;
+          }
         }
         .search-results {
-          position: absolute;
+          @extend %box;
           height: 350px;
           width: 100%;
-          left: 0;
-          bottom: -360px;
           margin: 0;
-          padding: 0;
-          border-radius: 5px;
-          padding: 10px 15px 10px 15px;
+          position: absolute;
+          top: calc(2rem + 20px);
+          left: 0;
+          z-index: 999;
           box-sizing: border-box;
-          background: $lightColor;
-          z-index: 998;
-          box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
           list-style: none;
           overflow-y: scroll;
-          h1.title-type-result {
+          padding: 0;
+          h1.title{
             font-size: 1.5em;
-            color: $gray;
-            margin: $margin2 0 10px 0;
-            &:first-child {
-              margin-top: 10px;
+            color: black;
+            margin: $margin2 / 2 0 0 0;
+            padding: 10px 15px 10px 15px;
+            &:first-child{
+              margin: 0 0 0 0;
             }
           }
           li.volunteer,
@@ -124,14 +124,18 @@ header {
             position: relative;
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
             box-sizing: border-box;
             transition: 0.25s;
+            border-bottom: $border;
+            padding: 10px 15px 10px 15px;
             cursor: pointer;
+            &:last-child{
+              border-bottom: none;
+            }
             img {
               position: relative;
-              height: 60px;
-              width: 60px;
+              height: 50px;
+              width: 50px;
               object-fit: cover;
               margin: 0;
               padding: 0;
@@ -139,10 +143,10 @@ header {
               border-radius: 100%;
             }
             .item-content {
-              margin-left: $margin2;
+              margin-left: $margin2 / 2;
               .item-title {
-                font-size: 1.3em;
-                font-weight: 700;
+                font-size: 1.2em;
+                font-weight: 500;
                 margin: 0 0 0 0;
               }
               .item-description {
@@ -211,21 +215,16 @@ header {
         list-style-type: none;
         padding: 0;
         margin: 0;
-        a {
-          text-decoration: none;
-        }
+
         li {
-          margin: 0 $margin2 / 1.5 0 $margin2 / 1.5;
           transition: 0.25s;
           position: relative;
           transform-style: preserve-3d;
-          padding: 5px 10px 5px 10px;
           color: black;
-          &:first-child {
-            margin-left: 0;
-          }
-          &:last-child {
-            margin-right: 0;
+          margin-right: $margin2;
+          a {
+            text-decoration: none;
+            position: relative;
           }
         }
         li.text {
@@ -233,6 +232,7 @@ header {
           font-weight: 500;
           border-radius: 7px;
           margin-right: $margin2;
+          padding: 5px 12px 5px 12px;
           &:hover {
             color: $mainColor;
             background: rgba(49, 113, 224, 0.1);
@@ -247,36 +247,48 @@ header {
             width: 27px;
           }
         }
+        $sizePicture: 44px;
         li.profile-pic {
-          padding-right: 0;
+          padding: 0;
+          margin: 0;
+          border-radius: 50%;
+          height: $sizePicture;
+          width: $sizePicture;
           img {
-            $sizePicture: 54px;
-            height: $sizePicture;
-            width: $sizePicture;
+            height: 100%;
+            width: 100%;
             border-radius: 50%;
             object-fit: cover;
           }
-          &:after {
-            position: absolute;
-            top: 0;
-            right: -5px;
-            height: 20px;
-            width: 20px;
-            border-radius: 100%;
-          }
         }
-        li.availableVolunteer {
-          position: relative;
-          &:after {
-            content: "";
-            background: $successColor;
-          }
-        }
-        li.unavailableVolunteer {
-          position: relative;
-          &:after {
-            content: "";
-            border-radius: 100%;
+        .header-options {
+          @extend %box;
+          height: auto;
+          width: 200px;
+          display: none;
+          position: absolute;
+          top: $sizePicture + $margin2;
+          right: 0;
+          z-index: 999;
+          padding: 0;
+          list-style: none;
+          li {
+            font-size: 1em;
+            color: $mainColor;
+            padding: 10px;
+            border-bottom: $border;
+            width: 100%;
+            box-sizing: border-box;
+            a {
+              width: 100%;
+              display: inline-block;
+              text-decoration: none;
+              color: inherit;
+            }
+            &:last-child {
+              color: black;
+              border-bottom: 0;
+            }
           }
         }
       }
@@ -399,8 +411,6 @@ form,
     color: white;
     &:disabled {
       opacity: 0.5;
-      // background: rgb(172, 172, 172);
-      // box-shadow: 0 6px 16px 0px rgba(0,0,0,0.3);
     }
   }
   .form-link {
@@ -460,66 +470,6 @@ a {
   color: $mainColor;
 }
 
-.align-center {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-}
-
-.centralize {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  width: 100vmax !important;
-}
-
-.container {
-  box-sizing: border-box;
-  position: relative;
-  width: $widthContainer;
-}
-
-.steps {
-  padding: 0;
-  margin: 0 0 $margin4 0;
-  list-style: none;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  li {
-    position: relative;
-    display: flex;
-    padding: 0 0 0 $margin2;
-    font-size: 1.75em;
-    font-weight: 500;
-    color: black;
-    border-bottom: 3px solid #f2f2f2;
-    cursor: pointer;
-    opacity: 0.5;
-    transition: opacity 0.5s;
-    &:after {
-      content: "";
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      height: 3px;
-      width: 0;
-      transition: width 1s ease;
-      transform-origin: left right;
-    }
-    &:first-child {
-      padding: 0 $margin2 0 0;
-    }
-  }
-  li.progress {
-    opacity: 1;
-    &:after {
-      width: 100%;
-      background: $mainColor;
-    }
-  }
-}
-
 div.overlay {
   position: fixed;
   top: 0;
@@ -538,151 +488,11 @@ div.overlay {
   }
 }
 
-.box {
-  padding: $margin2 $margin4 $margin2 $margin4;
-  background: white;
-  border-radius: 14px;
-  border: 2px solid #f2f2f2;
-  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.16);
-}
-
 .btn-danger {
   @extend %button;
   width: 100%;
   box-shadow: 0 3px 12px -6px rgba(0, 0, 0, 0.16);
   background: #f9f9f9;
   color: red;
-  border: 1px solid #eeeeee;
-}
-
-.width-auto {
-  width: auto;
-  flex-grow: 0;
-}
-
-.title {
-  font-size: 2rem;
-  font-weight: 900;
-  margin: 0 0 0 0;
-}
-
-.small-text {
-  font-size: $fontBase;
-}
-
-.medium-text {
-  font-size: 1.5rem;
-}
-
-.big-text {
-  font-size: 2.5rem;
-}
-
-.light-weight-text {
-  font-weight: 100;
-}
-
-.medium-weight-text {
-  font-weight: 500;
-}
-
-.large-weight-text {
-  font-weight: 800;
-}
-
-.text {
-  font-size: 1.25rem;
-  text-align: left;
-  font-weight: normal;
-  margin: 0 0 0 0;
-}
-
-.blue {
-  color: $mainColor;
-}
-
-.bg-lightBlue {
-  background: $lightBlue2;
-}
-
-.margin0{
-  margin: 0;
-}
-
-.margin-top1 {
-  margin-top: $margin2 / 2;
-}
-
-.margin-top2 {
-  margin-top: $margin2;
-}
-
-.margin-top4 {
-  margin-top: $margin4;
-}
-
-.margin-btm4 {
-  margin-bottom: $margin4;
-}
-
-.margin-btm2 {
-  margin-bottom: $margin2;
-}
-
-.margin-btm1 {
-  margin-bottom: $margin2 / 2;
-}
-
-.padding-top2 {
-  padding-top: $margin2;
-}
-
-.padding-top4 {
-  padding-top: $margin4;
-}
-
-.padding-btm2 {
-  padding-bottom: $margin2;
-}
-
-.padding-btm4 {
-  padding-bottom: $margin4;
-}
-
-.padding-4 {
-  padding: $margin4;
-}
-
-.border-box {
-  box-sizing: border-box;
-}
-
-.block {
-  display: block;
-}
-
-.group-asides {
-  display: flex;
-  flex-flow: row wrap;
-  height: 100vh;
-  width: 100vw;
-  .aside {
-    height: 100%;
-  }
-}
-
-.width-70{
-  width: 70;
-}
-
-.width-60 {
-  width: 60vw;
-}
-
-.width-50 {
-  width: 50vw;
-}
-
-.width-40 {
-  width: 40vw;
+  border: $border;
 }

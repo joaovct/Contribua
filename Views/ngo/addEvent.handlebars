@@ -2,7 +2,7 @@
 <script src="/scripts/addEventScript.js"></script>
 
 <div class="centralize margin-top4">
-    <div class="container">
+    <div class="container box">
         <form id="form-addEvent" name="addEvent">
             <div class="addEvent-step">
                 <h1 class="title big-text large-weight-text">Informações do evento</h1>
@@ -96,7 +96,7 @@
 </div>
 <div class="overlay">
     <form name="addEvent-image">
-        <div class="modal">
+        {{!-- <div class="modal">
             <div id="addEvent-imageUp">
                 <label class="imageUp" for="event-image"><img src="/assets/imgs/upload.svg" /></label>
                 <input type="file" id="event-image" name="event-image" />
@@ -104,25 +104,25 @@
                 <p class="text">Clique no espaço cinza para escolher uma imagem que atraia o público para este evento.
                 </p>
             </div>
-        </div>
+        </div> --}}
         {{!-- <div class="modal">
             <div class="preview">
                 <h1 class="title">Preview</h1>
-                <img class="preview-image" src="/assets/imgs/dog.jpg">
+                <img class="preview-image" src="/assets/imgs/animal-cat-face-close-up-416160.jpg">
                 <h1 class="title preview-title">Salve os cachorros</h1>
                 <p class="preview-content">Aliquip ex cupidatat amet officia proident fugiat non amet commodo. Veniam
                     excepteur nostrud cupidatat in. Non occaecat minim enim mollit aute.</p>
                 <button type="submit">Finalizar</button>
             </div>
         </div> --}}
-        {{!-- <div class="modal">
+        <div class="modal">
             <div class="preview">
                 <img class="preview-image" src="/assets/imgs/successImage.png">
                 <h1 class="title success-title">Boas notícias!</h1>
                 <p class="preview-content">Esse evento foi criado com sucesso e agora você já pode procurar e convidar voluntários para lhe ajudar.</p>
                 <a href="/ngo">Ir para a home</a>
             </div>
-        </div> --}}
+        </div>
     </form>
 
 </div>

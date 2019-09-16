@@ -15,9 +15,8 @@ body {
   margin: 0;
 }
 
-.bg-lightBlue {
-  background-image: linear-gradient(rgba(224, 234, 251, 0.9), rgba(224, 234, 251, 0.9)),
-    url("../../assets/imgs/adorable-bath-bathed-2903236.jpg");
+.bg-hero-image {
+  background-image: linear-gradient(rgba(224, 234, 251, 0.9), rgba(224, 234, 251, 0.9)), url("../../assets/imgs/adorable-bath-bathed-2903236.jpg") !important;
   background-size: cover;
 }
 .group-asides {

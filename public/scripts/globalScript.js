@@ -79,13 +79,17 @@ function addClass(el, Class, n){
 $(document).mouseup((e)=>{
     if(!$('.search-results').is(e.target) && $('.search-results').has(e.target).length === 0){
         removeDiv('.search-results')
+    }
+    if(!$('.header-options').is(e.target) && $('.header-options').has(e.target).length === 0){
+        $('.header-options').hide('fast')
     } 
 })
 
 function doSearch(input){
     let value = input.value
     $(document).ready(()=>{
-        if(value.length > 0){
+        nullSpace = value.trim()
+        if(value.length > 0 && nullSpace.length > 0){
             var results = $.get('http://localhost:3000/search?key=' + value, (data) => {
                 let volunteers = [], ngos = [], events = [], cases = []
                 removeDiv('.search-results')
@@ -110,7 +114,7 @@ function doSearch(input){
 function writeVolunteers(data){
     var i = 0
     for(let object of data){
-        if(i==0) $('.search-results').append('<h1 class="title-type-result">Voluntários</h1>')
+        if(i==0) $('.search-results').append('<h1 class="title">Voluntários</h1>')
         $('.search-results').append(`<li class="volunteer"> <img src="/assets/imgs/man2.jpg"/> <div class="item-content"> <h3 class="item-title">${object.name}</h3> </div> </li>`)
         i++
     }
@@ -119,7 +123,7 @@ function writeVolunteers(data){
 function writeNgos(data){
     var i = 0
     for(let object of data){
-        if(i==0) $('.search-results').append('<h1 class="title-type-result">ONGs</h1>')
+        if(i==0) $('.search-results').append('<h1 class="title">ONGs</h1>')
         $('.search-results').append(`<li class="ngo"> <img src="/assets/imgs/animal-cat-cute-46024.jpg"/> <div class="item-content"> <h3 class="item-title">${object.name}</h3> </div> </li>`)
         i++
     }
