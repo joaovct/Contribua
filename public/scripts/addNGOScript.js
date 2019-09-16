@@ -47,8 +47,9 @@ ngoDescription[0].addEventListener("keyup", ()=>{
 submit[0].addEventListener("click", verifyForm)
 
 function verifyForm(e){
-    if(!validationName(name) || !validationAddress(address) || !validationCep(cep) || !validationAddress(address) || !validationCases(cases) || !validationCNPJ(cnpj) || !validationTelephone(telephone) || !validationEmail(email) || !validationDescription(description)){
-        alert("Há campos incorretos ou vazios")
+    if(!validationName(name, iconName) || !validationAddress(address, iconAddress) || !validationCep(cep, iconCep) || 
+       !validationCases(cases) || !validationCNPJ(cnpj, iconCnpj) || !validationTelephone(telephone, iconTelephone) ||
+       !validationEmail(email, iconEmail) || !validationDescription(description)){
         e.preventDefault()
     }else{
         telephone.value = telephone.value.replace(/\D/g,"")

@@ -1,6 +1,9 @@
 @import "utilities/variables";
 
 .feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
   width: 100%;
   padding-bottom: $margin2;
   border-bottom: 1px solid $lightGray;
@@ -40,16 +43,25 @@
       border: 1px solid $lightBlue;
       box-shadow: 0 2px 7px -3px rgba(0, 0, 0, 0.1);
     }
+    .category-link{
+      margin-right: $margin2 / 2;
+      font-size: 1.2em;
+      color: $gray;
+      transition: .5s;
+    }
+    .active-link{
+      color: $mainColor;
+    }
   }
 }
+
 button.btn-filters {
-  border: none;
-  background: $lightBlue;
-  font-size: 1.2em;
-  font-weight: normal;
-  color: $mainColor;
+  @extend %button;
+  margin: 0;
   padding: 5px 12px 5px 12px;
-  border-radius: 7px;
+  font-size: 1.2em;
+  background: $lightBlue;
+  color: $mainColor;
   box-shadow: 0 4px 9px -5px rgb(187, 194, 209);
   cursor: pointer;
 }

@@ -27,6 +27,21 @@ $extraLarge: 1200px;
 // FONTS
 $fontFamily: Nunito;
 
+// Extends
+
+%button {
+  border: none;
+  font-size: 1.25rem;
+  font-weight: 100;
+  text-align: center;
+  padding: 10px 15px 10px 15px;
+  border-radius: 7px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block !important;
+  margin-top: $margin2;
+}
+
 @font-face {
   font-family: $fontFamily;
   font-weight: normal;

@@ -28,61 +28,13 @@
   height: 100%;
   width: 80vw;
 }
-
-#addEvent {
-  position: relative;
+.container form {
   width: 100%;
 }
-#addEvent ul#addEvent-progress {
-  display: flex;
-  list-style: none;
-  margin: 0 0 40px 0;
-  padding: 0;
-  background: white;
-  width: 100%;
-  z-index: 998;
-}
-#addEvent ul#addEvent-progress li {
-  font-size: 1.75em;
-  font-weight: 100;
-  position: relative;
-  margin: 0;
-  margin-right: 20px;
-  opacity: 0.35;
-  cursor: pointer;
-}
-#addEvent ul#addEvent-progress li hr {
-  margin: 5px 0 0 0;
-  height: 3px;
-  width: calc(100% + 20px);
-  background: #E0EAFB;
-  border: none;
-  transition: 0.5s;
-  transform-origin: left;
-}
-#addEvent ul#addEvent-progress li:first-child {
-  opacity: 1;
-  font-weight: 500;
-}
-#addEvent ul#addEvent-progress li:first-child hr {
-  background: #3171e0;
-}
-#addEvent ul#addEvent-progress li:last-child hr {
-  width: 100%;
-}
-#addEvent form {
-  width: 100%;
-}
-#addEvent .addEvent-step {
+.container .addEvent-step {
   display: block;
-  margin-top: 40px;
-  padding-bottom: 20px;
 }
-#addEvent .addEvent-step .title {
-  font-size: 2.7em;
-  margin-bottom: 20px;
-}
-#addEvent #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .job, #addEvent .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-label {
+.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .job, .container .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-label {
   background: white;
   display: flex;
   flex-flow: column nowrap;
@@ -96,45 +48,45 @@
   margin-right: 40px;
   margin-left: 40px;
 }
-#addEvent #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .job img.icon, #addEvent .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-label img.icon {
+.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .job img.icon, .container .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-label img.icon {
   height: 100px;
   width: 100px;
 }
-#addEvent #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .job p, #addEvent .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-label p {
+.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .job p, .container .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-label p {
   font-size: 1.75em;
   font-weight: normal;
   margin: 20px 0 0 0;
   text-align: center;
 }
-#addEvent .addEvent-step:nth-child(1) {
+.container .addEvent-step:nth-child(1) {
   margin-top: 0;
 }
-#addEvent .addEvent-step:nth-child(1) .flex-inputs {
+.container .addEvent-step:nth-child(1) .flex-inputs {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
   box-sizing: border-box;
 }
-#addEvent .addEvent-step:nth-child(1) .flex-inputs .form-input-icon {
+.container .addEvent-step:nth-child(1) .flex-inputs .form-input-icon {
   margin: 20px 0 0 0;
   padding: 0;
   width: 100%;
 }
-#addEvent .addEvent-step:nth-child(1) .flex-inputs .form-input-icon .form-input {
+.container .addEvent-step:nth-child(1) .flex-inputs .form-input-icon .form-input {
   width: 100%;
   margin: 0;
 }
-#addEvent .addEvent-step:nth-child(1) .flex-inputs .form-input,
-#addEvent .addEvent-step:nth-child(1) .flex-inputs .form-textarea {
+.container .addEvent-step:nth-child(1) .flex-inputs .form-input,
+.container .addEvent-step:nth-child(1) .flex-inputs .form-textarea {
   margin: 20px 0 0 0;
 }
-#addEvent .addEvent-step:nth-child(1) .flex-inputs textarea#description-event {
+.container .addEvent-step:nth-child(1) .flex-inputs textarea#description-event {
   grid-area: 6;
 }
-#addEvent .addEvent-step:nth-child(2) {
+.container .addEvent-step:nth-child(2) {
   display: none;
 }
-#addEvent .addEvent-step:nth-child(2) .flex-inputs {
+.container .addEvent-step:nth-child(2) .flex-inputs {
   min-height: calc((43px + 1.25rem) * 6);
   width: 100%;
   display: flex;
@@ -142,59 +94,59 @@
   align-items: center;
   flex-flow: column nowrap;
 }
-#addEvent .addEvent-step:nth-child(2) .flex-inputs .group-labels {
+.container .addEvent-step:nth-child(2) .flex-inputs .group-labels {
   display: flex;
   justify-content: space-between;
   width: 600px;
 }
-#addEvent .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-label {
+.container .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-label {
   transition: opacity 0.25s;
 }
-#addEvent .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-Radio {
+.container .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-Radio {
   display: none;
 }
-#addEvent .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs {
+.container .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs {
   width: 520px;
   display: none;
   margin-top: 20px;
 }
-#addEvent .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs .input {
+.container .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs .input {
   display: inline-block;
   margin-right: 20px;
 }
-#addEvent .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs .input label {
+.container .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs .input label {
   display: block;
   font-size: 1.75em;
   font-weight: 500;
   margin: 20px 0 0 0;
 }
-#addEvent .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs .input input {
+.container .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs .input input {
   display: block;
   width: auto;
   margin: 10px 0 0 0;
 }
-#addEvent .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs .input-block {
+.container .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs .input-block {
   display: block;
 }
-#addEvent .addEvent-step button[type=submit],
-#addEvent .addEvent-step .form-submit {
+.container .addEvent-step button[type=submit],
+.container .addEvent-step .form-submit {
   width: auto;
   padding: 10px 20px 10px 20px;
   font-size: 1.4em;
   margin-top: 20px;
   display: inline-block;
 }
-#addEvent #form-addEvent-jobs .addEvent-step {
+.container #form-addEvent-jobs .addEvent-step {
   display: none;
 }
-#addEvent #form-addEvent-jobs .addEvent-step .flex-inputs {
+.container #form-addEvent-jobs .addEvent-step .flex-inputs {
   height: auto;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#addEvent #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs {
+.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs {
   height: 100%;
   width: 100%;
   display: flex;
@@ -202,14 +154,14 @@
   align-items: flex-start;
   flex-flow: row wrap;
 }
-#addEvent #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .job {
+.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .job {
   padding: 50px 35px 50px 35px;
 }
-#addEvent #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .add-job {
+.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .add-job {
   display: none;
   width: auto;
 }
-#addEvent #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .add-job .form-input {
+.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .add-job .form-input {
   width: 100%;
 }
 

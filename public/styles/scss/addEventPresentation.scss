@@ -1,18 +1,9 @@
 @import 'utilities/variables.scss';
 
-.centralize{
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-}
-
 .container{
     display: flex;
     align-items: center;
-    width: $widthContainer;
     figure.hero-image{
-        height: 100%;
         width: 50%;
         object-fit: cover;
         margin: 0;
@@ -39,8 +30,6 @@
         form{
             button[type="submit"]{
                 width: auto;
-                padding: 10px 20px 10px 20px;
-                margin: $margin2 0 0 0;
             }
         }
     }

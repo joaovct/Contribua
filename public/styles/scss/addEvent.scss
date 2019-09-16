@@ -9,59 +9,12 @@
 .container {
   height: 100%;
   width: $widthContainer;
-}
 
-#addEvent {
-  position: relative;
-  width: 100%;
-  ul#addEvent-progress {
-    display: flex;
-    list-style: none;
-    margin: 0 0 $margin4 0;
-    padding: 0;
-    background: white;
-    width: 100%;
-    z-index: 998;
-    li {
-      font-size: 1.75em;
-      font-weight: 100;
-      position: relative;
-      margin: 0;
-      margin-right: $margin2;
-      opacity: 0.35;
-      cursor: pointer;
-      hr {
-        margin: 5px 0 0 0;
-        height: 3px;
-        width: calc(100% + #{$margin2});
-        background: $lightBlue;
-        border: none;
-        transition: 0.5s;
-        transform-origin: left;
-      }
-      &:first-child {
-        opacity: 1;
-        font-weight: 500;
-        hr {
-          background: $mainColor;
-        }
-      }
-      &:last-child hr {
-        width: 100%;
-      }
-    }
-  }
   form {
     width: 100%;
   }
   .addEvent-step {
     display: block;
-    margin-top: $margin4;
-    padding-bottom: $margin2;
-    .title {
-      font-size: 2.7em;
-      margin-bottom: $margin2;
-    }
     %card {
       background: white;
       display: flex;

@@ -1,3 +1,21 @@
+.btn-danger, form .form-submit,
+form button[type=submit],
+form input[type=submit],
+.form .form-submit,
+.form button[type=submit],
+.form input[type=submit] {
+  border: none;
+  font-size: 1.25rem;
+  font-weight: 100;
+  text-align: center;
+  padding: 10px 15px 10px 15px;
+  border-radius: 7px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block !important;
+  margin-top: 20px;
+}
+
 @font-face {
   font-family: Nunito;
   font-weight: normal;
@@ -48,23 +66,6 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #818181;
-}
-
-.btn-danger, form .form-submit,
-form button[type=submit],
-form input[type=submit],
-.form .form-submit,
-.form button[type=submit],
-.form input[type=submit] {
-  font-size: 1.25rem;
-  font-weight: 100;
-  text-align: center;
-  padding: 10px 15px 10px 15px;
-  border-radius: 7px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block !important;
-  margin-top: 20px;
 }
 
 header.header-relative {
