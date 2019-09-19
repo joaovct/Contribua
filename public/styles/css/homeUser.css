@@ -1,13 +1,13 @@
 button.btn-filters {
   border: none;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 100;
   text-align: center;
   padding: 10px 15px 10px 15px;
   border-radius: 7px;
   box-sizing: border-box;
   cursor: pointer;
-  display: inline-block !important;
+  display: inline-block;
   margin-top: 20px;
 }
 
@@ -22,6 +22,10 @@ button.btn-filters {
 .width-auto {
   width: auto;
   flex-grow: 0;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .title {
@@ -57,7 +61,6 @@ button.btn-filters {
 .text {
   font-size: 1.25rem;
   text-align: left;
-  font-weight: normal;
   margin: 0 0 0 0;
 }
 

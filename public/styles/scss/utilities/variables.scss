@@ -9,6 +9,7 @@ $errorColor: #e42200;
 $lightColor: #f9f9f9;
 $lightGray: #e1e1e1;
 $lightGray2: #c7c7c7;
+$lightGray3: #f9f9f9;
 $gray: #818181;
 $darkGray: #3f3f3f;
 
@@ -33,18 +34,18 @@ $borderColor: #eeeeee;
 
 %button {
   border: none;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 100;
   text-align: center;
   padding: 10px 15px 10px 15px;
   border-radius: 7px;
   box-sizing: border-box;
   cursor: pointer;
-  display: inline-block !important;
+  display: inline-block;
   margin-top: $margin2;
 }
 
-%box {
+%box,.box {
   padding: $margin2 $margin4 $margin2 $margin4;
   background: white;
   border-radius: 7px;
@@ -52,53 +53,52 @@ $borderColor: #eeeeee;
   box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.16);
 }
 
-.box{
-  @extend %box;
-}
-
 .width-auto {
   width: auto;
   flex-grow: 0;
 }
 
-.title {
+%text-center, .text-center{
+  text-align: center;
+}
+
+%title, .title {
   font-size: 2rem;
   font-weight: 900;
   margin: 0 0 0 0;
 }
 
-.small-text {
+%small-text, .small-text {
   font-size: $fontBase;
 }
 
-.medium-text {
+%medium-text, .medium-text {
   font-size: 1.5rem;
 }
 
-.big-text {
+%big-text, .big-text {
   font-size: 2.5rem;
 }
 
-.light-weight-text {
+%light-weight-text, .light-weight-text {
   font-weight: 100;
 }
 
-.medium-weight-text {
+%medium-weight-text, .medium-weight-text {
   font-weight: 500;
 }
 
-.large-weight-text {
+%large-weight-text, .large-weight-text {
   font-weight: 800;
 }
 
-.text {
+%text, .text {
   font-size: 1.25rem;
   text-align: left;
-  font-weight: normal;
   margin: 0 0 0 0;
 }
 
-.blue {
+%blue, .blue {
   color: $mainColor;
 }
 

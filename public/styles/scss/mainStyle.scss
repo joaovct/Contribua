@@ -108,12 +108,12 @@ header {
           list-style: none;
           overflow-y: scroll;
           padding: 0;
-          h1.title{
+          h1.title {
             font-size: 1.5em;
             color: black;
             margin: $margin2 / 2 0 0 0;
             padding: 10px 15px 10px 15px;
-            &:first-child{
+            &:first-child {
               margin: 0 0 0 0;
             }
           }
@@ -129,7 +129,7 @@ header {
             border-bottom: $border;
             padding: 10px 15px 10px 15px;
             cursor: pointer;
-            &:last-child{
+            &:last-child {
               border-bottom: none;
             }
             img {
@@ -185,26 +185,11 @@ header {
               box-shadow: 0 7px 5px -2.5px rgba(0, 0, 0, 0.16);
             }
           }
-          ul.cases {
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-flow: row wrap;
-            list-style: none;
-            margin-top: 5px;
-            li.case {
-              font-size: 0.9em;
-              text-align: center;
-              background: $lightBlue;
-              margin: 0 10px 10px 0;
-              padding: 2.5px 5px 2.5px 5px;
-              border-radius: 5px;
-              cursor: pointer;
-            }
-          }
+          
         }
       }
     }
+
     nav.nav-header {
       display: flex;
       align-items: center;
@@ -254,6 +239,7 @@ header {
           border-radius: 50%;
           height: $sizePicture;
           width: $sizePicture;
+          cursor: pointer;
           img {
             height: 100%;
             width: 100%;
@@ -296,7 +282,26 @@ header {
   }
 }
 
-form,
+ul.cases {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  margin-top: 5px;
+  li.case {
+    font-size: 0.9em;
+    text-align: center;
+    background: $lightBlue;
+    color: $mainColor;
+    margin: 0 10px 10px 0;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+
 .form {
   height: auto;
   width: 350px;
@@ -316,7 +321,8 @@ form,
     margin: $margin2 0;
     display: block;
     width: 100%;
-    border: 1.4px solid $lightGray;
+    // border: 1.4px solid $lightGray;
+    border: $border;
     background: $lightBlue2;
     padding: 10px 15px 10px 15px;
     box-sizing: border-box;
@@ -353,8 +359,9 @@ form,
     font-size: 1.25rem;
     opacity: 0.9;
     text-align: center;
-    background: $lightBlue2;
-    border: 1.5px solid $lightGray;
+    background: $lightGray3;
+    // border: 1.5px solid $lightGray;
+    border: $border;
     border-radius: 5px;
     box-sizing: border-box;
     cursor: pointer;
@@ -369,14 +376,15 @@ form,
     font-size: 1.25em;
     width: 100%;
     display: block;
-    margin: 0 0 $margin2 / 2 0;
+    margin-bottom: $margin2 / 2;
   }
   .form-groupSelect {
     display: flex;
     flex-flow: row wrap;
     width: 100%;
     margin-top: $margin2;
-    .form-btnCheckbox {
+    .form-btnCheckbox,
+    .form-btnRadio {
       flex-grow: 1;
       text-align: center;
       font-size: 1.05em;
@@ -390,29 +398,19 @@ form,
       cursor: pointer;
       transition: 0.25s;
     }
-    input[type="checkbox"].form-checkbox {
+    input[type="checkbox"].form-checkbox,
+    input[type="radio"],
+    .form-radio {
       display: none;
     }
-    input:checked + .form-btnCheckbox {
+    input:checked + .form-btnCheckbox,
+    input:checked + .form-btnRadio {
       background: $mainColor;
       color: white;
       border-color: $mainColor;
     }
   }
 
-  .form-submit,
-  button[type="submit"],
-  input[type="submit"] {
-    @extend %button;
-    width: 100%;
-    box-shadow: 0 6px 16px 0 rgba(49, 113, 224, 0.3);
-    border: none;
-    background: $mainColor;
-    color: white;
-    &:disabled {
-      opacity: 0.5;
-    }
-  }
   .form-link {
     margin: $margin2 0;
     display: block;
@@ -434,6 +432,20 @@ form,
       display: inline;
       color: $mainColor;
     }
+  }
+}
+
+.form-submit,
+button[type="submit"],
+input[type="submit"] {
+  @extend %button;
+  width: 100%;
+  box-shadow: 0 6px 12px -3px rgba(49, 113, 224, 0.3);
+  border: none;
+  background: $mainColor;
+  color: white;
+  &:disabled {
+    opacity: 0.5;
   }
 }
 
@@ -471,20 +483,42 @@ a {
 }
 
 div.overlay {
+  z-index: 999;
   position: fixed;
   top: 0;
   left: 0;
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.05);
-  z-index: 999;
+  background: rgba(0, 0, 0, 0.16);
+  // background: yellow;
   .modal {
-    padding: 30px 40px 30px 40px;
-    background: white;
-    border-radius: 14px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+    @extend %box;
+    padding: $margin4;
+    .modal-options{
+      display: flex;
+      justify-content: flex-end;
+      .first-option{
+        order: 2;
+        @extend %button;
+        background: $mainColor;
+        padding: 10px 15px 10px 15px;
+        color: white;
+        font-size: $fontBase;
+      }
+      .second-option{
+        order: 1;
+        @extend %button;
+        background: #f9f9f9;
+        border: $border;
+        padding: 10px 15px 10px 15px;
+        margin-right: $margin2;
+        color: $mainColor;
+        font-size: $fontBase;
+      }
+    }
   }
 }
 

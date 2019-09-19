@@ -1,102 +1,223 @@
 <link rel="stylesheet" href="/styles/css/addEvent.css" />
+
+<form name="addEvent">
+
+    <div class="asides aside-1">
+        <aside class="bg1">
+        </aside>
+        <aside>
+            <div class="form">
+                <h1 class="title big-text">Informações do evtento</h1>
+                <div class="form-groupSelect margin-top4">
+                    <label class="form-label">Causas</label>
+                    <input name="categories" value="direitos humanos" type="checkbox" id="direitosHumanos"
+                        class="form-checkbox">
+                    <label for="direitosHumanos" class="form-btnCheckbox">Direitos humanos</label>
+
+                    <input name="categories" value="cultura e arte" type="checkbox" id="culturaearte"
+                        class="form-checkbox">
+                    <label for="culturaearte" class="form-btnCheckbox">Cultura e arte</label>
+
+                    <input name="categories" value="educação" type="checkbox" id="educação" class="form-checkbox">
+                    <label for="educação" class="form-btnCheckbox">Educação</label>
+
+                    <input name="categories" value="crianças" type="checkbox" id="crianças" class="form-checkbox">
+                    <label for="crianças" class="form-btnCheckbox">Crianças</label>
+
+                    <input name="categories" value="meio ambiente" type="checkbox" id="meioambiente"
+                        class="form-checkbox">
+                    <label for="meioambiente" class="form-btnCheckbox">Meio ambiente</label>
+
+                    <input name="categories" value="combate à pobreza" type="checkbox" id="combateàpobreza"
+                        class="form-checkbox">
+                    <label for="combateàpobreza" class="form-btnCheckbox">Combate à pobreza</label>
+
+                    <input name="categories" value="proteção animal" type="checkbox" id="proteçãoanimal"
+                        class="form-checkbox">
+                    <label for="proteçãoanimal" class="form-btnCheckbox">Proteção animal</label>
+
+                    <input name="categories" value="política" type="checkbox" id="política" class="form-checkbox">
+                    <label for="política" class="form-btnCheckbox">Política</label>
+
+                    <input name="categories" value="mulheres" type="checkbox" id="mulheres" class="form-checkbox">
+                    <label for="mulheres" class="form-btnCheckbox">Mulheres</label>
+
+                    <input name="categories" value="esportes" type="checkbox" id="esportes" class="form-checkbox">
+                    <label for="esportes" class="form-btnCheckbox">Esportes</label>
+
+                    <input name="categories" value="refugiados" type="checkbox" id="refugiados" class="form-checkbox">
+                    <label for="refugiados" class="form-btnCheckbox">Refugiados</label>
+
+                    <input name="categories" value="saúde" type="checkbox" id="saúde" class="form-checkbox">
+                    <label for="saúde" class="form-btnCheckbox">Saúde</label>
+
+                    <input name="categories" value="jovens" type="checkbox" id="jovens" class="form-checkbox">
+                    <label for="jovens" class="form-btnCheckbox">Jovens</label>
+                </div>
+                <label class="form-label margin-top2">Endereço</label>
+                <div class="flex-inputs">
+                    <input class="form-input" placeholder="CEP">
+                    <input class="form-input" placeholder="Número">
+                </div>
+                <div class="flex-inputs margin-top2">
+                    <input class="form-input" placeholder="Cidade">
+                    <input class="form-input" placeholder="Bairro">
+                </div>
+                <input class="form-input margin-top2" placeholder="Logradouro">
+                <div class="submit-step">
+                    <div onclick="$('.aside-1').slideUp('slow'); $('.aside-2').slideDown('slow')" class="form-submit">Próximo passo</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <div class="asides aside-2">
+        <aside class="bg2"></aside>
+        <aside>
+            <div class="form">
+                <h1 class="title big-text">Tipo de evento</h1>
+                <div class="form-groupSelect margin-top4">
+                    <label class="form-label">Selecione o tipo de evento</label>
+                    <input name="categories" name="typeEvent" type="radio" class="form-radio" id="punctual">
+                    <label for="punctual" class="form-btnCheckbox"
+                        onclick="$('.typeEvent-recurrent').slideUp('fast'); $('.typeEvent-punctual').slideDown('slow')">Evento
+                        pontual</label>
+
+                    <input name="categories" name="typeEvent" type="radio" class="form-radio" id="recurrent">
+                    <label onclick="$('.typeEvent-punctual').slideUp('slow'); $('.typeEvent-recurrent').slideDown('slow')" for="recurrent" class="form-btnRadio">Evento recorrente</label>
+                </div>
+                <div class="typeEvent typeEvent-punctual">
+                    <div class="flex-inputs margin-top2">
+                        <div class="input">
+                            <label class="form-label">Data</label>
+                            <input type="date" class="form-input">
+                        </div>
+                        <div class="input">
+                            <label class="form-label">Início</label>
+                            <input type="time" class="form-input">
+                        </div>
+                        <div class="input">
+                            <label class="form-label">Término</label>
+                            <input type="time" class="form-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="typeEvent typeEvent-recurrent">
+                    <div class="flex-inputs margin-top2">
+                        <div class="input">
+                            <label class="form-label">Data de início</label>
+                            <input type="date" class="form-input">
+                        </div>
+                        <div class="input">
+                            <label class="form-label">Hora de início</label>
+                            <input type="time" class="form-input">
+                        </div>
+                    </div>
+                    <div class="flex-inputs margin-top2">
+                        <div class="input">
+                            <label class="form-label">Data prevista de término</label>
+                            <input type="date" class="form-input">
+                        </div>
+                    </div>
+                    <input class="form-input margin-top2" placeholder="Detalhes como funcionarão os horários">
+                </div>
+                <div class="submit-step margin-top4">
+                    <div onclick="$('.aside-2').slideUp('slow'); $('.aside-3').slideDown('slow')" class="form-submit">Próximo
+                        passo</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <div class="asides aside-3">
+        <aside class="bg3"></aside>
+        <aside>
+            <div class="form">
+                <h1 class="title big-text margin-btm4">Vagas</h1>
+                <div class="box margin-btm2">
+                    <h1 class="medium-text margin0">Assistente geral</h1>
+                    <p class="text margin0">Ipsum consequat non sint irure minim consequat adipisicing aute dolore Lorem
+                        mollit.</p>
+                    <p class="text margin0 margin-top1">Qntd. - 15</p>
+                </div>
+                <div class="submit-step">
+                    <div onclick="$('.modal-job').slideDown('fast')" class="call-modal-job">Adicionar vaga</div>
+                    <div onclick="$('.aside-3').slideUp('slow'); $('.article-event').slideDown('slow')" class="form-submit">Próximo
+                        passo</div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <div class="overlay modal-job">
+        <div class="modal form">
+            <h1 class="title big-text">Adicionar vaga</h1>
+            <input class="form-input" placeholder="Nome da vaga" />
+            <textarea class="form-input form-textarea" placeholder="Descrição da vaga"></textarea>
+            <input class="form-input" placeholder="Quantidade" />
+            <div class="modal-options">
+                <div onclick="$('.modal-job').hide('fast')" class="second-option">Cancelar</div>
+                <div class="first-option" onclick="$('.modal-job').slideUp('fast')">Adicionar vaga</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="centralize padding-top4 article-event">
+        <div class="container">
+            <h1 class="title margin-btm4">Artigo do evento</h1>
+            <textarea maxlength="150" onkeyup="autosize($('.textarea-title'))" class="textarea-title"
+                placeholder="Título..."></textarea>
+            <textarea onkeyup="autosize($('.textarea-content'));" class="textarea-content"
+                placeholder="Comece a escrever..."></textarea>
+            <div class="submit-step">
+                <div onclick="$('.modal-preview').slideDown('fast')" class="form-submit">Próximo passo</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay modal-preview">
+        <div class="modal form">
+            <div class="up-thumbnail">
+                <input id="upThumbnail" type="file" class="form-file">
+                <label onclick="$('.up-thumbnail').slideUp('fast'); $('.preview').slideDown('slow')" class="form-btnFile"><img src="/assets/imgs/upload.svg"/></label>
+                <h1 class="title text-center margin-top4">Só mais um detalhe</h1>
+                <p class="text margin-top2">Clique no espaço cinza para escolher uma imagem que atraia o público para este evento.</p>
+            </div>
+            <div class="preview">
+                <h1 class="title">Review</h1>
+                <input id="upThumbnail" type="file" class="form-file">
+                <label class="form-btnFile"></label>
+                <h1 class="title margin-top2">Salve os cachorros</h1>
+                <p class="text margin-top1 margin-btm2">Exercitation velit nostrud enim quis sint nisi in non incididunt cupidatat.Amet dolore esse anim aliquip id mollit...</p>
+                <ul class="cases">
+                    <li class="case">Animais</li>
+                    <li class="case">Direitos humanos</li>
+                    <li class="case">Adoção</li>
+                </ul>
+                <div class="modal-options">
+                    <div onclick="$('.modal-preview').slideUp('fast')" class="second-option">Editar</div>
+                    <div onclick="$('.preview').slideUp('fast'); $('.done').slideDown('slow')" class="first-option">Finalizar</div>
+                </div>
+            </div>
+            <div class="done">
+                <img src="/assets/imgs/successImage.png"/>
+                <h1 class="title text-center margin-top2">Muito bem!</h1>
+                <p class="text margin-top1 margin-btm2">Este evento foi criado com sucesso e agora você já pode convidar voluntários para lhe ajudar.</p>
+                <a href="/ngo" class="text blue text-center">Ir para a home</a>
+            </div>
+        </div>
+    </div>
+
+</form>
+
 <script src="/scripts/addEventScript.js"></script>
 
-<div class="centralize margin-top4">
-    <div class="container box">
-        <form id="form-addEvent" name="addEvent">
-            <div class="addEvent-step">
-                <h1 class="title big-text large-weight-text">Informações do evento</h1>
-                <div class="flex-inputs">
-                    <input class="form-input" placeholder="Nome do evento" />
-                    <label class="form-input-icon">
-                        <input class="form-input" placeholder="Endereço do evento"></input>
-                        <img src="/assets/imgs/placeholder.svg" />
-                    </label>
-                    <input class="form-input" placeholder="Causas apoiadas" />
-                    <input class="form-input" placeholder="Habilidades desejáveis" />
-                    <textarea id="description-event" class="form-textarea form-input"
-                        placeholder="Escreva uma descrição sobre esse evento"></textarea>
-                </div>
-                <a class="form-submit addEvent-btn" title="1">Próximo</a>
-            </div>
-            <div class="addEvent-step">
-                <h1 class="title">Tipo de evento</h1>
-                <div class="flex-inputs">
-                    <div class="group-labels">
-                        <label title="0" class="typeEvent-label" for="radioPunctual">
-                            <img class="icon" src="/assets/imgs/clock.svg" />
-                            <p>Data única</p>
-                        </label>
-                        <label title="1" class="typeEvent-label" for="radioRecurrent">
-                            <img class="icon" src="/assets/imgs/calendar.svg" />
-                            <p>Recorrente</p>
-                        </label>
-                        <input type="radio" id="radioRecurrent" class="typeEvent-Radio" name="typeEvent"
-                            value="recurrent">
-                        <input type="radio" id="radioPunctual" class="typeEvent-Radio" name="typeEvent"
-                            value="punctual">
-                    </div>
+{{!-- <script>
+    $( '.group-asides' ).remove();
+    $( '.first' ).show();
+</script> --}}
 
-                    <div class="typeEvent-inputs">
-                        <div class="input">
-                            <label for="event-date">Data</label>
-                            <input id="event-date" name="event-date" class="form-input" type="date">
-                        </div>
-                        <div class="input">
-                            <label for="event-hourInit">Início</label>
-                            <input id="event-hourInit" name="event-hourInit" class="form-input" type="time">
-                        </div>
-                        <div class="input">
-                            <label for="event-hourEnd">Término</label>
-                            <input id="event-hourEnd" name="event-hourEnd" class="form-input" type="time">
-                        </div>
-                        <a class="form-submit addEvent-btn" title="2">Próximo</a>
-                    </div>
-                    <div class="typeEvent-inputs">
-                        <div class="input">
-                            <label for="event-dateInit">Início</label>
-                            <input id="event-dateInit" name="event-dateInit" class="form-input" type="date">
-                        </div>
-                        <div class="input">
-                            <label for="event-hourInit">Início</label>
-                            <input id="event-hourInit" name="event-hourInit" class="form-input" type="time">
-                        </div>
-                        <div class="input input-block">
-                            <label for="event-dateInit">Término</label>
-                            <input id="event-dateEnd" name="event-dateEnd" class="form-input" type="date">
-                        </div>
-                        <a class="form-submit addEvent-btn" title="2">Próximo</a>
-                    </div>
-                </div>
-            </div>
-        </form>
-        <form id="form-addEvent-jobs" name="addEvent-jobs">
-            <div class="addEvent-step">
-                <h1 class="title">Adicionar vagas</h1>
-                <div class="flex-inputs">
-                    <div class="group-jobs">
-                        <div class="job btn-add-job">
-                            <img class="icon" src="/assets/imgs/add-user.svg" />
-                            <p>Nova vaga</p>
-                        </div>
-                        <div class="add-job">
-                            <input class="form-input" type="text" placeholder="Nome da vaga">
-                            <textarea class="form-input form-textarea" type="text"
-                                placeholder="Descrição da vaga"></textarea>
-                            <input class="form-input" type="number" placeholder="Quantidade de vagas">
-                            <input class="form-input" type="number" placeholder="Horas p/semana">
-                            <a href="#" class="form-submit close-add-job">Criar vaga</a>
-                        </div>
-                    </div>
-                </div>
-                <a class="form-submit addEvent-btn" title="3">Próximo</a>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="overlay">
-    <form name="addEvent-image">
-        {{!-- <div class="modal">
+{{!-- <div class="modal">
             <div id="addEvent-imageUp">
                 <label class="imageUp" for="event-image"><img src="/assets/imgs/upload.svg" /></label>
                 <input type="file" id="event-image" name="event-image" />
@@ -105,7 +226,7 @@
                 </p>
             </div>
         </div> --}}
-        {{!-- <div class="modal">
+{{!-- <div class="modal">
             <div class="preview">
                 <h1 class="title">Preview</h1>
                 <img class="preview-image" src="/assets/imgs/animal-cat-face-close-up-416160.jpg">
@@ -115,15 +236,11 @@
                 <button type="submit">Finalizar</button>
             </div>
         </div> --}}
-        <div class="modal">
+{{!-- <div class="modal">
             <div class="preview">
                 <img class="preview-image" src="/assets/imgs/successImage.png">
                 <h1 class="title success-title">Boas notícias!</h1>
                 <p class="preview-content">Esse evento foi criado com sucesso e agora você já pode procurar e convidar voluntários para lhe ajudar.</p>
                 <a href="/ngo">Ir para a home</a>
             </div>
-        </div>
-    </form>
-
-</div>
-<script>init()</script>
+        </div> --}}

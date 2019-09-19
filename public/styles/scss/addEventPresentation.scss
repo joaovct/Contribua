@@ -15,9 +15,6 @@
     .content-page{
         height: 100%;
         width: 50%;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
         margin-left: $margin4;
         .title{
             font-size: 3em;
@@ -27,10 +24,10 @@
             font-size: 1.7rem;
             margin-top: $margin2;
         }
-        form{
-            button[type="submit"]{
-                width: auto;
-            }
+        a{
+            @extend %button;
+            background: $mainColor;
+            color: white;
         }
     }
 }

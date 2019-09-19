@@ -1,3 +1,16 @@
+.container .content-page a {
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 100;
+  text-align: center;
+  padding: 10px 15px 10px 15px;
+  border-radius: 7px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 20px;
+}
+
 .box {
   padding: 20px 40px 20px 40px;
   background: white;
@@ -9,6 +22,10 @@
 .width-auto {
   width: auto;
   flex-grow: 0;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .title {
@@ -44,7 +61,6 @@
 .text {
   font-size: 1.25rem;
   text-align: left;
-  font-weight: normal;
   margin: 0 0 0 0;
 }
 
@@ -234,9 +250,6 @@
 .container .content-page {
   height: 100%;
   width: 50%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
   margin-left: 40px;
 }
 .container .content-page .title {
@@ -247,8 +260,9 @@
   font-size: 1.7rem;
   margin-top: 20px;
 }
-.container .content-page form button[type=submit] {
-  width: auto;
+.container .content-page a {
+  background: #3171e0;
+  color: white;
 }
 
 /*# sourceMappingURL=addEventPresentation.css.map */

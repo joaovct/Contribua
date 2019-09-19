@@ -1,3 +1,16 @@
+.submit-step .call-modal-job {
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 100;
+  text-align: center;
+  padding: 10px 15px 10px 15px;
+  border-radius: 7px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 20px;
+}
+
 .box {
   padding: 20px 40px 20px 40px;
   background: white;
@@ -11,7 +24,11 @@
   flex-grow: 0;
 }
 
-.title {
+.text-center {
+  text-align: center;
+}
+
+.article-event .textarea-title, .title {
   font-size: 2rem;
   font-weight: 900;
   margin: 0 0 0 0;
@@ -41,10 +58,9 @@
   font-weight: 800;
 }
 
-.text {
+.article-event .textarea-content, .text {
   font-size: 1.25rem;
   text-align: left;
-  font-weight: normal;
   margin: 0 0 0 0;
 }
 
@@ -218,236 +234,122 @@
   font-weight: 800;
   src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
 }
-.centralize {
-  height: 100%;
-  width: 100%;
-  padding: 0;
+body {
+  padding: 0 !important;
 }
 
-.container {
+.asides {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+.asides aside {
   height: 100%;
-  width: 80vw;
+  width: 50%;
 }
-.container form {
-  width: 100%;
-}
-.container .addEvent-step {
-  display: block;
-  padding: 20px 0 20px 0;
-}
-.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .job, .container .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-label {
-  background: white;
+.asides aside:last-child {
   display: flex;
-  flex-flow: column nowrap;
   justify-content: center;
-  align-items: center;
-  border: 3px solid #3171e0;
-  box-shadow: 0 12px 24px 3px rgba(0, 0, 0, 0.06);
-  border-radius: 14px;
-  padding: 24.75px 31.5px 24.75px 31.5px;
-  cursor: pointer;
-  margin-right: 40px;
-  margin-left: 40px;
+  padding: 20px 40px 0 40px;
 }
-.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .job img.icon, .container .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-label img.icon {
-  height: 100px;
-  width: 100px;
-}
-.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .job p, .container .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-label p {
-  font-size: 1.75em;
-  font-weight: normal;
-  margin: 20px 0 0 0;
-  text-align: center;
-}
-.container .addEvent-step:nth-child(1) {
-  margin-top: 0;
-}
-.container .addEvent-step:nth-child(1) .flex-inputs {
+.asides aside:last-child .form {
   width: 100%;
+}
+.asides aside:last-child .form .flex-inputs {
   display: flex;
-  flex-flow: row wrap;
-  box-sizing: border-box;
 }
-.container .addEvent-step:nth-child(1) .flex-inputs .form-input-icon {
-  margin: 20px 0 0 0;
-  padding: 0;
-  width: 100%;
-}
-.container .addEvent-step:nth-child(1) .flex-inputs .form-input-icon .form-input {
-  width: 100%;
+.asides aside:last-child .form .flex-inputs .form-input {
   margin: 0;
 }
-.container .addEvent-step:nth-child(1) .flex-inputs .form-input,
-.container .addEvent-step:nth-child(1) .flex-inputs .form-textarea {
-  margin: 20px 0 0 0;
+.asides aside:last-child .form .flex-inputs .form-input:last-child {
+  margin-left: 10px;
 }
-.container .addEvent-step:nth-child(1) .flex-inputs textarea#description-event {
-  grid-area: 6;
+.asides aside:last-child .form .flex-inputs .input {
+  margin-right: 10px;
 }
-.container .addEvent-step:nth-child(2) {
-  display: none;
+.asides aside:last-child .form .flex-inputs .input .form-input {
+  margin: 0 !important;
 }
-.container .addEvent-step:nth-child(2) .flex-inputs {
-  min-height: calc((43px + 1.25rem) * 6);
-  width: 100%;
+
+.submit-step {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column nowrap;
+  justify-content: flex-end;
 }
-.container .addEvent-step:nth-child(2) .flex-inputs .group-labels {
-  display: flex;
-  justify-content: space-between;
-  width: 600px;
+.submit-step .form-submit {
+  width: auto;
 }
-.container .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-label {
-  transition: opacity 0.25s;
-}
-.container .addEvent-step:nth-child(2) .flex-inputs .group-labels .typeEvent-Radio {
-  display: none;
-}
-.container .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs {
-  width: 520px;
-  display: none;
-  margin-top: 20px;
-}
-.container .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs .input {
-  display: inline-block;
+.submit-step .call-modal-job {
+  box-shadow: 0 6px 12px -1.5px #E0EAFB;
+  background: #E0EAFB;
+  color: #3171e0;
   margin-right: 20px;
 }
-.container .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs .input label {
-  display: block;
-  font-size: 1.75em;
-  font-weight: 500;
-  margin: 20px 0 0 0;
+
+.article-event {
+  height: 100vh;
+  width: 100vw;
 }
-.container .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs .input input {
-  display: block;
-  width: auto;
-  margin: 10px 0 0 0;
-}
-.container .addEvent-step:nth-child(2) .flex-inputs .typeEvent-inputs .input-block {
-  display: block;
-}
-.container .addEvent-step button[type=submit],
-.container .addEvent-step .form-submit {
-  width: auto;
-  padding: 10px 20px 10px 20px;
-  font-size: 1.4em;
-  margin-top: 20px;
-  display: inline-block;
-}
-.container #form-addEvent-jobs .addEvent-step {
-  display: none;
-}
-.container #form-addEvent-jobs .addEvent-step .flex-inputs {
-  height: auto;
+.article-event .textarea-title, .article-event .textarea-content {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
+  font-family: Nunito;
+  border: none;
+  outline: none;
+  background: none;
+  resize: none;
+  overflow: hidden;
 }
-.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-flow: row wrap;
+.article-event .textarea-title {
+  height: 2.5rem;
 }
-.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .job {
-  padding: 50px 35px 50px 35px;
-}
-.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .add-job {
-  display: none;
-  width: auto;
-}
-.container #form-addEvent-jobs .addEvent-step .flex-inputs .group-jobs .add-job .form-input {
-  width: 100%;
+.article-event .textarea-content {
+  margin-top: 40px;
 }
 
-.overlay {
-  display: none;
-  position: relative;
-}
-.overlay form {
-  padding: 0;
-  margin: 0;
+.overlay .modal {
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.overlay form .modal {
-  width: 450px;
-}
-.overlay form .modal #addEvent-imageUp {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-flow: column nowrap;
-  width: 450px;
+  align-items: center;
 }
-.overlay form .modal #addEvent-imageUp label.imageUp {
+.overlay .modal .up-thumbnail, .overlay .modal .preview, .overlay .modal .done {
+  width: 100%;
+}
+.overlay .modal .form-btnFile {
   height: 200px;
   width: 350px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f2f2f2;
-  border-radius: 7px;
-  position: relative;
-  cursor: pointer;
 }
-.overlay form .modal #addEvent-imageUp label.imageUp img {
+.overlay .modal .form-btnFile img {
   height: 100px;
   width: 100px;
 }
-.overlay form .modal #addEvent-imageUp .title {
-  margin-top: 20px;
+.overlay .modal .preview .form-btnFile {
+  background: url("../../assets/imgs/dog-white.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
 }
-.overlay form .modal #addEvent-imageUp .text {
-  font-size: 1.4em;
-  margin-top: 10px;
-}
-.overlay form .modal #addEvent-imageUp #event-image {
-  display: none;
-}
-.overlay form .modal .preview {
-  width: 350px;
-}
-.overlay form .modal .preview .title {
-  margin-bottom: 40px;
-}
-.overlay form .modal .preview .success-title {
-  text-align: center;
-  margin: 40px 0 20px 0;
-}
-.overlay form .modal .preview img.preview-image {
+.overlay .modal .done img {
   height: 200px;
   width: 350px;
-  border-radius: 7px;
   object-fit: cover;
 }
-.overlay form .modal .preview .preview-title {
-  font-size: 2em;
-  margin: 20px 0 0 0;
+
+.bg1 {
+  background: url("../../assets/imgs/pugg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-.overlay form .modal .preview .preview-content {
-  font-size: 1.25em;
-  margin: 10px 0 0 0;
+
+.bg2 {
+  background: url("../../assets/imgs/kids.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-.overlay form .modal .preview button[type=submit],
-.overlay form .modal .preview .form-submit {
-  width: auto;
-  margin-top: 20px;
-}
-.overlay form .modal .preview a {
-  font-size: 1.25em;
-  display: block;
-  text-align: center;
-  text-decoration: underline;
-  margin-top: 20px;
+
+.bg3 {
+  background: url("../../assets/imgs/hats.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 /*# sourceMappingURL=addEvent.css.map */

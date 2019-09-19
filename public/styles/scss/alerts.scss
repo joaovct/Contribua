@@ -10,7 +10,7 @@
     width: $widthContainer;
     display: flex;
     flex-flow: column nowrap;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: flex-end;
   }
 }
@@ -23,7 +23,7 @@ $borderAlert: 8px solid;
   margin: 0 0 $margin2 0;
   border-radius: 5px;
   padding: 10px 20px 10px 20px;
-  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.16);
   box-sizing: border-box;
   z-index: 999;
   background: white;
@@ -58,7 +58,7 @@ $borderAlert: 8px solid;
       margin: 0;
     }
     .text {
-      font-size: 1.15em;
+      font-size: 1em;
       color: #565656;
       margin: 0;
       margin-top: 5px;
