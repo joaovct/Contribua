@@ -1,287 +1,207 @@
-@import "utilities/variables.scss";
+@import "utilities/variables";
 
-.centralize {
+body {
   height: 100%;
   width: 100%;
-  padding: 0;
 }
 
-.container {
+.asides {
   height: 100%;
-  width: $widthContainer;
-}
-
-#addEvent {
-  position: relative;
   width: 100%;
-  ul#addEvent-progress {
+  display: flex;
+  aside {
+    height: 100%;
+    width: 50%;
     display: flex;
-    list-style: none;
-    margin: 0 0 $margin4 0;
-    padding: 0;
-    background: white;
-    width: 100%;
-    z-index: 998;
-    li {
-      font-size: 1.75em;
-      font-weight: 100;
-      position: relative;
-      margin: 0;
-      margin-right: $margin2;
-      opacity: 0.35;
-      cursor: pointer;
-      hr {
-        margin: 5px 0 0 0;
-        height: 3px;
-        width: calc(100% + #{$margin2});
-        background: $lightBlue;
-        border: none;
-        transition: 0.5s;
-        transform-origin: left;
-      }
-      &:first-child {
-        opacity: 1;
-        font-weight: 500;
-        hr {
-          background: $mainColor;
-        }
-      }
-      &:last-child hr {
-        width: 100%;
-      }
-    }
-  }
-  form {
-    width: 100%;
-  }
-  .addEvent-step {
-    display: block;
-    margin-top: $margin4;
-    padding-bottom: $margin2;
-    .title {
-      font-size: 2.7em;
-      margin-bottom: $margin2;
-    }
-    %card {
-      background: white;
+    &:last-child {
       display: flex;
-      flex-flow: column nowrap;
       justify-content: center;
-      align-items: center;
-      border: 3px solid $mainColor;
-      box-shadow: 0 12px 24px 3px rgba(0, 0, 0, 0.06);
-      border-radius: 14px;
-      padding: 24.75px 31.5px 24.75px 31.5px;
-      cursor: pointer;
-      margin-right: $margin4;
-      margin-left: $margin4;
-      img.icon {
-        height: 100px;
-        width: 100px;
-      }
-      p {
-        font-size: 1.75em;
-        font-weight: normal;
-        margin: $margin2 0 0 0;
-        text-align: center;
-      }
-    }
-    &:nth-child(1) {
-      // First form
-      margin-top: 0;
-      .flex-inputs {
+      padding: $margin2 $margin4 0 $margin4;
+      .form {
         width: 100%;
-        display: flex;
-        flex-flow: row wrap;
-        box-sizing: border-box;
-        .form-input-icon {
-          margin: $margin2 0 0 0;
-          padding: 0;
-          width: 100%;
-          .form-input {
-            width: 100%;
-            margin: 0;
-          }
-        }
-        .form-input,
-        .form-textarea {
-          margin: $margin2 0 0 0;
-        }
-        textarea#description-event {
-          // height: calc(100% - 76px - 1.25rem);
-          grid-area: 6;
-        }
-      }
-    }
-    &:nth-child(2) {
-      // Second form
-      display: none;
-      .flex-inputs {
-        min-height: calc((43px + 1.25rem) * 6);
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-flow: column nowrap;
-        .group-labels {
+        .flex-inputs {
           display: flex;
-          justify-content: space-between;
-          width: 600px;
-          .typeEvent-label {
-            @extend %card;
-            transition: opacity 0.25s;
+          .form-input,
+          .icon-input {
+            margin: 0;
+            &:last-child {
+              margin-left: $margin2 / 2;
+            }
           }
-          .typeEvent-Radio {
-            display: none;
+          .input {
+            margin-right: $margin2 / 2;
+            .form-input {
+              margin: 0 !important;
+            }
+            input[type="time"] {
+              width: 100px;
+            }
           }
         }
-        .typeEvent-inputs {
-          width: 520px;
-          display: none;
-          margin-top: $margin2;
-          .input {
-            display: inline-block;
-            margin-right: $margin2;
-            label {
-              display: block;
-              font-size: 1.75em;
-              font-weight: 500;
-              margin: $margin2 0 0 0;
-            }
-            input {
-              display: block;
-              width: auto;
-              margin: $margin2 / 2 0 0 0;
+        #jobs {
+          #noJobs {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            img {
+              height: 200px;
             }
           }
-          .input-block {
-            display: block;
+          .box {
+            .icons {
+              width: 100%;
+              justify-content: flex-end;
+              .icon {
+                height: 24px;
+                width: 24px;
+                padding: 10px;
+                border-radius: 5px;
+                background: $lightGray3;
+                cursor: pointer;
+                transition: 0.5s;
+                img {
+                  opacity: 0.5;
+                }
+                &:hover {
+                  background: $lightGray;
+                  img {
+                    opacity: 0.75;
+                  }
+                }
+              }
+            }
           }
         }
       }
-    }
-    button[type="submit"],
-    .form-submit {
-      width: auto;
-      padding: 10px 20px 10px 20px;
-      font-size: 1.4em;
-      margin-top: $margin2;
-      display: inline-block;
     }
   }
-  #form-addEvent-jobs {
-    .addEvent-step {
-      display: none;
-      .flex-inputs {
-        height: auto;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .group-jobs {
-          height: 100%;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: flex-start;
-          flex-flow: row wrap;
-          .job {
-            @extend %card;
-            padding: 50px 35px 50px 35px;
-          }
-          .add-job {
-            display: none;
-            width: auto;
-            .form-input {
-              width: 100%;
-            }
-          }
-        }
-      }
-    }
+}
+
+.submit-step {
+  display: flex;
+  justify-content: flex-end;
+  .btn-secondary{
+    margin-right: $margin2;
+    margin-left: $margin2;
+  }
+  .form-submit, .btn-first {
+    width: auto;
+  }
+}
+.buttons-aside3{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.article-event {
+  height: 100vh;
+  width: 100vw;
+  .textarea-title,
+  .textarea-content {
+    width: 100%;
+    display: block;
+    font-family: $fontFamily;
+    border: none;
+    outline: none;
+    background: none;
+    resize: none;
+    overflow: hidden;
+  }
+  .textarea-title {
+    @extend %title;
+    height: 2.5rem;
+  }
+  .textarea-content {
+    @extend %text;
+
+    margin-top: $margin4;
   }
 }
 
 .overlay {
-  display: none;
-  position: relative;
-  form {
-    padding: 0;
-    margin: 0;
+  .modal {
     display: flex;
-    justify-content: center;
+    flex-flow: column nowrap;
     align-items: center;
-    .modal {
-      width: 450px;
-      #addEvent-imageUp {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-flow: column nowrap;
-        width: 450px;
-        label.imageUp {
-          height: 200px;
-          width: 350px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: #f2f2f2;
-          border-radius: 7px;
-          position: relative;
-          cursor: pointer;
-          img {
-            height: 100px;
-            width: 100px;
-          }
-        }
-        .title {
-          margin-top: $margin2;
-        }
-        .text {
-          font-size: 1.4em;
-          margin-top: $margin2 / 2;
-        }
-        #event-image {
-          display: none;
-        }
-      }
-      .preview {
-        width: 350px;
-        .title {
-          margin-bottom: $margin4;
-        }
-        .success-title {
-          text-align: center;
-          margin: $margin4 0 $margin2 0;
-        }
-        img.preview-image {
-          height: 200px;
-          width: 350px;
-          border-radius: 7px;
-          object-fit: cover;
-        }
-        .preview-title {
-          font-size: 2em;
-          margin: $margin2 0 0 0;
-        }
-        .preview-content {
-          font-size: 1.25em;
-          margin: $margin2 / 2 0 0 0;
-        }
-        button[type="submit"],
-        .form-submit {
-          width: auto;
-          margin-top: $margin2;
-        }
-        a {
-          font-size: 1.25em;
-          display: block;
-          text-align: center;
-          text-decoration: underline;
-          margin-top: $margin2;
-        }
+    .up-thumbnail,
+    .preview,
+    .done {
+      width: 100%;
+    }
+    .form-btnFile {
+      height: 200px;
+      width: 350px;
+      img {
+        height: 100px;
+        width: 100px;
       }
     }
+    .preview {
+      height: auto;
+      word-break: break-all;
+      line-break: normal;
+      .form-btnFile {
+        background: url("../../assets/imgs/dog-white.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        border: none;
+      }
+    }
+    .done {
+      img {
+        height: 200px;
+        width: 350px;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+%bg1,
+.bg1 {
+  position: relative;
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: calc(50% - 20px);
+    background: url("../../assets/imgs/pugg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+%bg2,
+.bg2 {
+  position: relative;
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: calc(50% - 20px);
+    background: url("../../assets/imgs/kids.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+%bg3,
+.bg3 {
+  position: relative;
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: calc(50% - 20px);
+    background: url("../../assets/imgs/hats.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 }

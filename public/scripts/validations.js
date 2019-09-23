@@ -1,3 +1,5 @@
+// import { InvalidConnectionError } from "sequelize/types"
+
 function validationName(name, iconName){
     if(name.value.length < 4){
         iconName.classList.remove("success-validation")
@@ -26,13 +28,24 @@ function validationLastName(){
 
 function validationAddress(address, iconAddress){
     if(address.value.length < 5){
-        iconAddress.classList.remove("success-validation")
-        iconAddress.classList.add("alert-validation")
+        iconError(iconAddress)
         address.focus()
         return false
     }else{
-        iconAddress.classList.remove("alert-validation")
-        iconAddress.classList.add("success-validation")
+        iconSuccess(iconAddress)
+        return true
+    }
+}
+
+function validationAddressNumber(addressNumber, iconNumber){
+    if(addressNumber.value.length < 1){
+        iconNumber.classList.remove("success-validation")
+        iconNumber.classList.add("alert-validation")
+        addressNumber.focus()
+        return false
+    }else{
+        iconNumber.classList.remove("alert-validation")
+        iconNumber.classList.add("success-validation")
         return true
     }
 }
@@ -42,9 +55,18 @@ function validationCauses(causes){
     for(let Cause of causes){
         if(Cause.checked) checks++
     }
-    console.log(checks)
     if(checks<1) return false
     else return true
+}
+
+function getOptionChoose(radio){
+    if(validationCauses(radio)){
+        for(let r of radio){
+            if(r.checked) return r
+        }
+    }else{
+        return false
+    }
 }
 
 function validationDescription(description){
@@ -93,6 +115,20 @@ function validationDateBorn(date){
         return true
     }
     return false
+}
+
+function validationPunctualDate(pDStart, pHStart, pDEnd, pHEnd){
+    var dStart = new Date(pDStart.value+ " " + pHStart.value)
+    var dEnd = new Date(pDEnd.value+ " " +pHEnd.value)
+    if(dStart >= dEnd) return false
+    else return true
+}
+
+function validationRecurrentDate(rDStart, rHStart, rDEnd){
+    var dStart = new Date(rDStart.value+ " " + rHStart.value)
+    var dEnd = new Date(rDEnd.value)
+    if(dStart >= dEnd) return false
+    else return true
 }
 
 function validationCNPJ(cnpj, iconCnpj){
@@ -327,4 +363,19 @@ function formatTelephone(telephone){
     }else{
         telephone.value = telephone.value.replace(/(\d{4})(\d)/,"$1-$2")
     }
+}
+
+function iconError(icon){
+    icon.classList.remove("success-validation")
+    icon.classList.add("alert-validation")
+}
+
+function iconSuccess(icon){
+    icon.classList.remove("alert-validation")
+    icon.classList.add("success-validation")
+}
+
+function iconClear(icon){
+    icon.classList.remove('alert-validation')
+    icon.classList.remove('success-validation')
 }

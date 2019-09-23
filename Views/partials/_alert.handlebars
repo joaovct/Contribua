@@ -3,68 +3,68 @@
 <script src="globalScript.js"></script>
 <div class="centralize centralize-alert">
     <div class="container">
-{{#if success_msg}}
-    <div class="alert alert-success">
-        <figure class="alert-icon">
-            <div class="icon"></div>
-        </figure>
-        <div class="alert-content">
-            <h1 class="alert-title">Bem-vindo :)</h1>
-            <p class="text">{{success_msg}}
-            </p>
+        {{#if success_msg}}
+        <div class="alert alert-success">
+            <figure class="alert-icon">
+                <div class="icon"></div>
+            </figure>
+            <div class="alert-content">
+                <h1 class="alert-title">Sucesso!</h1>
+                <p class="text">{{success_msg}}
+                </p>
+            </div>
+            <figure class="alert-close" onclick="closeAlert(this)">
+                <img src="/assets/imgs/close.svg" />
+            </figure>
         </div>
-        <figure class="alert-close" onclick="closeAlert(this)">
-            <img src="/assets/imgs/close.svg" />
-        </figure>
-    </div>
-{{/if}}
-{{#if error_msg}}
-    <div class="alert alert-error">
-        <figure class="alert-icon">
-            <div class="icon"></div>
-        </figure>
-        <div class="alert-content">
-            <h1 class="alert-title">Houve um erro...</h1>
-            <p class="text">{{error_msg}}
-            </p>
+        {{/if}}
+        {{#if error_msg}}
+        <div class="alert alert-error">
+            <figure class="alert-icon">
+                <div class="icon"></div>
+            </figure>
+            <div class="alert-content">
+                <h1 class="alert-title">Algo deu errado...</h1>
+                <p class="text">{{error_msg}}
+                </p>
+            </div>
+            <figure class="alert-close" onclick="closeAlert(this)">
+                <img src="/assets/imgs/close.svg" />
+            </figure>
         </div>
-        <figure class="alert-close" onclick="closeAlert(this)">
-            <img src="/assets/imgs/close.svg" />
-        </figure>
-    </div>
-{{/if}}
+        {{/if}}
 
-{{#if error}}
-<div class="alert alert-error">
-        <figure class="alert-icon">
-            <div class="icon"></div>
-        </figure>
-        <div class="alert-content">
-            <h1 class="alert-title">Houve um erro...</h1>
-            <p class="text">{{error}}
-            </p>
+        {{#if error}}
+        <div class="alert alert-error">
+            <figure class="alert-icon">
+                <div class="icon"></div>
+            </figure>
+            <div class="alert-content">
+                <h1 class="alert-title">Houve um erro...</h1>
+                <p class="text">{{error}}
+                </p>
+            </div>
+            <figure class="alert-close" onclick="closeAlert(this)">
+                <img src="/assets/imgs/close.svg" />
+            </figure>
         </div>
-        <figure class="alert-close" onclick="closeAlert(this)">
-            <img src="/assets/imgs/close.svg" />
-        </figure>
-    </div>
-{{else}}
-{{/if}}
+        {{else}}
+        {{/if}}
 
-{{#if warning_msg}}
-    <div class="alert alert-warning">
-        <figure class="alert-icon">
-            <div class="icon"></div>
-        </figure>
-        <div class="alert-content">
-            <h1 class="alert-title">O email já chegou?</h1>
-            <p class="text">{{warning_msg}}
-            </p>
+        {{#if warning_msg}}
+        <div class="alert alert-warning">
+            <figure class="alert-icon">
+                <div class="icon"></div>
+            </figure>
+            <div class="alert-content">
+                <h1 class="alert-title">Atenção!</h1>
+                <p class="text">{{warning_msg}}
+                </p>
+            </div>
+            <figure class="alert-close" onclick="closeAlert(this)">
+                <img src="/assets/imgs/close.svg" />
+            </figure>
         </div>
-        <figure class="alert-close" onclick="closeAlert(this)">
-            <img src="/assets/imgs/close.svg" />
-        </figure>
-    </div>
-{{/if}}  
+        {{/if}}
     </div>
 </div>

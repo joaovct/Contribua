@@ -9,19 +9,21 @@
         <div class="search-field">
             <form class="search-form">
                 <img src="/assets/imgs/search.svg" />
-                <input placeholder="Pesquise por alguém ou algo..." oninput="doSearch(this)" class="search-input" name="search-input" type="text"/>
+                <input placeholder="Pesquisar" oninput="doSearch(this)" class="search-input" name="search-input"
+                    type="text" />
             </form>
         </div>
         <nav class="nav-header">
             <ul>
-                <a href="#">
-                    <li class="icon"><img src="/assets/imgs/bell.svg"></li>
+                <li class="icon"><a href="#"><img src="/assets/imgs/bell.svg"></a></li>
+                <li class="profile-pic"><a onclick="$('.header-options').toggle('fast')"><img src="/assets/imgs/man2.jpg" /></a></li>
+                <ul class="header-options">
+                    <li><a href="/user/profile">Perfil</a></li>
+                    <li><a href="/user/settings">Configurações</a></li>
+                    <li><a href="/user/starting-ong">Criar uma ONG</a></li>
+                    <li><a href="/logout">Sair</a></li>
+                </ul>
                 </a>
-                <a href="/user/profile">
-                    <li class="profile-pic availableVolunteer"><img src="/assets/imgs/user.svg" />
-                    </li>
-                </a>
-                <li> <a href="/logout">Sair</a></li>
             </ul>
         </nav>
     </div>
@@ -31,24 +33,6 @@
 <header class="header-relative">
     <div class="container">
         <a href="/user"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
-        <div class="search-field">
-            <form class="search-form">
-                <img src="/assets/imgs/search.svg" />
-                <input type="text" placeholder="Procure um voluntário, ONG ou evento" class="search-input" />
-            </form>
-        </div>
-        <nav class="nav-header">
-            <ul>
-                <a href="#">
-                    <li class="icon"><img src="/assets/imgs/bell.svg"></li>
-                </a>
-                <a href="/user/profile">
-                    <li class="profile-pic availableVolunteer"><img src="/assets/imgs/user.svg" />
-                    </li>
-                </a>
-                <li> <a href="/logout">Sair</a></li>
-            </ul>
-        </nav>
     </div>
 </header>
 
@@ -58,9 +42,6 @@
         <a href="/"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
         <nav class="nav-header">
             <ul>
-                <a href="#">
-                    <li class="text">Sou uma ONG</li>
-                </a>
                 <a href="/register/">
                     <li class="text">Sou novo</li>
                 </a>
@@ -73,16 +54,6 @@
 <header class="header-relative">
     <div class="container">
         <a href="/"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
-        <nav class="nav-header">
-            <ul>
-                <a href="/addNGO">
-                    <li class="text">Sou uma ONG</li>
-                </a>
-                <a href="/register">
-                    <li class="text">Sou novo</li>
-                </a>
-            </ul>
-        </nav>
     </div>
 </header>
 {{/if}}

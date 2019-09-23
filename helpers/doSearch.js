@@ -6,9 +6,9 @@ var results = []
 
 async function findVolunteers(key){
     await Volunteer.findAll({
-        where: {
-            nameVolunteer: {[Op.like]: key}
-        }
+        where: Sequelize.where(Sequelize.fn("concat", Sequelize.col("nameVolunteer")," ", Sequelize.col("lastNameVolunteer")), {
+            [Op.like]: key
+        })
     }).then((data) =>{
         for(let volunteer of data){
             let object = {

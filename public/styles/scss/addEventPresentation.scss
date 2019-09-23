@@ -1,18 +1,9 @@
 @import 'utilities/variables.scss';
 
-.centralize{
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-}
-
 .container{
     display: flex;
     align-items: center;
-    width: $widthContainer;
     figure.hero-image{
-        height: 100%;
         width: 50%;
         object-fit: cover;
         margin: 0;
@@ -24,9 +15,6 @@
     .content-page{
         height: 100%;
         width: 50%;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
         margin-left: $margin4;
         .title{
             font-size: 3em;
@@ -36,12 +24,10 @@
             font-size: 1.7rem;
             margin-top: $margin2;
         }
-        form{
-            button[type="submit"]{
-                width: auto;
-                padding: 10px 20px 10px 20px;
-                margin: $margin2 0 0 0;
-            }
+        a{
+            @extend %button;
+            background: $mainColor;
+            color: white;
         }
     }
 }

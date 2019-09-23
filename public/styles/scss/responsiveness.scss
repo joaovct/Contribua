@@ -1,0 +1,131 @@
+@import "utilities/variables";
+
+@mixin resizeContainer($width) {
+  width: $width;
+}
+
+// // Group articles to 3 Columns
+
+@media screen and (max-width: 1200px) {
+  .nav-articles {
+    .group-articles {
+      grid-template-columns: 1fr 1fr 1fr !important;
+    }
+  }
+}
+
+// // Group articles to 2 Columns
+
+@media screen and (max-width: 900px) {
+  .nav-articles {
+    .group-articles {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+}
+
+// // Group articles to 1 Column
+
+@media screen and (max-width: 835px) {
+  .title {
+    font-size: 2.35em;
+  }
+  .nav-articles {
+    .group-articles {
+      margin: $margin2 0 0 0;
+      grid-template-columns: 1fr !important;
+      .feed-article {
+        display: flex;
+        .article-image {
+          width: 300px;
+          order: 2;
+        }
+        .article-content {
+          padding-right: $margin2;
+          box-sizing: border-box;
+          .article-title {
+            font-size: 1.8em !important;
+          }
+          .article-subitle {
+            font-size: 1.3em !important;
+          }
+          .article-ngo-details {
+            font-size: 1.3em !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+// // Group ngo to 4 Columns
+
+@media screen and (max-width: 1360px) {
+  .nav-articles {
+    .group-ngos {
+      grid-template-columns: 1fr 1fr 1fr 1fr !important;
+    }
+  }
+}
+
+// // Group ngo to 3 COlumns
+
+@media screen and (max-width: 1080px) {
+  .nav-articles {
+    .group-ngos {
+      grid-template-columns: 1fr 1fr 1fr !important;
+    }
+  }
+}
+
+// Mobile
+
+@media screen and (max-width: $medium) {
+  .container {
+    @include resizeContainer(90vmax);
+    // border: 2px solid yellow;
+  }
+
+  .group-asides {
+    flex-flow: column nowrap;
+    align-items: center;
+    .aside {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      &:first-child {
+        display: none;
+      }
+    }
+    form,
+    .form {
+      width: 90%;
+    }
+  }
+}
+
+// Tablet
+
+@media screen and (min-width: $medium + 1px) and (max-width: $large) {
+  .container {
+    @include resizeContainer(80vmax);
+    // border: 2px solid orange;
+  }
+
+  // index
+
+  .group-asides {
+    .aside {
+      width: 50%;
+    }
+  }
+}
+
+// Desktop
+
+@media screen and (min-width: $large + 1px) {
+  .container {
+    @include resizeContainer(80vmax);
+    // border: 2px solid red;
+  }
+}

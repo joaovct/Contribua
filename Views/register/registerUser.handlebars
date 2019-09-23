@@ -1,14 +1,15 @@
 <style>
     body {
-        background-image: url('../../assets/imgs/adult-backlit-beach-1000445.jpg');
+        background-image: linear-gradient(rgba(224, 234, 251, 0.5), rgba(224, 234, 251, 0.9)),
+            url("../../assets/imgs/adult-backlit-beach-1000445.jpg");
         background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
     }
 </style>
 
-<div class="centralize padding-top4">
-    <form class="box" id="form-registerUser" name="form-registerUser" action="/register/registerUser" method="POST">
+<div class="centralize padding-4 border-box">
+    <form class="form box" id="form-registerUser" name="form-registerUser" action="/register/registerUser" method="POST">
         <h1 class="form-title">Cadastro de voluntário</h1>
         <div class="icon-input"><input class="form-input" name="nameVolunteer" placeholder="Primeiro Nome" type="text" /></div>
         <div class="icon-input"><input class="form-input" name="lastNameVolunteer" placeholder="Sobrenome" type="text" /></div>
@@ -18,10 +19,7 @@
         <div class="icon-input"><input class="form-input" name="cityVolunteer" placeholder="Cidade" /></div>
         <div class="icon-input"><input class="form-input" name="districtVolunteer" placeholder="Bairro" /></div>
         <div class="icon-input"><input class="form-input" name="addressVolunteer" placeholder="Rua"></div>
-        {{!-- <div class="icon-input"> --}}
-            {{!-- <label class="form-label">Data de nascimento</label> --}}
-            <input class="form-input" placeholder="Data de nascimento" name="dateBornVolunteer" type="date" />
-        {{!-- </div> --}}
+        <input class="form-input" placeholder="Data de nascimento" name="dateBornVolunteer" type="date" />
         <div class="form-groupSelect margin-top2">
             <label class="form-label">Causas</label>
 
@@ -69,7 +67,8 @@
         <button class="margin-top2" type="submit" id="submit">Registrar-se</button>
         <span class="form-link form-span-text"><a href="/" class="form-link-register">Já tenho uma
                 conta</a></span>
-        <span class="form-link form-span-text"><a href="/register/addNGO" class="form-link-register">Sou uma ONG</a></span>
+        <span class="form-link form-span-text"><a href="/register/addNGO" class="form-link-register">Sou uma
+                ONG</a></span>
     </form>
 </div>
 
