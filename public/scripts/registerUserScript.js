@@ -71,8 +71,7 @@ function verifyForm(e){
     if(!validationName(name, iconName)|| !validationLastName(lastName, iconLastName) || !validationEmail(email, iconEmail) ||
        !validationPassword(password, iconPassword) || !validationConfirmPassword(confirmPassword, iconConfirmPassword) ||
        !validationCPF(cpf, iconCpf) || !validationCep(cep, iconCep) || !validationCity(city, iconCity) ||
-       !validationDistrict(district, iconDistrict), !validationAddress(address, iconAddress), !validationNumber(num, iconNum) ||
-       !validationDateBorn(date) || !validationCauses(causes)){
+       !validationDistrict(district, iconDistrict) || !validationAddress(address, iconAddress) || !validationCauses(causes)){
         e.preventDefault()
     }
 }

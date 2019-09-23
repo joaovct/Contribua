@@ -89,7 +89,10 @@ function validationDistrict(district, iconDistrict){
 }
 
 function validationDateBorn(date){
-    return true
+    if(date){
+        return true
+    }
+    return false
 }
 
 function validationCNPJ(cnpj, iconCnpj){

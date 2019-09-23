@@ -12,15 +12,11 @@
                 <div class="feed-header">
                     <div class="filters">
                         <ul class="group-categories">
-                            <a class="item-category category-filter filter-active" href="#">
-                                <li>Direitos Humanos</li>
-                            </a>
-                            <a class="item-category category-filter filter-active" href="#">
-                                <li>Ambiental</li>
-                            </a>
-                            <a class="item-category category-filter filter-active" href="#">
-                                <li>Animal</li>
-                            </a>
+                            {{#each causes}}
+                                <a class="item-category category-filter filter-active" href="#">
+                                    <li>{{descCategory}}</li>
+                                </a>
+                            {{/each}}
                         </ul>
                     </div>
                 </div>
@@ -31,7 +27,7 @@
                 </figure>
             </a>
             <div class="profile-location-since">
-                <h3 class="content">São Paulo, SP. Desde jul de 2019.</h3>
+                <h3 class="content">{{data.cityVolunteer}}. Desde {{data.createdAt}}</h3>
             </div>
             <div class="profile-about">
                 <p class="content">{{data.biographyVolunteer}}</p>
