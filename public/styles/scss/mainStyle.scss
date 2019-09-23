@@ -446,7 +446,13 @@ input[type="submit"] {
   color: white;
   &:disabled {
     opacity: 0.5;
+    cursor: default;
   }
+}
+
+.disabled{
+  opacity: 0.5;
+  cursor: default;
 }
 
 div.icon-input {
@@ -454,6 +460,7 @@ div.icon-input {
   .form-input {
     margin: 0;
   }
+
   position: relative;
   &.alert-validation:after {
     background-image: url("../../assets/imgs/error.svg");
@@ -497,7 +504,11 @@ div.overlay {
   .modal {
     @extend %box;
     padding: $margin4;
+    .icon-input{
+      width: 100%;
+    }
     .modal-options{
+      width: 100%;
       display: flex;
       justify-content: flex-end;
       .first-option{
@@ -529,4 +540,18 @@ div.overlay {
   background: #f9f9f9;
   color: red;
   border: $border;
+}
+
+ul.icons{
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  .icon{
+    img{
+      height: 24px;
+      width: 24px;
+    }
+    margin-right: $margin2 / 2;
+  }
 }

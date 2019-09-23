@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="/styles/css/addEvent.css" />
 
-<form name="addEvent">
+<form id="addEvent" name="addEvent">
 
     <div class="asides aside-1">
         <aside class="bg1">
         </aside>
         <aside>
             <div class="form">
-                <h1 class="title big-text">Informações do evtento</h1>
+                <h1 class="title big-text">Informações do evento</h1>
                 <div class="form-groupSelect margin-top4">
                     <label class="form-label">Causas</label>
                     <input name="categories" value="direitos humanos" type="checkbox" id="direitosHumanos"
@@ -56,16 +56,26 @@
                 </div>
                 <label class="form-label margin-top2">Endereço</label>
                 <div class="flex-inputs">
-                    <input class="form-input" placeholder="CEP">
-                    <input class="form-input" placeholder="Número">
+                    <div class="icon-input">
+                        <input name="eventCEP" class="form-input" placeholder="CEP">
+                    </div>
+                    <div class="icon-input">
+                        <input name="eventAddressNumber" class="form-input" placeholder="Número">
+                    </div>
                 </div>
                 <div class="flex-inputs margin-top2">
-                    <input class="form-input" placeholder="Cidade">
-                    <input class="form-input" placeholder="Bairro">
+                    <div class="icon-input">
+                        <input name="eventCity" class="form-input" placeholder="Cidade">
+                    </div>
+                    <div class="icon-input">
+                        <input name="eventDistrict" class="form-input" placeholder="Bairro">
+                    </div>   
                 </div>
-                <input class="form-input margin-top2" placeholder="Logradouro">
+                <div class="icon-input">
+                    <input name="eventAddress" class="form-input margin-top2" placeholder="Logradouro">
+                </div>
                 <div class="submit-step">
-                    <div onclick="$('.aside-1').slideUp('slow'); $('.aside-2').slideDown('slow')" class="form-submit">Próximo passo</div>
+                    <div onclick="console.log(checksStep1())" class="form-submit">Próximo passo</div>
                 </div>
             </div>
         </aside>
@@ -78,27 +88,33 @@
                 <h1 class="title big-text">Tipo de evento</h1>
                 <div class="form-groupSelect margin-top4">
                     <label class="form-label">Selecione o tipo de evento</label>
-                    <input name="categories" name="typeEvent" type="radio" class="form-radio" id="punctual">
+                    <input name="categories" name="typeEvent" type="radio" class="form-radio" value="punctual" id="punctual">
                     <label for="punctual" class="form-btnCheckbox"
                         onclick="$('.typeEvent-recurrent').slideUp('fast'); $('.typeEvent-punctual').slideDown('slow')">Evento
                         pontual</label>
 
-                    <input name="categories" name="typeEvent" type="radio" class="form-radio" id="recurrent">
+                    <input name="categories" name="typeEvent" type="radio" class="form-radio" value="recurrent" id="recurrent">
                     <label onclick="$('.typeEvent-punctual').slideUp('slow'); $('.typeEvent-recurrent').slideDown('slow')" for="recurrent" class="form-btnRadio">Evento recorrente</label>
                 </div>
                 <div class="typeEvent typeEvent-punctual">
                     <div class="flex-inputs margin-top2">
                         <div class="input">
-                            <label class="form-label">Data</label>
-                            <input type="date" class="form-input">
+                            <label class="form-label">Data de início</label>
+                            <input name="eventPDStart" type="date" class="form-input">
                         </div>
                         <div class="input">
-                            <label class="form-label">Início</label>
-                            <input type="time" class="form-input">
+                            <label class="form-label">Hora de início</label>
+                            <input name="eventPHStart" type="time" class="form-input">
+                        </div>
+                    </div>
+                    <div class="flex-inputs margin-top2">
+                        <div class="input">
+                            <label class="form-label">Data de término</label>
+                            <input name="eventPDEnd" type="date" class="form-input">
                         </div>
                         <div class="input">
-                            <label class="form-label">Término</label>
-                            <input type="time" class="form-input">
+                            <label class="form-label">Hora de término</label>
+                            <input name="eventPHEnd" type="time" class="form-input">
                         </div>
                     </div>
                 </div>
@@ -106,24 +122,26 @@
                     <div class="flex-inputs margin-top2">
                         <div class="input">
                             <label class="form-label">Data de início</label>
-                            <input type="date" class="form-input">
+                            <input name="eventRDStart" type="date" class="form-input">
                         </div>
                         <div class="input">
                             <label class="form-label">Hora de início</label>
-                            <input type="time" class="form-input">
+                            <input name="eventRHStart" type="time" class="form-input">
                         </div>
                     </div>
                     <div class="flex-inputs margin-top2">
                         <div class="input">
                             <label class="form-label">Data prevista de término</label>
-                            <input type="date" class="form-input">
+                            <input name="eventRDEnd" type="date" class="form-input">
                         </div>
                     </div>
-                    <input class="form-input margin-top2" placeholder="Detalhes como funcionarão os horários">
+                    <div class="icon-input">
+                        <input name="eventRHDescription" class="form-input margin-top2" placeholder="Detalhes sobre horários">
+                    </div>
                 </div>
                 <div class="submit-step margin-top4">
-                    <div onclick="$('.aside-2').slideUp('slow'); $('.aside-3').slideDown('slow')" class="form-submit">Próximo
-                        passo</div>
+                    {{!-- <div onclick="$('.aside-2').slideUp('slow'); $('.aside-3').slideDown('slow')" class="form-submit">Próximo passo</div> --}}
+                    <div onclick="checksStep2()" class="form-submit">Próximo passo</div>
                 </div>
             </div>
         </aside>
@@ -134,16 +152,15 @@
         <aside>
             <div class="form">
                 <h1 class="title big-text margin-btm4">Vagas</h1>
-                <div class="box margin-btm2">
-                    <h1 class="medium-text margin0">Assistente geral</h1>
-                    <p class="text margin0">Ipsum consequat non sint irure minim consequat adipisicing aute dolore Lorem
-                        mollit.</p>
-                    <p class="text margin0 margin-top1">Qntd. - 15</p>
+                <div id="jobs">
+                     <div id="noJobs" class="margin-btm2">
+                        <img src="/assets/imgs/empty.svg">
+                        <p class="medium-text medium-weight-text margin0 margin-top2 gray text-center">Para prosseguir é preciso criar<br> ao menos uma vaga.</p>
+                    </div>
                 </div>
                 <div class="submit-step">
                     <div onclick="$('.modal-job').slideDown('fast')" class="call-modal-job">Adicionar vaga</div>
-                    <div onclick="$('.aside-3').slideUp('slow'); $('.article-event').slideDown('slow')" class="form-submit">Próximo
-                        passo</div>
+                    <div onclick="checksStep3()" class="form-submit">Próximo passo</div>
                 </div>
             </div>
         </aside>
@@ -152,12 +169,37 @@
     <div class="overlay modal-job">
         <div class="modal form">
             <h1 class="title big-text">Adicionar vaga</h1>
-            <input class="form-input" placeholder="Nome da vaga" />
-            <textarea class="form-input form-textarea" placeholder="Descrição da vaga"></textarea>
-            <input class="form-input" placeholder="Quantidade" />
+            <div class="icon-input">
+                <input name="jobName" class="form-input" placeholder="Nome da vaga" />
+            </div>
+            <div class="icon-input">
+                <textarea name="jobDescription" class="form-input form-textarea" placeholder="Descrição da vaga"></textarea>
+            </div>
+            <div class="icon-input">
+                <input name="jobAmount" type="number" class="form-input" placeholder="Quantidade" />
+            </div>
             <div class="modal-options">
-                <div onclick="$('.modal-job').hide('fast')" class="second-option">Cancelar</div>
-                <div class="first-option" onclick="$('.modal-job').slideUp('fast')">Adicionar vaga</div>
+                <div onclick="$('.modal-job').slideUp('fast')" class="second-option">Cancelar</div>
+                <div class="first-option" onclick="checksJob()">Adicionar vaga</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay edit-job">
+        <div class="modal form">
+            <h1 class="title big-text">Editar vaga</h1>
+            <div class="icon-input">
+                <input name="jobNameEdit" class="form-input" placeholder="Nome da vaga" />
+            </div>
+            <div class="icon-input">
+                <textarea name="jobDescriptionEdit" class="form-input form-textarea" placeholder="Descrição da vaga"></textarea>
+            </div>
+            <div class="icon-input">
+                <input name="jobAmountEdit" type="number" class="form-input" placeholder="Quantidade" />
+            </div>
+            <div class="modal-options">
+                <div onclick="$('.edit-job').slideUp('fast')" class="second-option">Cancelar</div>
+                <div class="first-option" onclick="checksEditJob()">Salvar</div>
             </div>
         </div>
     </div>
@@ -179,16 +221,19 @@
         <div class="modal form">
             <div class="up-thumbnail">
                 <input id="upThumbnail" type="file" class="form-file">
-                <label onclick="$('.up-thumbnail').slideUp('fast'); $('.preview').slideDown('slow')" class="form-btnFile"><img src="/assets/imgs/upload.svg"/></label>
+                <label onclick="$('.up-thumbnail').slideUp('fast'); $('.preview').slideDown('slow')"
+                    class="form-btnFile"><img src="/assets/imgs/upload.svg" /></label>
                 <h1 class="title text-center margin-top4">Só mais um detalhe</h1>
-                <p class="text margin-top2">Clique no espaço cinza para escolher uma imagem que atraia o público para este evento.</p>
+                <p class="text margin-top2">Clique no espaço cinza para escolher uma imagem que atraia o público para
+                    este evento.</p>
             </div>
             <div class="preview">
                 <h1 class="title">Review</h1>
                 <input id="upThumbnail" type="file" class="form-file">
                 <label class="form-btnFile"></label>
                 <h1 class="title margin-top2">Salve os cachorros</h1>
-                <p class="text margin-top1 margin-btm2">Exercitation velit nostrud enim quis sint nisi in non incididunt cupidatat.Amet dolore esse anim aliquip id mollit...</p>
+                <p class="text margin-top1 margin-btm2">Exercitation velit nostrud enim quis sint nisi in non incididunt
+                    cupidatat.Amet dolore esse anim aliquip id mollit...</p>
                 <ul class="cases">
                     <li class="case">Animais</li>
                     <li class="case">Direitos humanos</li>
@@ -196,13 +241,15 @@
                 </ul>
                 <div class="modal-options">
                     <div onclick="$('.modal-preview').slideUp('fast')" class="second-option">Editar</div>
-                    <div onclick="$('.preview').slideUp('fast'); $('.done').slideDown('slow')" class="first-option">Finalizar</div>
+                    <div onclick="$('.preview').slideUp('fast'); $('.done').slideDown('slow')" class="first-option">
+                        Finalizar</div>
                 </div>
             </div>
             <div class="done">
-                <img src="/assets/imgs/successImage.png"/>
+                <img src="/assets/imgs/successImage.png" />
                 <h1 class="title text-center margin-top2">Muito bem!</h1>
-                <p class="text margin-top1 margin-btm2">Este evento foi criado com sucesso e agora você já pode convidar voluntários para lhe ajudar.</p>
+                <p class="text margin-top1 margin-btm2">Este evento foi criado com sucesso e agora você já pode convidar
+                    voluntários para lhe ajudar.</p>
                 <a href="/ngo" class="text blue text-center">Ir para a home</a>
             </div>
         </div>
@@ -210,37 +257,5 @@
 
 </form>
 
+<script src="/scripts/validations.js"></script>
 <script src="/scripts/addEventScript.js"></script>
-
-{{!-- <script>
-    $( '.group-asides' ).remove();
-    $( '.first' ).show();
-</script> --}}
-
-{{!-- <div class="modal">
-            <div id="addEvent-imageUp">
-                <label class="imageUp" for="event-image"><img src="/assets/imgs/upload.svg" /></label>
-                <input type="file" id="event-image" name="event-image" />
-                <h1 class="title">Só mais um detalhe</h1>
-                <p class="text">Clique no espaço cinza para escolher uma imagem que atraia o público para este evento.
-                </p>
-            </div>
-        </div> --}}
-{{!-- <div class="modal">
-            <div class="preview">
-                <h1 class="title">Preview</h1>
-                <img class="preview-image" src="/assets/imgs/animal-cat-face-close-up-416160.jpg">
-                <h1 class="title preview-title">Salve os cachorros</h1>
-                <p class="preview-content">Aliquip ex cupidatat amet officia proident fugiat non amet commodo. Veniam
-                    excepteur nostrud cupidatat in. Non occaecat minim enim mollit aute.</p>
-                <button type="submit">Finalizar</button>
-            </div>
-        </div> --}}
-{{!-- <div class="modal">
-            <div class="preview">
-                <img class="preview-image" src="/assets/imgs/successImage.png">
-                <h1 class="title success-title">Boas notícias!</h1>
-                <p class="preview-content">Esse evento foi criado com sucesso e agora você já pode procurar e convidar voluntários para lhe ajudar.</p>
-                <a href="/ngo">Ir para a home</a>
-            </div>
-        </div> --}}

@@ -1,35 +1,74 @@
-@import 'utilities/variables';
+@import "utilities/variables";
 
-body{
-  padding: 0 !important;
+body {
+  height: 100%;
+  width: 100%;
 }
 
-.asides{
-  height: 100vh;
-  width: 100vw;
+.asides {
+  height: 100%;
+  width: 100%;
   display: flex;
-  aside{
+  aside {
     height: 100%;
     width: 50%;
-    &:last-child{
+    display: flex;
+    &:last-child {
       display: flex;
       justify-content: center;
       padding: $margin2 $margin4 0 $margin4;
-      .form{
+      .form {
         width: 100%;
-
-        .flex-inputs{
+        .flex-inputs {
           display: flex;
-          .form-input{
+          .form-input,
+          .icon-input {
             margin: 0;
-            &:last-child{
+            &:last-child {
               margin-left: $margin2 / 2;
             }
           }
-          .input{
+          .input {
             margin-right: $margin2 / 2;
-            .form-input{
+            .form-input {
               margin: 0 !important;
+            }
+            input[type="time"] {
+              width: 100px;
+            }
+          }
+        }
+        #jobs {
+          #noJobs {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            img {
+              height: 200px;
+            }
+          }
+          .box {
+            .icons {
+              width: 100%;
+              justify-content: flex-end;
+              .icon {
+                height: 24px;
+                width: 24px;
+                padding: 10px;
+                border-radius: 5px;
+                background: $lightGray3;
+                cursor: pointer;
+                transition: 0.5s;
+                img {
+                  opacity: 0.5;
+                }
+                &:hover {
+                  background: $lightGray;
+                  img {
+                    opacity: 0.75;
+                  }
+                }
+              }
             }
           }
         }
@@ -38,13 +77,13 @@ body{
   }
 }
 
-.submit-step{
+.submit-step {
   display: flex;
   justify-content: flex-end;
-  .form-submit{
+  .form-submit {
     width: auto;
   }
-  .call-modal-job{
+  .call-modal-job {
     @extend %button;
     box-shadow: 0 6px 12px -1.5px $lightBlue;
     background: $lightBlue;
@@ -53,10 +92,11 @@ body{
   }
 }
 
-.article-event{
+.article-event {
   height: 100vh;
   width: 100vw;
-  .textarea-title, .textarea-content{
+  .textarea-title,
+  .textarea-content {
     width: 100%;
     display: block;
     font-family: $fontFamily;
@@ -66,43 +106,45 @@ body{
     resize: none;
     overflow: hidden;
   }
-  .textarea-title{
+  .textarea-title {
     @extend %title;
     height: 2.5rem;
   }
-  .textarea-content{
+  .textarea-content {
     @extend %text;
-    
+
     margin-top: $margin4;
   }
 }
 
-.overlay{
-  .modal{
+.overlay {
+  .modal {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    .up-thumbnail, .preview, .done{
+    .up-thumbnail,
+    .preview,
+    .done {
       width: 100%;
     }
-    .form-btnFile{
+    .form-btnFile {
       height: 200px;
       width: 350px;
-      img{
+      img {
         height: 100px;
         width: 100px;
       }
     }
-    .preview{
-      .form-btnFile{
+    .preview {
+      .form-btnFile {
         background: url("../../assets/imgs/dog-white.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         border: none;
       }
     }
-    .done{
-      img{
+    .done {
+      img {
         height: 200px;
         width: 350px;
         object-fit: cover;
@@ -111,20 +153,50 @@ body{
   }
 }
 
-.bg1{
-  background: url('../../assets/imgs/pugg.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
+%bg1,
+.bg1 {
+  position: relative;
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: calc(50% - 20px);
+    background: url("../../assets/imgs/pugg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }
 
-.bg2{
-  background: url('../../assets/imgs/kids.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
+%bg2,
+.bg2 {
+  position: relative;
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: calc(50% - 20px);
+    background: url("../../assets/imgs/kids.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }
 
-.bg3{
-  background: url('../../assets/imgs/hats.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
+%bg3,
+.bg3 {
+  position: relative;
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: calc(50% - 20px);
+    background: url("../../assets/imgs/hats.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 }

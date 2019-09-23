@@ -70,6 +70,10 @@ div.overlay .modal, header .container nav.nav-header ul .header-options, header 
   color: #3171e0;
 }
 
+.gray {
+  color: #818181;
+}
+
 .bg-lightBlue {
   background: #fafaff;
 }
@@ -680,6 +684,12 @@ input[type=submit] {
 button[type=submit]:disabled,
 input[type=submit]:disabled {
   opacity: 0.5;
+  cursor: default;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 div.icon-input {
@@ -730,7 +740,11 @@ div.overlay {
 div.overlay .modal {
   padding: 40px;
 }
+div.overlay .modal .icon-input {
+  width: 100%;
+}
 div.overlay .modal .modal-options {
+  width: 100%;
   display: flex;
   justify-content: flex-end;
 }
@@ -757,6 +771,20 @@ div.overlay .modal .modal-options .second-option {
   background: #f9f9f9;
   color: red;
   border: 1px solid #eeeeee;
+}
+
+ul.icons {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+}
+ul.icons .icon {
+  margin-right: 10px;
+}
+ul.icons .icon img {
+  height: 24px;
+  width: 24px;
 }
 
 /*# sourceMappingURL=mainStyle.css.map */

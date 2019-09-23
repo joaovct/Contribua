@@ -68,6 +68,10 @@
   color: #3171e0;
 }
 
+.gray {
+  color: #818181;
+}
+
 .bg-lightBlue {
   background: #fafaff;
 }
@@ -235,17 +239,19 @@
   src: url("../../assets/fonts/Nunito-ExtraBold.ttf");
 }
 body {
-  padding: 0 !important;
+  height: 100%;
+  width: 100%;
 }
 
 .asides {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   display: flex;
 }
 .asides aside {
   height: 100%;
   width: 50%;
+  display: flex;
 }
 .asides aside:last-child {
   display: flex;
@@ -258,10 +264,12 @@ body {
 .asides aside:last-child .form .flex-inputs {
   display: flex;
 }
-.asides aside:last-child .form .flex-inputs .form-input {
+.asides aside:last-child .form .flex-inputs .form-input,
+.asides aside:last-child .form .flex-inputs .icon-input {
   margin: 0;
 }
-.asides aside:last-child .form .flex-inputs .form-input:last-child {
+.asides aside:last-child .form .flex-inputs .form-input:last-child,
+.asides aside:last-child .form .flex-inputs .icon-input:last-child {
   margin-left: 10px;
 }
 .asides aside:last-child .form .flex-inputs .input {
@@ -269,6 +277,39 @@ body {
 }
 .asides aside:last-child .form .flex-inputs .input .form-input {
   margin: 0 !important;
+}
+.asides aside:last-child .form .flex-inputs .input input[type=time] {
+  width: 100px;
+}
+.asides aside:last-child .form #jobs #noJobs {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+.asides aside:last-child .form #jobs #noJobs img {
+  height: 200px;
+}
+.asides aside:last-child .form #jobs .box .icons {
+  width: 100%;
+  justify-content: flex-end;
+}
+.asides aside:last-child .form #jobs .box .icons .icon {
+  height: 24px;
+  width: 24px;
+  padding: 10px;
+  border-radius: 5px;
+  background: #f9f9f9;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.asides aside:last-child .form #jobs .box .icons .icon img {
+  opacity: 0.5;
+}
+.asides aside:last-child .form #jobs .box .icons .icon:hover {
+  background: #e1e1e1;
+}
+.asides aside:last-child .form #jobs .box .icons .icon:hover img {
+  opacity: 0.75;
 }
 
 .submit-step {
@@ -289,7 +330,8 @@ body {
   height: 100vh;
   width: 100vw;
 }
-.article-event .textarea-title, .article-event .textarea-content {
+.article-event .textarea-title,
+.article-event .textarea-content {
   width: 100%;
   display: block;
   font-family: Nunito;
@@ -311,7 +353,9 @@ body {
   flex-flow: column nowrap;
   align-items: center;
 }
-.overlay .modal .up-thumbnail, .overlay .modal .preview, .overlay .modal .done {
+.overlay .modal .up-thumbnail,
+.overlay .modal .preview,
+.overlay .modal .done {
   width: 100%;
 }
 .overlay .modal .form-btnFile {
@@ -335,18 +379,45 @@ body {
 }
 
 .bg1 {
+  position: relative;
+}
+.bg1::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: calc(50% - 20px);
   background: url("../../assets/imgs/pugg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .bg2 {
+  position: relative;
+}
+.bg2::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: calc(50% - 20px);
   background: url("../../assets/imgs/kids.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .bg3 {
+  position: relative;
+}
+.bg3::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: calc(50% - 20px);
   background: url("../../assets/imgs/hats.jpg");
   background-size: cover;
   background-repeat: no-repeat;

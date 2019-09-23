@@ -102,6 +102,10 @@ $borderColor: #eeeeee;
   color: $mainColor;
 }
 
+%gray, .gray{
+  color: $gray;
+}
+
 .bg-lightBlue {
   background: $lightBlue2;
 }
