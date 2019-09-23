@@ -185,7 +185,6 @@ header {
               box-shadow: 0 7px 5px -2.5px rgba(0, 0, 0, 0.16);
             }
           }
-          
         }
       }
     }
@@ -450,7 +449,7 @@ input[type="submit"] {
   }
 }
 
-.disabled{
+.disabled {
   opacity: 0.5;
   cursor: default;
 }
@@ -503,31 +502,26 @@ div.overlay {
   // background: yellow;
   .modal {
     @extend %box;
+    max-height: 80%;
+    overflow-y: scroll;
     padding: $margin4;
-    .icon-input{
+    .icon-input {
       width: 100%;
     }
-    .modal-options{
+    .modal-options {
       width: 100%;
       display: flex;
       justify-content: flex-end;
-      .first-option{
+      .btn-first {
         order: 2;
-        @extend %button;
-        background: $mainColor;
+        @extend %btn-first;
         padding: 10px 15px 10px 15px;
-        color: white;
-        font-size: $fontBase;
       }
-      .second-option{
+      .btn-secondary {
         order: 1;
-        @extend %button;
-        background: #f9f9f9;
-        border: $border;
+        @extend %btn-secondary;
         padding: 10px 15px 10px 15px;
         margin-right: $margin2;
-        color: $mainColor;
-        font-size: $fontBase;
       }
     }
   }
@@ -542,13 +536,39 @@ div.overlay {
   border: $border;
 }
 
-ul.icons{
+%btn-first,
+.btn-first {
+  @extend %button;
+  background: $mainColor;
+  color: white;
+  font-size: $fontBase;
+  box-shadow: 0 6px 12px -1.5px $lightBlue;
+}
+
+%btn-secondary,
+.btn-secondary {
+  @extend %button;
+  background: #f9f9f9;
+  border: $border;
+  color: $mainColor;
+  font-size: $fontBase;
+}
+
+%btn-callaction, .btn-callaction{
+  @extend %button;
+  background: $lightBlue;
+  color: $mainColor;
+  border-radius: 24px;
+  box-shadow: 0 6px 12px -3px $lightBlue;
+}
+
+ul.icons {
   padding: 0;
   list-style: none;
   display: flex;
   flex-flow: row wrap;
-  .icon{
-    img{
+  .icon {
+    img {
       height: 24px;
       width: 24px;
     }

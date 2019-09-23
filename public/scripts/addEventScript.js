@@ -1,8 +1,8 @@
 // Hide elements
 var asides = document.getElementsByClassName('asides')
 for(i=0;i<asides.length;i++){
-    if(i>-1) $(asides[i]).hide()
-    $(asides[2]).show()
+    if(i>0) $(asides[i]).hide()
+    // $(asides[0]).show()
 }
 $('.typeEvent').hide()
 $('.article-event').hide()
@@ -15,6 +15,7 @@ $('.done').hide()
 const btns = document.getElementsByClassName('form-submit')
 
 //Step 1
+var casesChecked = []
 const cases = document.getElementsByClassName('form-checkbox')
 const cep = document.getElementsByName('eventCEP')[0]
 const iconCep = cep.parentNode
@@ -55,6 +56,9 @@ const descriptionIconEdit = descriptionEdit.parentNode
 const amountEdit = document.getElementsByName('jobAmountEdit')[0] 
 const amountIconEdit = amountEdit.parentNode 
 
+// Step 4
+const eventTitle = document.getElementsByName('eventTitle')[0]
+const eventContent = document.getElementsByName('eventContent')[0]
 
 function checksStep1(){
     var vCauses = validationCauses(cases)
@@ -226,4 +230,37 @@ function checksStep3(){
         $('.aside-3').slideUp('fast')
         $('.article-event').slideDown('slow')
     }
+}
+
+function checksStep4(){
+    var vTitle = true, vContent = true
+    if(eventTitle.value.length < 10){
+        vTitle = false
+    }
+    if(eventContent.value.length < 300){
+        vContent = false
+    }
+    if(vTitle && vContent){
+        casesChecked = getCasesChecked()
+        $('#eventTitle').html(eventTitle.value.substring(0,50)+"...")
+        $('#eventContent').html(eventContent.value.substring(0,120)+"...")
+        $('.cases').html(()=>{
+            var html = ""
+            for(let Case of casesChecked){
+                html += `<li class='case'>${Case}</li>`
+            }
+            return html
+        })
+        $('.modal-preview').slideDown('fast')
+    } 
+}
+
+function getCasesChecked(){
+    var checks = []
+    for(let Case of cases){
+        if(Case.checked){
+            checks.push(Case.value)
+        }
+    }
+    return checks
 }

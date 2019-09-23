@@ -10,48 +10,48 @@
                 <h1 class="title big-text">Informações do evento</h1>
                 <div class="form-groupSelect margin-top4">
                     <label class="form-label">Causas</label>
-                    <input name="categories" value="direitos humanos" type="checkbox" id="direitosHumanos"
+                    <input name="categories" value="Direitos humanos" type="checkbox" id="direitosHumanos"
                         class="form-checkbox">
                     <label for="direitosHumanos" class="form-btnCheckbox">Direitos humanos</label>
 
-                    <input name="categories" value="cultura e arte" type="checkbox" id="culturaearte"
+                    <input name="categories" value="Cultura e arte" type="checkbox" id="culturaearte"
                         class="form-checkbox">
                     <label for="culturaearte" class="form-btnCheckbox">Cultura e arte</label>
 
-                    <input name="categories" value="educação" type="checkbox" id="educação" class="form-checkbox">
+                    <input name="categories" value="Educação" type="checkbox" id="educação" class="form-checkbox">
                     <label for="educação" class="form-btnCheckbox">Educação</label>
 
-                    <input name="categories" value="crianças" type="checkbox" id="crianças" class="form-checkbox">
+                    <input name="categories" value="Crianças" type="checkbox" id="crianças" class="form-checkbox">
                     <label for="crianças" class="form-btnCheckbox">Crianças</label>
 
-                    <input name="categories" value="meio ambiente" type="checkbox" id="meioambiente"
+                    <input name="categories" value="Meio ambiente" type="checkbox" id="meioambiente"
                         class="form-checkbox">
                     <label for="meioambiente" class="form-btnCheckbox">Meio ambiente</label>
 
-                    <input name="categories" value="combate à pobreza" type="checkbox" id="combateàpobreza"
+                    <input name="categories" value="Combate à pobreza" type="checkbox" id="combateàpobreza"
                         class="form-checkbox">
                     <label for="combateàpobreza" class="form-btnCheckbox">Combate à pobreza</label>
 
-                    <input name="categories" value="proteção animal" type="checkbox" id="proteçãoanimal"
+                    <input name="categories" value="Proteção animal" type="checkbox" id="proteçãoanimal"
                         class="form-checkbox">
                     <label for="proteçãoanimal" class="form-btnCheckbox">Proteção animal</label>
 
-                    <input name="categories" value="política" type="checkbox" id="política" class="form-checkbox">
+                    <input name="categories" value="Política" type="checkbox" id="política" class="form-checkbox">
                     <label for="política" class="form-btnCheckbox">Política</label>
 
-                    <input name="categories" value="mulheres" type="checkbox" id="mulheres" class="form-checkbox">
+                    <input name="categories" value="Mulheres" type="checkbox" id="mulheres" class="form-checkbox">
                     <label for="mulheres" class="form-btnCheckbox">Mulheres</label>
 
-                    <input name="categories" value="esportes" type="checkbox" id="esportes" class="form-checkbox">
+                    <input name="categories" value="Esportes" type="checkbox" id="esportes" class="form-checkbox">
                     <label for="esportes" class="form-btnCheckbox">Esportes</label>
 
-                    <input name="categories" value="refugiados" type="checkbox" id="refugiados" class="form-checkbox">
+                    <input name="categories" value="Refugiados" type="checkbox" id="refugiados" class="form-checkbox">
                     <label for="refugiados" class="form-btnCheckbox">Refugiados</label>
 
-                    <input name="categories" value="saúde" type="checkbox" id="saúde" class="form-checkbox">
+                    <input name="categories" value="Saúde" type="checkbox" id="saúde" class="form-checkbox">
                     <label for="saúde" class="form-btnCheckbox">Saúde</label>
 
-                    <input name="categories" value="jovens" type="checkbox" id="jovens" class="form-checkbox">
+                    <input name="categories" value="Jovens" type="checkbox" id="jovens" class="form-checkbox">
                     <label for="jovens" class="form-btnCheckbox">Jovens</label>
                 </div>
                 <label class="form-label margin-top2">Endereço</label>
@@ -75,7 +75,7 @@
                     <input name="eventAddress" class="form-input margin-top2" placeholder="Logradouro">
                 </div>
                 <div class="submit-step">
-                    <div onclick="console.log(checksStep1())" class="form-submit">Próximo passo</div>
+                    <div onclick="checksStep1()" class="btn-first">Próximo passo</div>
                 </div>
             </div>
         </aside>
@@ -140,8 +140,9 @@
                     </div>
                 </div>
                 <div class="submit-step margin-top4">
+                    <div onclick="$('.aside-2').slideUp('fast'); $('.aside-1').slideDown('slow')" class="btn-secondary">Voltar</div>
                     {{!-- <div onclick="$('.aside-2').slideUp('slow'); $('.aside-3').slideDown('slow')" class="form-submit">Próximo passo</div> --}}
-                    <div onclick="checksStep2()" class="form-submit">Próximo passo</div>
+                    <div onclick="checksStep2()" class="btn-first">Próximo passo</div>
                 </div>
             </div>
         </aside>
@@ -158,9 +159,12 @@
                         <p class="medium-text medium-weight-text margin0 margin-top2 gray text-center">Para prosseguir é preciso criar<br> ao menos uma vaga.</p>
                     </div>
                 </div>
-                <div class="submit-step">
-                    <div onclick="$('.modal-job').slideDown('fast')" class="call-modal-job">Adicionar vaga</div>
-                    <div onclick="checksStep3()" class="form-submit">Próximo passo</div>
+                <div class="buttons-aside3">
+                    <div onclick="$('.modal-job').slideDown('fast')" class="btn-callaction">Adicionar vaga</div>
+                    <div class="submit-step">
+                        <div onclick="$('.aside-3').slideUp('fast'); $('.aside-2').slideDown('slow')" class="btn-secondary">Voltar</div>
+                        <div onclick="checksStep3()" class="btn-first">Próximo passo</div>
+                    </div>
                 </div>
             </div>
         </aside>
@@ -179,8 +183,8 @@
                 <input name="jobAmount" type="number" class="form-input" placeholder="Quantidade" />
             </div>
             <div class="modal-options">
-                <div onclick="$('.modal-job').slideUp('fast')" class="second-option">Cancelar</div>
-                <div class="first-option" onclick="checksJob()">Adicionar vaga</div>
+                <div onclick="$('.modal-job').slideUp('fast')" class="btn-secondary">Cancelar</div>
+                <div class="btn-first" onclick="checksJob()">Adicionar vaga</div>
             </div>
         </div>
     </div>
@@ -198,8 +202,8 @@
                 <input name="jobAmountEdit" type="number" class="form-input" placeholder="Quantidade" />
             </div>
             <div class="modal-options">
-                <div onclick="$('.edit-job').slideUp('fast')" class="second-option">Cancelar</div>
-                <div class="first-option" onclick="checksEditJob()">Salvar</div>
+                <div onclick="$('.edit-job').slideUp('fast')" class="btn-secondary">Cancelar</div>
+                <div class="btn-first" onclick="checksEditJob()">Salvar</div>
             </div>
         </div>
     </div>
@@ -207,12 +211,12 @@
     <div class="centralize padding-top4 article-event">
         <div class="container">
             <h1 class="title margin-btm4">Artigo do evento</h1>
-            <textarea maxlength="150" onkeyup="autosize($('.textarea-title'))" class="textarea-title"
+            <textarea name="eventTitle" maxlength="150" onkeyup="autosize($('.textarea-title'))" class="textarea-title"
                 placeholder="Título..."></textarea>
-            <textarea onkeyup="autosize($('.textarea-content'));" class="textarea-content"
+            <textarea name="eventContent" onkeyup="autosize($('.textarea-content'));" class="textarea-content"
                 placeholder="Comece a escrever..."></textarea>
             <div class="submit-step">
-                <div onclick="$('.modal-preview').slideDown('fast')" class="form-submit">Próximo passo</div>
+                <div onclick="checksStep4()" class="btn-first">Próximo passo</div>
             </div>
         </div>
     </div>
@@ -231,18 +235,13 @@
                 <h1 class="title">Review</h1>
                 <input id="upThumbnail" type="file" class="form-file">
                 <label class="form-btnFile"></label>
-                <h1 class="title margin-top2">Salve os cachorros</h1>
-                <p class="text margin-top1 margin-btm2">Exercitation velit nostrud enim quis sint nisi in non incididunt
-                    cupidatat.Amet dolore esse anim aliquip id mollit...</p>
+                <h1 class="title margin-top2" id="eventTitle"></h1>
+                <p class="text margin-top1 margin-btm2" id="eventContent"></p>
                 <ul class="cases">
-                    <li class="case">Animais</li>
-                    <li class="case">Direitos humanos</li>
-                    <li class="case">Adoção</li>
                 </ul>
                 <div class="modal-options">
-                    <div onclick="$('.modal-preview').slideUp('fast')" class="second-option">Editar</div>
-                    <div onclick="$('.preview').slideUp('fast'); $('.done').slideDown('slow')" class="first-option">
-                        Finalizar</div>
+                    <div onclick="$('.modal-preview').slideUp('fast')" class="btn-secondary">Editar</div>
+                    <div onclick="$('.preview').slideUp('fast'); $('.done').slideDown('slow')" class="btn-first">Finalizar</div>
                 </div>
             </div>
             <div class="done">

@@ -1,4 +1,6 @@
-.btn-danger, div.overlay .modal .modal-options .second-option, div.overlay .modal .modal-options .first-option, .form-submit,
+.btn-callaction, div.overlay .modal .modal-options .btn-secondary,
+.btn-secondary, div.overlay .modal .modal-options .btn-first,
+.btn-first, .btn-danger, .form-submit,
 button[type=submit],
 input[type=submit] {
   border: none;
@@ -738,6 +740,8 @@ div.overlay {
   background: rgba(0, 0, 0, 0.16);
 }
 div.overlay .modal {
+  max-height: 80%;
+  overflow-y: scroll;
   padding: 40px;
 }
 div.overlay .modal .icon-input {
@@ -748,21 +752,14 @@ div.overlay .modal .modal-options {
   display: flex;
   justify-content: flex-end;
 }
-div.overlay .modal .modal-options .first-option {
+div.overlay .modal .modal-options .btn-first {
   order: 2;
-  background: #3171e0;
   padding: 10px 15px 10px 15px;
-  color: white;
-  font-size: 1rem;
 }
-div.overlay .modal .modal-options .second-option {
+div.overlay .modal .modal-options .btn-secondary {
   order: 1;
-  background: #f9f9f9;
-  border: 1px solid #eeeeee;
   padding: 10px 15px 10px 15px;
   margin-right: 20px;
-  color: #3171e0;
-  font-size: 1rem;
 }
 
 .btn-danger {
@@ -771,6 +768,29 @@ div.overlay .modal .modal-options .second-option {
   background: #f9f9f9;
   color: red;
   border: 1px solid #eeeeee;
+}
+
+div.overlay .modal .modal-options .btn-first,
+.btn-first {
+  background: #3171e0;
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 6px 12px -1.5px #E0EAFB;
+}
+
+div.overlay .modal .modal-options .btn-secondary,
+.btn-secondary {
+  background: #f9f9f9;
+  border: 1px solid #eeeeee;
+  color: #3171e0;
+  font-size: 1rem;
+}
+
+.btn-callaction {
+  background: #E0EAFB;
+  color: #3171e0;
+  border-radius: 24px;
+  box-shadow: 0 6px 12px -3px #E0EAFB;
 }
 
 ul.icons {

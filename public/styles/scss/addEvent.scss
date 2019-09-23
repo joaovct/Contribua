@@ -80,16 +80,18 @@ body {
 .submit-step {
   display: flex;
   justify-content: flex-end;
-  .form-submit {
+  .btn-secondary{
+    margin-right: $margin2;
+    margin-left: $margin2;
+  }
+  .form-submit, .btn-first {
     width: auto;
   }
-  .call-modal-job {
-    @extend %button;
-    box-shadow: 0 6px 12px -1.5px $lightBlue;
-    background: $lightBlue;
-    color: $mainColor;
-    margin-right: $margin2;
-  }
+}
+.buttons-aside3{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .article-event {
@@ -136,6 +138,9 @@ body {
       }
     }
     .preview {
+      height: auto;
+      word-break: break-all;
+      line-break: normal;
       .form-btnFile {
         background: url("../../assets/imgs/dog-white.jpg");
         background-size: cover;
