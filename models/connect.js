@@ -3,7 +3,8 @@ const sequelize = new Sequelize("dbcontribua", "root", "", {
     host: "localhost",
     dialect: "mysql",
     charset: "utf8",
-    collate: "utf8_general_ci"
+    collate: "utf8_general_ci",
+    logging: false
 })
 
 sequelize.authenticate().then(() => {

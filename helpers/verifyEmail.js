@@ -3,7 +3,7 @@ const User = require("../models/Volunteer")
 
 module.exports = {
     async user(dataUser){
-        const user = await User.findOne({where: {emailVolunteer: dataUser.emailVolunteer}})
+        const user = await User.findOne({where: {emailVolunteer: dataUser.emailVolunteer, activeVolunteer: true}})
 
         if(user)
             return user

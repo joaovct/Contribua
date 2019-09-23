@@ -59,6 +59,10 @@ const Volunteer = db.sequelize.define("tbVolunteer" ,{
     },
     averageStarsVolunteer: {
         type: db.Sequelize.FLOAT
+    },
+    activeVolunteer: {
+        allowNull: false,
+        type: db.Sequelize.BOOLEAN
     }
 }, {
     freezeTableName: true,

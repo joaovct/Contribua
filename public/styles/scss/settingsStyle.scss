@@ -16,6 +16,7 @@ body {
   position: relative;
   ul.settings-menu {
     min-height: 50vh;
+    min-width: 40vh;
     position: relative;
     padding: $margin2 $margin2 $margin2 0;
     margin: 0;
@@ -63,8 +64,8 @@ body {
       margin-bottom: $margin2;
       .label-profile-pic {
         grid-area: pic;
-        height: 225px;
-        width: 225px;
+        height: 150px;
+        width: 150px;
         border-radius: 7px;
         position: relative;
         display: inline-flex;
@@ -91,7 +92,6 @@ body {
     .fields {
       height: 100%;
       display: flex;
-      justify-content: flex-start;
       flex-flow: row wrap;
       .settings-field {
         flex-grow: 1;
