@@ -213,9 +213,11 @@
             <h1 class="title margin-btm4">Artigo do evento</h1>
             <textarea name="eventTitle" maxlength="150" onkeyup="autosize($('.textarea-title'))" class="textarea-title"
                 placeholder="Título..."></textarea>
-            <textarea name="eventContent" onkeyup="autosize($('.textarea-content'));" class="textarea-content"
+            <textarea name="eventContent" onkeyup="autosize($('.textarea-content')); refreshCount(this)" class="textarea-content"
                 placeholder="Comece a escrever..."></textarea>
+            <p id="counter-content" class="text margin0 margin-top2">0</p>
             <div class="submit-step">
+                <div onclick="$('.article-event').slideUp('fast'); $('.aside-3').slideDown('slow')" class="btn-secondary">Voltar</div>
                 <div onclick="checksStep4()" class="btn-first">Próximo passo</div>
             </div>
         </div>

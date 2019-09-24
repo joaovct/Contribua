@@ -49,10 +49,14 @@ app.use(express.static(path.join(__dirname, "public")))
 
 // Routers
 
-app.use('/ngo', isLogged, ngo)
-app.use('/user', isLogged, user)
+// app.use('/ngo', isLogged, ngo)
+// app.use('/user', isLogged, user)
 app.use('/register', register)
 app.use("/login", login)
+
+// For develop
+app.use('/ngo', ngo)
+app.use('/user', user)
 
 app.get('/', (req, res) => {
     if(req.session.user){
