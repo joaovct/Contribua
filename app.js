@@ -56,6 +56,10 @@ app.use('/register', register)
 app.use("/login", login)
 app.use("/ajax-checkers", ajax_checkers)
 
+// For develop
+app.use('/ngo', ngo)
+app.use('/user', user)
+
 app.get('/', (req, res) => {
     if(req.session.user){
         return res.redirect("/user")

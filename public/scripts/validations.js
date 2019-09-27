@@ -118,17 +118,46 @@ function validationDateBorn(date){
 }
 
 function validationPunctualDate(pDStart, pHStart, pDEnd, pHEnd){
+    var vDate = true
     var dStart = new Date(pDStart.value+ " " + pHStart.value)
     var dEnd = new Date(pDEnd.value+ " " +pHEnd.value)
-    if(dStart >= dEnd) return false
-    else return true
+    var dCurrent = new Date()
+    if(dStart <= dCurrent){
+        callAlert("Ocorreu um erro", "A data de início do evento não pode ser menor que a data atual.", "error")
+        vDate = false
+    }
+    if(dStart >= dEnd){
+        callAlert("Data inválida", "A data de início não pode ser maior ou igual que a data de término.", "error")
+        vDate = false
+    }
+
+    if(dStart == "Invalid Date" || dEnd == "Invalid Date" || dStart == "" || dEnd == ""){
+        callAlert("Ocorreu um erro", "A(s) data digitada é inválida.", "error")
+        vDate = false
+    }
+    return vDate
 }
 
 function validationRecurrentDate(rDStart, rHStart, rDEnd){
+    var vDate = true
     var dStart = new Date(rDStart.value+ " " + rHStart.value)
     var dEnd = new Date(rDEnd.value)
-    if(dStart >= dEnd) return false
-    else return true
+    var dCurrent = new Date()
+
+    if(dStart <= dCurrent){
+        callAlert("Ocorreu um erro", "A data de início do evento não pode ser menor que a data atual.", "error")
+        vDate = false
+    }
+    if(dStart >= dEnd){
+        callAlert("Data inválida", "A data de início não pode ser maior ou igual que a data prevista de término.", "error")
+        vDate = false
+    }
+    if(dStart == "Invalid Date" || dEnd == "Invalid Date" || dStart == "" || dEnd == ""){
+        callAlert("Ocorreu um erro", "A(s) data digitada é inválida.", "error")
+        vDate = false
+    }
+    
+    return vDate 
 }
 
 function validationCNPJ(cnpj, iconCnpj){
@@ -435,4 +464,12 @@ function iconSuccess(icon){
 function iconClear(icon){
     icon.classList.remove('alert-validation')
     icon.classList.remove('success-validation')
+}
+
+function callAlert(title, message, type){
+    if(type=="success"||type=="error"||type=="warning"){
+        $('.container-alert').append(`<div class="alert alert-${type}"><figure class="alert-icon"><div class="icon"></div></figure><div class="alert-content"><h1 class="alert-title">${title}</h1><p class="text">${message}</p></div><figure class="alert-close" onclick="closeAlert(this)"><img src="/assets/imgs/close.svg" /></figure></div>`).show('slow')
+    }else{
+        console.log("Type of alert unrecognized")
+    }
 }

@@ -1,11 +1,11 @@
 // Hide elements
 var asides = document.getElementsByClassName('asides')
 for(i=0;i<asides.length;i++){
-    if(i>0) $(asides[i]).hide()
-    // $(asides[0]).show()
+    if(i>-1) $(asides[i]).hide()
+    // $(asides[3]).show()
 }
 $('.typeEvent').hide()
-$('.article-event').hide()
+// $('.article-event').hide()
 $('.overlay').hide()
 $('.preview').hide()
 $('.done').hide()
@@ -67,6 +67,8 @@ function checksStep1(){
     var vCity = validationCity(city, iconCity)
     var vDistrict = validationDistrict(district, iconDistrict)
     var vAddress = validationAddress(address, iconAddress)
+    if(!vCauses) callAlert("Algo está faltando...", "É preciso selecionar ao menos uma causa para este evento", 'error')
+    if(!vCep || !vAddressNumber || !vCity || !vDistrict || !vAddress) callAlert("Esqueceu algo?", "Parece que há alguns campos não preenchidos.", "error")
     if(vCauses && vCep && vAddressNumber && vCity && vDistrict && vAddress){
         $('.aside-1').slideUp('fast')
         $('.aside-2').slideDown('slow')
@@ -79,7 +81,10 @@ function checksStep2(){
     if(optionChoose != false){
         if(optionChoose.value == "punctual") return checksTypeEventPunctual()
         else return checksTypeEventRecurrent()
-    }else return false
+    }else{
+        callAlert("Uma coisa por vez", "Antes de prosseguir é preciso primeiro escolher o tipo de evento", "error")
+        return false
+    } 
 }
 
 function checksTypeEventPunctual(){
@@ -94,7 +99,7 @@ function checksTypeEventPunctual(){
 function checksTypeEventRecurrent(){
     var vDate = validationRecurrentDate(rDStart, rHStart, rDEnd)
     var vDescription = true
-    if(rHDescription.length <= 10){
+    if(rHDescription.value.length <= 10){
         iconError(rHDIcon)
         vDescription = false
     }
@@ -108,12 +113,14 @@ function checksTypeEventRecurrent(){
 function checksJob(){
     var vName = true, vDescription = true, vAmount = true
     if(jobName.value.length < 5){
+        callAlert("Nome de vaga muito curto", "O nome da vaga deve ter pelo menos 5 caracteres.", "error")
         iconError(nameIcon)
         vName = false
     }else iconSuccess(nameIcon)
     
     for(let job of jobs){
         if(jobName.value == job.name){
+            callAlert("Vaga já criada", "Aparentemente você já criou uma vaga com este mesmo nome.", "error")
             iconError(nameIcon)
             vName = false
         }
@@ -235,9 +242,11 @@ function checksStep3(){
 function checksStep4(){
     var vTitle = true, vContent = true
     if(eventTitle.value.length < 10){
+        callAlert("Título muito curto", "O título do artigo deste evento precisa ter no minímo 10 caracteres.","error")
         vTitle = false
     }
     if(eventContent.value.length < 300){
+        callAlert("Artigo muito curto", "O artigo deste evento precisa ter no minímo 300 caracteres.","error")
         vContent = false
     }
     if(vTitle && vContent){
@@ -253,6 +262,16 @@ function checksStep4(){
         })
         $('.modal-preview').slideDown('fast')
     } 
+}
+
+function refreshCount(textarea){
+    var p = document.getElementById('counter-content')
+    $(p).html(textarea.value.length)
+    if(textarea.value.length >= 300){
+        p.style.color = "#2bd659"
+    }else{
+        p.style.color = "#e42200"
+    }
 }
 
 function getCasesChecked(){
