@@ -12,6 +12,7 @@ const register = require('./Routers/register')
 const isLogged = require('./helpers/isLogged')
 const search = require('./helpers/doSearch')
 const login = require('./Routers/login')
+const ajax_checkers = require('./Routers/ajax-checkers')
 
 //**Configs**//
 // Session
@@ -49,10 +50,11 @@ app.use(express.static(path.join(__dirname, "public")))
 
 // Routers
 
-app.use('/ngo', isLogged, ngo)
+app.use('/ngo', ngo)
 app.use('/user', isLogged, user)
 app.use('/register', register)
 app.use("/login", login)
+app.use("/ajax-checkers", ajax_checkers)
 
 app.get('/', (req, res) => {
     if(req.session.user){

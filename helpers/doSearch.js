@@ -33,7 +33,6 @@ async function findNgos(key){
                 typeResult: "ngo",
                 name: ngo.dataValues.nameNgo 
             }
-            console.log( object )
             results.push( object )
         }
     })
@@ -47,7 +46,6 @@ module.exports = {
         await findNgos(key)
         // await
         // await console.log(results)
-        console.log(results)
         return results
     }
 }

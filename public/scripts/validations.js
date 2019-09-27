@@ -29,7 +29,7 @@ function validationLastName(){
 function validationAddress(address, iconAddress){
     if(address.value.length < 5){
         iconError(iconAddress)
-        address.focus()
+        // address.focus()
         return false
     }else{
         iconSuccess(iconAddress)
@@ -91,7 +91,7 @@ function validationCity(city, iconCity){
     if(city.value.length < 4){
         iconCity.classList.remove("success-validation")
         iconCity.classList.add("alert-validation")
-        city.focus()
+        // city.focus()
         return false
     }
     iconCity.classList.remove("alert-validation")
@@ -132,31 +132,53 @@ function validationRecurrentDate(rDStart, rHStart, rDEnd){
 }
 
 function validationCNPJ(cnpj, iconCnpj){
-
+    let bool = false
     formatCNPJ(cnpj)
     
     if(!isCNPJ(cnpj.value.replace(/\D/g,""))){
         iconCnpj.classList.remove("success-validation")
         iconCnpj.classList.add("alert-validation")
         cnpj.focus()
-        return false
+        bool = false
     }else{
-        iconCnpj.classList.remove("alert-validation")
-        iconCnpj.classList.add("success-validation")
-        return true
+        //ajax aqui
+        $.get("http://localhost:3000/ajax-checkers?cnpj="+cnpj.value.replace(/\D/g,""))
+        .done(() => {
+            iconCnpj.classList.remove("success-validation")
+            iconCnpj.classList.add("alert-validation")
+            cnpj.focus()
+            bool = false
+        })
+        .fail(() => {
+            iconCnpj.classList.remove("alert-validation")
+            iconCnpj.classList.add("success-validation")
+            bool = true
+        })
+        
     }
+    return bool
 }
 
-function validationCPF(cpf){
-    
-    formatCPF(cpf)
-    
-    if(!isCPF(cpf.value.replace(/\D/g,""))){
-        iconCpf.classList.remove("success-validation")
-        iconCpf.classList.add("alert-validation")
-        cpf.focus()
-        return false
-    }else{
+async function validationCPF(cpf){
+    try{
+        let bool = false
+        formatCPF(cpf)
+        
+        if(!isCPF(cpf.value.replace(/\D/g,""))){
+            iconCpf.classList.remove("success-validation")
+            iconCpf.classList.add("alert-validation")
+            cpf.focus()
+            bool = false
+        }else{
+            const result = await $.get("http://localhost:3000/ajax-checkers?cpf="+cpf.value.replace(/\D/g,""))
+            if(result){
+                iconCpf.classList.remove("success-validation")
+                iconCpf.classList.add("alert-validation")
+                bool = false
+            }
+        }
+        return bool
+    }catch(err){
         iconCpf.classList.remove("alert-validation")
         iconCpf.classList.add("success-validation")
         return true
@@ -177,17 +199,52 @@ function validationTelephone(telephone, iconTelephone){
     }
 }
 
-function validationEmail(email, iconEmail){
-    let regex = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
-    if(!regex.test(email.value)){
-        iconEmail.classList.remove("success-validation")
-        iconEmail.classList.add("alert-validation")
-        email.focus()
-        return false
-    }else{
-        console.log("passou")
+async function validationEmail(email, iconEmail){
+    try{
+        let bool
+        let regex = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/);
+        if(!regex.test(email.value)){
+            iconEmail.classList.remove("success-validation")
+            iconEmail.classList.add("alert-validation")
+            email.focus()
+            bool = false
+        }else{
+            const result = await $.get("http://localhost:3000/ajax-checkers?email="+email.value)
+            if(result){
+                iconEmail.classList.remove("success-validation")
+                iconEmail.classList.add("alert-validation")
+                bool = false
+            }
+        }
+        return bool
+    }catch(err){
         iconEmail.classList.remove("alert-validation")
         iconEmail.classList.add("success-validation")
+        return true
+    }
+}
+
+async function validationUserName(userName, iconUserName){
+    try{
+        let bool = false
+        let regex = new RegExp(/\s+/)
+        if(regex.test(userName.value) || userName.value.length < 3){
+            iconUserName.classList.remove("success-validation")
+            iconUserName.classList.add("alert-validation")
+            userName.focus()
+            bool = false
+        }else{
+            const result = await $.get("http://localhost:3000/ajax-checkers?userName="+userName.value)
+            if(result){
+                iconUserName.classList.remove("success-validation")
+                iconUserName.classList.add("alert-validation")
+                bool = false
+            }
+        }
+        return bool
+    }catch(err){
+        iconUserName.classList.remove("alert-validation")
+        iconUserName.classList.add("success-validation")
         return true
     }
 }

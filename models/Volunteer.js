@@ -23,6 +23,10 @@ const Volunteer = db.sequelize.define("tbVolunteer" ,{
         allowNull: false,
         type: db.Sequelize.STRING(80)
     },
+    userNameVolunteer: {
+        allowNull: false,
+        type:db.Sequelize.STRING(80)
+    },
     passwordVolunteer: {
         allowNull: false,
         type: db.Sequelize.STRING(250)
