@@ -1,98 +1,50 @@
 @import "utilities/variables";
 
-.container{
-  width: 90%;
+#box-content{
+  box-shadow: none;
 }
 
-section#main {
-  height: 100%;
-  width: $widthContainer;
-  position: relative;
+div#content {
+  width: 100%;
+  background: white;
   display: flex;
-  flex-flow: column nowrap;
-  // justify-content: space-between;
-  aside {
-    width: 100%;
-    background: white;
-    display: flex;
-    padding: $margin2 0 0 0;
-    &:first-child {
-      // width: 30%;
-      border-radius: 14px;
-      justify-content: center;
-      background: $lightColor;
-      padding: $margin2;
-      box-sizing: border-box;
-
-      .title-aside{
-        margin: 0;
-        font-weight: 900;
-        text-align: center;
-      }
-    }
-
-    .title-aside {
-      margin: $margin2 0 $margin2 0;
-      font-size: 2.6em;
-      // color: rgb(48, 48, 48);
-      font-weight: bold;
-    }
-    p{
-        font-size: 1.3em;
-    }
-    .group {
-      .person {
-        display: flex;
-        align-items: center;
-        padding: $margin2 $margin2 $margin2 0;
-        margin: 0;
-        .avatar {
-          img {
-            height: 100px;
-            width: 100px;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 100%;
-            box-shadow: 0 0 15px -5px rgba(0,0,0,0.1)
-          }
-        }
-        .content {
-          margin: 0 0 0 $margin2;
-          width: 100%;
-          display: flex;
-          flex-flow: column nowrap;
-          justify-content: center;
-
-          .message {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin: 0;
-            color: rgb(46, 46, 46);
-          }
-          .name {
-            font-size: 1.2em;
-            font-weight: 500;
-            margin: 10px 0;
-            color: rgb(80, 80, 80);
-          }
+  padding: $margin2 0 0 0;
+  .group {
+    .person {
+      display: flex;
+      align-items: center;
+      padding: $margin2 $margin2 $margin2 0;
+      margin: 0;
+      .avatar {
+        img {
+          height: 100px;
+          width: 100px;
+          object-fit: cover;
+          object-position: center;
+          border-radius: 100%;
+          box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.1);
         }
       }
-    }
-    form#letsgo{
+      .content {
+        margin: 0 0 0 $margin2;
         width: 100%;
         display: flex;
+        flex-flow: column nowrap;
         justify-content: center;
-        button[type=submit]{
-            width: auto;
-            margin: $margin2 0;
-            padding: $margin2 / 2 $margin4 / 2 $margin2 / 2 $margin4 / 2;
-            background: $mainColor;
-            text-transform: uppercase;
-            font-family: nunito;
-            font-weight: 500;
-            color: white;
-            box-shadow: 0 6px 10px 0px rgba(0,0,0,0.16);
+
+        .message {
+          font-size: 1.2em;
+          font-weight: bold;
+          margin: 0;
+          color: rgb(46, 46, 46);
         }
+        .name {
+          font-size: 1.2em;
+          font-weight: 500;
+          margin: 10px 0;
+          color: rgb(80, 80, 80);
+        }
+      }
     }
   }
 }

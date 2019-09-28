@@ -32,19 +32,6 @@ $borderColor: #eeeeee;
 
 // Extends and classes
 
-%button {
-  border: none;
-  font-size: 1.2rem;
-  font-weight: 100;
-  text-align: center;
-  padding: 10px 15px 10px 15px;
-  border-radius: 7px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  margin-top: $margin2;
-}
-
 %box,.box {
   padding: $margin2 $margin4 $margin2 $margin4;
   background: white;
@@ -60,6 +47,14 @@ $borderColor: #eeeeee;
 
 %text-center, .text-center{
   text-align: center;
+}
+
+%text-left, .text-left{
+  text-align: left;
+}
+
+%text-right, .text-right{
+  text-align: right;
 }
 
 %title, .title {
@@ -94,7 +89,6 @@ $borderColor: #eeeeee;
 
 %text, .text {
   font-size: 1.25rem;
-  text-align: left;
   margin: 0 0 0 0;
 }
 
@@ -108,6 +102,10 @@ $borderColor: #eeeeee;
 
 .bg-lightBlue {
   background: $lightBlue2;
+}
+
+%bg-lightGray, .bg-lightGray {
+  background: $lightGray3;
 }
 
 .margin0{
@@ -126,6 +124,18 @@ $borderColor: #eeeeee;
   margin-top: $margin4;
 }
 
+.margin-right1{
+  margin-right: $margin2 / 2;
+}
+
+.margin-right2{
+  margin-right: $margin2;
+}
+
+.margin-right4{
+  margin-right: $margin4;
+}
+
 .margin-btm4 {
   margin-bottom: $margin4;
 }
@@ -136,6 +146,18 @@ $borderColor: #eeeeee;
 
 .margin-btm1 {
   margin-bottom: $margin2 / 2;
+}
+
+.margin-left1{
+  margin-left: $margin2 / 2;
+}
+
+.margin-left2{
+  margin-left: $margin2;
+}
+
+.margin-left4{
+  margin-left: $margin4;
 }
 
 .padding-top2 {
@@ -177,7 +199,7 @@ $borderColor: #eeeeee;
 }
 
 .width-70{
-  width: 70;
+  width: 70vw;
 }
 
 .width-60 {
@@ -192,8 +214,39 @@ $borderColor: #eeeeee;
   width: 40vw;
 }
 
-.align-center {
+%display-flex, .display-flex{
   display: flex;
+}
+
+%justifyContent-start, .justifyContent-start{
+  @extend %display-flex;
+  justify-content: start;
+}
+
+%justifyContent-center, .justifyContent-center{
+  @extend %display-flex;
+  justify-content: center;
+}
+
+%justifyContent-end, .justifyContent-end{
+  @extend %display-flex;
+  justify-content: flex-end;
+}
+
+%grow-0, .grow-0{
+  flex-grow: 0;
+}
+
+%grow-1fr, .grow-1fr{
+  flex-grow: 1fr;
+}
+
+%grow-2fr, .grow-2fr{
+  flex-grow: 2fr;
+}
+
+.align-center {
+  display: flex !important;
   flex-flow: row wrap;
   align-items: center;
 }
@@ -203,6 +256,13 @@ $borderColor: #eeeeee;
   flex-flow: row wrap;
   justify-content: center;
   width: 100vmax !important;
+}
+
+.centralize-auto{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: auto;
 }
 
 .container {
@@ -250,6 +310,11 @@ $borderColor: #eeeeee;
       background: $mainColor;
     }
   }
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 // Fonts

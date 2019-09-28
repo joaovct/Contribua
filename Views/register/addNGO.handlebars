@@ -1,14 +1,14 @@
 <style>
     body {
-        background: url('../../assets/imgs/dog-white.jpg');
+        background-image: linear-gradient(rgba(224, 234, 251, 0.2), rgba(224, 234, 251, 0.2)),url('../../assets/imgs/bg.jpg');
         background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
     }
 </style>
 
-<div class="centralize padding-top4">
-    <div class="container">
+<div class="centralize-auto padding-top4">
+    {{!-- <div class="container box">
         <ul class="steps ">
             <li class="step progress"
                 onclick="hide('ngoRegister'); show('ngoRegister', 0); changeOpacity(0.5,'step'); changeOpacity(1,'step', 0)">
@@ -20,8 +20,8 @@
                 onclick="hide('ngoRegister'); show('ngoRegister', 2); changeOpacity(0.5,'step'); changeOpacity(1,'step', 2)">
                 Descrição da ONG</li>
         </ul>
-    </div>
-    <div class="centralize box">
+    </div> --}}
+    <div class="centralize-auto box">
         <form class="form" id="form-registerNGO" name="form-registerNGO" action="/starting-ong/register" method="POST">
             <div class="block margin-btm2 ngoRegister">
                 <span class="medium-text light-weight-text blue block">1° Passo</span>
@@ -79,8 +79,14 @@
                     <input name="categories" value="jovens" type="checkbox" id="jovens" class="form-checkbox">
                     <label for="jovens" class="form-btnCheckbox">Jovens</label>
                 </div>
-                <div onclick="hide('ngoRegister'); show('ngoRegister', 1); progressStep('step', 1); changeOpacity(1, 'step', 1)"
-                    class="form-submit" name="submitRegisterNGO-1">Próximo</div>
+                <div class="icon-input"><input name="ngoCNPJ" class="form-input" type="text"
+                        placeholder="CNPJ - __.___.___/____-__" maxlength="18" /></div>
+                <div class="display-flex bg-lightGray">
+                    <div class="btn-secondary grow-1fr">Voltar</div>
+                    <div class="btn-primary grow-1fr">Próximo</div>
+                </div>
+                {{!-- <div onclick="hide('ngoRegister'); show('ngoRegister', 1); progressStep('step', 1); changeOpacity(1, 'step', 1)"
+                    class="form-submit" name="submitRegisterNGO-1">Próximo</div> --}}
             </div>
             <div class="block margin-btm2 ngoRegister">
                 <span class="medium-text light-weight-text blue block">2° Passo</span>

@@ -16,11 +16,18 @@
         <nav class="nav-header">
             <ul>
                 <li class="icon"><a href="#"><img src="/assets/imgs/bell.svg"></a></li>
-                <li class="profile-pic"><a onclick="$('.header-options').toggle('fast')"><img src="/assets/imgs/man2.jpg" /></a></li>
+                <li class="profile-pic"><a onclick="$('.header-options').toggle('fast')"><img
+                            src="/assets/imgs/man2.jpg" /></a></li>
                 <ul class="header-options">
+<<<<<<< HEAD
                     <li><a href="/{{data.userName}}">Perfil</a></li>
                     <li><a href="/settings">Configurações</a></li>
                     <li><a href="/starting-ong">Criar uma ONG</a></li>
+=======
+                    <li><a href="/user/profile">Perfil</a></li>
+                    <li><a href="/user/settings">Configurações</a></li>
+                    <li><a href="#" onclick="$('.my-ngos').slideDown('fast')">Minhas ONGs</a></li>
+>>>>>>> 866a4fbc4890a913da603b122b86d0fe1dbebdcb
                     <li><a href="/logout">Sair</a></li>
                 </ul>
                 </a>
@@ -28,6 +35,25 @@
         </nav>
     </div>
 </header>
+
+<div class="overlay my-ngos">
+    <div class="modal">
+        <h1 class="title big-text margin0 text-left">Minhas ONGs</h1>
+        <ul class="items margin0 margin-top2">
+            <li class="item align-center">
+                <img src="/assets/imgs/animal-cat-cute-46024.jpg" class="rounded-pic margin-right1" />
+                <a href="#" class="margin0 medium-text">Cães e gatos</a>
+            </li>
+            <li class="item align-center">
+                <img src="/assets/imgs/animal-cat-cute-46024.jpg" class="rounded-pic margin-right1" />
+                <a href="#" class="margin0 medium-text">Cães e gatos</a>
+            </li>
+        </ul>
+        <div class="centralize-auto margin-top2">
+            <a href="/user/starting-ong" onclick="$('.my-ngos').slideUp('fast')" class="btn-callaction">Criar uma ONG</a>
+        </div>
+    </div>
+</div>
 
 {{!-- Ignore this --}}
 <header class="header-relative">
@@ -57,3 +83,5 @@
     </div>
 </header>
 {{/if}}
+
+<script>$( '.my-ngos' ).hide()</script>
