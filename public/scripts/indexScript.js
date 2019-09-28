@@ -7,7 +7,7 @@ var pass1 = true, pass2 = true
 
 function init(){ 
     email.addEventListener("input", ()=>{
-        pass1 = validationEmail(email)})
+        pass1 = true})
         validatesForm()
     password.addEventListener("input", ()=>{
         pass2 = validatesPassword(password)

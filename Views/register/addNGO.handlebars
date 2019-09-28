@@ -26,14 +26,18 @@
             <div class="block margin-btm2 ngoRegister">
                 <span class="medium-text light-weight-text blue block">1° Passo</span>
                 <h1 class="title">Dados da ONG</h1>
-                <div class="icon-input"><input name="ngoName" class="form-input" type="text" placeholder="Nome da ONG"
+                <div class="icon-input"><input name="ngoName" class="form-input" type="text" placeholder="Nome"
                         length="150" /></div>
-                <label for="ngoLogo" class="form-btnFile">Logo da ONG</label>
+                <div class="icon-input"><input name="ngoCNPJ" class="form-input" type="text"
+                        placeholder="CNPJ - __.___.___/____-__" maxlength="18" /></div>
+                {{!-- <label for="ngoLogo" class="form-btnFile">Logo da ONG</label>
                 <input id="ngoLogo" class="form-file" name="ngoLogo" class="form-image" type="file"
-                    placeholder="Logo da ONG" />
-                <div class="icon-input"><input name="ngoCEP" placeholder="CEP da ONG" class="form-input" type="text"/></div>
+                    placeholder="Logo da ONG" /> --}}
+                <div class="icon-input"><input name="ngoCEP" placeholder="CEP" class="form-input" type="text" maxlength="9"/></div>
+                <div class="icon-input"><input name="ngoCity" placeholder="Cidade" class="form-input" type="text"/></div>
+                <div class="icon-input"><input name="ngoDistrict" placeholder="Bairro" class="form-input" type="text"/></div>
                 <div class="icon-input"><input name="ngoAddress" class="form-input" type="text"
-                        placeholder="Endereço da ONG" length="200" /></div>
+                        placeholder="Rua" length="200"/></div>
                 <div class="form-groupSelect">
                     <label class="form-label">Causas da ONG</label>
                     <input name="categories" value="direitos humanos" type="checkbox" id="direitosHumanos" class="form-checkbox">
@@ -91,6 +95,8 @@
                         placeholder="Telefone - (__) ____-____" maxlength="15" /></div>
                 <div class="icon-input"><input name="ngoEmail" class="form-input" type="email"
                         placeholder="Email da ONG" length="200" /></div>
+                <div class="icon-input"><input name="ngoUserName" class="form-input" type="text"
+                        placeholder="Nome de usuário da ong" /></div>
                 <div onclick="hide('ngoRegister'); show('ngoRegister', 2); progressStep('step', 2); changeOpacity(1, 'step', 2)"
                     class="form-submit" name="submitRegisterNGO-2">Próximo</div>
             </div>
