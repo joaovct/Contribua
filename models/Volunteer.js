@@ -23,7 +23,7 @@ const Volunteer = db.sequelize.define("tbVolunteer" ,{
         allowNull: false,
         type: db.Sequelize.STRING(80)
     },
-    userNameVolunteer: {
+    userName: {
         allowNull: false,
         type:db.Sequelize.STRING(80)
     },

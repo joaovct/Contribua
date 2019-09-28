@@ -1,0 +1,27 @@
+Rota principal (feito)
+/
+
+Login e logout (feito)
+/login
+/logout
+
+Registro de usuario (feito)
+/register
+
+Feed (feito)
+/home
+
+Configurações (feito)
+/settings
+
+Registro de ong (feito)
+/starting-ong/register
+
+Visita de Perfil (feito)
+/nome-de-usuario
+
+Visitar post do evento
+/nome-de-usuario/event/id-do-evento
+
+Criar Evento
+/nome-de-usuario/event

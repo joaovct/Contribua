@@ -13,6 +13,9 @@ const isLogged = require('./helpers/isLogged')
 const search = require('./helpers/doSearch')
 const login = require('./Routers/login')
 const ajax_checkers = require('./Routers/ajax-checkers')
+const home = require("./Routers/home")
+const starting_ong = require("./Routers/starting-ong")
+const settings = require("./Routers/settings")
 
 //**Configs**//
 // Session
@@ -49,35 +52,28 @@ app.set('view engine', 'handlebars')
 app.use(express.static(path.join(__dirname, "public")))
 
 // Routers
-
-app.use('/ngo', ngo)
-app.use('/user', isLogged, user)
-app.use('/register', register)
-app.use("/login", login)
-app.use("/ajax-checkers", ajax_checkers)
-
-// For develop
-app.use('/ngo', ngo)
-app.use('/user', user)
-
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     if(req.session.user){
-        return res.redirect("/user")
+        return res.redirect("/home")
     }
-    if(req.session.ngo){
-        return res.redirect("/ngo")
-    }
-    res.render('index')
+    res.render("index")
 })
 
-app.get("/logout", (req,res) => {
+app.use("/login", login)
+app.get("/logout", (req, res) => {
     req.session.destroy()
-    res.redirect("/")
+    return res.redirect("/")
 })
+app.use("/home", isLogged, home)
+app.use("/register", register)
+app.use("/starting-ong", isLogged, starting_ong)
+app.use("/settings", isLogged, settings)
+app.use("/ajax-checkers", ajax_checkers)
+app.use("/", isLogged, user)
 
-app.get('/search', async function(req,res){
+app.post('/search', async function(req,res){
     res.json(await search.doSearch(req.query.key))
-});
+})
 
 // Localhost
 const PORT = 3000;

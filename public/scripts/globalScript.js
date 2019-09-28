@@ -90,7 +90,7 @@ function doSearch(input){
     $(document).ready(()=>{
         nullSpace = value.trim()
         if(value.length > 0 && nullSpace.length > 0){
-            var results = $.get('http://localhost:3000/search?key=' + value, (data) => {
+            var results = $.post('http://localhost:3000/search?key=' + value, (data) => {
                 let volunteers = [], ngos = [], events = [], cases = []
                 removeDiv('.search-results')
                 for(let object of data){
@@ -115,7 +115,7 @@ function writeVolunteers(data){
     var i = 0
     for(let object of data){
         if(i==0) $('.search-results').append('<h1 class="title">Voluntários</h1>')
-        $('.search-results').append(`<li class="volunteer"> <img src="/assets/imgs/man2.jpg"/> <div class="item-content"> <h3 class="item-title">${object.name}</h3> </div> </li>`)
+        $('.search-results').append(`<li class="volunteer"> <img src="/assets/imgs/man2.jpg"/> <div class="item-content"> <a href="${object.userName}" class="item-title">${object.name}</a> </div> </li>`)
         i++
     }
 }

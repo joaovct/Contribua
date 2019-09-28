@@ -5,7 +5,7 @@
 {{#if data}}
 <header>
     <div class="container">
-        <a href="/user"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
+        <a href="/home"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
         <div class="search-field">
             <form class="search-form">
                 <img src="/assets/imgs/search.svg" />
@@ -18,9 +18,9 @@
                 <li class="icon"><a href="#"><img src="/assets/imgs/bell.svg"></a></li>
                 <li class="profile-pic"><a onclick="$('.header-options').toggle('fast')"><img src="/assets/imgs/man2.jpg" /></a></li>
                 <ul class="header-options">
-                    <li><a href="/user/profile">Perfil</a></li>
-                    <li><a href="/user/settings">Configurações</a></li>
-                    <li><a href="/user/starting-ong">Criar uma ONG</a></li>
+                    <li><a href="/{{data.userName}}">Perfil</a></li>
+                    <li><a href="/settings">Configurações</a></li>
+                    <li><a href="/starting-ong">Criar uma ONG</a></li>
                     <li><a href="/logout">Sair</a></li>
                 </ul>
                 </a>

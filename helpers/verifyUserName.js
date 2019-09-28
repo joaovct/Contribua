@@ -3,7 +3,7 @@ const Ngo = require("../models/Ngo")
 
 module.exports = {
     async user(userName){
-        const user = await User.findOne({where: {userNameVolunteer: userName}})
+        const user = await User.findOne({where: {userName: userName}})
 
         if(user)
             return user

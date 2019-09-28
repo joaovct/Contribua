@@ -3,10 +3,6 @@ const router = express.Router()
 const verifyEmail = require("../helpers/verifyEmail")
 const verifyUserName = require("../helpers/verifyUserName")
 
-router.get('/', (req, res) => {
-    res.render('register/login')
-})
-
 router.post('/', async (req,res) => {
     const dataUser = req.body
 
@@ -16,7 +12,7 @@ router.post('/', async (req,res) => {
     if(user){
         if(user.passwordVolunteer === dataUser.passwordVolunteer){
             req.session.user = user
-            return res.redirect("/user")
+            return res.redirect("/home")
         }else{
             req.flash("error_msg", "Senha incorreta!")
             return res.redirect("/")
@@ -26,7 +22,7 @@ router.post('/', async (req,res) => {
     if(user2){
         if(user2.passwordVolunteer === dataUser.passwordVolunteer){
             req.session.user = user2
-            return res.redirect("/user")
+            return res.redirect("/home")
         }else{
             req.flash("error_msg", "Senha incorreta!")
             return res.redirect("/")

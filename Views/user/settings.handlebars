@@ -13,7 +13,7 @@
                         src="/assets/imgs/ngo.svg" />Suas causas</li>
             </ul>
 
-            <form name="settings-profile" class="settings-form" method="POST" action="/user/edit-profile">
+            <form name="settings-profile" class="settings-form" method="POST" action="/settings/edit-profile">
                 <h1 class="label medium-text">Foto de perfil</h1>
                 <div class="block fields">
                     <figure class="block figure-profile-pic">
@@ -70,7 +70,7 @@
             <div name="settings-personalData" class="settings-form form">
                 <h1 class="label medium-text">Redefinir senha</h1>
                 <div class="fields block margin-top2">
-                    <form action="/user/change-password" method="POST" class="block">
+                    <form action="/settings/change-password" method="POST" class="block">
                         <div class="settings-field">
                             <label class="form-label">Nova senha</label>
                             <input class="form-input" name="newPassword" type="password">
@@ -87,7 +87,7 @@
                 <h1 class="label medium-text">Desativar conta</h1>
                 <div class="fields block width-auto margin-top2">
                     <div class="settings-field">
-                        <form action="/user/deactivate-account" method="post">
+                        <form action="/settings/deactivate-account" method="post">
                             <button class="btn-danger margin-top1" type="submit">Desativar conta</button>
                         </form>
                     </div>
@@ -97,7 +97,7 @@
             <div name="settings-ngoData" class="settings-form form">
                 <h1 class="label medium-text">Causas</h1>  
                 <div class="fields block margin-btm2">
-                    <form action="/user/edit-causes" method="post">
+                    <form action="/settings/edit-causes" method="post">
                         <div class="form-groupSelect">
                             {{#each causes}}
                                 <input type="checkbox" value="{{descCategory}}" id="{{descCategory}}" name="categories" class="form-checkbox" checked>
