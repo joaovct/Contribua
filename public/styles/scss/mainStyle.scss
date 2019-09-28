@@ -301,6 +301,38 @@ ul.cases {
   }
 }
 
+ul.items{
+  display: block;
+  list-style-type: none;
+  padding: 0;
+  li.item{
+    display: block;
+    padding: 10px 0 10px 0;
+    border-bottom: $border;
+  }
+}
+
+ul.icons {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  .icon {
+    img {
+      height: 24px;
+      width: 24px;
+    }
+    margin-right: $margin2 / 2;
+  }
+}
+
+img.rounded-pic{
+  height: 36px;
+  width: 36px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .form {
   height: auto;
   width: 350px;
@@ -449,11 +481,6 @@ input[type="submit"] {
   }
 }
 
-.disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
 div.icon-input {
   margin: $margin2 0 0 0;
   .form-input {
@@ -489,7 +516,7 @@ a {
 }
 
 div.overlay {
-  z-index: 999;
+  z-index: 999 !important;
   position: fixed;
   top: 0;
   left: 0;
@@ -498,13 +525,15 @@ div.overlay {
   align-items: center;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.16);
+  background: rgba(0, 0, 0, 0.1);
   // background: yellow;
   .modal {
+    z-index: 999 !important;
     @extend %box;
     max-height: 80%;
     overflow-y: scroll;
     padding: $margin4;
+    position: absolute;
     .icon-input {
       width: 100%;
     }
@@ -512,13 +541,11 @@ div.overlay {
       width: 100%;
       display: flex;
       justify-content: flex-end;
-      .btn-first {
-        order: 2;
-        @extend %btn-first;
+      .btn-primary {
+        @extend %btn-primary;
         padding: 10px 15px 10px 15px;
       }
       .btn-secondary {
-        order: 1;
         @extend %btn-secondary;
         padding: 10px 15px 10px 15px;
         margin-right: $margin2;
@@ -527,21 +554,24 @@ div.overlay {
   }
 }
 
-.btn-danger {
-  @extend %button;
-  width: 100%;
-  box-shadow: 0 3px 12px -6px rgba(0, 0, 0, 0.16);
-  background: #f9f9f9;
-  color: red;
-  border: $border;
+%button, .button {
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 12px 20px 12px 20px;
+  border-radius: 7px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: $margin2;
 }
 
-%btn-first,
-.btn-first {
+%btn-primary,
+.btn-primary {
   @extend %button;
   background: $mainColor;
   color: white;
-  font-size: $fontBase;
   box-shadow: 0 6px 12px -1.5px $lightBlue;
 }
 
@@ -551,7 +581,6 @@ div.overlay {
   background: #f9f9f9;
   border: $border;
   color: $mainColor;
-  font-size: $fontBase;
 }
 
 %btn-callaction, .btn-callaction{
@@ -562,16 +591,10 @@ div.overlay {
   box-shadow: 0 6px 12px -3px $lightBlue;
 }
 
-ul.icons {
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-flow: row wrap;
-  .icon {
-    img {
-      height: 24px;
-      width: 24px;
-    }
-    margin-right: $margin2 / 2;
-  }
+.btn-danger {
+  @extend %button;
+  background: $errorColor;
+  color: white;
+  border: $border;
+  border-radius: 7px;
 }

@@ -20,7 +20,7 @@ router.post('/', async (req,res) => {
             res.redirect("/")
         }
     }else{
-        req.flash("error_msg", "E-mail incorreto!")
+        req.flash("error_msg", "Conta não encontrada!")
         return res.redirect("/")
     }
 })
