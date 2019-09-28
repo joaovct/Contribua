@@ -17,9 +17,6 @@ router.post('/', async (req,res) => {
             req.flash("error_msg", "Senha incorreta!")
             return res.redirect("/")
         }
-    }else{
-        req.flash("error_msg", "Conta não encontrada!")
-        return res.redirect("/")
     }
 
     if(user2){
@@ -32,7 +29,7 @@ router.post('/', async (req,res) => {
         }
     }
 
-    req.flash("error_msg", "E-mail ou Usuário incorreto!")
+    req.flash("error_msg", "Conta não encontrada!")
     return res.redirect("/")
 })
 
