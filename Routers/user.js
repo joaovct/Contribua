@@ -14,7 +14,7 @@ router.get('/:userName', async (req,res)=>{
             const category = await causesController.listCausesUser(user.idVolunteer)
             return res.render("user/profile", {data: user, causes: category})
         }else{
-            return res.send("usuario não encontrado")
+            return res.render('error', {data: req.session.user})
         }
     }
 })

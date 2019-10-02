@@ -32,19 +32,18 @@
 
 <div class="overlay my-ngos">
     <div class="modal">
-        <h1 class="title big-text margin0 text-left">Minhas ONGs</h1>
-        <ul class="items margin0 margin-top2">
-            <li class="item align-center">
-                <img src="/assets/imgs/animal-cat-cute-46024.jpg" class="rounded-pic margin-right1" />
-                <a href="#" class="margin0 medium-text">Cães e gatos</a>
-            </li>
-            <li class="item align-center">
-                <img src="/assets/imgs/animal-cat-cute-46024.jpg" class="rounded-pic margin-right1" />
-                <a href="#" class="margin0 medium-text">Cães e gatos</a>
-            </li>
-        </ul>
+        {{#if ngos}}
+            <h1 class="title big-text margin0 text-center">Minhas ONGs</h1>
+            {{!-- Code here --}}
+        {{else}}
+            <div style="max-width: 350px;" class="justifyContent-center flex-column flex-nowrap margin-top4">
+                <img height="150px" src="/assets/imgs/empty2.svg"/>
+                <h1 class="title text-center margin0 margin-top4">Ops...</h1>
+                <p class="text margin0 margin-top1 text-center">Parece que você não administra nenhuma ONG. Que tal começar a cadastrar uma clicando no botão abaixo?</p>
+            </div>
+        {{/if}}
         <div class="centralize-auto margin-top2">
-            <a href="/user/starting-ong" onclick="$('.my-ngos').slideUp('fast')" class="btn-callaction">Criar uma ONG</a>
+            <a href="/starting-ong" onclick="$('.my-ngos').slideUp('fast')" class="btn-callaction margin0">Criar uma ONG</a>
         </div>
     </div>
 </div>
