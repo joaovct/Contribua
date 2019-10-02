@@ -20,43 +20,16 @@
       object-fit: cover;
     }
   }
-  figure.availableVolunteer {
-    position: relative;
-    &:after {
-      content: "";
-      position: absolute;
-      top: -15px;
-      right: -20px;
-      height: 40px;
-      width: 40px;
-      border-radius: 100%;
-      background: $successColor;
-    }
-  }
   .profile-name {
     display: flex;
-    align-items: center;
+    justify-content: center;
+    flex-flow: column nowrap;
     grid-area: name;
     .username {
       font-size: 2.4em;
       font-weight: bolder;
       padding: 0;
       margin: 0;
-    }
-    .feed-header {
-      width: auto;
-      margin-left: $margin2;
-      margin-bottom: 0;
-      border-bottom: 0;
-      padding: 0;
-      .group-categories{
-        margin: 0;
-        .filter-active{
-          background: $lightBlue !important;
-          color: $mainColor;
-          font-weight: 500;
-        }
-      }
     }
   }
   figure.linkSettings {

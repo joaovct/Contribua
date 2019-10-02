@@ -63,6 +63,10 @@ $borderColor: #eeeeee;
   margin: 0 0 0 0;
 }
 
+%smallest-text, .smallest-text{
+  font-size: 0.9rem;
+}
+
 %small-text, .small-text {
   font-size: $fontBase;
 }

@@ -9,7 +9,7 @@ module.exports = {
             return user
     },
     async ngo(userName){
-        const ngo = await Ngo.findOne({where: {userNameNgo: userName}})
+        const ngo = await Ngo.findOne({where: {userName: userName}})
 
         if(ngo)
             return ngo

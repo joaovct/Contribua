@@ -148,6 +148,7 @@ header {
                 font-size: 1.2em;
                 font-weight: 500;
                 margin: 0 0 0 0;
+                color: black;
               }
               .item-description {
                 font-size: $fontBase;
@@ -290,14 +291,17 @@ ul.cases {
   list-style: none;
   margin-top: 5px;
   li.case {
-    font-size: 0.9em;
+    font-size: 1em;
     text-align: center;
     background: $lightBlue;
     color: $mainColor;
     margin: 0 10px 10px 0;
-    padding: 5px;
+    padding: 5px 10px 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    &::first-letter{
+      text-transform: uppercase;
+    }
   }
 }
 
@@ -532,13 +536,12 @@ div.overlay {
   position: fixed;
   top: 0;
   left: 0;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.1);
-  // background: yellow;
   .modal {
     z-index: 999 !important;
     @extend %box;
