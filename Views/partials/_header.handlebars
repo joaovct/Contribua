@@ -32,6 +32,9 @@
 
 <div class="overlay my-ngos">
     <div class="modal">
+        <div class="modal-close">
+            <img onclick="$('.my-ngos').slideUp('fast')" class="modal-close-btn" src="/assets/imgs/close.svg"/>
+        </div>
         {{#if ngos}}
             <h1 class="title big-text margin0 text-center">Minhas ONGs</h1>
             {{!-- Code here --}}
