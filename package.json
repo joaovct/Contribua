@@ -1,0 +1,36 @@
+{
+  "name": "contribua-",
+  "version": "1.0.0",
+  "description": "Contribua! is a undergraduate work project made by students from Etec de Guaianazes.",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.16.2",
+    "express-sessions": "^1.0.6",
+    "handlebars": "^4.1.2",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "mysql2": "^1.6.5",
+    "path": "^0.12.7",
+    "reload": "^3.0.1",
+    "sequelize": "^5.15.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaodjtr/Contribua-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaodjtr/Contribua-/issues"
+  },
+  "homepage": "https://github.com/joaodjtr/Contribua-#readme"
+}

@@ -2,7 +2,7 @@
 </header>
 <script src="/scripts/globalScript.js"></script>
 </script>
-{{#if data}}
+{{#if dataHeader}}
 <header>
     <div class="container">
         <a href="/home"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
@@ -17,11 +17,11 @@
             <ul>
                 <li class="icon"><a href="#"><img src="/assets/imgs/bell.svg"></a></li>
                 <li class="profile-pic"><a onclick="$('.header-options').toggle('fast')"><img
-                            src="/assets/imgs/man2.jpg" /></a></li>
+                            src="/temp/uploads/profile/{{dataHeader.photoVolunteer}}" /></a></li>
                 <ul class="header-options">
-                    <li><a href="/{{data.userName}}">Perfil</a></li>
+                    <li><a href="/{{dataHeader.userName}}">Perfil</a></li>
                     <li><a href="/settings">Configurações</a></li>
-                    <li><a href="/starting-ong">Criar uma ONG</a></li>
+                    <li><a href="#" onclick="$('.my-ngos').slideDown('fast')">Minhas ONGs</a></li>
                     <li><a href="/logout">Sair</a></li>
                 </ul>
                 </a>
@@ -44,7 +44,7 @@
             </li>
         </ul>
         <div class="centralize-auto margin-top2">
-            <a href="/user/starting-ong" onclick="$('.my-ngos').slideUp('fast')" class="btn-callaction">Criar uma ONG</a>
+            <a href="/starting-ong" onclick="$('.my-ngos').slideUp('fast')" class="btn-callaction">Criar uma ONG</a>
         </div>
     </div>
 </div>

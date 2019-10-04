@@ -22,6 +22,7 @@ module.exports = {
                                             descriptionNgo: dataNgo.ngoDescription,
                                             cnpjNgo: dataNgo.ngoCNPJ,
                                             emailNgo: dataNgo.ngoEmail,
+                                            userName: dataNgo.ngoUserName,
                                             siteNgo: "www.site.com",
                                             cepNgo: "084604300",
                                             cityNgo: "SP",

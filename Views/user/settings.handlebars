@@ -1,5 +1,13 @@
 <link rel="stylesheet" href="/styles/css/settingsStyle.css" />
 
+<style>
+    .label-profile-pic{
+        background: url("/temp/uploads/profile/{{data.photoVolunteer}}");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
+
 <div class="centralize padding-top2">
     <div class="container">
         <h1 class="title big-text">Configurações</h1>
@@ -11,13 +19,13 @@
                 </li>
             </ul>
 
-            <form name="settings-profile" class="settings-form" method="POST" action="/settings/edit-profile">
+            <form name="settings-profile" class="settings-form" method="POST" action="/settings/edit-profile" enctype="multipart/form-data">
                 <div class="block fields">
                     <figure class="block figure-profile-pic">
                         <label for="profile-pic" class="label-profile-pic">
                             <p>Mudar foto de perfil</p>
                         </label>
-                        <input id="profile-pic" type="file" />
+                        <input id="profile-pic" type="file" name="photo" />
                     </figure>
                 </div>
                 <h1 class="label medium-text">Dados do perfil</h1>
@@ -89,7 +97,7 @@
                 </div>
                 <h1 class="label medium-text margin0">Redefinir senha</h1>
                 <div class="fields block margin-top2 margin-btm4">
-                    <form action="/user/change-password" method="POST" id="change-password-form" class="block">
+                    <form action="/settings/change-password" method="POST" id="change-password-form" class="block">
                         <div class="display-flex align-center">
                             <div class="settings-field">
                                 <label class="form-label">Nova senha</label>
@@ -105,7 +113,7 @@
                 </div>
                 <h1 class="label medium-text margin0">Desativar conta</h1>
                 <div class="fields block padding0 margin0">
-                    <form action="/user/deactivate-account" id="disable-account-form" method="post">
+                    <form action="/settings/deactivate-account" id="disable-account-form" method="post">
                         <div onclick="$('.disable-account').slideDown('slow')" class="btn-danger margin-top2">Desativar
                             conta</div>
                     </form>
@@ -144,3 +152,4 @@
     $( '.change-password' ).hide()
     $( '.disable-account' ).hide()
 </script>
+<script src="/scripts/settingsScript.js"></script>

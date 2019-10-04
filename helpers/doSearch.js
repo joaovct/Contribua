@@ -14,7 +14,8 @@ async function findVolunteers(key){
         let object = {
             typeResult: "volunteer",
             name: volunteer.dataValues.nameVolunteer + " " + volunteer.dataValues.lastNameVolunteer,
-            userName: volunteer.dataValues.userName
+            userName: volunteer.dataValues.userName,
+            photoVolunteer: volunteer.dataValues.photoVolunteer
             // picture: volunteer.dataValues.pictureVolunteer
         }
         results.push( object )
