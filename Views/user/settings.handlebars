@@ -108,13 +108,13 @@
                                 <input class="form-input" name="confirmPassword" type="password">
                             </div>
                         </div>
-                        <div onclick="$('.change-password').slideDown('slow')" class="btn-danger">Mudar senha</div>
+                        <div onclick="$('.change-password').slideDown('slow').css('display', 'flex')" class="btn-danger">Mudar senha</div>
                     </form>
                 </div>
                 <h1 class="label medium-text margin0">Desativar conta</h1>
                 <div class="fields block padding0 margin0">
-                    <form action="/settings/deactivate-account" id="disable-account-form" method="post">
-                        <div onclick="$('.disable-account').slideDown('slow')" class="btn-danger margin-top2">Desativar
+                    <form action="/user/deactivate-account" id="disable-account-form" method="post">
+                        <div onclick="$('.disable-account').slideDown('slow').css('display', 'flex')" class="btn-danger margin-top2">Desativar
                             conta</div>
                     </form>
                 </div>

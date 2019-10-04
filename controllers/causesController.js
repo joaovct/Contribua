@@ -3,6 +3,12 @@ const CategoryVolunteer = require("../models/CategoryVolunteer")
 const CategoryNgo = require("../models/CategoryNgo")
 
 module.exports = {
+
+    async listCauses(){
+        let category  = await Category.findAll()
+        return category
+    },
+
     //USER
     async registerCausesUser(idUser, categories){
         for(let i in categories){

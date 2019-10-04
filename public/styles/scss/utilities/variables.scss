@@ -63,6 +63,10 @@ $borderColor: #eeeeee;
   margin: 0 0 0 0;
 }
 
+%smallest-text, .smallest-text{
+  font-size: 0.9rem;
+}
+
 %small-text, .small-text {
   font-size: $fontBase;
 }
@@ -87,8 +91,12 @@ $borderColor: #eeeeee;
   font-weight: 800;
 }
 
+%bold, .bold{
+  font-weight: bold;
+}
+
 %text, .text {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   margin: 0 0 0 0;
 }
 
@@ -160,6 +168,8 @@ $borderColor: #eeeeee;
   margin-left: $margin4;
 }
 
+
+
 .padding-top2 {
   padding-top: $margin2;
 }
@@ -174,6 +184,10 @@ $borderColor: #eeeeee;
 
 .padding-btm4 {
   padding-bottom: $margin4;
+}
+
+.padding-2{
+  padding: $margin2;
 }
 
 .padding-4 {
@@ -245,9 +259,28 @@ $borderColor: #eeeeee;
   flex-grow: 2fr;
 }
 
+%flex-column, .flex-column{
+  @extend %display-flex;
+  flex-direction: column;
+}
+
+%flex-row, .flex-row{
+  @extend %display-flex;
+  flex-direction: row;
+}
+
+%flex-wrap, .flex-wrap{
+  @extend %display-flex;
+  flex-wrap: wrap;
+}
+
+%flex-nowrap, .flex-nowrap{
+  @extend %display-flex;
+  flex-wrap: nowrap;
+}
+
 .align-center {
   display: flex !important;
-  flex-flow: row wrap;
   align-items: center;
 }
 

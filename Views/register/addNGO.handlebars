@@ -30,61 +30,22 @@
                         length="150" /></div>
                 <div class="icon-input"><input name="ngoCNPJ" class="form-input" type="text"
                         placeholder="CNPJ - __.___.___/____-__" maxlength="18" /></div>
-                {{!-- <label for="ngoLogo" class="form-btnFile">Logo da ONG</label>
-                <input id="ngoLogo" class="form-file" name="ngoLogo" class="form-image" type="file"
-                    placeholder="Logo da ONG" /> --}}
-                <div class="icon-input"><input name="ngoCEP" placeholder="CEP" class="form-input" type="text" maxlength="9"/></div>
+                <div class="icon-input">
+                    <input name="ngoCEP" placeholder="CEP" class="form-input" type="text" maxlength="9"/></div>
                 <div class="icon-input"><input name="ngoCity" placeholder="Cidade" class="form-input" type="text"/></div>
                 <div class="icon-input"><input name="ngoDistrict" placeholder="Bairro" class="form-input" type="text"/></div>
                 <div class="icon-input"><input name="ngoAddress" class="form-input" type="text"
                         placeholder="Rua" length="200"/></div>
                 <div class="form-groupSelect">
                     <label class="form-label">Causas da ONG</label>
-                    <input name="categories" value="direitos humanos" type="checkbox" id="direitosHumanos" class="form-checkbox">
-                    <label for="direitosHumanos" class="form-btnCheckbox">Direitos humanos</label>
-
-                    <input name="categories" value="cultura e arte" type="checkbox" id="culturaearte" class="form-checkbox">
-                    <label for="culturaearte" class="form-btnCheckbox">Cultura e arte</label>
-
-                    <input name="categories" value="educação" type="checkbox" id="educação" class="form-checkbox">
-                    <label for="educação" class="form-btnCheckbox">Educação</label>
-
-                    <input name="categories" value="crianças" type="checkbox" id="crianças" class="form-checkbox">
-                    <label for="crianças" class="form-btnCheckbox">Crianças</label>
-
-                    <input name="categories" value="meio ambiente" type="checkbox" id="meioambiente" class="form-checkbox">
-                    <label for="meioambiente" class="form-btnCheckbox">Meio ambiente</label>
-
-                    <input name="categories" value="combate à pobreza" type="checkbox" id="combateàpobreza" class="form-checkbox">
-                    <label for="combateàpobreza" class="form-btnCheckbox">Combate à pobreza</label>
-
-                    <input name="categories" value="proteção animal" type="checkbox" id="proteçãoanimal" class="form-checkbox">
-                    <label for="proteçãoanimal" class="form-btnCheckbox">Proteção animal</label>
-
-                    <input name="categories" value="política" type="checkbox" id="política" class="form-checkbox">
-                    <label for="política" class="form-btnCheckbox">Política</label>
-
-                    <input name="categories" value="mulheres" type="checkbox" id="mulheres" class="form-checkbox">
-                    <label for="mulheres" class="form-btnCheckbox">Mulheres</label>
-
-                    <input name="categories" value="esportes" type="checkbox" id="esportes" class="form-checkbox">
-                    <label for="esportes" class="form-btnCheckbox">Esportes</label>
-
-                    <input name="categories" value="refugiados" type="checkbox" id="refugiados" class="form-checkbox">
-                    <label for="refugiados" class="form-btnCheckbox">Refugiados</label>
-
-                    <input name="categories" value="saúde" type="checkbox" id="saúde" class="form-checkbox">
-                    <label for="saúde" class="form-btnCheckbox">Saúde</label>
-
-                    <input name="categories" value="jovens" type="checkbox" id="jovens" class="form-checkbox">
-                    <label for="jovens" class="form-btnCheckbox">Jovens</label>
+                    {{#each causes}}
+                        <input name="categories" value="{{descCategory}}" type="checkbox" id="{{descCategory}}" class="form-checkbox">
+                        <label for="{{descCategory}}" class="form-btnCheckbox">{{descCategory}}</label>
+                    {{/each}}
                 </div>
-                <div class="display-flex bg-lightGray">
-                    <div class="btn-secondary grow-1fr">Voltar</div>
-                    <div class="btn-primary grow-1fr">Próximo</div>
+                <div class="display-flex justifyContent-end">
+                    <div onclick="$('.ngoRegister').hide(); $('.ngoRegister:nth-child(2)').show()" class="btn-primary">Próximo</div>
                 </div>
-                {{!-- <div onclick="hide('ngoRegister'); show('ngoRegister', 1); progressStep('step', 1); changeOpacity(1, 'step', 1)"
-                    class="form-submit" name="submitRegisterNGO-1">Próximo</div> --}}
             </div>
             <div class="block margin-btm2 ngoRegister">
                 <span class="medium-text light-weight-text blue block">2° Passo</span>
@@ -95,8 +56,10 @@
                         placeholder="Email da ONG" length="200" /></div>
                 <div class="icon-input"><input name="ngoUserName" class="form-input" type="text"
                         placeholder="Nome de usuário da ong" /></div>
-                <div onclick="hide('ngoRegister'); show('ngoRegister', 2); progressStep('step', 2); changeOpacity(1, 'step', 2)"
-                    class="form-submit" name="submitRegisterNGO-2">Próximo</div>
+                <div class="display-flex justifyContent-end">
+                    <div onclick="$('.ngoRegister').hide(); $('.ngoRegister:nth-child(1)').show()" class="btn-secondary margin-right2">Voltar</div>
+                    <div onclick="$('.ngoRegister').hide(); $('.ngoRegister:nth-child(3)').show()" class="btn-primary">Próximo</div>
+                </div>
             </div>
             <div class="block margin-btm2 ngoRegister">
                 <span class="medium-text light-weight-text blue block">3° Passo</span>
@@ -104,7 +67,10 @@
                 <textarea name="ngoDescription" type="text" class="form-input form-textarea"
                     placeholder="Descreva brevemente sua ONG; Onde atua, trabalhos realizados, causas, etc"
                     length="5000" style="height: 300px"></textarea>
-                <button name="registerNGO-submit" id="registerNGO-submit" disabled type="submit">Enviar dados</button>
+                <div class="display-flex justifyContent-end">
+                    <div onclick="$('.ngoRegister').hide(); $('.ngoRegister:nth-child(2)').show()" class="btn-secondary margin-right2">Voltar</div>
+                    <button name="registerNGO-submit" id="registerNGO-submit" class="btn-primary" disabled>Próximo</button>
+                </div>
             </div>
         </form>
     </div>

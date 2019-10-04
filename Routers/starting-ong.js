@@ -9,8 +9,9 @@ router.get("/", (req, res) => {
     res.render('register/presentation', {data: req.session.user})
 })
 
-router.get("/register", (req, res) => {
-    res.render('register/addNGO', {data: req.session.user})
+router.get("/register", async (req, res) => {
+    const categories = await causesController.listCauses()
+    res.render('register/addNGO', {data: req.session.user, causes: categories})
 })
 
 router.post('/starting-ong/register', async (req, res) => {

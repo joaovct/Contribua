@@ -29,7 +29,6 @@ module.exports = {
             msg = "Já existe uma conta com o CPF informado!"
             return {type_msg, msg}
         }
-
         const user = await User.create({
                                     nameVolunteer: dataUser.nameVolunteer,
                                     lastNameVolunteer: dataUser.lastNameVolunteer,

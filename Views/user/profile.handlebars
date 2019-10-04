@@ -9,17 +9,11 @@
             </figure>
             <div class="profile-name">
                 <h1 class="username">{{data.nameVolunteer}} {{data.lastNameVolunteer}}</h1>
-                <div class="feed-header">
-                    <div class="filters">
-                        <ul class="group-categories">
-                            {{#each causes}}
-                                <a class="item-category category-filter filter-active" href="#">
-                                    <li>{{descCategory}}</li>
-                                </a>
-                            {{/each}}
-                        </ul>
-                    </div>
-                </div>
+                <ul class="cases margin0">
+                    {{#each causes}}
+                    <li class="case"><a href="#">{{descCategory}}</a></li>
+                    {{/each}}
+                </ul>
             </div>
             <a href="/settings">
                 <figure class="linkSettings">

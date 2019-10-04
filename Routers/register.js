@@ -2,9 +2,11 @@ const express = require('express')
 const router = express.Router()
 const validations = require("../helpers/validations")
 const userController = require("../controllers/userController")
+const causesController = require('../controllers/causesController')
 
-router.get('/', (req, res)=>{
-    res.render('register/registerUser')
+router.get('/', async (req, res)=>{
+    const categories = await causesController.listCauses() 
+    res.render('register/registerUser', {causes: categories})
 })
 
 router.post("/registerUser", async (req, res) => {
