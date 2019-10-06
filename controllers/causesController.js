@@ -119,7 +119,12 @@ module.exports = {
         }
     },
     async listCausesNgo(idNgo){
-
+        let categoryNgo = await CategoryNgo.findAll({where: {idNgo: idNgo}})
+        let category = []
+        for(let i in categoryNgo){
+            category[i] = await Category.findOne({where: {idCategory: categoryNgo[i].idCategory}})
+        }
+        return category
     },
     async listCausesNotParticipeNgo(idNgo){
 

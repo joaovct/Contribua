@@ -11,32 +11,27 @@
                 <img src="/assets/imgs/animal-cat-cute-46024.jpg" />
             </figure>
             <div class="profile-name">
-                <h1 class="username">Cães e gatos</h1>
+                <h1 class="username">{{data.nameNgo}}</h1>
                 <div class="feed-header">
                     <div class="filters">
                         <ul class="group-categories">
-                            <a class="item-category category-filter filter-active" href="#">
-                                <li>Ambiental</li>
-                            </a>
-                            <a class="item-category category-filter filter-active" href="#">
-                                <li>Animal</li>
-                            </a>
+                            {{#each causes}}
+                                <a class="item-category category-filter filter-active" href="#">
+                                    <li>{{descCategory}}</li>
+                                </a>
+                            {{/each}}
                         </ul>
                     </div>
                 </div>
             </div>
             <figure class="linkSettings">
-                <img src="/assets/imgs/settings.svg" />
+                {{!-- <img src="/assets/imgs/settings.svg" /> --}}
             </figure>
             <div class="profile-location-since">
-                <h3 class="content">São Paulo, SP. Desde jul de 2019.</h3>
+                <h3 class="content">{{data.cityNgo}}. Desde {{data.createdAt.month}} de {{data.createdAt.year}}</h3>
             </div>
             <div class="profile-about">
-                <p class="content">Irure dolore officia culpa irure sint cillum tempor culpa ex eu officia aute. Eu
-                    occaecat dolore anim est. Nostrud excepteur minim cillum culpa ullamco irure sit non Lorem.
-                    Lorem deserunt consequat consequat fugiat occaecat aliqua sit. Ad aliquip Lorem adipisicing sunt
-                    quis et reprehenderit irure laboris irure nulla adipisicing qui. Enim enim fugiat irure et in
-                    amet velit aliqua aute mollit.</p>
+                <p class="content">{{data.descriptionNgo}}</p>
             </div>
         </div>
         <div class="profile-stats">
@@ -46,7 +41,7 @@
                 <li><span class="number">41</span>Membros</li>
             </ul>
         </div>
-        <div class="group-nav">
+        {{!-- <div class="group-nav">
             <nav class="nav-articles">
                 <h1 class="title padding-top2 margin-btm1">Meus eventos</h1>
                 <div class="group-articles">
@@ -172,6 +167,6 @@
                     </article>
                 </div>
             </nav>
-        </div>
-    </div>
+        </div> --}}
+    {{!-- </div> --}}
 </div>

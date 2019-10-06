@@ -2,23 +2,24 @@ const express = require('express')
 const router = express.Router()
 const validations = require("../helpers/validations")
 const ngoController = require("../controllers/ngoController")
-const userController = require("../controllers/userController")
 const causesController = require("../controllers/causesController")
+const userNgoController = require("../controllers/userNgoController")
 
 router.get("/", (req, res) => {
-    res.render('register/presentation', {data: req.session.user})
+    res.render('register/presentation', {dataHeader: req.session.user})
 })
 
 router.get("/register", async (req, res) => {
     const categories = await causesController.listCauses()
-    res.render('register/addNGO', {data: req.session.user, causes: categories})
+    res.render('register/addNGO', {data: req.session.user, dataHeader: req.session.user, causes: categories})
 })
 
-router.post('/starting-ong/register', async (req, res) => {
-
+router.post('/register', async (req, res) => {
+    
     req.body.ngoCNPJ = req.body.ngoCNPJ.replace(/\D/g,"")
     req.body.ngoTelephone = req.body.ngoTelephone.replace(/\D/g,"")
-
+    req.body.ngoCEP = req.body.ngoCEP.replace(/\D/g,"")
+    
     const dataNgo = req.body
 
     //validations
@@ -46,14 +47,15 @@ router.post('/starting-ong/register', async (req, res) => {
         req.flash("Email inválido")
         return res.redirect("/starting-ong/register")
     }
-
     const resp = await ngoController.register(dataNgo, req.session.user.idVolunteer)
 
     req.flash(resp.type_msg, resp.msg)
-    if(resp.type_msg === "success_msg")
+    if(resp.type_msg === "success_msg"){
+        req.session.ngoUser = await userNgoController.listNgo(req.session.user.idVolunteer)
         return res.redirect("/home")
-    else
+    }else{
         return res.redirect("/starting-ong/register")
+    }
     
 })
 

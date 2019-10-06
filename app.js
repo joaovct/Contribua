@@ -12,6 +12,7 @@ const register = require('./Routers/register')
 const isLogged = require('./helpers/isLogged')
 const search = require('./helpers/doSearch')
 const login = require('./Routers/login')
+const loginNgo = require("./Routers/login-ngo")
 const ajax_checkers = require('./Routers/ajax-checkers')
 const home = require("./Routers/home")
 const starting_ong = require("./Routers/starting-ong")
@@ -62,7 +63,12 @@ app.get("/", (req, res) => {
 })
 
 app.use("/login", login)
+app.use("/login-ngo", loginNgo)
 app.get("/logout", (req, res) => {
+    if(req.session.ngo){
+        req.session.ngo = undefined
+        return res.redirect("/home")
+    }
     req.session.destroy()
     return res.redirect("/")
 })

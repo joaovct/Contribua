@@ -10,10 +10,10 @@ module.exports = {
     async register(dataNgo, idUser) {
         let type_msg
         let msg
-        const hasEmailNgo = await verifyEmail.ngo(dataNgo)
+        const hasEmailNgo = await verifyEmail.ngo(dataNgo.ngoEmail)
         const hasPhone = await verifyTelephone(dataNgo.ngoTelephone)
         const hasCNPJ = await verifyCNPJ(dataNgo.ngoCNPJ)
-        
+
         if(!hasEmailNgo){
             if(!hasPhone){
                 if(!hasCNPJ){
@@ -23,10 +23,11 @@ module.exports = {
                                             cnpjNgo: dataNgo.ngoCNPJ,
                                             emailNgo: dataNgo.ngoEmail,
                                             userName: dataNgo.ngoUserName,
-                                            siteNgo: "www.site.com",
-                                            cepNgo: "084604300",
-                                            cityNgo: "SP",
-                                            districtNgo: "Guaianases",
+                                            siteNgo: "site.com",
+                                            photoNgo: "user.svg",
+                                            cepNgo: dataNgo.ngoCEP,
+                                            cityNgo: dataNgo.ngoCity,
+                                            districtNgo: dataNgo.ngoDistrict,
                                             addressNgo: dataNgo.ngoAddress,
                                             averageStarsNgo: "0"
                                         })
