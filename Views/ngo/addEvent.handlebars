@@ -97,7 +97,6 @@
                 </div>
                 <div class="submit-step margin-top4">
                     <div onclick="$('.aside-2').slideUp('fast'); $('.aside-1').slideDown('slow')" class="btn-secondary">Voltar</div>
-                    {{!-- <div onclick="$('.aside-2').slideUp('slow'); $('.aside-3').slideDown('slow')" class="form-submit">Próximo passo</div> --}}
                     <div onclick="checksStep2()" class="btn-primary">Próximo passo</div>
                 </div>
             </div>
@@ -116,7 +115,7 @@
                     </div>
                 </div>
                 <div class="buttons-aside3">
-                    <div onclick="$('.modal-job').slideDown('fast')" class="btn-callaction">Adicionar vaga</div>
+                    <div onclick="$('.modal-job').slideDown('fast').css('display','flex')" class="btn-callaction">Adicionar vaga</div>
                     <div class="submit-step">
                         <div onclick="$('.aside-3').slideUp('fast'); $('.aside-2').slideDown('slow')" class="btn-secondary">Voltar</div>
                         <div onclick="checksStep3()" class="btn-primary">Próximo passo</div>
@@ -198,7 +197,11 @@
                 </ul>
                 <div class="modal-options">
                     <div onclick="$('.modal-preview').slideUp('fast')" class="btn-secondary">Editar</div>
+<<<<<<< HEAD
                     <button type="submit" onclick="$('.preview').slideUp('fast'); $('.done').slideDown('slow')" class="btn-primary">Finalizar</button>
+=======
+                    <button onclick="$('.preview').slideUp('fast'); $('.done').slideDown('slow').css('display','flex')" class="btn-primary" id="btn-submit" disabled>Finalizar</button>
+>>>>>>> 4807761ad7985b40f1d1c77702bd1e99d3ac1e8d
                 </div>
             </div>
             <div class="done">

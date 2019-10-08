@@ -31,12 +31,13 @@
 </header>
 
 <div class="overlay my-ngos">
-    <div class="modal">
+    <div class="modal" style="width: 350px">
         <div class="modal-close">
-            <img onclick="$('.my-ngos').slideUp('fast')" class="modal-close-btn" src="/assets/imgs/close.svg"/>
+            <img onclick="$('.my-ngos').slideUp('fast')" class="modal-close-btn" src="/assets/imgs/close.svg" />
         </div>
         {{#if ngos}}
-            <h1 class="title margin0 text-center">Minhas ONGs</h1>
+            <h1 class="title large-weight-text margin0 margin-btm1 text-left">Administrando</h1>
+            <ul class="items margin0">
             {{#each ngos}}
                 <form action="/login-ngo" method="post">
                     <button id="{{userName}}" type="submit" style="width:0;height:0;padding:0;margin:0;"></button>
@@ -54,26 +55,28 @@
                     <input type="hidden" name="averageStarsNgo" value="{{averageStarNgo}}">  
                     <input type="hidden" name="createdAt" value="{{createdAt}}">  
                     <label for="{{userName}}" style="cursor: pointer;">
-                        <li class="item align-center margin2">
+                        <li class="item align-center margin0">
                             <img src="/temp/uploads/profile/{{photoNgo}}" class="rounded-pic margin-right1" />
-                            <h1 class="label medium-text">{{nameNgo}}</h1>
+                            <h1 class="medium-text blue margin0">{{nameNgo}}</h1>
                         </li>
                     </label>
                 </form>
             {{/each}}
+            </ul>
+
         {{else}}
             <div style="max-width: 350px;" class="justifyContent-center flex-column flex-nowrap margin-top4">
                 <img height="150px" src="/assets/imgs/empty2.svg"/>
                 <h1 class="title text-center margin0 margin-top4">Ops...</h1>
-                <p class="text margin0 margin-top1 text-center">Parece que você não administra nenhuma ONG. Que tal começar a cadastrar uma clicando no botão abaixo?</p>
+                <p class="text margin0 margin-top1 text-center">Parece que você não segue e nem administra nenhuma ONG. Que tal começar a cadastrar uma clicando no botão abaixo?</p>
             </div>
         {{/if}}
-        <div class="centralize-auto margin-top2">
-            <a href="/starting-ong" onclick="$('.my-ngos').slideUp('fast')" class="btn-callaction margin0">Criar uma ONG</a>
+        <div class="centralize-auto margin0">
+            <a href="/starting-ong" onclick="$('.my-ngos').slideUp('fast')" class="btn-callaction margin0">Criar uma
+                ONG</a>
         </div>
     </div>
 </div>
-
 {{!-- Ignore this --}}
 <header class="header-relative">
     <div class="container">

@@ -13,7 +13,7 @@ router.get('/:userName', async (req,res)=>{
             req.session.ngo.createdAt.month = months[req.session.ngo.createdAt.getMonth()]
             req.session.ngo.createdAt.year = req.session.ngo.createdAt.getFullYear()
             const category = await causesController.listCausesNgo(req.session.ngo.idNgo)
-            return res.render("ngo/ngoProfile", {data: req.session.ngo, dataHeaderNgo: req.session.ngo, causes: category})
+            return res.render("ngo/profile", {data: req.session.ngo, dataHeaderNgo: req.session.ngo, causes: category})
         }
     }
 
@@ -38,7 +38,7 @@ router.get('/:userName', async (req,res)=>{
         ngo.createdAt.month = months[ngo.createdAt.getMonth()]
         ngo.createdAt.year = ngo.createdAt.getFullYear()
         const category = await causesController.listCausesNgo(ngo.idNgo)
-        return res.render("ngo/ngoProfile", {data: ngo, causes: category, dataHeader: req.session.user})
+        return res.render("ngo/profile", {data: ngo, causes: category, dataHeader: req.session.user})
     }
     
     if(req.session.ngo){

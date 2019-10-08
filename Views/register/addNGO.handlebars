@@ -8,34 +8,18 @@
 </style>
 
 <div class="centralize-auto padding-top4">
-    {{!-- <div class="container box">
-        <ul class="steps ">
-            <li class="step progress"
-                onclick="hide('ngoRegister'); show('ngoRegister', 0); changeOpacity(0.5,'step'); changeOpacity(1,'step', 0)">
-                Dados da ONG</li>
-            <li class="step"
-                onclick="hide('ngoRegister'); show('ngoRegister', 1); changeOpacity(0.5,'step'); changeOpacity(1,'step', 1)">
-                Contato e registro</li>
-            <li class="step"
-                onclick="hide('ngoRegister'); show('ngoRegister', 2); changeOpacity(0.5,'step'); changeOpacity(1,'step', 2)">
-                Descrição da ONG</li>
-        </ul>
-    </div> --}}
     <div class="centralize-auto box">
         <form class="form" id="form-registerNGO" name="form-registerNGO" action="/starting-ong/register" method="POST">
             <div class="block margin-btm2 ngoRegister">
                 <span class="medium-text light-weight-text blue block">1° Passo</span>
                 <h1 class="title">Dados da ONG</h1>
-                <div class="icon-input"><input name="ngoName" class="form-input" type="text" placeholder="Nome"
-                        length="150" /></div>
-                <div class="icon-input"><input name="ngoCNPJ" class="form-input" type="text"
-                        placeholder="CNPJ - __.___.___/____-__" maxlength="18" /></div>
-                <div class="icon-input">
-                    <input name="ngoCEP" placeholder="CEP" class="form-input" type="text" maxlength="9"/></div>
+                <div class="icon-input"><input name="ngoName" class="form-input" type="text" placeholder="Nome"length="150" /></div>
+                <div class="icon-input"><input name="ngoCNPJ" class="form-input" type="text"placeholder="CNPJ - __.___.___/____-__" maxlength="18" /></div>
+                <div class="icon-input"><input name="ngoCEP" placeholder="CEP" class="form-input" type="text" maxlength="9"/></div>
                 <div class="icon-input"><input name="ngoCity" placeholder="Cidade" class="form-input" type="text"/></div>
                 <div class="icon-input"><input name="ngoDistrict" placeholder="Bairro" class="form-input" type="text"/></div>
-                <div class="icon-input"><input name="ngoAddress" class="form-input" type="text"
-                        placeholder="Rua" length="200"/></div>
+                <div class="icon-input"><input name="ngoAddress" class="form-input" type="text"placeholder="Rua" length="200"/></div>
+                <div class="icon-input"><input name="ngoAddressNumber" class="form-input" type="text" placeholder="Número" length="20"/></div>
                 <div class="form-groupSelect">
                     <label class="form-label">Causas da ONG</label>
                     {{#each causes}}

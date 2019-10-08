@@ -143,6 +143,14 @@ function changeSettingsForm(n, e){
     e.classList.add('active')
 }
 
+function callAlert(title, message, type){
+    if(type=="success"||type=="error"||type=="warning"){
+        $('.container-alert').append(`<div class="alert alert-${type}"><figure class="alert-icon"><div class="icon"></div></figure><div class="alert-content"><h1 class="alert-title">${title}</h1><p class="text">${message}</p></div><figure class="alert-close" onclick="closeAlert(this)"><img src="/assets/imgs/close.svg" /></figure></div>`).show('slow')
+    }else{
+        console.log("Type of alert unrecognized")
+    }
+}
+
 function closeAlert(e){
     e = e.parentNode;
     child = e.children[0].children[0]

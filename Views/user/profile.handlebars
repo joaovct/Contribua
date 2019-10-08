@@ -15,11 +15,14 @@
                     {{/each}}
                 </ul>
             </div>
+            {{#if isGuess}}
+            {{else}}
             <a href="/settings">
                 <figure class="linkSettings">
                     <img src="/assets/imgs/settings.svg" />
                 </figure>
             </a>
+            {{/if}}
             <div class="profile-location-since">
                 <h3 class="content">{{data.cityVolunteer}}. Desde {{data.createdAt.month}} de {{data.createdAt.year}}</h3>
                 {{!-- <h3 class="content">{{data.cityVolunteer}}</h3> --}}
@@ -30,7 +33,7 @@
         </div>
         <div class="profile-stats">
             <ul>
-                <li><span class="number">{{data.averageStarsVolunteer}}/5</span>média de estrelas</li>
+                {{!-- <li><span class="number">{{data.averageStarsVolunteer}}4.5/5</span>média de estrelas</li> --}}
                 <li><span class="number">12</span> ações em eventos</li>
                 <li><span class="number">4</span> ONGs é inscrito</li>
             </ul>

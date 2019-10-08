@@ -6,42 +6,48 @@
 
 <div class="centralize">
     <div class="container">
+
         <div class="profile-data">
-            <figure class="profile-pic">
-                <img src="/assets/imgs/animal-cat-cute-46024.jpg" />
+            <figure class="profile-pic availableVolunteer">
+                <img src="/assets/imgs/animals-cats-cute-45170.jpg" />
+                {{#if isGuess}}
+                <form>
+                    <input type="checkbox" id="checkbox-subscribe">
+                    <label for="checkbox-subscribe" id="btn-subscribe">Inscrever-se</label>
+                </form>
+                {{/if}}
             </figure>
+
             <div class="profile-name">
                 <h1 class="username">{{data.nameNgo}}</h1>
-                <div class="feed-header">
-                    <div class="filters">
-                        <ul class="group-categories">
-                            {{#each causes}}
-                                <a class="item-category category-filter filter-active" href="#">
-                                    <li>{{descCategory}}</li>
-                                </a>
-                            {{/each}}
-                        </ul>
-                    </div>
-                </div>
+                <ul class="cases margin0">
+                    {{#each causes}}
+                    <li class="case"><a href="#">{{descCategory}}</a></li>
+                    {{/each}}
+                </ul>
             </div>
+            {{#if isGuess}}
+            {{else}}
             <figure class="linkSettings">
-                {{!-- <img src="/assets/imgs/settings.svg" /> --}}
+                <img src="/assets/imgs/settings.svg" />
             </figure>
+            {{/if}}
             <div class="profile-location-since">
-                <h3 class="content">{{data.cityNgo}}. Desde {{data.createdAt.month}} de {{data.createdAt.year}}</h3>
+                <h3 class="content">{{data.cityNgo}}. Desde {{data.createdAt.month}} de {{data.createdAt.year}}.</h3>
+                <h3 class="content">Tel - (99) 9999-9999</h3>
             </div>
             <div class="profile-about">
                 <p class="content">{{data.descriptionNgo}}</p>
             </div>
         </div>
+
         <div class="profile-stats">
             <ul>
-                <li><span class="number">4,5/5</span>média de estrelas</li>
                 <li><span class="number">8</span>Eventos realizados</li>
                 <li><span class="number">41</span>Membros</li>
             </ul>
         </div>
-        {{!-- <div class="group-nav">
+        <div class="group-nav">
             <nav class="nav-articles">
                 <h1 class="title padding-top2 margin-btm1">Meus eventos</h1>
                 <div class="group-articles">
@@ -167,6 +173,6 @@
                     </article>
                 </div>
             </nav>
-        </div> --}}
-    {{!-- </div> --}}
+        </div>
+    </div>
 </div>

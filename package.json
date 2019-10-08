@@ -21,7 +21,8 @@
   "devDependencies": {},
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "watch-sass": "sass --watch public/styles/scss:public/styles/css"
   },
   "repository": {
     "type": "git",
