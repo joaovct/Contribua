@@ -2,15 +2,15 @@ const UserNgo = require("../models/UserNgo")
 const Ngo = require("../models/Ngo")
 
 module.exports = {
-    registerCreator(idNgo, idUser){
-        UserNgo.create({
+    async registerCreator(idNgo, idUser){
+        await UserNgo.create({
             idVolunteer: idUser,
             idNgo: idNgo,
             isCreator: true
         })
     },
-    register(idNgo, idUser){
-        UserNgo.create({
+    async register(idNgo, idUser){
+        await UserNgo.create({
             idVolunteer: idUser,
             idNgo: idNgo,
             isCreator: false

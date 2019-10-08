@@ -40,7 +40,7 @@
             <ul class="items margin0">
             {{#each ngos}}
                 <form action="/login-ngo" method="post">
-                    <button id="{{userName}}" type="submit" style="width:0;height:0;padding:0;margin:0;"></button>
+                    <button id="{{userName}}" type="submit" style="display:none;"></button>
                     <input type="hidden" name="nameNgo" value="{{nameNgo}}">  
                     <input type="hidden" name="descriptionNgo" value="{{descriptionNgo}}">  
                     <input type="hidden" name="cnpjNgo" value="{{cnpjNgo}}">  

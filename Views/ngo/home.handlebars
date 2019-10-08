@@ -23,12 +23,13 @@
                                     <h3 class="article-subitle">{{descriptionAction}}
                                     </h3>
                                     <div class="article-ngo-details">
-                                        {{!-- <p class="article-ngo-name">Por <a href="#">{{idNgo}}</a></p> --}}
-                                        {{!-- <p class="article-ngo-date">{{createdAt}}</p> --}}
+                                        <p class="article-ngo-name">Por <a href="#">{{idNgo}}</a></p>
+                                        <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de {{createdAt.year}}</p>
                                     </div>
                                 </div>
                             </article>
                     {{/each}}
+
                 </div>
             </nav>
         </div>
@@ -44,3 +45,8 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#ngo-members').hide();
+    $('#search-volunteers').hide()
+</script>

@@ -49,9 +49,10 @@ router.post('/register', async (req, res) => {
     }
     const resp = await ngoController.register(dataNgo, req.session.user.idVolunteer)
 
+    req.session.ngoUser = await userNgoController.listNgo(req.session.user.idVolunteer)
+
     req.flash(resp.type_msg, resp.msg)
     if(resp.type_msg === "success_msg"){
-        req.session.ngoUser = await userNgoController.listNgo(req.session.user.idVolunteer)
         return res.redirect("/home")
     }else{
         return res.redirect("/starting-ong/register")

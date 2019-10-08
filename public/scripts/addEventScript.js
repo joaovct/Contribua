@@ -14,6 +14,7 @@ $('.done').hide()
 
 const btns = document.getElementsByClassName('form-submit')
 const btnSubmit = document.getElementById("btn-submit")
+const minLength = 100
 
 //Step 1
 var casesChecked = []
@@ -293,8 +294,8 @@ function checksStep4(){
         callAlert("Título muito curto", "O título do artigo deste evento precisa ter no minímo 10 caracteres.","error")
         vTitle = false
     }
-    if(eventContent.value.length < 50){
-        callAlert("Artigo muito curto", "O artigo deste evento precisa ter no minímo 300 caracteres.","error")
+    if(eventContent.value.length < minLength){
+        callAlert("Artigo muito curto", "O artigo deste evento precisa ter no minímo "+minLength+" caracteres.","error")
         vContent = false
     }
     if(vTitle && vContent){
@@ -308,7 +309,7 @@ function checksStep4(){
             }
             return html
         })
-        $('.modal-preview').slideDown('fast')
+        $('.modal-preview').slideDown('fast').css('display','flex')
         btnSubmit.disabled = false
     } 
 }
@@ -316,7 +317,7 @@ function checksStep4(){
 function refreshCount(textarea){
     var p = document.getElementById('counter-content')
     $(p).html(textarea.value.length)
-    if(textarea.value.length >= 300){
+    if(textarea.value.length >= minLength){
         p.style.color = "#2bd659"
     }else{
         p.style.color = "#e42200"

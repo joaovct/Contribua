@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     req.session.user.dateBirthVolunteer = aux[0]
     const category = await causesController.listCausesUser(req.session.user.idVolunteer)
     const categoryNotParticipe = await causesController.listCausesNotParticipeUser(req.session.user.idVolunteer)
-    res.render('user/settings', {data: req.session.user, dataHeader: req.session.user, causes: category, noParticipe: categoryNotParticipe})
+    res.render('user/settings', {data: req.session.user, dataHeader: req.session.user, causes: category, noParticipe: categoryNotParticipe, ngos: req.session.ngoUser})
 })
 
 router.post('/edit-profile', multer(multerConfig.user()).single('photo'), async (req, res) => {

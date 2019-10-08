@@ -166,9 +166,9 @@
     <div class="centralize padding-top4 article-event">
         <div class="container">
             <h1 class="title margin-btm4">Artigo do evento</h1>
-            <textarea name="eventTitle" maxlength="150" onkeyup="autosize($('.textarea-title'))" class="textarea-title"
+            <textarea name="eventTitle" maxlength="75" onkeyup="autosize($('.textarea-title'))" class="textarea-title"
                 placeholder="Título..."></textarea>
-            <textarea name="eventContent" onkeyup="autosize($('.textarea-content')); refreshCount(this)" class="textarea-content"
+            <textarea name="eventContent" maxlength="5000" onkeyup="autosize($('.textarea-content')); refreshCount(this)" class="textarea-content"
                 placeholder="Comece a escrever..."></textarea>
             <p id="counter-content" class="text margin0 margin-top2">0</p>
             <div class="submit-step">
@@ -177,6 +177,7 @@
             </div>
         </div>
     </div>
+
 
     <div class="overlay modal-preview">
         <div class="modal form">
@@ -197,19 +198,8 @@
                 </ul>
                 <div class="modal-options">
                     <div onclick="$('.modal-preview').slideUp('fast')" class="btn-secondary">Editar</div>
-<<<<<<< HEAD
-                    <button type="submit" onclick="$('.preview').slideUp('fast'); $('.done').slideDown('slow')" class="btn-primary">Finalizar</button>
-=======
-                    <button onclick="$('.preview').slideUp('fast'); $('.done').slideDown('slow').css('display','flex')" class="btn-primary" id="btn-submit" disabled>Finalizar</button>
->>>>>>> 4807761ad7985b40f1d1c77702bd1e99d3ac1e8d
+                    <button class="btn-primary" id="btn-submit" disabled>Finalizar</button>
                 </div>
-            </div>
-            <div class="done">
-                <img src="/assets/imgs/successImage.png" />
-                <h1 class="title text-center margin-top2">Muito bem!</h1>
-                <p class="text margin-top1 margin-btm2">Este evento foi criado com sucesso e agora você já pode convidar
-                    voluntários para lhe ajudar.</p>
-                <a href="/home" class="text blue text-center">Ir para a home</a>
             </div>
         </div>
     </div>

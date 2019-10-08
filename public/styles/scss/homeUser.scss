@@ -1,6 +1,5 @@
 @import "utilities/variables";
 
-
 .feed-header {
   display: flex;
   justify-content: space-between;
@@ -44,13 +43,13 @@
       border: 1px solid $lightBlue;
       box-shadow: 0 2px 7px -3px rgba(0, 0, 0, 0.1);
     }
-    .category-link{
+    .category-link {
       margin-right: $margin2 / 2;
       font-size: 1.2em;
       color: $gray;
-      transition: .5s;
+      transition: 0.5s;
     }
-    .active-link{
+    .active-link {
       color: $mainColor;
     }
   }
@@ -62,12 +61,10 @@
   .group-articles {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: $margin2;
+    grid-column-gap: $margin2;
     padding: 0;
     .feed-article {
-      margin-top: $margin2 0 $margin2 0;
-      margin: 0;
-      padding-bottom: $margin4;
+      margin: 0 0 $margin2 / 2 0;
       border-radius: 7px;
       cursor: pointer;
       .article-image {
@@ -87,6 +84,7 @@
         width: 100%;
         padding: 10px 0 0 0;
         box-sizing: border-box;
+        word-break: break-all;
         .article-title {
           font-size: 1.5rem;
           font-weight: 700;
@@ -96,7 +94,6 @@
         .article-subitle {
           font-size: 1.05em;
           font-weight: normal;
-          color: $gray;
           margin: $margin2 / 4 0 0 0;
           position: relative;
         }
@@ -104,12 +101,14 @@
           margin-top: $margin2;
           .article-ngo-name {
             font-size: $fontBase;
+            font-weight: 500;
             margin: 0 0 5px 0;
           }
           .article-ngo-date {
             margin: 0;
             font-size: $fontBase;
             font-weight: 500;
+            color: $gray;
           }
         }
       }

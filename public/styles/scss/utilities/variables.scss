@@ -45,6 +45,19 @@ $borderColor: #eeeeee;
   flex-grow: 0;
 }
 
+%title, .title {
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0 0 0 0;
+  word-break: break-all;
+}
+
+%text, .text {
+  font-size: 1.15rem;
+  margin: 0 0 0 0;
+  word-wrap: break-word;
+}
+
 %text-center, .text-center{
   text-align: center;
 }
@@ -55,12 +68,6 @@ $borderColor: #eeeeee;
 
 %text-right, .text-right{
   text-align: right;
-}
-
-%title, .title {
-  font-size: 2rem;
-  font-weight: 900;
-  margin: 0 0 0 0;
 }
 
 %smallest-text, .smallest-text{
@@ -93,11 +100,6 @@ $borderColor: #eeeeee;
 
 %bold, .bold{
   font-weight: bold;
-}
-
-%text, .text {
-  font-size: 1.15rem;
-  margin: 0 0 0 0;
 }
 
 %blue, .blue {

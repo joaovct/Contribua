@@ -549,15 +549,18 @@ div.overlay {
     max-height: 80%;
     overflow-y: scroll;
     padding: $margin4;
-    position: absolute;
+    position: relative;
+    word-break: break-all;
     .icon-input {
       width: 100%;
     }
     .modal-close{
-      width: 100%;
       display: flex;
       justify-content: flex-end;
       padding-bottom: $margin2;
+      position: absolute;
+      right: $margin4;
+      top: $margin2;
       img.modal-close-btn{
         cursor: pointer;
         height: 25px;
