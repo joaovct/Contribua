@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const verifyEmail = require("../helpers/verifyEmail")
 const verifyUserName = require("../helpers/verifyUserName")
+const userNgoController = require("../controllers/userNgoController")
 
 router.post('/', async (req,res) => {
     const dataUser = req.body
@@ -12,6 +13,7 @@ router.post('/', async (req,res) => {
     if(user){
         if(user.passwordVolunteer === dataUser.passwordVolunteer){
             req.session.user = user
+            req.session.ngoUser = await userNgoController.listNgo(req.session.user.idVolunteer)
             return res.redirect("/home")
         }else{
             req.flash("error_msg", "Senha incorreta!")
@@ -22,6 +24,7 @@ router.post('/', async (req,res) => {
     if(user2){
         if(user2.passwordVolunteer === dataUser.passwordVolunteer){
             req.session.user = user2
+            req.session.ngoUser = await userNgoController.listNgo(req.session.user.idVolunteer)
             return res.redirect("/home")
         }else{
             req.flash("error_msg", "Senha incorreta!")

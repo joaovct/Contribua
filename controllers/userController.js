@@ -38,6 +38,7 @@ module.exports = {
                                     passwordVolunteer: dataUser.passwordVolunteer,
                                     genreVolunteer: "M",
                                     dateBirthVolunteer: dataUser.dateBornVolunteer,
+                                    photoVolunteer: "user.svg",
                                     cepVolunteer: dataUser.cepVolunteer,
                                     cityVolunteer: dataUser.cityVolunteer,
                                     districtVolunteer: dataUser.districtVolunteer,
@@ -61,7 +62,6 @@ module.exports = {
                         lastNameVolunteer: dataUser.lastName,
                         biographyVolunteer: dataUser.biography,
                         dateBirthVolunteer: dataUser.dateBirth,
-                        photoVolunteer: dataUser.photo,
                         cepVolunteer: dataUser.cep,
                         cityVolunteer: dataUser.city,
                         districtVolunteer: dataUser.district,
@@ -72,13 +72,20 @@ module.exports = {
             sessionUser.lastNameVolunteer = dataUser.lastName
             sessionUser.biographyVolunteer = dataUser.biography
             sessionUser.dateBirthVolunteer = dataUser.dateBirth
-            sessionUser.photoVolunteer = dataUser.photo
             sessionUser.cepVolunteer = dataUser.cep
             sessionUser.cityVolunteer = dataUser.city
             sessionUser.districtVolunteer = dataUser.district
             sessionUser.addressVolunteer = dataUser.address
 
             return sessionUser
+    },
+    async editPhoto(dataPhoto, sessionUser){
+        await User.update({
+            photoVolunteer: dataPhoto.filename
+        },{where: {idVolunteer: sessionUser.idVolunteer}})
+
+        sessionUser.photoVolunteer = dataPhoto.filename
+        return sessionUser.photoVolunteer
     },
     async changePassword(newPassword, idUser){
         await User.update({passwordVolunteer: newPassword}, {where: {idVolunteer: idUser}})

@@ -2,7 +2,11 @@ const express = require('express')
 const router = express.Router()
 
 router.get("/", (req, res) => {
-    res.render("user/home", {data: req.session.user})
+    if(req.session.ngo){
+        res.render("ngo/home", {dataHeaderNgo: req.session.ngo})
+    }else{
+        res.render("user/home", {dataHeader: req.session.user, ngos: req.session.ngoUser})
+    }
 })
 
 module.exports = router

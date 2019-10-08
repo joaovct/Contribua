@@ -44,6 +44,9 @@ const Ngo = db.sequelize.define("tbNgo", {
         allowNull: false,
         type: db.Sequelize.STRING(100)
     },
+    photoNgo: {
+        type: db.Sequelize.STRING(80)
+    },
     averageStarsNgo: {
         type: db.Sequelize.FLOAT
     }

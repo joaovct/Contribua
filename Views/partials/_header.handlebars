@@ -2,7 +2,7 @@
 </header>
 <script src="/scripts/globalScript.js"></script>
 </script>
-{{#if data}}
+{{#if dataHeader}}
 <header>
     <div class="container">
         <a href="/home"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
@@ -17,9 +17,9 @@
             <ul>
                 <li class="icon"><a href="#"><img src="/assets/imgs/bell.svg"></a></li>
                 <li class="profile-pic"><a onclick="$('.header-options').toggle('fast')"><img
-                            src="/assets/imgs/man2.jpg" /></a></li>
+                            src="/temp/uploads/profile/{{dataHeader.photoVolunteer}}" /></a></li>
                 <ul class="header-options">
-                    <li><a href="/{{data.userName}}">Perfil</a></li>
+                    <li><a href="/{{dataHeader.userName}}">Perfil</a></li>
                     <li><a href="/settings">Configurações</a></li>
                     <li><a href="#" onclick="$('.my-ngos').slideDown('fast').css('display','flex')">Minhas ONGs</a></li>
                     <li><a href="/logout">Sair</a></li>
@@ -33,49 +33,50 @@
 <div class="overlay my-ngos">
     <div class="modal" style="width: 350px">
         <div class="modal-close">
-            <img onclick="$('.my-ngos').slideUp('fast')" class="modal-close-btn" src="/assets/imgs/close.svg"/>
+            <img onclick="$('.my-ngos').slideUp('fast')" class="modal-close-btn" src="/assets/imgs/close.svg" />
         </div>
-        {{!-- {{#if }} --}}
-                <h1 class="title large-weight-text margin0 margin-btm1 text-left">Administrando</h1>    
-                <ul class="items margin0">
-                    <li class="item align-center">
-                        <img src="/assets/imgs/animal-cat-cute-46024.jpg" class="rounded-pic margin-right1" />
-                        <a href="#" class="margin0 medium-text">Ngo name</a>
-                    </li>
-                    <li class="item align-center">
-                        <img src="/assets/imgs/animal-cat-cute-46024.jpg" class="rounded-pic margin-right1" />
-                        <a href="#" class="margin0 medium-text">Ngo name</a>
-                    </li>
-                </ul>
-                <h1 class="title margin0 margin-top4 margin-btm1 text-left">Seguindo</h1>
-                <ul class="items margin0">
-                    <li class="item align-center">
-                        <img src="/assets/imgs/animal-cat-cute-46024.jpg" class="rounded-pic margin-right1" />
-                        <a href="#" class="margin0 medium-text">Ngo name</a>
-                    </li>
-                    <li class="item align-center">
-                        <img src="/assets/imgs/animal-cat-cute-46024.jpg" class="rounded-pic margin-right1" />
-                        <a href="#" class="margin0 medium-text">Ngo name</a>
-                    </li>
-                    <li class="item align-center">
-                        <img src="/assets/imgs/animal-cat-cute-46024.jpg" class="rounded-pic margin-right1" />
-                        <a href="#" class="margin0 medium-text">Ngo name</a>
-                    </li>
-                </ul>
-            
-        {{!-- {{else}}
+        {{#if ngos}}
+            <h1 class="title large-weight-text margin0 margin-btm1 text-left">Administrando</h1>
+            <ul class="items margin0">
+            {{#each ngos}}
+                <form action="/login-ngo" method="post">
+                    <button id="{{userName}}" type="submit" style="width:0;height:0;padding:0;margin:0;"></button>
+                    <input type="hidden" name="nameNgo" value="{{nameNgo}}">  
+                    <input type="hidden" name="descriptionNgo" value="{{descriptionNgo}}">  
+                    <input type="hidden" name="cnpjNgo" value="{{cnpjNgo}}">  
+                    <input type="hidden" name="emailNgo" value="{{emailNgo}}">  
+                    <input type="hidden" name="userName" value="{{userName}}">  
+                    <input type="hidden" name="sitNgo" value="{{siteNgo}}">  
+                    <input type="hidden" name="cepNgo" value="{{cepNgo}}">  
+                    <input type="hidden" name="cityNgo" value="{{cityNgo}}">  
+                    <input type="hidden" name="districtNgo" value="{{districtNgo}}">  
+                    <input type="hidden" name="addressNgo" value="{{addressNgo}}">  
+                    <input type="hidden" name="photoNgo" value="{{photoNgo}}">  
+                    <input type="hidden" name="averageStarsNgo" value="{{averageStarNgo}}">  
+                    <input type="hidden" name="createdAt" value="{{createdAt}}">  
+                    <label for="{{userName}}" style="cursor: pointer;">
+                        <li class="item align-center margin0">
+                            <img src="/temp/uploads/profile/{{photoNgo}}" class="rounded-pic margin-right1" />
+                            <h1 class="medium-text blue margin0">{{nameNgo}}</h1>
+                        </li>
+                    </label>
+                </form>
+            {{/each}}
+            </ul>
+
+        {{else}}
             <div style="max-width: 350px;" class="justifyContent-center flex-column flex-nowrap margin-top4">
                 <img height="150px" src="/assets/imgs/empty2.svg"/>
                 <h1 class="title text-center margin0 margin-top4">Ops...</h1>
-                <p class="text margin0 margin-top1 text-center">Parece que você não administra nenhuma ONG. Que tal começar a cadastrar uma clicando no botão abaixo?</p>
-            </div> --}}
-        {{!-- {{/if}} --}}
-        <div class="centralize-auto margin-top2">
-            <a href="/starting-ong" onclick="$('.my-ngos').slideUp('fast')" class="btn-callaction margin0">Criar uma ONG</a>
+                <p class="text margin0 margin-top1 text-center">Parece que você não segue e nem administra nenhuma ONG. Que tal começar a cadastrar uma clicando no botão abaixo?</p>
+            </div>
+        {{/if}}
+        <div class="centralize-auto margin0">
+            <a href="/starting-ong" onclick="$('.my-ngos').slideUp('fast')" class="btn-callaction margin0">Criar uma
+                ONG</a>
         </div>
     </div>
 </div>
-
 {{!-- Ignore this --}}
 <header class="header-relative">
     <div class="container">
@@ -83,6 +84,36 @@
     </div>
 </header>
 
+{{else if dataHeaderNgo}}
+<header>
+    <div class="container">
+        <a href="/home"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
+        <div class="search-field">
+            <form class="search-form">
+                <img src="/assets/imgs/search.svg" />
+                <input placeholder="Pesquisar" oninput="doSearch(this)" class="search-input" name="search-input"
+                    type="text" />
+            </form>
+        </div>
+        <nav class="nav-header">
+            <ul>
+                <li class="icon"><a href="#"><img src="/assets/imgs/bell.svg"></a></li>
+                <li class="profile-pic"><a onclick="$('.header-options').toggle('fast')"><img
+                            src="/temp/uploads/profile/{{dataHeaderNgo.photoNgo}}" /></a></li>
+                <ul class="header-options">
+                    <li><a href="/{{dataHeaderNgo.userName}}">Perfil</a></li>
+                    <li><a href="/logout">Voltar para usuário</a></li>
+                </ul>
+                </a>
+            </ul>
+        </nav>
+    </div>
+</header>
+<header class="header-relative">
+    <div class="container">
+        <a href="/user"><img class="logo" src="/assets/imgs/Contribua!.png" /></a>
+    </div>
+</header>
 {{else}}
 <header>
     <div class="container">

@@ -7,3 +7,6 @@ public/styles/css/*
 # Ignore sass cache
 public/styles/.sass-cache
 public/styles/.sass-cache/*
+
+#ignore uploads
+public/temp/*

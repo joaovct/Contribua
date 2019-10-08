@@ -3,20 +3,20 @@ const router = express.Router()
 const userController = require("../controllers/userController")
 const causesController = require("../controllers/causesController")
 const validations = require("../helpers/validations")
+const multer = require("multer")
+const multerConfig = require("../config/multer")
 
 router.get("/", async (req, res) => {
     const aux = req.session.user.dateBirthVolunteer.split("T")
     req.session.user.dateBirthVolunteer = aux[0]
-
     const category = await causesController.listCausesUser(req.session.user.idVolunteer)
     const categoryNotParticipe = await causesController.listCausesNotParticipeUser(req.session.user.idVolunteer)
-
-    res.render('user/settings', {data: req.session.user, causes: category, noParticipe: categoryNotParticipe})
+    res.render('user/settings', {data: req.session.user, dataHeader: req.session.user, causes: category, noParticipe: categoryNotParticipe})
 })
 
-router.post('/edit-profile', async (req, res) => {
-
+router.post('/edit-profile', multer(multerConfig.user()).single('photo'), async (req, res) => {
     const dataUser = req.body
+    const dataPhoto = req.file
 
     if(!validations.filledField(dataUser.name)){
         req.flash("error_msg", "O nome deve ter no mínimo 4 caracteres!")
@@ -49,6 +49,10 @@ router.post('/edit-profile', async (req, res) => {
     }
 
     req.session.user = await userController.edit(dataUser, req.session.user)
+
+    if(typeof dataPhoto != "undefined"){
+        req.session.user.photoVolunteer = await userController.editPhoto(dataPhoto, req.session.user)
+    }
 
     req.flash("success_msg", "Usuário editado com sucesso!")
     return res.redirect("/settings")

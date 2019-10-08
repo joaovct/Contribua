@@ -115,7 +115,7 @@ function writeVolunteers(data){
     var i = 0
     for(let object of data){
         if(i==0) $('.search-results').append('<h1 class="title">Voluntários</h1>')
-        $('.search-results').append(`<li class="volunteer"> <img src="/assets/imgs/man2.jpg"/> <div class="item-content"> <a href="${object.userName}" class="item-title"> <p class="smallest-text margin0 large-weight-text item-username">${object.userName}</p> <p class="margin0">${object.name}</p> </a></div> </li>`)
+        $('.search-results').append(`<li class="volunteer"> <img src="/temp/uploads/profile/${object.photoVolunteer}"/> <div class="item-content"> <a href="${object.userName}" class="item-title"> <p class="smallest-text margin0 large-weight-text item-username">${object.userName}</p> <p class="margin0">${object.name}</p> </a></div> </li>`)
         i++
     }
 }

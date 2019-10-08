@@ -10,40 +10,34 @@
         <div class="profile-data">
             <figure class="profile-pic availableVolunteer">
                 <img src="/assets/imgs/animals-cats-cute-45170.jpg" />
+                {{#if isGuess}}
                 <form>
                     <input type="checkbox" id="checkbox-subscribe">
                     <label for="checkbox-subscribe" id="btn-subscribe">Inscrever-se</label>
                 </form>
+                {{/if}}
             </figure>
 
             <div class="profile-name">
-                <h1 class="username">{{data.nameVolunteer}} {{data.lastNameVolunteer}}</h1>
+                <h1 class="username">{{data.nameNgo}}</h1>
                 <ul class="cases margin0">
                     {{#each causes}}
                     <li class="case"><a href="#">{{descCategory}}</a></li>
                     {{/each}}
                 </ul>
             </div>
-            <div class="profile-name">
-                <h1 class="username">Cães e gatos</h1>
-                <ul class="cases margin0">
-                    <li class="case"><a href="#">Ambiental</a></li>
-                    <li class="case"><a href="#">Animal</a></li>
-                </ul>
-            </div>
+            {{#if isGuess}}
+            {{else}}
             <figure class="linkSettings">
                 <img src="/assets/imgs/settings.svg" />
             </figure>
+            {{/if}}
             <div class="profile-location-since">
-                <h3 class="content">São Paulo, SP. Desde jul de 2019.</h3>
+                <h3 class="content">{{data.cityNgo}}. Desde {{data.createdAt.month}} de {{data.createdAt.year}}.</h3>
                 <h3 class="content">Tel - (99) 9999-9999</h3>
             </div>
             <div class="profile-about">
-                <p class="content">Irure dolore officia culpa irure sint cillum tempor culpa ex eu officia aute. Eu
-                    occaecat dolore anim est. Nostrud excepteur minim cillum culpa ullamco irure sit non Lorem.
-                    Lorem deserunt consequat consequat fugiat occaecat aliqua sit. Ad aliquip Lorem adipisicing sunt
-                    quis et reprehenderit irure laboris irure nulla adipisicing qui. Enim enim fugiat irure et in
-                    amet velit aliqua aute mollit.</p>
+                <p class="content">{{data.descriptionNgo}}</p>
             </div>
         </div>
 
