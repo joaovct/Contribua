@@ -117,10 +117,10 @@ function validationDateBorn(date){
     return false
 }
 
-function validationPunctualDate(pDStart, pHStart, pDEnd, pHEnd){
+function validationPunctualDate(pDStart, pHStart, pHEnd){
     var vDate = true
     var dStart = new Date(pDStart.value+ " " + pHStart.value)
-    var dEnd = new Date(pDEnd.value+ " " +pHEnd.value)
+    var dEnd = new Date(pDStart.value+ " " +pHEnd.value)
     var dCurrent = new Date()
     if(dStart <= dCurrent){
         callAlert("Ocorreu um erro", "A data de início do evento não pode ser menor que a data atual.", "error")

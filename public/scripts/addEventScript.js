@@ -1,11 +1,11 @@
 // Hide elements
 var asides = document.getElementsByClassName('asides')
 for(i=0;i<asides.length;i++){
-    if(i>-1) $(asides[i]).hide()
+    if(i>0) $(asides[i]).hide()
     // $(asides[3]).show()
 }
 $('.typeEvent').hide()
-// $('.article-event').hide()
+$('.article-event').hide()
 $('.overlay').hide()
 $('.preview').hide()
 $('.done').hide()
@@ -28,10 +28,44 @@ const iconDistrict = district.parentNode
 const address = document.getElementsByName('eventAddress')[0]
 const iconAddress = address.parentNode
 
+cep.addEventListener("keyup", () => {
+    if(validationCep(cep, iconCep)){
+        city.value = "..."
+        district.value = "..."
+        address.value = "..."
+        let script = document.createElement('script')
+        script.src = 'https://viacep.com.br/ws/'+ cep.value + '/json/?callback=fillCep'
+        document.body.appendChild(script)
+    }else{
+        city.value = "";
+        district.value = "";
+        address.value = ""; 
+        validationCity(city, iconCity)
+        validationAddress(address, iconAddress)
+        validationDistrict(district, iconDistrict)
+    }
+})
+
+function fillCep(conteudo){
+    if (!("erro" in conteudo)) {
+        city.value = (conteudo.localidade)
+        district.value = (conteudo.bairro)
+        address.value = (conteudo.logradouro)
+    }else{
+        city.value = "";
+        district.value = "";
+        address.value = ""; 
+        iconCep.classList.remove("success-validation")
+        iconCep.classList.add("alert-validation")
+    }
+    validationCity(city, iconCity)
+    validationAddress(address, iconAddress)
+    validationDistrict(district, iconDistrict)
+}
+
 // Step 2
 const radio = document.getElementsByClassName('form-radio')
 const pDStart = document.getElementsByName('eventPDStart')[0]
-const pDEnd = document.getElementsByName('eventPDEnd')[0]
 const pHStart = document.getElementsByName('eventPHStart')[0]
 const pHEnd = document.getElementsByName('eventPHEnd')[0]
 const rDStart = document.getElementsByName('eventRDStart')[0]
@@ -88,7 +122,7 @@ function checksStep2(){
 }
 
 function checksTypeEventPunctual(){
-    var vDate = validationPunctualDate(pDStart, pHStart, pDEnd, pHEnd)
+    var vDate = validationPunctualDate(pDStart, pHStart, pHEnd)
     if(vDate){
         $('.aside-2').slideUp('fast')
         $('.aside-3').slideDown('slow')
@@ -158,7 +192,18 @@ function writeJobs(name, description, amount){
     }else{
         for(var i=0; i < jobs.length; i++){
             Job = jobs[i]
-            $('#jobs').append(`<div class="box margin-btm2"><h1 class="medium-text margin0">${Job.name}</h1><p class="text margin0">${Job.description}</p><p class="text margin0 margin-top1">Qntd. - ${Job.amount}</p><ul class="icons margin-top2"><li class="icon" onclick="deleteJob('${Job.name}')"><img src="/assets/imgs/trash.svg"/></li><li class="icon" onclick="callEditJob('${Job.name}')"><img src="/assets/imgs/pencil.svg"/></li></ul></div>`)
+            $('#jobs').append(`<div class="box margin-btm2">
+                                    <h1 class="medium-text margin0">${Job.name}</h1>
+                                    <p class="text margin0">${Job.description}</p>
+                                    <p class="text margin0 margin-top1">Qntd. - ${Job.amount}</p>
+                                    <ul class="icons margin-top2">
+                                        <li class="icon" onclick="deleteJob('${Job.name}')"><img src="/assets/imgs/trash.svg"/></li>
+                                        <li class="icon" onclick="callEditJob('${Job.name}')"><img src="/assets/imgs/pencil.svg"/></li>
+                                    </ul>
+                                    <input type="hidden" name="jobNameHidden" value="${Job.name}"></input>
+                                    <input type="hidden" name="jobDescriptionHidden" value="${Job.description}"></input>
+                                    <input type="hidden" name="jobAmountHidden" value="${Job.amount}"></input>
+                                </div>`)
         }
     }
 }
@@ -245,7 +290,7 @@ function checksStep4(){
         callAlert("Título muito curto", "O título do artigo deste evento precisa ter no minímo 10 caracteres.","error")
         vTitle = false
     }
-    if(eventContent.value.length < 300){
+    if(eventContent.value.length < 50){
         callAlert("Artigo muito curto", "O artigo deste evento precisa ter no minímo 300 caracteres.","error")
         vContent = false
     }

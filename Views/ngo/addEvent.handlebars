@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/styles/css/addEvent.css" />
 
-<form id="addEvent" name="addEvent">
+<form id="addEvent" name="addEvent" method="POST" action="/event/register" enctype="multipart/form-data">
 
     <div class="asides aside-1">
         <aside class="bg1">
@@ -10,49 +10,11 @@
                 <h1 class="title big-text">Informações do evento</h1>
                 <div class="form-groupSelect margin-top4">
                     <label class="form-label">Causas</label>
-                    <input name="categories" value="Direitos humanos" type="checkbox" id="direitosHumanos"
+                    {{#each causes}}
+                        <input name="categories" value="{{descCategory}}" type="checkbox" id="{{descCategory}}"
                         class="form-checkbox">
-                    <label for="direitosHumanos" class="form-btnCheckbox">Direitos humanos</label>
-
-                    <input name="categories" value="Cultura e arte" type="checkbox" id="culturaearte"
-                        class="form-checkbox">
-                    <label for="culturaearte" class="form-btnCheckbox">Cultura e arte</label>
-
-                    <input name="categories" value="Educação" type="checkbox" id="educação" class="form-checkbox">
-                    <label for="educação" class="form-btnCheckbox">Educação</label>
-
-                    <input name="categories" value="Crianças" type="checkbox" id="crianças" class="form-checkbox">
-                    <label for="crianças" class="form-btnCheckbox">Crianças</label>
-
-                    <input name="categories" value="Meio ambiente" type="checkbox" id="meioambiente"
-                        class="form-checkbox">
-                    <label for="meioambiente" class="form-btnCheckbox">Meio ambiente</label>
-
-                    <input name="categories" value="Combate à pobreza" type="checkbox" id="combateàpobreza"
-                        class="form-checkbox">
-                    <label for="combateàpobreza" class="form-btnCheckbox">Combate à pobreza</label>
-
-                    <input name="categories" value="Proteção animal" type="checkbox" id="proteçãoanimal"
-                        class="form-checkbox">
-                    <label for="proteçãoanimal" class="form-btnCheckbox">Proteção animal</label>
-
-                    <input name="categories" value="Política" type="checkbox" id="política" class="form-checkbox">
-                    <label for="política" class="form-btnCheckbox">Política</label>
-
-                    <input name="categories" value="Mulheres" type="checkbox" id="mulheres" class="form-checkbox">
-                    <label for="mulheres" class="form-btnCheckbox">Mulheres</label>
-
-                    <input name="categories" value="Esportes" type="checkbox" id="esportes" class="form-checkbox">
-                    <label for="esportes" class="form-btnCheckbox">Esportes</label>
-
-                    <input name="categories" value="Refugiados" type="checkbox" id="refugiados" class="form-checkbox">
-                    <label for="refugiados" class="form-btnCheckbox">Refugiados</label>
-
-                    <input name="categories" value="Saúde" type="checkbox" id="saúde" class="form-checkbox">
-                    <label for="saúde" class="form-btnCheckbox">Saúde</label>
-
-                    <input name="categories" value="Jovens" type="checkbox" id="jovens" class="form-checkbox">
-                    <label for="jovens" class="form-btnCheckbox">Jovens</label>
+                        <label for="{{descCategory}}" class="form-btnCheckbox">{{descCategory}}</label>
+                    {{/each}}
                 </div>
                 <label class="form-label margin-top2">Endereço</label>
                 <div class="flex-inputs">
@@ -105,12 +67,6 @@
                         <div class="input">
                             <label class="form-label">Hora de início</label>
                             <input name="eventPHStart" type="time" class="form-input">
-                        </div>
-                    </div>
-                    <div class="flex-inputs margin-top2">
-                        <div class="input">
-                            <label class="form-label">Data de término</label>
-                            <input name="eventPDEnd" type="date" class="form-input">
                         </div>
                         <div class="input">
                             <label class="form-label">Hora de término</label>
@@ -226,16 +182,15 @@
     <div class="overlay modal-preview">
         <div class="modal form">
             <div class="up-thumbnail">
-                <input id="upThumbnail" type="file" class="form-file">
-                <label onclick="$('.up-thumbnail').slideUp('fast'); $('.preview').slideDown('slow')"
-                    class="form-btnFile"><img src="/assets/imgs/upload.svg" /></label>
+                <input name="thumbnail" id="upThumbnail" type="file" class="form-file" onchange="$('.up-thumbnail').slideUp('fast'); $('.preview').slideDown('slow')">
+                <label for="upThumbnail"class="form-btnFile"><img src="/assets/imgs/upload.svg" /></label>
                 <h1 class="title text-center margin-top4">Só mais um detalhe</h1>
                 <p class="text margin-top2">Clique no espaço cinza para escolher uma imagem que atraia o público para
                     este evento.</p>
             </div>
             <div class="preview">
-                <h1 class="title">Review</h1>
-                <input id="upThumbnail" type="file" class="form-file">
+                <h1 class="title">Preview</h1>
+                {{!-- <input id="upThumbnail" type="file" class="form-file"> --}}
                 <label class="form-btnFile"></label>
                 <h1 class="title margin-top2" id="eventTitle"></h1>
                 <p class="text margin-top1 margin-btm2" id="eventContent"></p>
@@ -243,7 +198,7 @@
                 </ul>
                 <div class="modal-options">
                     <div onclick="$('.modal-preview').slideUp('fast')" class="btn-secondary">Editar</div>
-                    <div onclick="$('.preview').slideUp('fast'); $('.done').slideDown('slow')" class="btn-primary">Finalizar</div>
+                    <button type="submit" onclick="$('.preview').slideUp('fast'); $('.done').slideDown('slow')" class="btn-primary">Finalizar</button>
                 </div>
             </div>
             <div class="done">
@@ -251,7 +206,7 @@
                 <h1 class="title text-center margin-top2">Muito bem!</h1>
                 <p class="text margin-top1 margin-btm2">Este evento foi criado com sucesso e agora você já pode convidar
                     voluntários para lhe ajudar.</p>
-                <a href="/ngo" class="text blue text-center">Ir para a home</a>
+                <a href="/home" class="text blue text-center">Ir para a home</a>
             </div>
         </div>
     </div>

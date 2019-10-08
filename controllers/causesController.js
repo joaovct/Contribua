@@ -1,6 +1,7 @@
 const Category = require("../models/Category")
 const CategoryVolunteer = require("../models/CategoryVolunteer")
 const CategoryNgo = require("../models/CategoryNgo")
+const CategoryAction = require("../models/CategoryAction")
 
 module.exports = {
 
@@ -135,4 +136,18 @@ module.exports = {
     async editCausesNgo(idNgo, categories){
 
     },
+
+    //Action
+    async registerCausesAction(idAction, categories){
+        for(let i in categories){
+            const category = await Category.findOne({where: {descCategory: categories[i]}})
+    
+            if(category){
+                CategoryAction.create({
+                    idCategory: category.idCategory,
+                    idAction: idAction
+                })
+            }
+        }
+    }
 }

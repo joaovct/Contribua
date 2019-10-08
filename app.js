@@ -17,6 +17,7 @@ const ajax_checkers = require('./Routers/ajax-checkers')
 const home = require("./Routers/home")
 const starting_ong = require("./Routers/starting-ong")
 const settings = require("./Routers/settings")
+const event = require("./Routers/event")
 // const morgan = require("morgan")
 
 //**Configs**//
@@ -76,6 +77,7 @@ app.use("/home", isLogged, home)
 app.use("/register", register)
 app.use("/starting-ong", isLogged, starting_ong)
 app.use("/settings", isLogged, settings)
+app.use("/event", isLogged, event)
 app.use("/ajax-checkers", ajax_checkers)
 app.use("/", isLogged, user)
 

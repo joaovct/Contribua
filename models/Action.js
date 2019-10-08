@@ -23,33 +23,52 @@ const Action = db.sequelize.define("tbAction", {
         allowNull: false,
         type: db.Sequelize.STRING(300)
     },
-    numberMaxVolunteer: {
+    cepAction: {
         allowNull: false,
-        type: db.Sequelize.INTEGER
+        type: db.Sequelize.STRING(10)
     },
-    placeAction: {
+    cityAction: {
+        allowNull: false,
+        type: db.Sequelize.STRING(50)
+    },
+    districtAction: {
+        allowNull: false,
+        type: db.Sequelize.STRING(50)
+    },
+    addressAction: {
         allowNull: false,
         type: db.Sequelize.STRING(80)
+    },
+    numAddressAction: {
+        allowNull: false,
+        type: db.Sequelize.STRING(10)
     },
     dateAction: {
         allowNull: false,
         type: db.Sequelize.DATE
     },
-    idVacancyVolunteer: {
+    dateEndAction: {
         allowNull: false,
-        type: db.Sequelize.INTEGER,
-        references: {
-            model: "tbVacancyVolunteer",
-            key: "idVacancyVolunteer"
-        }
+        type: db.Sequelize.DATE
     },
     idPhotoAction: {
-        allowNull: false,
         type: db.Sequelize.INTEGER,
         references: {
             model: "tbPhotoAction",
             key: "idPhotoAction"
         }
+    },
+    photoAction: {
+        allowNull: false,
+        type: db.Sequelize.STRING(80),
+    },
+    isPunctual: {
+        allowNull: false,
+        type: db.Sequelize.BOOLEAN
+    },
+    isActive: {
+        allowNull: false,
+        type: db.Sequelize.BOOLEAN
     }
 },
 {
