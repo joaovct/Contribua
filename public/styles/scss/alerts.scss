@@ -1,20 +1,12 @@
 @import "utilities/variables.scss";
 
-.centralize-alert {
-  height: auto;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  .container {
-    position: relative;
-    width: $widthContainer;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: flex-start;
-    justify-content: flex-end;
-  }
-}
+$widthAlert: 300px;
 
+.container-alert {
+  position: fixed;
+  bottom: $margin2;
+  left: $margin4;
+}
 $borderAlert: 8px solid;
 
 .alert {
@@ -50,7 +42,7 @@ $borderAlert: 8px solid;
     }
   }
   .alert-content {
-    width: 300px;
+    width: $widthAlert;
     .alert-title {
       font-size: 1.3em;
       font-weight: 700;

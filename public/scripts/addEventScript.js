@@ -1,11 +1,11 @@
 // Hide elements
 var asides = document.getElementsByClassName('asides')
 for(i=0;i<asides.length;i++){
-    if(i>-1) $(asides[i]).hide()
+    if(i>0) $(asides[i]).hide()
     // $(asides[3]).show()
 }
 $('.typeEvent').hide()
-// $('.article-event').hide()
+$('.article-event').hide()
 $('.overlay').hide()
 $('.preview').hide()
 $('.done').hide()
@@ -13,6 +13,7 @@ $('.done').hide()
 // consts
 
 const btns = document.getElementsByClassName('form-submit')
+const btnSubmit = document.getElementById("btn-submit")
 
 //Step 1
 var casesChecked = []
@@ -236,17 +237,19 @@ function checksStep3(){
     if(jobs.length > 0){
         $('.aside-3').slideUp('fast')
         $('.article-event').slideDown('slow')
-    }
+        return true
+    }else return false
 }
 
 function checksStep4(){
     var vTitle = true, vContent = true
+    btnSubmit.disabled = true
     if(eventTitle.value.length < 10){
         callAlert("Título muito curto", "O título do artigo deste evento precisa ter no minímo 10 caracteres.","error")
         vTitle = false
     }
-    if(eventContent.value.length < 300){
-        callAlert("Artigo muito curto", "O artigo deste evento precisa ter no minímo 300 caracteres.","error")
+    if(eventContent.value.length < 150){
+        callAlert("Artigo muito curto", "O artigo deste evento precisa ter no minímo 150 caracteres.","error")
         vContent = false
     }
     if(vTitle && vContent){
@@ -261,6 +264,7 @@ function checksStep4(){
             return html
         })
         $('.modal-preview').slideDown('fast')
+        btnSubmit.disabled = false
     } 
 }
 

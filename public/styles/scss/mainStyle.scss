@@ -226,10 +226,11 @@ header {
             margin-right: 0;
           }
         }
+        $sizeIcon: 22px;
         li.icon {
           img {
-            height: 27px;
-            width: 27px;
+            height: $sizeIcon;
+            width: $sizeIcon;
           }
         }
         $sizePicture: 44px;
@@ -556,6 +557,7 @@ div.overlay {
       width: 100%;
       display: flex;
       justify-content: flex-end;
+      padding-bottom: $margin2;
       img.modal-close-btn{
         cursor: pointer;
         height: 25px;
@@ -577,49 +579,4 @@ div.overlay {
       }
     }
   }
-}
-
-%button, .button {
-  border: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-  text-align: center;
-  padding: 12px 20px 12px 20px;
-  border-radius: 7px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  margin-top: $margin2;
-}
-
-%btn-primary,
-.btn-primary {
-  @extend %button;
-  background: $mainColor;
-  color: white;
-  box-shadow: 0 6px 12px -1.5px $lightBlue;
-}
-
-%btn-secondary,
-.btn-secondary {
-  @extend %button;
-  background: #f9f9f9;
-  border: $border;
-  color: $mainColor;
-}
-
-%btn-callaction, .btn-callaction{
-  @extend %button;
-  background: $lightBlue;
-  color: $mainColor;
-  border-radius: 24px;
-  box-shadow: 0 6px 12px -3px $lightBlue;
-}
-
-.btn-danger {
-  @extend %button;
-  background: $errorColor;
-  color: white;
-  border: $border;
-  border-radius: 7px;
 }

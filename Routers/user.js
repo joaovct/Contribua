@@ -12,7 +12,7 @@ router.get('/:userName', async (req,res)=>{
         const user = await verifyUserName.user(req.params.userName)
         if(user){
             const category = await causesController.listCausesUser(user.idVolunteer)
-            return res.render("user/profile", {data: user, causes: category})
+            return res.render("user/profile", {data: user, causes: category, isGuess: true})
         }else{
             return res.render('error', {data: req.session.user})
         }

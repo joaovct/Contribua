@@ -52,6 +52,11 @@ app.set('view engine', 'handlebars')
 app.use(express.static(path.join(__dirname, "public")))
 
 // Routers
+
+// Dev
+
+app.use("/ngo",ngo)
+
 app.get("/", (req, res) => {
     if(req.session.user){
         return res.redirect("/home")
@@ -65,6 +70,7 @@ app.get("/logout", (req, res) => {
     return res.redirect("/")
 })
 app.use("/home", isLogged, home)
+app.use("/home", home)
 app.use("/register", register)
 app.use("/starting-ong", isLogged, starting_ong)
 app.use("/settings", isLogged, settings)

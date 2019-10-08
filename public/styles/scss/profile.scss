@@ -13,11 +13,31 @@
     position: relative;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
     img {
       height: 175px;
       width: 175px;
+      margin: 0 !important;
       border-radius: 7px;
       object-fit: cover;
+    }
+    form{
+      width: 100%;
+      #checkbox-subscribe{
+        display: none;
+      }
+      #btn-subscribe{
+        width: 100%;
+        @extend %btn-primary;
+        border: 1px solid $mainColor;
+        outline: 0;
+      }
+      #checkbox-subscribe:checked + #btn-subscribe{
+        @extend %btn-outlined;
+        box-shadow: none;
+      }
     }
   }
   .profile-name {

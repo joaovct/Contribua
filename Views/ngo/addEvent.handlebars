@@ -9,50 +9,11 @@
             <div class="form">
                 <h1 class="title big-text">Informações do evento</h1>
                 <div class="form-groupSelect margin-top4">
-                    <label class="form-label">Causas</label>
-                    <input name="categories" value="Direitos humanos" type="checkbox" id="direitosHumanos"
-                        class="form-checkbox">
-                    <label for="direitosHumanos" class="form-btnCheckbox">Direitos humanos</label>
-
-                    <input name="categories" value="Cultura e arte" type="checkbox" id="culturaearte"
-                        class="form-checkbox">
-                    <label for="culturaearte" class="form-btnCheckbox">Cultura e arte</label>
-
-                    <input name="categories" value="Educação" type="checkbox" id="educação" class="form-checkbox">
-                    <label for="educação" class="form-btnCheckbox">Educação</label>
-
-                    <input name="categories" value="Crianças" type="checkbox" id="crianças" class="form-checkbox">
-                    <label for="crianças" class="form-btnCheckbox">Crianças</label>
-
-                    <input name="categories" value="Meio ambiente" type="checkbox" id="meioambiente"
-                        class="form-checkbox">
-                    <label for="meioambiente" class="form-btnCheckbox">Meio ambiente</label>
-
-                    <input name="categories" value="Combate à pobreza" type="checkbox" id="combateàpobreza"
-                        class="form-checkbox">
-                    <label for="combateàpobreza" class="form-btnCheckbox">Combate à pobreza</label>
-
-                    <input name="categories" value="Proteção animal" type="checkbox" id="proteçãoanimal"
-                        class="form-checkbox">
-                    <label for="proteçãoanimal" class="form-btnCheckbox">Proteção animal</label>
-
-                    <input name="categories" value="Política" type="checkbox" id="política" class="form-checkbox">
-                    <label for="política" class="form-btnCheckbox">Política</label>
-
-                    <input name="categories" value="Mulheres" type="checkbox" id="mulheres" class="form-checkbox">
-                    <label for="mulheres" class="form-btnCheckbox">Mulheres</label>
-
-                    <input name="categories" value="Esportes" type="checkbox" id="esportes" class="form-checkbox">
-                    <label for="esportes" class="form-btnCheckbox">Esportes</label>
-
-                    <input name="categories" value="Refugiados" type="checkbox" id="refugiados" class="form-checkbox">
-                    <label for="refugiados" class="form-btnCheckbox">Refugiados</label>
-
-                    <input name="categories" value="Saúde" type="checkbox" id="saúde" class="form-checkbox">
-                    <label for="saúde" class="form-btnCheckbox">Saúde</label>
-
-                    <input name="categories" value="Jovens" type="checkbox" id="jovens" class="form-checkbox">
-                    <label for="jovens" class="form-btnCheckbox">Jovens</label>
+                    <label class="form-label">Causas da ONG</label>
+                    {{#each causes}}
+                        <input name="categories" value="{{descCategory}}" type="checkbox" id="{{descCategory}}" class="form-checkbox">
+                        <label for="{{descCategory}}" class="form-btnCheckbox">{{descCategory}}</label>
+                    {{/each}}
                 </div>
                 <label class="form-label margin-top2">Endereço</label>
                 <div class="flex-inputs">
@@ -141,7 +102,6 @@
                 </div>
                 <div class="submit-step margin-top4">
                     <div onclick="$('.aside-2').slideUp('fast'); $('.aside-1').slideDown('slow')" class="btn-secondary">Voltar</div>
-                    {{!-- <div onclick="$('.aside-2').slideUp('slow'); $('.aside-3').slideDown('slow')" class="form-submit">Próximo passo</div> --}}
                     <div onclick="checksStep2()" class="btn-primary">Próximo passo</div>
                 </div>
             </div>
@@ -160,7 +120,7 @@
                     </div>
                 </div>
                 <div class="buttons-aside3">
-                    <div onclick="$('.modal-job').slideDown('fast')" class="btn-callaction">Adicionar vaga</div>
+                    <div onclick="$('.modal-job').slideDown('fast').css('display','flex')" class="btn-callaction">Adicionar vaga</div>
                     <div class="submit-step">
                         <div onclick="$('.aside-3').slideUp('fast'); $('.aside-2').slideDown('slow')" class="btn-secondary">Voltar</div>
                         <div onclick="checksStep3()" class="btn-primary">Próximo passo</div>
@@ -243,7 +203,7 @@
                 </ul>
                 <div class="modal-options">
                     <div onclick="$('.modal-preview').slideUp('fast')" class="btn-secondary">Editar</div>
-                    <div onclick="$('.preview').slideUp('fast'); $('.done').slideDown('slow')" class="btn-primary">Finalizar</div>
+                    <button onclick="$('.preview').slideUp('fast'); $('.done').slideDown('slow').css('display','flex')" class="btn-primary" id="btn-submit" disabled>Finalizar</button>
                 </div>
             </div>
             <div class="done">

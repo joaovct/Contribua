@@ -1,27 +1,16 @@
 <link rel="stylesheet" href="/styles/css/homeUser.css" />
 <div class="centralize padding-top4">
     <div class="container">
-        <h1 class="title margin-btm2">Bem-vindo de volta <span class="blue">João</span></h1>
-        <div class="feed-header margin-top2">
-            <div class="filters">
-                <ul class="group-categories">
-                    <a onclick="hide('group-nav'); show('group-nav',0); removeClass('category-link','active-link'); addClass('category-link', 'active-link', 0)"
-                        title="ngo-events" href="#" class="category-link active-link">
-                        <li title="ngo-events" target="my-events">Meus eventos</li>
-                    </a>
-                    <a onclick="hide('group-nav'); show('group-nav',1); removeClass('category-link','active-link'); addClass('category-link', 'active-link', 1)"
-                        title="ngo-members" href="#" class="category-link">
-                        <li title="ngo-members">Membros</li>
-                    </a>
-                    <a onclick="hide('group-nav'); show('group-nav',2); removeClass('category-link','active-link'); addClass('category-link', 'active-link', 2)"
-                        title="search-volunteers" href="#" class="category-link">
-                        <li title="search-volunteers">Procurar voluntários</li>
-                    </a>
-                </ul>
-            </div>
-            <a href="ngo/addEvent"><button class="btn-callaction">Criar um evento</button></a>
+        <h1 class="title">Bem-vindo de volta <span class="blue">João Victor</span></h1>
+        <div class="feed-header">
+            <ul class="group-categories">
+                <a class="home-link medium-text margin-right1" onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 0); $('.group-nav').hide(); $('.feed-events').show()" href="#">Meus eventos</a>
+                <a class="home-link medium-text gray margin-right1" onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 1); $('.group-nav').hide(); $('.feed-members').show()" href="#">Membros</a>
+                <a class="home-link medium-text gray" onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 2); $('.group-nav').hide(); $('.feed-search').show()" href="#">Procurar voluntários</a>
+            </ul>
+            <a href="/ngo/addEvent"><button class="btn-callaction">Criar um evento</button></a>
         </div>
-        <div class="group-nav" id="ngo-events">
+        <div class="group-nav feed-events" id="ngo-events">
             <nav class="nav-articles">
                 <h1 class="title padding-top2 margin-btm1">Meus eventos ativos</h1>
                 <div class="group-articles">
@@ -153,12 +142,12 @@
                 </div>
             </nav>
         </div>
-        <div class="group-nav" id="ngo-members">
+        <div class="group-nav feed-members" id="ngo-members">
             <nav class="nav-articles">
                 <h1 class="title padding-top2 margin-btm1">Membros da ONG</h1>
             </nav>
         </div>
-        <div class="group-nav" id="search-volunteers">
+        <div class="group-nav feed-search" id="search-volunteers">
             <nav class="nav-articles">
                 <h1 class="title padding-top2 margin-btm1">Procurar por voluntários</h1>
             </nav>
