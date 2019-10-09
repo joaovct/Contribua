@@ -10,11 +10,13 @@
         <div class="profile-data">
             <figure class="profile-pic availableVolunteer">
                 <img src="/assets/imgs/animals-cats-cute-45170.jpg" />
-                {{#if isGuess}}
-                <form>
-                    <input type="checkbox" id="checkbox-subscribe">
-                    <label for="checkbox-subscribe" id="btn-subscribe">Inscrever-se</label>
-                </form>
+                {{#if isVisit}}
+                    {{#if isVolunteer}}
+                    <form>
+                        <input type="checkbox" id="checkbox-subscribe">
+                        <label for="checkbox-subscribe" id="btn-subscribe">Inscrever-se</label>
+                    </form>
+                    {{/if}}
                 {{/if}}
             </figure>
 
@@ -26,11 +28,13 @@
                     {{/each}}
                 </ul>
             </div>
-            {{#if isGuess}}
+            {{#if isVisit}}
             {{else}}
-            <figure class="linkSettings">
-                <img src="/assets/imgs/settings.svg" />
-            </figure>
+            <a href="/settings">
+                <figure class="linkSettings">
+                    <img src="/assets/imgs/settings.svg" />
+                </figure>
+            </a>
             {{/if}}
             <div class="profile-location-since">
                 <h3 class="content">{{data.cityNgo}}. Desde {{data.createdAt.month}} de {{data.createdAt.year}}.</h3>
