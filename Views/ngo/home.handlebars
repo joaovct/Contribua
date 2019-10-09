@@ -3,9 +3,15 @@
     <div class="container">
         <div class="feed-header">
             <ul class="group-categories">
-                <a class="home-link medium-text margin-right1" onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 0); $('.group-nav').hide(); $('.feed-events').show()" href="#">Meus eventos</a>
-                <a class="home-link medium-text gray margin-right1" onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 1); $('.group-nav').hide(); $('.feed-members').show()" href="#">Membros</a>
-                <a class="home-link medium-text gray" onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 2); $('.group-nav').hide(); $('.feed-search').show()" href="#">Procurar voluntários</a>
+                <a class="home-link medium-text margin-right1"
+                    onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 0); $('.group-nav').hide(); $('.feed-events').show()"
+                    href="#">Meus eventos</a>
+                <a class="home-link medium-text gray margin-right1"
+                    onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 1); $('.group-nav').hide(); $('.feed-members').show()"
+                    href="#">Membros</a>
+                <a class="home-link medium-text gray"
+                    onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 2); $('.group-nav').hide(); $('.feed-search').show()"
+                    href="#">Procurar voluntários</a>
             </ul>
             <a href="/event"><button class="btn-callaction">Criar um evento</button></a>
         </div>
@@ -13,22 +19,30 @@
             <nav class="nav-articles">
                 <h1 class="title padding-top2 margin-btm1">Meus eventos ativos</h1>
                 <div class="group-articles">
+                    {{#if activeEvent}}
                     {{#each activeEvent}}
-                            <article class="feed-article">
-                                <figure class="article-image">
-                                    <img src="/temp/uploads/action/{{photoAction}}" />
-                                </figure>
-                                <div class="article-content">
-                                    <h1 class="article-title">{{nameAction}}</h1>
-                                    <h3 class="article-subitle">{{descriptionAction}}
-                                    </h3>
-                                    <div class="article-ngo-details">
-                                        <p class="article-ngo-name">Por <a href="#">{{idNgo}}</a></p>
-                                        <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de {{createdAt.year}}</p>
-                                    </div>
-                                </div>
-                            </article>
+                    <article class="feed-article">
+                        <figure class="article-image">
+                            <img src="/temp/uploads/action/{{photoAction}}" />
+                        </figure>
+                        <div class="article-content">
+                            <h1 class="article-title">{{nameAction}}</h1>
+                            <h3 class="article-subitle">{{descriptionAction}}
+                            </h3>
+                            <div class="article-ngo-details">
+                                <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
+                                <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
+                                    {{createdAt.year}}</p>
+                            </div>
+                        </div>
+                    </article>
                     {{/each}}
+                    {{else}}
+                    <div class="container flex-column align-center margin-top4">
+                        <img style="height: 200px;" src="/assets/imgs/empty2.svg" />
+                        <h1 class="title medium-weight-text gray text-center margin-top2">Parece que sua ONG<br>não tem eventos ativos.</h1>
+                    </div>
+                    {{/if}}
 
                 </div>
             </nav>
@@ -47,6 +61,6 @@
 </div>
 
 <script>
-    $('#ngo-members').hide();
-    $('#search-volunteers').hide()
+    $( '#ngo-members' ).hide();
+    $( '#search-volunteers' ).hide()
 </script>

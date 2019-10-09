@@ -7,18 +7,35 @@ router.get("/", async (req, res) => {
         const event = await actionController.listActionNgo(req.session.ngo.idNgo)
         let events = []
         for(let Event of event){
-            Event.descriptionAction = Event.descriptionAction.substring(0,100) + "..."
-            const months = ["Jan", "Fev", "Mar", "Abri", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-            let eventDate = new Date(Event.createdAt)
-            Event.createdAt.day = eventDate.getDay()
-            Event.createdAt.month = months[eventDate.getMonth()]
-            Event.createdAt.year = eventDate.getFullYear()
+            Event = formatEvent(Event)
             events.push(Event)
         }
         res.render("ngo/Home", {dataHeaderNgo: req.session.ngo, activeEvent: events})
     }else{
-        res.render("user/home", {dataHeader: req.session.user, ngos: req.session.ngoUser})
+        const recommendedActions = await actionController.listRecommendedActions(req.session.user.idVolunteer)
+        
+        let events = {
+            recommendedActions
+        }
+
+        // Format each event
+        for(let Event of events.recommendedActions){
+            Event = formatEvent(Event)
+        }
+        
+        // Set to null events if is empty
+        if(events.recommendedActions.length == 0) events = false
+        res.render("user/home", {dataHeader: req.session.user, ngos: req.session.ngoUser, events})
     }
 })
+
+function formatEvent(Event){
+    Event.descriptionAction = Event.descriptionAction.substring(0,100) + "..."
+    const months = ["Jan", "Fev", "Mar", "Abri", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+    Event.createdAt.day = Event.createdAt.getDay()
+    Event.createdAt.month = months[Event.createdAt.getMonth()]
+    Event.createdAt.year = Event.createdAt.getFullYear()
+    return Event
+}
 
 module.exports = router

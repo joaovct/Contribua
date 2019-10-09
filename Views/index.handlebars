@@ -10,16 +10,17 @@
         <div class="centralize align-center">
             <form class="form" id="form-login" name="index-login" action="/login" method="POST">
                 <h1 class="form-title">Entre no Contribua!</h1>
-                <div class="icon-input"><input name="emailVolunteer" placeholder="E-mail ou Usuário" type="text"
+                <div class="icon-input"><input name="emailVolunteer" value="cugunha" placeholder="E-mail ou Usuário" type="text"
                         class="form-input login-input" />
                 </div>
-                <input name="passwordVolunteer" placeholder="Senha" type="password" class="form-input login-input" />
+                <input name="passwordVolunteer" placeholder="Senha" value="1234" type="password" class="form-input login-input" />
                 <button disabled type="submit" id="login-submit">Entrar</button>
                 <a href="#" class="form-link">Esqueci minha senha</a>
                 <span class="form-span-text" id="form-link-register"><span class="form-span-black">Não tem uma
                         conta?
                     </span><a href="/register/" class="form-link-register">Registre-se</a></span>
             </form>
+            <script>$('#form-login').submit()</script>
         </div>
     </div>
 </div>

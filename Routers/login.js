@@ -6,7 +6,7 @@ const userNgoController = require("../controllers/userNgoController")
 
 router.post('/', async (req,res) => {
     const dataUser = req.body
-
+    
     const user = await verifyEmail.user(dataUser.emailVolunteer)
     const user2 = await verifyUserName.user(dataUser.emailVolunteer)
 
