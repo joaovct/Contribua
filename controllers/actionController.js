@@ -38,7 +38,7 @@ module.exports = {
         //cadastra vagas
         await vacancyController.register(dataVacancy, action.idAction)
     },
-    async listActionNgo(idNgo){
+    async listActiveActionsNgo(idNgo){
         let action = await Action.findAll({where: {idNgo: idNgo, isActive: true}})
         let ngo
         for(let a of action){
@@ -61,7 +61,7 @@ module.exports = {
         // get actions by local
 
         // randomize actions
-        let numbers = [], maxShow = 4, lengthArray = actionsByCauses.length
+        let numbers = [], maxShow = 8, lengthArray = actionsByCauses.length
 
         if(lengthArray < 4) maxShow = lengthArray
 

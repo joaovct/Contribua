@@ -28,12 +28,12 @@
                 </a>
             </ul>
         </div>
-        {{#if events}}
-            {{#if events.recommendedActions}}
+        {{#if actions}}
+            {{#if actions.recommendedActions}}
             <nav class="nav-articles">
                 <h1 class="title padding-top2 margin-btm1">Eventos recomendados</h1>
                 <div class="group-articles">
-                    {{#each events.recommendedActions}}
+                    {{#each actions.recommendedActions}}
                     <article class="feed-article">
                         <figure class="article-image">
                             <img src="/temp/uploads/action/{{photoAction}}" />
