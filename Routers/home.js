@@ -6,7 +6,7 @@ router.get("/", async (req, res) => {
     if(req.session.ngo){
         let activeActions = await actionController.listActiveActionsNgo(req.session.ngo.idNgo)
         
-        for(let action of activeActions) action = formatEvent(action)
+        for(let action of activeActions) action = formatAction(action)
         
         let actions = {
             activeActions
