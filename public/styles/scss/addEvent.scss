@@ -48,12 +48,21 @@ body {
             }
           }
           .box {
-            .icons {
+            padding: $margin2;
+            word-break: break-all;
+            max-height: 150px;
+            overflow-y: scroll;
+            .job-content{
               width: 100%;
-              justify-content: flex-end;
+              box-sizing: border-box;
+              padding-right: $margin2;
+            }
+            .icons {
+              @extend %flex-column;
               .icon {
                 height: 24px;
                 width: 24px;
+                margin-bottom: $margin1;
                 padding: 10px;
                 border-radius: 5px;
                 background: $lightGray3;
@@ -80,15 +89,16 @@ body {
 .submit-step {
   display: flex;
   justify-content: flex-end;
-  .btn-secondary{
+  .btn-secondary {
     margin-right: $margin2;
     margin-left: $margin2;
   }
-  .form-submit, .btn-first {
+  .form-submit,
+  .btn-first {
     width: auto;
   }
 }
-.buttons-aside3{
+.buttons-aside3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -97,25 +107,40 @@ body {
 .article-event {
   height: 100vh;
   width: 100vw;
-  .textarea-title,
-  .textarea-content {
+  .form-content {
     width: 100%;
-    display: block;
-    font-family: $fontFamily;
-    border: none;
-    outline: none;
-    background: none;
-    resize: none;
-    overflow: hidden;
-  }
-  .textarea-title {
-    @extend %title;
-    height: 2.5rem;
-  }
-  .textarea-content {
-    @extend %text;
+    .textarea-title,
+    .textarea-content {
+      display: block;
+      font-family: $fontFamily;
+      border: none;
+      outline: none;
+      background: none;
+      resize: none;
+      overflow: hidden;
+    }
+    .textarea-title {
+      @extend %title;
+      height: 2.5rem;
+      width: 100%;
+    }
+    .textarea-content {
+      @extend %text;
+      width: 100%;
 
-    margin-top: $margin4;
+      margin-top: $margin4;
+    }
+  }
+  .form-upThumbnail {
+    width: 350px;
+    .form-btnFile {
+      height: 200px;
+      width: 100%;
+      img {
+        height: 100px;
+        width: 100px;
+      }
+    }
   }
 }
 
@@ -128,14 +153,6 @@ body {
     .preview,
     .done {
       width: 100%;
-    }
-    .form-btnFile {
-      height: 200px;
-      width: 350px;
-      img {
-        height: 100px;
-        width: 100px;
-      }
     }
     .preview {
       height: auto;

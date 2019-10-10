@@ -10,8 +10,10 @@ router.get("/", (req, res) => {
 })
 
 router.get("/register", async (req, res) => {
-    const categories = await causesController.listCauses()
-    return res.render("ngo/addEvent", {dataHeaderNgo: req.session.ngo, causes: categories})
+    const causes = await causesController.listCauses()
+    const causesNgo = await causesController.listCausesNgo(req.session.ngo.idNgo)
+    const causesNotParticipe = await causesController.listCausesNotParticipeNgo(req.session.ngo.idNgo)
+    return res.render("ngo/addEvent", {dataHeaderNgo: req.session.ngo, causes, causesNgo, causesNotParticipe})
 })
 
 router.post("/register", multer(multerConfig.action()).single('thumbnail'), async (req,res) => {

@@ -2,7 +2,6 @@
 var asides = document.getElementsByClassName('asides')
 for(i=0;i<asides.length;i++){
     if(i>0) $(asides[i]).hide()
-    // $(asides[3]).show()
 }
 $('.typeEvent').hide()
 $('.article-event').hide()
@@ -194,10 +193,12 @@ function writeJobs(name, description, amount){
     }else{
         for(var i=0; i < jobs.length; i++){
             Job = jobs[i]
-            $('#jobs').append(`<div class="box margin-btm2">
-                                    <h1 class="medium-text margin0">${Job.name}</h1>
-                                    <p class="text margin0">${Job.description}</p>
-                                    <p class="text margin0 margin-top1">Qntd. - ${Job.amount}</p>
+            $('#jobs').append(`<div class="box display-flex margin-btm2">
+                                    <div class='flex-column job-content'>
+                                        <h1 class="medium-text margin0">${Job.name}</h1>
+                                        <p class="text margin0">${Job.description}</p>
+                                        <p class="text margin0 margin-top1">Qntd. - ${Job.amount}</p>
+                                    </div>
                                     <ul class="icons margin-top2">
                                         <li class="icon" onclick="deleteJob('${Job.name}')"><img src="/assets/imgs/trash.svg"/></li>
                                         <li class="icon" onclick="callEditJob('${Job.name}')"><img src="/assets/imgs/pencil.svg"/></li>
@@ -227,7 +228,7 @@ function callEditJob(name){
             JobEdit = job
         }
     }
-    $('.edit-job').slideDown('slow')
+    $('.edit-job').slideDown('slow').css('display','flex')
     nameEdit.value = JobEdit.name
     descriptionEdit.value = JobEdit.description
     amountEdit.value = JobEdit.amount
@@ -309,7 +310,7 @@ function checksStep4(){
             }
             return html
         })
-        $('.modal-preview').slideDown('fast').css('display','flex')
+        $('#addEvent').submit()
         btnSubmit.disabled = false
     } 
 }
