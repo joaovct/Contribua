@@ -86,8 +86,25 @@ module.exports = {
     async listActionByCauses(causes){
         let actions = []
         let idActions = []
-        for(let cause of causes){
-            categoriesAction = await CategoryAction.findAll({where: {idCategory: cause.idCategory}})
+        if(Array.isArray(causes)){
+            for(let cause of causes){
+                categoriesAction = await CategoryAction.findAll({where: {idCategory: cause.idCategory}})
+                for(let categoryAction of categoriesAction){
+                    let results = await Action.findAll({where: {idAction: categoryAction.idAction}})
+                    for(let r of results){
+                        let pass = true
+                        for(let id of idActions){
+                            if(id == r.idAction) pass = false
+                        }
+                        if(pass){
+                            actions.push(r)
+                            idActions.push(r.idAction)
+                        }
+                    }
+                }
+            }
+        }else{
+            categoriesAction = await CategoryAction.findAll({where: {idCategory: causes.idCategory}})
             for(let categoryAction of categoriesAction){
                 let results = await Action.findAll({where: {idAction: categoryAction.idAction}})
                 for(let r of results){

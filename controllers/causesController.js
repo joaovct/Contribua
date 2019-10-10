@@ -28,10 +28,10 @@ module.exports = {
         await CategoryVolunteer.create({idCategory: category.idCategory, idVolunteer: idUser})
     },
     async listCausesUser(idUser){
-        let categoryVolunteer = await CategoryVolunteer.findAll({where: {idVolunteer: idUser}})
+        let categoriesVolunteer = await CategoryVolunteer.findAll({where: {idVolunteer: idUser}})
         let category = []
-        for(let i in categoryVolunteer){
-            category[i] = await Category.findOne({where: {idCategory: categoryVolunteer[i].idCategory}})
+        for(let i in categoriesVolunteer){
+            category[i] = await Category.findOne({where: {idCategory: categoriesVolunteer[i].idCategory}})
         }
         return category
     },
@@ -101,7 +101,9 @@ module.exports = {
                     await this.removeCauseUser(idUser, categoriesUser[i].descCategory)
                 }
             }
-        }else{
+        }
+
+        if(categoriesUser[0].descCategory != category){
             await this.registerCauseUser(idUser, category)
         }
     },
