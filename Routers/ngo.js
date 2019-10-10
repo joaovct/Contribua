@@ -16,8 +16,8 @@ router.get('/addEvent', (req,res)=>{
 })
 
 router.get('/addEvent/add', async (req,res)=>{
-    const categories = await causesController.listCauses() 
-    res.render('ngo/addEvent', {data: req.session.ngo, causes: categories})
+    const causes = await causesController.listCauses() 
+    res.render('ngo/addEvent', {data: req.session.ngo, causes})
 })
 
 module.exports = router

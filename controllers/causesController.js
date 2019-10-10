@@ -130,7 +130,17 @@ module.exports = {
         return category
     },
     async listCausesNotParticipeNgo(idNgo){
+        let categoriesNgo = await this.listCausesNgo(idNgo)
+        let allCategories = await Category.findAll()
 
+        for(let i in categoriesNgo){
+            for(let j in allCategories){
+                if(categoriesNgo[i].idCategory === allCategories[j].idCategory){
+                    allCategories.splice(j, 1)
+                }
+            }
+        }
+        return allCategories
     },
     async removeCausesNgo(idNgo, categories){
 

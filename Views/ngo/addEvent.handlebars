@@ -10,10 +10,14 @@
                 <h1 class="title big-text">Informações do evento</h1>
                 <div class="form-groupSelect margin-top4">
                     <label class="form-label">Causas</label>
-                    {{#each causes}}
-                        <input name="categories" value="{{descCategory}}" type="checkbox" id="{{descCategory}}"
+                    {{#each causesNgo}}
+                    <input name="categories" value="{{descCategory}}" checked type="checkbox" id="{{descCategory}}"
                         class="form-checkbox">
-                        <label for="{{descCategory}}" class="form-btnCheckbox">{{descCategory}}</label>
+                    <label for="{{descCategory}}" class="form-btnCheckbox">{{descCategory}}</label>
+                    {{/each}}
+                    {{#each causesNotParticipe}}
+                    <input name="categories" value="{{descCategory}}" type="checkbox" id="{{descCategory}}" class="form-checkbox">
+                    <label for="{{descCategory}}" class="form-btnCheckbox">{{descCategory}}</label> 
                     {{/each}}
                 </div>
                 <label class="form-label margin-top2">Endereço</label>
@@ -31,7 +35,7 @@
                     </div>
                     <div class="icon-input">
                         <input name="eventDistrict" class="form-input" placeholder="Bairro">
-                    </div>   
+                    </div>
                 </div>
                 <div class="icon-input">
                     <input name="eventAddress" class="form-input margin-top2" placeholder="Logradouro">
@@ -50,13 +54,17 @@
                 <h1 class="title big-text">Tipo de evento</h1>
                 <div class="form-groupSelect margin-top4">
                     <label class="form-label">Selecione o tipo de evento</label>
-                    <input name="categories" name="typeEvent" type="radio" class="form-radio" value="punctual" id="punctual">
+                    <input name="categories" name="typeEvent" type="radio" class="form-radio" value="punctual"
+                        id="punctual">
                     <label for="punctual" class="form-btnCheckbox"
                         onclick="$('.typeEvent-recurrent').slideUp('fast'); $('.typeEvent-punctual').slideDown('slow')">Evento
                         pontual</label>
 
-                    <input name="categories" name="typeEvent" type="radio" class="form-radio" value="recurrent" id="recurrent">
-                    <label onclick="$('.typeEvent-punctual').slideUp('slow'); $('.typeEvent-recurrent').slideDown('slow')" for="recurrent" class="form-btnRadio">Evento recorrente</label>
+                    <input name="categories" name="typeEvent" type="radio" class="form-radio" value="recurrent"
+                        id="recurrent">
+                    <label
+                        onclick="$('.typeEvent-punctual').slideUp('slow'); $('.typeEvent-recurrent').slideDown('slow')"
+                        for="recurrent" class="form-btnRadio">Evento recorrente</label>
                 </div>
                 <div class="typeEvent typeEvent-punctual">
                     <div class="flex-inputs margin-top2">
@@ -92,11 +100,13 @@
                         </div>
                     </div>
                     <div class="icon-input">
-                        <input name="eventRHDescription" class="form-input margin-top2" placeholder="Detalhes sobre horários">
+                        <input name="eventRHDescription" class="form-input margin-top2"
+                            placeholder="Detalhes sobre horários">
                     </div>
                 </div>
                 <div class="submit-step margin-top4">
-                    <div onclick="$('.aside-2').slideUp('fast'); $('.aside-1').slideDown('slow')" class="btn-secondary">Voltar</div>
+                    <div onclick="$('.aside-2').slideUp('fast'); $('.aside-1').slideDown('slow')" class="btn-secondary">
+                        Voltar</div>
                     <div onclick="checksStep2()" class="btn-primary">Próximo passo</div>
                 </div>
             </div>
@@ -109,15 +119,18 @@
             <div class="form">
                 <h1 class="title big-text margin-btm4">Vagas</h1>
                 <div id="jobs">
-                     <div id="noJobs" class="margin-btm2">
+                    <div id="noJobs" class="margin-btm2">
                         <img src="/assets/imgs/empty.svg">
-                        <p class="medium-text medium-weight-text margin0 margin-top2 gray text-center">Para prosseguir é preciso criar<br> ao menos uma vaga.</p>
+                        <p class="medium-text medium-weight-text margin0 margin-top2 gray text-center">Para prosseguir é
+                            preciso criar<br> ao menos uma vaga.</p>
                     </div>
                 </div>
                 <div class="buttons-aside3">
-                    <div onclick="$('.modal-job').slideDown('fast').css('display','flex')" class="btn-callaction">Adicionar vaga</div>
+                    <div onclick="$('.modal-job').slideDown('slow').css('display','flex')" class="btn-callaction">
+                        Adicionar vaga</div>
                     <div class="submit-step">
-                        <div onclick="$('.aside-3').slideUp('fast'); $('.aside-2').slideDown('slow')" class="btn-secondary">Voltar</div>
+                        <div onclick="$('.aside-3').slideUp('fast'); $('.aside-2').slideDown('slow')"
+                            class="btn-secondary">Voltar</div>
                         <div onclick="checksStep3()" class="btn-primary">Próximo passo</div>
                     </div>
                 </div>
@@ -129,10 +142,11 @@
         <div class="modal form">
             <h1 class="title big-text">Adicionar vaga</h1>
             <div class="icon-input">
-                <input name="jobName" class="form-input" placeholder="Nome da vaga" />
+                <input name="jobName" maxlength="25" class="form-input" placeholder="Nome da vaga" />
             </div>
             <div class="icon-input">
-                <textarea name="jobDescription" class="form-input form-textarea" placeholder="Descrição da vaga"></textarea>
+                <textarea name="jobDescription" maxlength="300" class="form-input form-textarea"
+                    placeholder="Descrição da vaga"></textarea>
             </div>
             <div class="icon-input">
                 <input name="jobAmount" type="number" class="form-input" placeholder="Quantidade" />
@@ -148,10 +162,11 @@
         <div class="modal form">
             <h1 class="title big-text">Editar vaga</h1>
             <div class="icon-input">
-                <input name="jobNameEdit" class="form-input" placeholder="Nome da vaga" />
+                <input name="jobNameEdit" maxlength="25" class="form-input" placeholder="Nome da vaga" />
             </div>
             <div class="icon-input">
-                <textarea name="jobDescriptionEdit" class="form-input form-textarea" placeholder="Descrição da vaga"></textarea>
+                <textarea name="jobDescriptionEdit" maxlength="300" class="form-input form-textarea"
+                    placeholder="Descrição da vaga"></textarea>
             </div>
             <div class="icon-input">
                 <input name="jobAmountEdit" type="number" class="form-input" placeholder="Quantidade" />
@@ -166,39 +181,34 @@
     <div class="centralize padding-top4 article-event">
         <div class="container">
             <h1 class="title margin-btm4">Artigo do evento</h1>
-            <textarea name="eventTitle" maxlength="75" onkeyup="autosize($('.textarea-title'))" class="textarea-title"
-                placeholder="Título..."></textarea>
-            <textarea name="eventContent" maxlength="5000" onkeyup="autosize($('.textarea-content')); refreshCount(this)" class="textarea-content"
-                placeholder="Comece a escrever..."></textarea>
-            <p id="counter-content" class="text margin0 margin-top2">0</p>
-            <div class="submit-step">
-                <div onclick="$('.article-event').slideUp('fast'); $('.aside-3').slideDown('slow')" class="btn-secondary">Voltar</div>
-                <div onclick="checksStep4()" class="btn-primary">Próximo passo</div>
-            </div>
-        </div>
-    </div>
 
+            <div class="flex-row">
 
-    <div class="overlay modal-preview">
-        <div class="modal form">
-            <div class="up-thumbnail">
-                <input name="thumbnail" id="upThumbnail" type="file" class="form-file" onchange="$('.up-thumbnail').slideUp('fast'); $('.preview').slideDown('slow');">
-                <label for="upThumbnail"class="form-btnFile"><img src="/assets/imgs/upload.svg" /></label>
-                <h1 class="title text-center margin-top4">Só mais um detalhe</h1>
-                <p class="text margin-top2">Clique no espaço cinza para escolher uma imagem que atraia o público para
-                    este evento.</p>
-            </div>
-            <div class="preview">
-                <h1 class="title">Preview</h1>
-                <label class="form-btnFile"></label>
-                <h1 class="title margin-top2" id="eventTitle"></h1>
-                <p class="text margin-top1 margin-btm2" id="eventContent"></p>
-                <ul class="cases">
-                </ul>
-                <div class="modal-options">
-                    <div onclick="$('.modal-preview').slideUp('fast')" class="btn-secondary">Editar</div>
-                    <button class="btn-primary" id="btn-submit" disabled>Finalizar</button>
+                <div class="form-content padding-right4">
+                    <textarea name="eventTitle" maxlength="75" onkeyup="autosize($('.textarea-title'))"
+                        class="textarea-title" placeholder="Título..."></textarea>
+                    <textarea name="eventContent" maxlength="5000"
+                        onkeyup="autosize($('.textarea-content')); refreshCount(this)" class="textarea-content"
+                        placeholder="Comece a escrever..."></textarea>
+                    <p id="counter-content" class="text margin0 margin-top2">0</p>
                 </div>
+
+                <div class="flex-column form form-upThumbnail margin-right2">
+                    <input style="display: none" name="thumbnail" id="upThumbnail" class="form-file" type="file">
+                    <label for="upThumbnail" class="form-btnFile">
+                        <img style="" src="/assets/imgs/upload.svg" />
+                    </label>
+                    <p class="text margin-top1">Clique no espaço cinza para escolher uma imagem que atraia o público
+                        para
+                        este evento.</p>
+                </div>
+
+            </div>
+
+            <div class="submit-step margin-top2">
+                <div onclick="$('.article-event').slideUp('fast'); $('.aside-3').slideDown('slow')"
+                    class="btn-secondary">Voltar</div>
+                <div onclick="checksStep4()" class="btn-primary">Publicar</div>
             </div>
         </div>
     </div>

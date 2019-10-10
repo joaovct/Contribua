@@ -16,6 +16,7 @@ $darkGray: #3f3f3f;
 // SIZES
 $margin4: 40px;
 $margin2: 20px;
+$margin1: 10px;
 $heightHeader: 155px;
 $widthContainer: 80vw;
 $fontBase: 1rem;
@@ -176,6 +177,22 @@ $borderColor: #eeeeee;
 
 .padding-top4 {
   padding-top: $margin4;
+}
+
+.padding-right2{
+  padding-right: $margin2;
+}
+
+.padding-right4{
+  padding-right: $margin4;
+}
+
+.padding-left2{
+  padding-left: $margin2;
+}
+
+.padding-left4{
+  padding-left: $margin4;
 }
 
 .padding-btm2 {
