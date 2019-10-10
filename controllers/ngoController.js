@@ -54,5 +54,40 @@ module.exports = {
         type_msg = "success_msg"
         msg = "Ong cadastrada com sucesso!"
         return {type_msg, msg}
+    },
+    async edit(dataNgo, sessionNgo){
+        await Ngo.update({
+                        nameNgo: dataNgo.name,
+                        descriptionNgo: dataNgo.description,
+                        cepNgo: dataNgo.cep,
+                        cityNgo: dataNgo.city,
+                        districtNgo: dataNgo.district,
+                        addressNgo: dataNgo.address,
+                        siteNgo: dataNgo.site
+                    },{where: {idNgo: sessionNgo.idNgo}})
+
+            sessionNgo.nameNgo = dataNgo.name
+            sessionNgo.descriptionNgo = dataNgo.description
+            sessionNgo.cepNgo = dataNgo.cep
+            sessionNgo.cityNgo = dataNgo.city
+            sessionNgo.districtNgo = dataNgo.district
+            sessionNgo.addressNgo = dataNgo.address
+            sessionNgo.siteNgo = dataNgo.site
+
+            return sessionNgo
+    },
+    async editPhoto(dataPhoto, sessionNgo){
+        await Ngo.update({
+            photoNgo: dataPhoto.filename
+        },{where: {idNgo: sessionNgo.idNgo}})
+
+        sessionNgo.photoNgo = dataPhoto.filename
+        return sessionNgo.photoNgo
+    },
+    async changePassword(newPassword, idNgo){
+        await Ngo.update({passwordNgo: newPassword}, {where: {idNgo: idNgo}})
+    },
+    async deactivateAccount(idNgo){
+        await Ngo.update({activeNgo: false}, {where: {idNgo: idNgo}})
     }
 }

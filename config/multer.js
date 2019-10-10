@@ -18,7 +18,12 @@ module.exports = {
                     //     cb(null, fileName)
                     // })
                     const ex = file.originalname.split(".")
-                    const fileName = req.session.user.userName+"."+ex[1]
+                    let fileName
+                    if(req.session.ngo){
+                        fileName = req.session.ngo.userName+"."+ex[1]
+                    }else{
+                        fileName = req.session.user.userName+"."+ex[1]
+                    }
                     cb(null, fileName)
                 }
             }),

@@ -96,15 +96,21 @@ module.exports = {
     async editCauseUser(idUser, category){
         let categoriesUser = await this.listCausesUser(idUser)
         if(Array.isArray(categoriesUser) && categoriesUser.length > 1){
+            let pass = 0
             for(let i in categoriesUser){
                 if(categoriesUser[i].descCategory != category){
                     await this.removeCauseUser(idUser, categoriesUser[i].descCategory)
+                    pass++
                 }
             }
-        }
-
-        if(categoriesUser[0].descCategory != category){
-            await this.registerCauseUser(idUser, category)
+            if(pass === categoriesUser.length){
+                await this.registerCauseUser(idUser, category)
+            }
+        }else{
+            if(categoriesUser[0].descCategory != category){
+                await this.removeCauseUser(idUser, categoriesUser[0].descCategory)
+                await this.registerCauseUser(idUser, category)
+            }
         }
     },
 
@@ -121,6 +127,10 @@ module.exports = {
             }
         }
     },
+    async registerCauseNgo(idNgo, descCategory){
+        const category = await Category.findOne({where: {descCategory: descCategory}})
+        await CategoryNgo.create({idCategory: category.idCategory, idNgo: idNgo})
+    },
     async listCausesNgo(idNgo){
         let categoryNgo = await CategoryNgo.findAll({where: {idNgo: idNgo}})
         let category = []
@@ -130,13 +140,82 @@ module.exports = {
         return category
     },
     async listCausesNotParticipeNgo(idNgo){
+        let categoriesNgo = await this.listCausesNgo(idNgo)
+        let allCategories = await Category.findAll()
 
+        for(let i in categoriesNgo){
+            for(let j in allCategories){
+                if(categoriesNgo[i].idCategory === allCategories[j].idCategory){
+                    allCategories.splice(j, 1)
+                }
+            }
+        }
+        return allCategories
     },
-    async removeCausesNgo(idNgo, categories){
-
+    async removeCauseNgo(idNgo, descCategory){
+        const category = await Category.findOne({where: {descCategory: descCategory}})
+        await CategoryNgo.destroy({where: {idCategory: category.idCategory, idNgo: idNgo}})
     },
     async editCausesNgo(idNgo, categories){
+        let categoriesNgo = await this.listCausesNgo(idNgo)
 
+        //Remove
+        for(let i in categoriesNgo){
+            if(categoriesNgo[i].descCategory != categories[i]){
+                await this.removeCauseNgo(idNgo, categoriesNgo[i].descCategory)
+                categoriesNgo.splice(i, 1, "removed")
+            }
+        }
+
+        //trata array, retira o "removed" dos arrays
+        let categories2 = []
+        for(let i in categories){
+            if(categories[i] != "removed"){
+                categories2.push(categories[i])
+            }
+        }
+
+        let categoriesNgo2 = []
+        for(let i in categoriesNgo){
+            if(categoriesNgo[i] != "removed"){
+                categoriesNgo2.push(categoriesNgo[i])
+            }
+        }
+
+        //Create
+        for(let i in categories2){
+            let qtd = 0
+            for(let j in categoriesNgo2){
+                if(categories2[i] === categoriesNgo2[j].descCategory){
+                    break
+                }else{
+                    qtd++
+                }
+            }
+            if(qtd === categoriesNgo2.length){
+                await this.registerCauseNgo(idNgo, categories2[i])
+            }
+        }
+    },
+    async editCauseNgo(idNgo, category){
+        let categoriesNgo = await this.listCausesNgo(idNgo)
+        if(Array.isArray(categoriesNgo) && categoriesNgo.length > 1){
+            let pass = 0
+            for(let i in categoriesNgo){
+                if(categoriesNgo[i].descCategory != category){
+                    await this.removeCauseNgo(idNgo, categoriesNgo[i].descCategory)
+                    pass++
+                }
+            }
+            if(pass === categoriesNgo.length){
+                await this.registerCauseNgo(idNgo, category)
+            }
+        }else{
+            if(categoriesNgo[0].descCategory != category){
+                await this.removeCauseNgo(idNgo, categoriesNgo[0].descCategory)
+                await this.registerCauseNgo(idNgo, category)
+            }
+        }
     },
 
     //Action

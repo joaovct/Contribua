@@ -9,7 +9,7 @@
 
         <div class="profile-data">
             <figure class="profile-pic availableVolunteer">
-                <img src="/assets/imgs/animals-cats-cute-45170.jpg" />
+                <img src="/temp/uploads/profile/{{data.photoNgo}}" />
                 {{#if isVisit}}
                     {{#if isVolunteer}}
                     <form>
@@ -39,6 +39,9 @@
             <div class="profile-location-since">
                 <h3 class="content">{{data.cityNgo}}. Desde {{data.createdAt.month}} de {{data.createdAt.year}}.</h3>
                 <h3 class="content">Tel - (99) 9999-9999</h3>
+                {{#if data.siteNgo}}
+                    <h3 class="content">Site - {{data.siteNgo}}</h3>
+                {{/if}}
             </div>
             <div class="profile-about">
                 <p class="content">{{data.descriptionNgo}}</p>
