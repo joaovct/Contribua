@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="/styles/css/addEvent.css" />
 
 <form id="addEvent" name="addEvent" method="POST" action="/event/register" enctype="multipart/form-data">
-
     <div class="asides aside-1">
         <aside class="bg1">
         </aside>
@@ -21,24 +20,27 @@
                     {{/each}}
                 </div>
                 <label class="form-label margin-top2">Endereço</label>
-                <div class="flex-inputs">
-                    <div class="icon-input">
-                        <input name="eventCEP" class="form-input" placeholder="CEP">
+                <div class="display-flex flex-wrap align-center">
+                    <input id="checkbox-addressEvent" type="checkbox" checked onchange="changeAddress()"><label for="checkbox-addressEvent" class="text">Usar endereço da ONG</label> 
+                </div>
+                <div class="display-flex flex-wrap">
+                    <div class="icon-input padding-right2">
+                        <input value="{{ngo.cepNgo}}" name="eventCEP" class="form-input" placeholder="CEP">
                     </div>
-                    <div class="icon-input">
-                        <input name="eventAddressNumber" class="form-input" placeholder="Número">
+                    <div class="icon-input padding-right2">
+                        <input value="{{ngo.numberNgo}}" name="eventAddressNumber" class="form-input" placeholder="Número">
                     </div>
                 </div>
-                <div class="flex-inputs margin-top2">
-                    <div class="icon-input">
-                        <input name="eventCity" class="form-input" placeholder="Cidade">
+                <div class="display-flex flex-wrap">
+                    <div class="icon-input padding-right2">
+                        <input value="{{ngo.cityNgo}}" name="eventCity" class="form-input" placeholder="Cidade">
                     </div>
-                    <div class="icon-input">
-                        <input name="eventDistrict" class="form-input" placeholder="Bairro">
+                    <div class="icon-input padding-right2">
+                        <input value="{{ngo.districtNgo}}" name="eventDistrict" class="form-input" placeholder="Bairro">
                     </div>
                 </div>
                 <div class="icon-input">
-                    <input name="eventAddress" class="form-input margin-top2" placeholder="Logradouro">
+                    <input value="{{ngo.addressNgo}}" name="eventAddress" class="form-input margin-top2" placeholder="Logradouro">
                 </div>
                 <div class="submit-step">
                     <div onclick="checksStep1()" class="btn-primary">Próximo passo</div>
