@@ -412,13 +412,13 @@ img.rounded-pic{
     font-size: 1.2em;
     width: 100%;
     display: block;
-    margin-bottom: $margin2 / 2;
+    margin: 0 0 $margin1 0;
   }
   .form-groupSelect {
     display: flex;
     flex-flow: row wrap;
     width: 100%;
-    margin-top: $margin2;
+    padding-top: $margin1;
     .form-btnCheckbox,
     .form-btnRadio {
       flex-grow: 1;
@@ -430,7 +430,7 @@ img.rounded-pic{
       border: 1px solid $lightBlue;
       box-shadow: 0 1px 5px -2px $lightBlue;
       border-radius: 10px;
-      margin: 3.5px 5px 3.5px 5px;
+      margin: 0 5px 7px 5px;
       cursor: pointer;
       transition: 0.25s;
     }

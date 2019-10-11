@@ -11,7 +11,7 @@ body {
   border: 2px solid #f2f2f2;
   border-radius: 7px;
   min-height: 50vh;
-  margin-top: $margin4;
+  margin-top: $margin2;
   box-sizing: border-box;
   position: relative;
   ul.settings-menu {
@@ -86,53 +86,8 @@ body {
         display: none;
       }
     }
-    .fields {
-      height: 100%;
-      display: flex;
-      flex-flow: row wrap;
-      .settings-field {
-        flex-grow: 1;
-        margin: 0 $margin2 0 0;
-        label {
-          font-size: 1.1em;
-          display: block;
-        }
-        .form-input {
-          margin: 0;
-          width: 100%;
-        }
-        .form-textarea {
-          margin: 0;
-          width: 100%;
-        }
-      }
-      .block-field {
-        width: auto;
-        flex-grow: 1;
-        margin-bottom: $margin2;
-        display: flex;
-        flex-flow: column nowrap;
-        margin: $margin2 0 0 0;
-        padding: 0;
-        box-sizing: border-box;
-        label.groupSelect-label {
-          height: 1.1em;
-        }
-        .form-groupSelect {
-          width: 100%;
-          label.form-btnCheckbox {
-            margin-left: $margin2 / 2;
-          }
-          input[type="checkbox"].form-checkbox {
-            display: none;
-          }
-          input:checked + .form-btnCheckbox {
-            background: $mainColor;
-            color: white;
-            border-color: $mainColor;
-          }
-        }
-      }
+    .form-label, .form-input{
+      margin: 0 0 $margin1 0;
     }
   }
   .short-number{

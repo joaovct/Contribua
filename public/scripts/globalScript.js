@@ -129,20 +129,6 @@ function writeNgos(data){
     }
 }
 
-function changeSettingsForm(n, e){
-    items = document.getElementsByClassName("settings-link")
-    forms = document.getElementsByClassName("settings-form")
-    for(let i of items){
-        i.classList.remove('active')
-    }
-    // for(let i of forms){
-    //     $(i).hide()
-    // }
-    $(forms).hide()
-    $(forms[n]).show()
-    e.classList.add('active')
-}
-
 function callAlert(title, message, type){
     if(type=="success"||type=="error"||type=="warning"){
         $('.container-alert').append(`<div class="alert alert-${type}"><figure class="alert-icon"><div class="icon"></div></figure><div class="alert-content"><h1 class="alert-title">${title}</h1><p class="text">${message}</p></div><figure class="alert-close" onclick="closeAlert(this)"><img src="/assets/imgs/close.svg" /></figure></div>`).show('slow')

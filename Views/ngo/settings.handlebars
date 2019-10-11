@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/styles/css/settingsStyle.css" />
 
 <style>
-    .label-profile-pic{
+    .label-profile-pic {
         background: url("/temp/uploads/profile/{{data.photoNgo}}") center center / cover;
     }
 </style>
@@ -11,95 +11,87 @@
         <h1 class="title big-text">Configurações</h1>
         <div class="container form settings-container">
             <ul class="settings-menu">
-                <li class="settings-link active" onclick="changeSettingsForm(0, this)"><img
-                        src="/assets/imgs/userBlue.svg" />Perfil</li>
-                <li class="settings-link" onclick="changeSettingsForm(1, this)"><img src="/assets/imgs/key.svg" />Conta
+                <li class="settings-link active"
+                    onclick="$('.settings-form').hide(); $('#settings-profile').show(); removeClass('settings-link', 'active'); addClass('settings-link','active',0)">
+                    <img src="/assets/imgs/userBlue.svg" />Perfil</li>
+                <li class="settings-link"
+                    onclick="$('.settings-form').hide(); $('#settings-personalData').show(); removeClass('settings-link', 'active'); addClass('settings-link','active',1)">
+                    <img src="/assets/imgs/key.svg" />Conta
                 </li>
             </ul>
 
-            <form name="settings-profile" class="settings-form" method="POST" action="/settings/edit-profile-ngo" enctype="multipart/form-data">
-                <div class="block fields">
-                    <figure class="block figure-profile-pic">
-                        <label for="profile-pic" class="label-profile-pic">
-                            <p>Mudar foto da ONG</p>
-                        </label>
-                        <input id="profile-pic" type="file" name="photo" />
-                    </figure>
-                </div>
+            <form name="settings-profile" id="settings-profile" class="settings-form" method="POST"
+                action="/settings/edit-profile-ngo" enctype="multipart/form-data">
+
+                <figure class="figure-profile-pic">
+                    <label for="profile-pic" class="label-profile-pic">
+                        <p>Mudar foto da ONG</p>
+                    </label>
+                    <input id="profile-pic" type="file" name="photo" />
+                </figure>
+
                 <h1 class="label medium-text">Dados da ONG</h1>
-                <div class="block fields">
-                    <div class="settings-field">
-                        <label class="form-label">Nome</label>
-                        <input class="form-input" value="{{data.nameNgo}}" name="name">
-                    </div>
-                </div>
-                <div class="block margin-top2">
-                    <div class="settings-field">
-                        <label class="form-label">Descrição</label>
-                        <textarea class="form-input form-textarea"
-                            name="description">{{data.descriptionNgo}}</textarea>
-                    </div>
-                </div>
-                <div class="block fields">
-                    <div class="settings-field">
-                        <label class="form-label">Site da ONG</label>
-                        <input class="form-input" value="{{data.siteNgo}}" name="site">
-                    </div>
-                </div>
+                <label class="form-label">Nome</label>
+                <input class="form-input" value="{{data.nameNgo}}" name="name">
+                <label class="form-label">Descrição</label>
+                <textarea class="form-input form-textarea" name="description">{{data.descriptionNgo}}</textarea>
+                <label class="form-label">Site da ONG</label>
+                <input class="form-input" value="{{data.siteNgo}}" name="site">
+
                 <h1 class="label medium-text">Localização</h1>
-                <div class="block fields">
-                    <div class="settings-field">
+                <div class="display-flex flex-wrap">
+                    <div class="margin-right2">
                         <label class="form-label">CEP</label>
                         <input class="form-input" type="text" name="cep" value="{{data.cepNgo}}">
                     </div>
-                    <div class="settings-field">
+                    <div class="margin-right2">
+                        <label class="form-label">Número</label>
+                        <input class="form-input" type="text" name="number" value="">
+                    </div>
+                    <div class="margin-right2">
                         <label class="form-label">Cidade</label>
                         <input class="form-input" type="text" name="city" value="{{data.cityNgo}}">
                     </div>
-                    <div class="settings-field">
+                    <div class="margin-right2">
                         <label class="form-label">Bairro</label>
                         <input class="form-input" type="text" name="district" value="{{data.districtNgo}}">
-                    </Div>
-                    <div class="settings-field">
+                    </div>
+                    <div class="margin-right2">
                         <label class="form-label">Endereço</label>
                         <input class="form-input" type="text" name="address" value="{{data.addressNgo}}">
                     </div>
-
                 </div>
-                <div class="justifyContent-start padding-top4">
+
+                <h1 class="label medium-text margin0">Causas da ONG</h1>
+                <div class="form-groupSelect">
+                    {{#each causes}}
+                    <input type="checkbox" value="{{descCategory}}" id="{{descCategory}}" name="categories"
+                        class="form-checkbox" checked>
+                    <label for="{{descCategory}}" class="form-btnCheckbox">{{descCategory}}</label>
+                    {{/each}}
+
+                    {{#each noParticipe}}
+                    <input type="checkbox" value="{{descCategory}}" id="{{descCategory}}" name="categories"
+                        class="form-checkbox">
+                    <label for="{{descCategory}}" class="form-btnCheckbox">{{descCategory}}</label>
+                    {{/each}}
+                </div>
+                
+                <div class="justifyContent-start">
                     <button class="btn-primary margin0">Salvar edições</button>
                 </div>
             </form>
 
-            <div name="settings-personalData" class="settings-form form">
-                <h1 class="label medium-text margin0">Editar causas</h1>
-                <div class="fields block margin-btm4">
-                    <form action="/settings/edit-causes-ngo" method="post">
-                        <div class="form-groupSelect">
-                            {{#each causes}}
-                            <input type="checkbox" value="{{descCategory}}" id="{{descCategory}}" name="categories"
-                                class="form-checkbox" checked>
-                            <label for="{{descCategory}}" class="form-btnCheckbox">{{descCategory}}</label>
-                            {{/each}}
-
-                            {{#each noParticipe}}
-                            <input type="checkbox" value="{{descCategory}}" id="{{descCategory}}" name="categories"
-                                class="form-checkbox">
-                            <label for="{{descCategory}}" class="form-btnCheckbox">{{descCategory}}</label>
-                            {{/each}}
-                        </div>
-                        <button class="btn-primary">Salvar edições</button>
-                    </form>
-                </div>
-                <h1 class="label medium-text margin0">Desativar conta</h1>
+            <div name="settings-personalData" id="settings-personalData" class="settings-form form">
+                <h1 class="label medium-text margin0">Desativar ONG</h1>
                 <div class="fields block padding0 margin0">
                     <form action="/user/deactivate-account-ngo" id="disable-account-form" method="post">
-                        <div onclick="$('.disable-account').slideDown('slow').css('display', 'flex')" class="btn-danger margin-top2">Desativar
-                            conta</div>
+                        <div onclick="$('.disable-account').slideDown('slow').css('display', 'flex')"
+                            class="btn-danger margin-top2">Desativar
+                            ONG</div>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
