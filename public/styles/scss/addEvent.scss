@@ -19,14 +19,17 @@ body {
       padding: $margin2 $margin4 0 $margin4;
       .form {
         width: 100%;
+        .icon-input{
+          box-sizing: content-box;
+          &:after{
+            right: 17.5px !important;
+          }
+        }
         .flex-inputs {
           display: flex;
           .form-input,
           .icon-input {
             margin: 0;
-            &:last-child {
-              margin-left: $margin2 / 2;
-            }
           }
           .input {
             margin-right: $margin2 / 2;

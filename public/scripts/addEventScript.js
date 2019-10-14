@@ -28,6 +28,34 @@ const iconDistrict = district.parentNode
 const address = document.getElementsByName('eventAddress')[0]
 const iconAddress = address.parentNode
 
+let valueCep = cep.value
+let valueNumber = addressNumber.value
+let valueCity = city.value
+let valueDistrict = district.value
+let valueAddress = address.value
+
+
+function changeAddress(){
+    let checkboxAddress = document.getElementById("checkbox-addressEvent")
+    if(checkboxAddress.checked){
+        cep.value = valueCep
+        addressNumber.value = valueNumber
+        city.value = valueCity
+        district.value = valueDistrict
+        address.value = valueAddress
+        cep.value = valueCep
+    }else{
+        cep.value = ""
+        addressNumber.value = ""
+        city.value = ""
+        district.value = ""
+        address.value = ""
+        cep.value = ""
+    }
+    checksStep1()
+    closeAllAlerts()
+}
+
 cep.addEventListener("keyup", () => {
     if(validationCep(cep, iconCep)){
         city.value = "..."

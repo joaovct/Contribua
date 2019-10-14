@@ -59,6 +59,18 @@ router.post('/edit-profile', multer(multerConfig.user()).single('photo'), async 
         return res.redirect("/settings")
     }
 
+    const categories = req.body.categories
+
+    if(typeof categories === "undefined"){
+        req.flash("error", "Você precisa ter ao menos uma causa cadastrada!")
+        return res.redirect("/settings")
+    }
+
+    if(Array.isArray(categories))
+        await causesController.editCausesUser(req.session.user.idVolunteer, categories)
+    else
+        await causesController.editCauseUser(req.session.user.idVolunteer, categories)
+
     req.session.user = await userController.edit(dataUser, req.session.user)
 
     if(typeof dataPhoto != "undefined"){
@@ -85,22 +97,6 @@ router.post("/change-password", async (req, res) => {
 
     await userController.changePassword(req.body.newPassword, req.session.user.idVolunteer)
     req.flash("success_msg", "Senha alterada com sucesso!")
-    return res.redirect("/settings")
-})
-
-router.post("/edit-causes", async (req, res) => {
-    const categories = req.body.categories
-
-    if(typeof categories === "undefined"){
-        req.flash("error", "Você precisa ter ao menos uma causa cadastrada!")
-        return res.redirect("/settings")
-    }
-
-    if(Array.isArray(categories))
-        await causesController.editCausesUser(req.session.user.idVolunteer, categories)
-    else
-        await causesController.editCauseUser(req.session.user.idVolunteer, categories)
-
     return res.redirect("/settings")
 })
 
@@ -140,6 +136,18 @@ router.post("/edit-profile-ngo", multer(multerConfig.user()).single('photo'), as
         return res.redirect("/settings")
     }
 
+    const categories = req.body.categories
+
+    if(typeof categories === "undefined"){
+        req.flash("error", "Você precisa ter ao menos uma causa cadastrada!")
+        return res.redirect("/settings")
+    }
+
+    if(Array.isArray(categories))
+        await causesController.editCausesNgo(req.session.ngo.idNgo, categories)
+    else
+        await causesController.editCauseNgo(req.session.ngo.idNgo, categories)
+
     req.session.ngo = await ngoController.edit(dataNgo, req.session.ngo)
 
     if(typeof dataPhoto != "undefined"){
@@ -155,22 +163,6 @@ router.post("/edit-profile-ngo", multer(multerConfig.user()).single('photo'), as
 
 router.post("change-password-ngo", async(req,res) => {
 
-})
-
-router.post("/edit-causes-ngo", async(req,res) => {
-    const categories = req.body.categories
-
-    if(typeof categories === "undefined"){
-        req.flash("error", "Você precisa ter ao menos uma causa cadastrada!")
-        return res.redirect("/settings")
-    }
-
-    if(Array.isArray(categories))
-        await causesController.editCausesNgo(req.session.ngo.idNgo, categories)
-    else
-        await causesController.editCauseNgo(req.session.ngo.idNgo, categories)
-
-    return res.redirect("/settings")
 })
 
 router.post("/deactivate-account-ngo", async(req,res) => {
