@@ -56,14 +56,13 @@ module.exports = {
             ngo = await Ngo.findOne({where: {idNgo: action.idNgo}, attributes: ['nameNgo']})
             action.nameNgo = ngo.nameNgo
         }
-
         // get actions by skills
         // get actions by local
 
         // randomize actions
         let numbers = [], maxShow = 8, lengthArray = actionsByCauses.length
 
-        if(lengthArray < 4) maxShow = lengthArray
+        if(lengthArray < maxShow) maxShow = lengthArray
 
         for(var i = 0; i < maxShow;){
             let pass = true, number = Math.floor((Math.random() * lengthArray - 1) + 1)

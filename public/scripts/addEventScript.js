@@ -12,7 +12,6 @@ $('.done').hide()
 // consts
 
 const btns = document.getElementsByClassName('form-submit')
-const btnSubmit = document.getElementById("btn-submit")
 const minLength = 100
 
 //Step 1
@@ -290,7 +289,6 @@ function checksStep3(){
 
 function checksStep4(){
     var vTitle = true, vContent = true
-    btnSubmit.disabled = true
     if(eventTitle.value.length < 10){
         callAlert("Título muito curto", "O título do artigo deste evento precisa ter no minímo 10 caracteres.","error")
         vTitle = false
@@ -311,7 +309,6 @@ function checksStep4(){
             return html
         })
         $('#addEvent').submit()
-        btnSubmit.disabled = false
     } 
 }
 

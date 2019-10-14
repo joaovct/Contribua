@@ -13,8 +13,13 @@
                 {{#if isVisit}}
                     {{#if isVolunteer}}
                     <form>
-                        <input type="checkbox" id="checkbox-subscribe">
-                        <label for="checkbox-subscribe" id="btn-subscribe">Inscrever-se</label>
+                        <input type="hidden" name="id-ngo" id="id-ngo" value="{{data.idNgo}}">
+                        {{#if isSubscribed}}
+                            <input type="checkbox" id="checkbox-subscribe" value="on" checked>
+                        {{else}}
+                            <input type="checkbox" id="checkbox-subscribe" value="off">
+                        {{/if}}
+                        <label for="checkbox-subscribe" id="btn-subscribe"></label>
                     </form>
                     {{/if}}
                 {{/if}}
@@ -40,7 +45,7 @@
                 <h3 class="content">{{data.cityNgo}}. Desde {{data.createdAt.month}} de {{data.createdAt.year}}.</h3>
                 <h3 class="content">Tel - (99) 9999-9999</h3>
                 {{#if data.siteNgo}}
-                    <h3 class="content">Site - {{data.siteNgo}}</h3>
+                    <a href="http://{{data.siteNgo}}" target="_blank">{{data.siteNgo}}</a>
                 {{/if}}
             </div>
             <div class="profile-about">
@@ -51,7 +56,7 @@
         <div class="profile-stats">
             <ul>
                 <li><span class="number">8</span>Eventos realizados</li>
-                <li><span class="number">41</span>Membros</li>
+                <li><span class="number">{{amtUserSubscribed}}</span>Membros</li>
             </ul>
         </div>
         <div class="group-nav">
@@ -183,3 +188,5 @@
         </div>
     </div>
 </div>
+
+<script src="/scripts/profileNgoScript.js"></script>
