@@ -4,6 +4,7 @@ const Ngo = require('../Models/Ngo')
 const CategoryAction = require('../Models/CategoryAction')
 const causesController = require("./causesController")
 const vacancyController = require("./vacancyActionController")
+const userNgo = require("./userNgoController")
 
 module.exports = {
     async register(dataAction, dataPhoto, idNgo){
@@ -116,6 +117,17 @@ module.exports = {
                         idActions.push(r.idAction)
                     }
                 }
+            }
+        }
+        return actions
+    },
+    async listActionByInscriptions(idUser){
+        let ngos = await userNgo.listNgo(idUser)
+        let actions = []
+        for(let i in ngos){
+            let actionsNgo = await Action.findAll({where: {idNgo: ngos[i].idNgo}, isActive: true})
+            for(let j in actionsNgo){
+                actions.push(actionsNgo[j])
             }
         }
         return actions

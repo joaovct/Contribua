@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const actionController = require("../controllers/actionController")
+const userNgoController = require("../controllers/userNgoController")
 
 router.get("/", async (req, res) => {
     if(req.session.ngo){
@@ -14,6 +15,7 @@ router.get("/", async (req, res) => {
 
     }else{
         let recommendedActions = await actionController.listRecommendedActions(req.session.user.idVolunteer)
+        let recommendedNgos = await userNgoController.listRecommendedNgos(req.session.user.idVolunteer)
         // Format each action
         for(let action of recommendedActions) action = formatAction(action)
         let actions = {
@@ -21,7 +23,7 @@ router.get("/", async (req, res) => {
         }
         // Set to null actions if is empty
         if(actions.recommendedActions.length == 0) actions = false
-        res.render("user/home", {dataHeader: req.session.user, ngos: req.session.ngoUser, actions})
+        res.render("user/home", {dataHeader: req.session.user, ngos: req.session.ngoUser, actions, recommendedNgos})
     }
 })
 

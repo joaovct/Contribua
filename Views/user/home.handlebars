@@ -67,5 +67,20 @@
         </div>
 
         {{/if}}
+       <nav class="nav-articles">
+            <h1 class="title padding-top2 margin-btm1">Ongs que talvez você goste...</h1>
+            <div class="group-articles">
+                {{#each recommendedNgos}}
+                    <article class="feed-article">
+                        <figure class="article-image">
+                            <img src="/temp/uploads/profile/{{ngo.photoNgo}}" />
+                        </figure>
+                        <div class="article-content">
+                            <h1 class="article-title">{{ngo.nameNgo}}</h1>
+                        </div>
+                    </article>
+                {{/each}}
+            </div>
+        </nav>
     </div>
 </div>

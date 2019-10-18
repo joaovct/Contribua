@@ -1,6 +1,10 @@
 const UserNgo = require("../models/UserNgo")
 const Ngo = require("../models/Ngo")
 const User = require("../models/Volunteer")
+const causesController = require("./causesController")
+const CategoryNgo = require("../models/CategoryNgo")
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 module.exports = {
     async registerCreator(idNgo, idUser){
@@ -34,6 +38,48 @@ module.exports = {
         if(userNgo)
             ngo = await Ngo.findOne({where: {idNgo: userNgo.idNgo}})
         return ngo
+    },
+    async listRecommendedNgos(idUser){
+        let ngosParticipe = this.listNgo(idUser)
+        let allNgos = await Ngo.findAll()
+        let causesUser = await causesController.listCausesUser(idUser)
+        let levelRecommended = []
+
+        //ngos with volunteer causes
+        for(let i in allNgos){
+            for(let j in causesUser){
+                let causesNgo = await CategoryNgo.findAll({where:{idNgo: allNgos[i].idNgo}})
+                for(let k in causesNgo){
+                    if(causesUser[j].idCategory === causesNgo[k].idCategory){
+                        levelRecommended.push(allNgos[i])
+                        break
+                    }
+                }
+            }
+        }
+
+        //enter the NGO id and its level of relevance
+        let recommendedNgos = []
+        let cont = 0
+        levelRecommended.filter((elem, i) => {
+            if(levelRecommended.indexOf(elem) === i){
+                recommendedNgos.push({ngo: elem, level: cont})
+                cont = 0
+            }else{
+                cont++
+                recommendedNgos.pop()
+                recommendedNgos.push({ngo: elem, level: cont})
+            }
+        })
+        
+        //put more relevant ngos at the beginning of the array
+        recommendedNgos.sort((a, b) => {
+            if(a.level < b.level){
+                return 1
+            }
+        })
+
+        return recommendedNgos
     },
     async listUser(idNgo){
         const userNgo = await UserNgo.findAll({where: {idNgo: idNgo}})
