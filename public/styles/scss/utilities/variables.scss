@@ -230,6 +230,11 @@ $borderColor: #eeeeee;
   cursor: pointer;
   display: inline-block;
   margin-top: $margin2;
+  font-family: $fontFamily;
+  outline: 0;
+  &:focus{
+    box-shadow: inset 0 0 5px $lightGray2;
+  }
 }
 
 %btn-primary,

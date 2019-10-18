@@ -293,6 +293,7 @@ ul.cases {
   margin-top: 5px;
   li.case {
     font-size: 1em;
+    font-weight: 500;
     text-align: center;
     background: $lightBlue;
     color: $mainColor;
@@ -300,17 +301,17 @@ ul.cases {
     padding: 5px 10px 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    &::first-letter{
+    &::first-letter {
       text-transform: uppercase;
     }
   }
 }
 
-ul.items{
+ul.items {
   display: block;
   list-style-type: none;
   padding: 0;
-  li.item{
+  li.item {
     display: block;
     padding: 10px 0 10px 0;
     border-bottom: $border;
@@ -331,7 +332,7 @@ ul.icons {
   }
 }
 
-img.rounded-pic{
+img.rounded-pic {
   height: 36px;
   width: 36px;
   object-fit: cover;
@@ -515,8 +516,8 @@ div.icon-input {
     top: 0px;
   }
 
-  div.notification{
-    background:rgb(218, 58, 58);
+  div.notification {
+    background: rgb(218, 58, 58);
     position: absolute;
     padding: 7px 8px;
     top: 0;
@@ -524,6 +525,35 @@ div.icon-input {
     min-width: 300px;
     border-radius: 7px;
     color: #fff;
+  }
+}
+
+.author-pic {
+  width: auto;
+  display: flex;
+  align-items: center;
+  margin: inherit;
+  border: $border;
+  border-radius: 4px;
+  padding: $margin1;
+  box-sizing: border-box;
+  img {
+    height: 75px;
+    width: 75px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+  .author-description {
+    margin-left: $margin1;
+    .author-name {
+      @extend %small-text;
+      @extend %medium-weight-text;
+      margin: 0;
+    }
+    .author-by {
+      @extend %smallest-text;
+      margin: 0;
+    }
   }
 }
 
@@ -547,6 +577,7 @@ div.overlay {
     z-index: 999 !important;
     @extend %box;
     max-height: 80%;
+    max-width: $widthContainer / 2;
     overflow-y: scroll;
     padding: $margin4;
     position: relative;
@@ -554,14 +585,14 @@ div.overlay {
     .icon-input {
       width: 100%;
     }
-    .modal-close{
+    .modal-close {
       display: flex;
       justify-content: flex-end;
       padding-bottom: $margin2;
       position: absolute;
       right: $margin4;
       top: $margin2;
-      img.modal-close-btn{
+      img.modal-close-btn {
         cursor: pointer;
         height: 25px;
         width: 25px;
