@@ -40,10 +40,19 @@ module.exports = {
         return ngo
     },
     async listRecommendedNgos(idUser){
-        let ngosParticipe = this.listNgo(idUser)
+        let ngosParticipe = await this.listNgo(idUser)
         let allNgos = await Ngo.findAll()
         let causesUser = await causesController.listCausesUser(idUser)
         let levelRecommended = []
+
+        //ngos not participe
+        for(let i in ngosParticipe){
+            for(let j in allNgos){
+                if(allNgos[j].idNgo === ngosParticipe[i].idNgo){
+                    allNgos.splice(j, 1)
+                }
+            }
+        }
 
         //ngos with volunteer causes
         for(let i in allNgos){
