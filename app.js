@@ -58,9 +58,9 @@ app.use(express.static(path.join(__dirname, "public")))
 
 // Routers
 
-// Dev
-
-app.use("/ngo",ngo)
+app.get('/event/um', async (req,res)=>{
+    res.render('ngo/event', {data: req.session.ngo})
+})
 
 app.get("/", (req, res) => {
     if(req.session.user){
