@@ -39,6 +39,10 @@ module.exports = {
         //cadastra vagas
         await vacancyController.register(dataVacancy, action.idAction)
     },
+    async listOneAction(idAction){
+        const action = await Action.findOne({where: {idAction: idAction}})
+        return action
+    },
     async listActiveActionsNgo(idNgo){
         let action = await Action.findAll({where: {idNgo: idNgo, isActive: true}})
         let ngo

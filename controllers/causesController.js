@@ -230,5 +230,13 @@ module.exports = {
                 })
             }
         }
+    },
+    async listCausesAction(idAction){
+        let categoryAction = await CategoryAction.findAll({where: {idAction: idAction}})
+        let category = []
+        for(let i in categoryAction){
+            category[i] = await Category.findOne({where: {idCategory: categoryAction[i].idCategory}})
+        }
+        return category
     }
 }

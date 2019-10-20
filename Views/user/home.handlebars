@@ -34,21 +34,23 @@
                 <h1 class="title padding-top2 margin-btm1">Eventos recomendados</h1>
                 <div class="group-articles">
                     {{#each actions.recommendedActions}}
-                    <article class="feed-article">
-                        <figure class="article-image">
-                            <img src="/temp/uploads/action/{{photoAction}}" />
-                        </figure>
-                        <div class="article-content">
-                            <h1 class="article-title">{{nameAction}}</h1>
-                            <h3 class="article-subitle">{{descriptionAction}}
-                            </h3>
-                            <div class="article-ngo-details">
-                                <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
-                                <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
-                                    {{createdAt.year}}</p>
-                            </div>
-                        </div>
-                    </article>
+                        <article class="feed-article">
+                            <a href="event/{{idAction}}">
+                                <figure class="article-image">
+                                    <img src="/temp/uploads/action/{{photoAction}}" />
+                                </figure>
+                                <div class="article-content">
+                                    <h1 class="article-title">{{nameAction}}</h1>
+                                    <h3 class="article-subitle">{{descriptionAction}}
+                                    </h3>
+                                    <div class="article-ngo-details">
+                                        <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
+                                        <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
+                                            {{createdAt.year}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
                     {{/each}}
                 </div>
             </nav>
