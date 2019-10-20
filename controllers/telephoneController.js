@@ -6,5 +6,9 @@ module.exports = {
             idNgo: idNgo,
             TelephoneNgo: telephone
         })
+    },
+    async listTelephoneNgo(idNgo){
+        const telephones = await TelephoneNgo.findAll({where:{idNgo: idNgo}})
+        return telephones
     }
 }
