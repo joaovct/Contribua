@@ -92,5 +92,9 @@ module.exports = {
     },
     async deactivateAccount(idUser){
         await User.update({activeVolunteer: false}, {where: {idVolunteer: idUser}})
+    },
+    async listOneUser(idUser){
+        const user = await User.findOne({where: idUser})
+        return user
     }
 }

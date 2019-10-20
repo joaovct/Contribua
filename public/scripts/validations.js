@@ -88,7 +88,7 @@ function validationCep(cep, iconCep){
 }
 
 function validationCity(city, iconCity){
-    if(city.value.length < 4){
+    if(city.value.length < 3){
         iconCity.classList.remove("success-validation")
         iconCity.classList.add("alert-validation")
         // city.focus()

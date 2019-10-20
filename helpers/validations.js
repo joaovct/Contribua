@@ -4,7 +4,7 @@ module.exports = {
             return false
         }
 
-        if(field.length < 4){
+        if(field.length < 3){
             return false
         }
         return true

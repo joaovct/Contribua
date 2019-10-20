@@ -15,6 +15,13 @@ const Action = db.sequelize.define("tbAction", {
             key: "idNgo"
         }
     },
+    idVolunteer: {
+        type:db.Sequelize.INTEGER,
+        references: {
+            model: "tbVolunteer",
+            key: "idVolunteer"
+        }
+    },
     nameAction: {
         allowNull: false,
         type: db.Sequelize.STRING(50)
@@ -50,13 +57,6 @@ const Action = db.sequelize.define("tbAction", {
     dateEndAction: {
         allowNull: false,
         type: db.Sequelize.DATE
-    },
-    idPhotoAction: {
-        type: db.Sequelize.INTEGER,
-        references: {
-            model: "tbPhotoAction",
-            key: "idPhotoAction"
-        }
     },
     photoAction: {
         allowNull: false,

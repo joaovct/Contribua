@@ -19,5 +19,9 @@ module.exports = {
                 descVacancyAction: dataVacancy.jobDescription
             })
         }
+    },
+    async listVacanciesAction(idAction){
+        const vacancyAction = await VacancyAction.findAll({where: {idAction: idAction}})
+        return vacancyAction
     }
 }

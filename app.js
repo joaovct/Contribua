@@ -57,11 +57,6 @@ app.set('view engine', 'handlebars')
 app.use(express.static(path.join(__dirname, "public")))
 
 // Routers
-
-app.get('/event/um', async (req,res)=>{
-    res.render('ngo/event', {data: req.session.ngo})
-})
-
 app.get("/", (req, res) => {
     if(req.session.user){
         return res.redirect("/home")

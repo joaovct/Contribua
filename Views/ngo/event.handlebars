@@ -13,7 +13,7 @@
                     <img src="/temp/uploads/profile/{{ngo.photoNgo}}">
                     <div class="author-description">
                         <p class="author-name">{{ngo.nameNgo}}</p>
-                        <p class="author-by">14 Jan - Por <a href="#">Guilherme Martins</a></p>
+                        <p class="author-by">14 Jan - Por <a href="../{{user.userName}}">{{user.nameVolunteer}}</a></p>
                     </div>
                 </figure>
             </div>
@@ -37,23 +37,25 @@
                     {{/each}}
                 </ul>
                 <h1 class="medium-text bold margin-top2 margin-btm2">Vagas</h1>
-                <button onclick="$('.overlay-job').slideDown('fast').css('display','flex')" class="btn-outlined">Assistente geral <p>6/10</p></button>
-                <button onclick="$('.overlay-job').slideDown('fast').css('display','flex')" class="btn-outlined">Cuidador de idosos <p>11/15</p></button>
-                <button onclick="$('.overlay-job').slideDown('fast').css('display','flex')" class="btn-outlined">Recepcionista <p>0/4</p></button>
+                {{#each vacancies}}
+                    <button onclick="$('#{{idVacancyAction}}').slideDown('fast').css('display','flex')" class="btn-outlined">{{nameVacancyAction}} <p>{{qtdVacancyAction}}</p></button>
+                {{/each}}
             </div>
         </div>
     </div>
 </div>
 
-<div class="overlay overlay-job">
-    <div class="modal">
-        <h1 class="title text-left">Assistente geral</h1>
-        <p class="text medium-weight-text margin0">Vagas <span class="blue">6/10</span></p> 
-        <p class="text margin-top2">Dolore qui nostrud sit nisi deserunt pariatur voluptate adipisicing adipisicing ex. Incididunt velit consectetur tempor esse magna reprehenderit et consequat sint cupidatat. Ipsum nisi officia mollit id esse ullamco aute commodo cillum..</p>
-        <div class="modal-options margin-top2">
-            <div onclick="$('.overlay-job').slideUp('fast')" class="btn-secondary">Cancelar
+{{#each vacancies}}
+    <div class="overlay overlay-job" id="{{idVacancyAction}}">
+        <div class="modal">
+            <h1 class="title text-left">{{nameVacancyAction}}</h1>
+            <p class="text medium-weight-text margin0">Vagas <span class="blue">{{qtdVacancyAction}}</span></p> 
+            <p class="text margin-top2">{{descVacancyAction}}</p>
+            <div class="modal-options margin-top2">
+                <div onclick="$('.overlay-job').slideUp('fast')" class="btn-secondary">Cancelar
+                </div>
+                <div onclick="$('.overlay-job').slideUp('fast')" class="btn-primary">Inscrever-se</div>
             </div>
-            <div onclick="$('.overlay-job').slideUp('fast')" class="btn-primary">Inscrever-se</div>
         </div>
     </div>
-</div>
+{{/each}}

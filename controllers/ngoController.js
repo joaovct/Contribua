@@ -23,18 +23,22 @@ module.exports = {
                                             cnpjNgo: dataNgo.ngoCNPJ,
                                             emailNgo: dataNgo.ngoEmail,
                                             userName: dataNgo.ngoUserName,
-                                            siteNgo: "site.com",
                                             photoNgo: "user.svg",
+                                            siteNgo: "",
                                             cepNgo: dataNgo.ngoCEP,
                                             cityNgo: dataNgo.ngoCity,
                                             districtNgo: dataNgo.ngoDistrict,
                                             addressNgo: dataNgo.ngoAddress,
+                                            numAddressNgo: dataNgo.ngoAddressNumber,
                                             averageStarsNgo: "0"
                                         })
     
                     await telephoneController.registerPhoneNgo(ngo.idNgo, dataNgo.ngoTelephone)
                     await userNgoController.registerCreator(ngo.idNgo, idUser)
-                    await causesController.registerCausesNgo(ngo.idNgo, dataNgo.categories)
+                    if(Array.isArray(dataNgo.categories))
+                        await causesController.registerCausesNgo(ngo.idNgo, dataNgo.categories)
+                    else
+                        await causesController.registerCauseNgo(ngo.idNgo, dataNgo.categories)
                 }else{
                     type_msg = "error_msg"
                     msg = "CNPJ informado já existe!"
@@ -89,5 +93,9 @@ module.exports = {
     },
     async deactivateAccount(idNgo){
         await Ngo.update({activeNgo: false}, {where: {idNgo: idNgo}})
+    },
+    async listOneNgo(idNgo){
+        const ngo = await Ngo.findOne({where: {idNgo: idNgo}})
+        return ngo
     }
 }

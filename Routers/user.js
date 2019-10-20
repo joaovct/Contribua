@@ -8,6 +8,29 @@ const userNgoController = require("../controllers/userNgoController")
 router.get('/:userName', async (req,res)=>{
     const months = ["Jan", "Fev", "Mar", "Abri", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
 
+    // Render ngo own profile
+    if(req.session.ngo){
+        if(req.params.userName === req.session.ngo.userName){
+            req.session.ngo.createdAt = new Date(req.session.ngo.createdAt)
+            req.session.ngo.createdAt.month = months[req.session.ngo.createdAt.getMonth()]
+            req.session.ngo.createdAt.year = req.session.ngo.createdAt.getFullYear()
+            const category = await causesController.listCausesNgo(req.session.ngo.idNgo)
+            const userSubscribed = await userNgoController.listUser(req.session.ngo.idNgo)
+            const amtUserSubscribed = userSubscribed.length
+            return res.render("ngo/profile", {data: req.session.ngo, dataHeaderNgo: req.session.ngo, causes: category, isVisit: false, amtUserSubscribed})
+        }
+
+        const user = await verifyUserName.user(req.params.userName)
+        if(user){
+            user.createdAt.month = months[user.createdAt.getMonth()]
+            user.createdAt.year = user.createdAt.getFullYear()
+            const category = await causesController.listCausesUser(user.idVolunteer)
+            const subscribedNgos = await userNgoController.listNgo(user.idVolunteer)
+            const amtSubscribedNgos = subscribedNgos.length
+            return res.render("user/profile", {data: user, dataHeaderNgo: req.session.ngo, causes: category, ngos: req.session.ngoUser, isVisit: true, isVolunteer: true, amtSubscribedNgos})
+        }
+    }
+
     // Render volunteer own profile
     if(req.params.userName === req.session.user.userName){
         req.session.user.createdAt = new Date(req.session.user.createdAt)
@@ -28,19 +51,6 @@ router.get('/:userName', async (req,res)=>{
         const subscribedNgos = await userNgoController.listNgo(user.idVolunteer)
         const amtSubscribedNgos = subscribedNgos.length
         return res.render("user/profile", {data: user, dataHeader: req.session.user, causes: category, ngos: req.session.ngoUser, isVisit: true, isVolunteer: true, amtSubscribedNgos})
-    }
-
-    // Render ngo own profile
-    if(req.session.ngo){
-        if(req.params.userName === req.session.ngo.userName){
-            req.session.ngo.createdAt = new Date(req.session.ngo.createdAt)
-            req.session.ngo.createdAt.month = months[req.session.ngo.createdAt.getMonth()]
-            req.session.ngo.createdAt.year = req.session.ngo.createdAt.getFullYear()
-            const category = await causesController.listCausesNgo(req.session.ngo.idNgo)
-            const userSubscribed = await userNgoController.listUser(req.session.ngo.idNgo)
-            const amtUserSubscribed = userSubscribed.length
-            return res.render("ngo/profile", {data: req.session.ngo, dataHeaderNgo: req.session.ngo, causes: category, isVisit: false, amtUserSubscribed})
-        }
     }
 
     // Render other ngo profile

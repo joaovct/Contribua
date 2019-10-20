@@ -33,6 +33,6 @@ const VacancyAction = db.sequelize.define("tbVacancyAction", {
     collate: "utf8_general_ci"
 })
 
-VacancyAction.sync({force: true})
+//VacancyAction.sync({force: true})
 
 module.exports = VacancyAction

@@ -15,6 +15,7 @@ module.exports = {
 
         const action = await Action.create({
                                     idNgo: idNgo,
+                                    idVolunteer: dataAction.idVolunteer,
                                     nameAction: dataAction.eventTitle,
                                     descriptionAction: dataAction.eventContent,
                                     cepAction: dataAction.eventCEP,

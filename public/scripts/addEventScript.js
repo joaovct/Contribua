@@ -121,6 +121,22 @@ const amountIconEdit = amountEdit.parentNode
 // Step 4
 const eventTitle = document.getElementsByName('eventTitle')[0]
 const eventContent = document.getElementsByName('eventContent')[0]
+const inputPhoto = document.getElementById("upThumbnail")
+const preview = document.getElementById("preview")
+const imgUpload = document.getElementById("imgUpload")
+
+inputPhoto.addEventListener("change", previewPhoto)
+
+function previewPhoto(){
+    if(this.files && this.files[0]){
+        var obj = new FileReader();
+        obj.onload = function(dado){
+            preview.style.background = "url("+dado.target.result+") center center / cover";
+        }
+        obj.readAsDataURL(this.files[0]);
+        imgUpload.style.display = "none"
+    }
+}
 
 function checksStep1(){
     var vCauses = validationCauses(cases)
