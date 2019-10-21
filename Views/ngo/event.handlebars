@@ -10,9 +10,11 @@
             <p class="text margin-top1">{{action.descriptionAction}}</p>
             <div class="data-author">
                 <figure class="author-pic margin-top2">
-                    <img src="/temp/uploads/profile/{{ngo.photoNgo}}">
+                    <a href="/{{ngo.userName}}">
+                        <img src="/temp/uploads/profile/{{ngo.photoNgo}}">
+                    </a>
                     <div class="author-description">
-                        <p class="author-name">{{ngo.nameNgo}}</p>
+                        <a href="/{{ngo.userName}}" class="author-name">{{ngo.nameNgo}}</a>
                         <p class="author-by">14 Jan - Por <a href="../{{user.userName}}">{{user.nameVolunteer}}</a></p>
                     </div>
                 </figure>

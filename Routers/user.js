@@ -5,6 +5,7 @@ const verifyUserName = require("../helpers/verifyUserName")
 const userNgoController = require("../controllers/userNgoController")
 const actionController = require("../controllers/actionController")
 const telephoneController = require("../controllers/telephoneController")
+const feedUtilities = require('../helpers/feedUtilities')
 
 //GETS
 router.get('/:userName', async (req,res)=>{
@@ -19,7 +20,8 @@ router.get('/:userName', async (req,res)=>{
             const category = await causesController.listCausesNgo(req.session.ngo.idNgo)
             const userSubscribed = await userNgoController.listUser(req.session.ngo.idNgo)
             const amtUserSubscribed = userSubscribed.length
-            const actions = await actionController.listActiveActionsNgo(req.session.ngo.idNgo)
+            let actions = await actionController.listActiveActionsNgo(req.session.ngo.idNgo)
+            for(let action of actions) action = feedUtilities.formatAction(action)
             const amtActions = actions.length
             const telephonesNgo = await telephoneController.listTelephoneNgo(req.session.ngo.idNgo)
             return res.render("ngo/profile", {data: req.session.ngo, dataHeaderNgo: req.session.ngo, causes: category, isVisit: false, amtUserSubscribed, actions, amtActions, telephonesNgo})
@@ -66,12 +68,10 @@ router.get('/:userName', async (req,res)=>{
         const category = await causesController.listCausesNgo(ngo.idNgo)
         const userSubscribed = await userNgoController.listUser(ngo.idNgo)
         const amtUserSubscribed = userSubscribed.length
-        const actions = await actionController.listActiveActionsNgo(ngo.idNgo)
+        let actions = await actionController.listActiveActionsNgo(ngo.idNgo)
+        for(let action of actions) action = feedUtilities.formatAction(action)        
         const amtActions = actions.length
         const telephonesNgo = await telephoneController.listTelephoneNgo(ngo.idNgo)
-
-        for(let action of actions)
-            action = formatAction(action)
 
         // Checks if user logged is a volunteer or not
         /* is volunteer */ 
@@ -98,13 +98,5 @@ router.get('/:userName', async (req,res)=>{
         return res.render('error', {dataHeader: req.session.user})
     }
 })
-
-function formatAction(action){
-    action.descriptionAction = action.descriptionAction.substring(0,100) + "..."
-    action.createdAt.day = action.createdAt.getDay()
-    action.createdAt.month = action.createdAt.getMonth()+1
-    action.createdAt.year = action.createdAt.getFullYear()
-    return action
-}
 
 module.exports = router

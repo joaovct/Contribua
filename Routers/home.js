@@ -2,11 +2,12 @@ const express = require('express')
 const router = express.Router()
 const actionController = require("../controllers/actionController")
 const userNgoController = require("../controllers/userNgoController")
+const feedUtilities = require('../helpers/feedUtilities')
 
 router.get("/", async (req, res) => {
     if(req.session.ngo){
         let activeActions = await actionController.listActiveActionsNgo(req.session.ngo.idNgo)
-        for(let action of activeActions) action = formatAction(action)
+        for(let action of activeActions) action = feedUtilities.formatAction(action)
         let actions = {
             activeActions
         }
@@ -17,7 +18,7 @@ router.get("/", async (req, res) => {
         let recommendedActions = await actionController.listRecommendedActions(req.session.user.idVolunteer)
         let recommendedNgos = await userNgoController.listRecommendedNgos(req.session.user.idVolunteer)
         // Format each action
-        for(let action of recommendedActions) action = formatAction(action)
+        for(let action of recommendedActions) action = feedUtilities.formatAction(action)
         let actions = {
             recommendedActions
         }
@@ -26,14 +27,5 @@ router.get("/", async (req, res) => {
         res.render("user/home", {dataHeader: req.session.user, ngos: req.session.ngoUser, actions, recommendedNgos})
     }
 })
-
-function formatAction(action){
-    action.descriptionAction = action.descriptionAction.substring(0,100) + "..."
-    const months = ["Jan", "Fev", "Mar", "Abri", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-    action.createdAt.day = action.createdAt.getDay()
-    action.createdAt.month = months[action.createdAt.getMonth()]
-    action.createdAt.year = action.createdAt.getFullYear()
-    return action
-}
 
 module.exports = router

@@ -18,30 +18,32 @@
 
         <div class="group-nav feed-events" id="ngo-events">
             {{#if actions}}
-                {{#if actions.activeActions}}
-                <nav class="nav-articles">
-                    <h1 class="title padding-top2 margin-btm1">Meus eventos ativos</h1>
-                    <div class="group-articles">
-                        {{#each actions.activeActions}}
-                        <article class="feed-article">
-                            <figure class="article-image">
-                                <img src="/temp/uploads/action/{{photoAction}}" />
-                            </figure>
-                            <div class="article-content">
-                                <h1 class="article-title">{{nameAction}}</h1>
-                                <h3 class="article-subitle">{{descriptionAction}}
-                                </h3>
-                                <div class="article-ngo-details">
-                                    <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
-                                    <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
-                                        {{createdAt.year}}</p>
-                                </div>
+            {{#if actions.activeActions}}
+            <nav class="nav-articles">
+                <h1 class="title padding-top2 margin-btm1">Meus eventos ativos</h1>
+                <div class="group-articles">
+                    {{#each actions.activeActions}}
+                    <article class="feed-article">
+                        <a href="event/{{idAction}}">
+                        <figure class="article-image">
+                            <img src="/temp/uploads/action/{{photoAction}}" />
+                        </figure>
+                        <div class="article-content">
+                            <h1 class="article-title">{{nameAction}}</h1>
+                            <h3 class="article-subitle">{{descriptionAction}}
+                            </h3>
+                            <div class="article-ngo-details">
+                                <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
+                                <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
+                                    {{createdAt.year}}</p>
                             </div>
-                        </article>
-                        {{/each}}
-                    </div>
-                </nav>
-                {{/if}}
+                        </div>
+                        </a>
+                    </article>
+                    {{/each}}
+                </div>
+            </nav>
+            {{/if}}
             {{else}}
             {{!-- ERR Msg --}}
             <div class="container flex-column align-center margin-top4">

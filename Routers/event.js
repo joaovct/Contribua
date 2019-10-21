@@ -26,13 +26,22 @@ router.get("/:id", async (req,res) => {
     let vacancies
     let user
     let ngo
+
+    if(!req.session.ngo){
+        dataHeader = req.session.user
+        dataHeaderNgo = null
+    }else{
+        dataHeaderNgo = req.session.ngo
+        dataHeader = null
+    }
+
     if(action){
         vacancies = await vacancyActionController.listVacanciesAction(action.idAction)
         user = await userController.listOneUser(action.idVolunteer)
         ngo  = await ngoController.listOneNgo(action.idNgo)
-        res.render('ngo/event', {action: action, category: category, ngo, user, vacancies, dataHeader: req.session.user})
+        res.render('ngo/event', {action: action, category: category, ngo, user, vacancies, dataHeader, dataHeaderNgo})
     }else{
-        res.render('error', {dataHeader: req.session.user})
+        res.render('error', {dataHeader, dataHeaderNgo})
     }
 })
 

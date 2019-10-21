@@ -1,9 +1,6 @@
 <link rel="stylesheet" href="/styles/css/homeUser.css" />
 <link rel="stylesheet" href="/styles/css/profile.css" />
 
-<link rel="stylesheet" href="/styles/css/homeUser.css" />
-<link rel="stylesheet" href="/styles/css/profile.css" />
-
 <div class="centralize">
     <div class="container">
 
@@ -11,17 +8,17 @@
             <figure class="profile-pic availableVolunteer">
                 <img src="/temp/uploads/profile/{{data.photoNgo}}" />
                 {{#if isVisit}}
-                    {{#if isVolunteer}}
-                    <form>
-                        <input type="hidden" name="id-ngo" id="id-ngo" value="{{data.idNgo}}">
-                        {{#if isSubscribed}}
-                            <input type="checkbox" id="checkbox-subscribe" value="on" checked>
-                        {{else}}
-                            <input type="checkbox" id="checkbox-subscribe" value="off">
-                        {{/if}}
-                        <label for="checkbox-subscribe" id="btn-subscribe"></label>
-                    </form>
+                {{#if isVolunteer}}
+                <form>
+                    <input type="hidden" name="id-ngo" id="id-ngo" value="{{data.idNgo}}">
+                    {{#if isSubscribed}}
+                    <input type="checkbox" id="checkbox-subscribe" value="on" checked>
+                    {{else}}
+                    <input type="checkbox" id="checkbox-subscribe" value="off">
                     {{/if}}
+                    <label for="checkbox-subscribe" id="btn-subscribe"></label>
+                </form>
+                {{/if}}
                 {{/if}}
             </figure>
 
@@ -42,14 +39,14 @@
             </a>
             {{/if}}
             <div class="profile-location-since">
-                <h3 class="content">{{data.cityNgo}}. Desde {{data.createdAt.month}} de {{data.createdAt.year}}.</h3>
-                <h3 class="content">Tel 
-                {{#each telephonesNgo}}
-                     - {{TelephoneNgo}}
-                {{/each}}
+                <h3 class="content">{{data.cityNgo}} - Desde {{data.createdAt.month}} de {{data.createdAt.year}}.</h3>
+                <h3 class="content">Tel
+                    {{#each telephonesNgo}}
+                    - {{TelephoneNgo}}
+                    {{/each}}
                 </h3>
                 {{#if data.siteNgo}}
-                    <a href="http://{{data.siteNgo}}" target="_blank">{{data.siteNgo}}</a>
+                <a href="http://{{data.siteNgo}}" target="_blank">{{data.siteNgo}}</a>
                 {{/if}}
             </div>
             <div class="profile-about">
@@ -68,8 +65,9 @@
                 <h1 class="title padding-top2 margin-btm1">Eventos da ONG</h1>
                 <div class="group-articles">
                     {{#if actions}}
-                        {{#each actions}}
-                            <article class="feed-article">
+                    {{#each actions}}
+                    <article class="feed-article">
+                            <a href="event/{{idAction}}">
                                 <figure class="article-image">
                                     <img src="/temp/uploads/action/{{photoAction}}" />
                                 </figure>
@@ -78,13 +76,16 @@
                                     <h3 class="article-subitle">{{descriptionAction}}
                                     </h3>
                                     <div class="article-ngo-details">
-                                        <p class="article-ngo-date">{{createdAt.day}}/{{createdAt.month}}/{{createdAt.year}}</p>
+                                        <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
+                                        <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
+                                            {{createdAt.year}}</p>
                                     </div>
                                 </div>
-                            </article>
-                        {{/each}}
+                            </a>
+                        </article>
+                    {{/each}}
                     {{else}}
-                        <h1>Esta ONG não tem eventos ativos</h1>
+                    <h1>Esta ONG não tem eventos ativos</h1>
                     {{/if}}
                 </div>
             </nav>
