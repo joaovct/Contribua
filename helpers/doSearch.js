@@ -33,7 +33,8 @@ async function findNgos(key){
             let object = {
                 typeResult: "ngo",
                 name: ngo.dataValues.nameNgo ,
-                nameNgo: ngo.dataValues.userName
+                nameNgo: ngo.dataValues.userName,
+                photoNgo: ngo.dataValues.photoNgo
             }
             results.push( object )
         }

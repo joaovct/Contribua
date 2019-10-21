@@ -124,7 +124,8 @@ function writeNgos(data){
     var i = 0
     for(let object of data){
         if(i==0) $('.search-results').append('<h1 class="title">ONGs</h1>')
-        $('.search-results').append(`<li class="ngo"> <img src="/assets/imgs/animal-cat-cute-46024.jpg"/> <div class="item-content"> <a href="${object.nameNgo}" class="item-title"> <p class="smallest-text margin0 large-weight-text item-username">${object.nameNgo}</p> <p class="margin0">${object.name}</p> </a></div> </li>`)
+        $('.search-results').append(`<li class="ngo"> <img src="/temp/uploads/profile/${object.photoNgo}"/> <div class="item-content"> <a href="${object.nameNgo}" class="item-title"> <p class="smallest-text margin0 large-weight-text item-username">${object.nameNgo}</p> <p class="margin0">${object.name}</p> </a></div> </li>`)
+        console.log(object.photoNgo)        
         i++
     }
 }
