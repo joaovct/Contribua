@@ -32,11 +32,27 @@ module.exports = {
         }
         return ngo
     },
+    async listNgoCreator(idUser){
+        const userNgo = await UserNgo.findAll({where: {idVolunteer: idUser, isCreator: true}})
+        let ngo = []
+        for(let i in userNgo){
+            ngo[i] = await Ngo.findOne({where: {idNgo: userNgo[i].idNgo}})
+        }
+        return ngo
+    },
     async listOneNgo(idUser, idNgo){
         const userNgo = await UserNgo.findOne({where: {idVolunteer: idUser, idNgo: idNgo}})
         let ngo
-        if(userNgo)
+        if(userNgo){
             ngo = await Ngo.findOne({where: {idNgo: userNgo.idNgo}})
+
+            if(userNgo.isCreator)
+                ngo.isCreator = true
+            else
+                ngo.isCreator = false
+
+        }
+
         return ngo
     },
     async listRecommendedNgos(idUser){
@@ -67,7 +83,7 @@ module.exports = {
             }
         }
 
-        //enter the NGO id and its level of relevance
+        // enter the NGO id and its level of relevance
         let recommendedNgos = []
         let cont = 0
         levelRecommended.filter((elem, i) => {
@@ -81,7 +97,7 @@ module.exports = {
             }
         })
         
-        //put more relevant ngos at the beginning of the array
+        // put more relevant ngos at the beginning of the array
         recommendedNgos.sort((a, b) => {
             if(a.level < b.level){
                 return 1

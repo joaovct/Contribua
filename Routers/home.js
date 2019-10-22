@@ -19,6 +19,7 @@ router.get("/", async (req, res) => {
     }else{
         let recommendedActions = await actionController.listRecommendedActions(req.session.user.idVolunteer)
         let recommendedNgos = await userNgoController.listRecommendedNgos(req.session.user.idVolunteer)
+        console.log(recommendedNgos)
         const userCauses = await causesController.listCausesUser(req.session.user.idVolunteer)
         const causesNotParticipe = await causesController.listCausesNotParticipeUser(req.session.user.idVolunteer)
         // Format each action
@@ -34,13 +35,16 @@ router.get("/", async (req, res) => {
 
 router.post("/ajax", async(req, res) => {
     let recommendedActions
+    let recommendedNgos
     if(req.query.subscribies != "undefined"){
         recommendedActions = await actionController.listActionByInscriptions(req.session.user.idVolunteer)
     }else{
         recommendedActions = await actionController.listRecommendedActions(req.session.user.idVolunteer)
     }
-    
-    res.json(recommendedActions)
+
+    recommendedNgos = await userNgoController.listRecommendedNgos(req.session.user.idVolunteer)
+
+    res.json({recommendedActions, recommendedNgos})
 })
 
 module.exports = router

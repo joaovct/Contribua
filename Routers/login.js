@@ -13,7 +13,7 @@ router.post('/', async (req,res) => {
     if(user){
         if(user.passwordVolunteer === dataUser.passwordVolunteer){
             req.session.user = user
-            req.session.ngoUser = await userNgoController.listNgo(req.session.user.idVolunteer)
+            req.session.ngoUser = await userNgoController.listNgoCreator(req.session.user.idVolunteer)
             return res.redirect("/home")
         }else{
             req.flash("error_msg", "Senha incorreta!")
@@ -24,7 +24,7 @@ router.post('/', async (req,res) => {
     if(user2){
         if(user2.passwordVolunteer === dataUser.passwordVolunteer){
             req.session.user = user2
-            req.session.ngoUser = await userNgoController.listNgo(req.session.user.idVolunteer)
+            req.session.ngoUser = await userNgoController.listNgoCreator(req.session.user.idVolunteer)
             return res.redirect("/home")
         }else{
             req.flash("error_msg", "Senha incorreta!")

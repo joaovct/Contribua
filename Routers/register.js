@@ -69,10 +69,12 @@ router.post("/registerUser", async (req, res) => {
 
     req.flash(resp.type_msg, resp.msg)
 
-    if(resp.type_msg === "success_msg")
-        return res.redirect("/")
-    else
+    if(resp.type_msg === "success_msg"){
+        req.session.user = resp.user
+        return res.redirect("/home")
+    }else{
         return res.redirect("/register")
+    }
 
 })
 

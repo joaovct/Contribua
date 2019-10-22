@@ -72,6 +72,7 @@ router.get('/:userName', async (req,res)=>{
         for(let action of actions) action = feedUtilities.formatAction(action)        
         const amtActions = actions.length
         const telephonesNgo = await telephoneController.listTelephoneNgo(ngo.idNgo)
+        let isVolunteer = true
 
         // Checks if user logged is a volunteer or not
         /* is volunteer */ 
@@ -79,15 +80,22 @@ router.get('/:userName', async (req,res)=>{
             let isSubscribed = false
             const hasNgo = await userNgoController.listOneNgo(req.session.user.idVolunteer, ngo.idNgo)
             if(hasNgo){
-                if(hasNgo.userName === req.params.userName){
+
+                if(hasNgo.isCreator)
+                    isVolunteer = false
+                else
+                    isVolunteer = true
+
+                if(hasNgo.userName === req.params.userName)
                     isSubscribed = true
-                }
+                
             }
             
-            return res.render("ngo/profile", {data: ngo, dataHeader: req.session.user, causes: category, ngos: req.session.ngoUser, isVisit: true, isVolunteer: true, isSubscribed, amtUserSubscribed, actions, amtActions, telephonesNgo})
+            return res.render("ngo/profile", {data: ngo, dataHeader: req.session.user, causes: category, ngos: req.session.ngoUser, isVisit: true, isVolunteer, isSubscribed, amtUserSubscribed, actions, amtActions, telephonesNgo})
         }else{
             /* isnt volunteer */
-            return res.render("ngo/profile", {data: ngo, dataHeaderNgo: req.session.ngo, causes: category, isVisit: true, isVolunteer: false, amtUserSubscribed, actions, amtActions, telephonesNgo})
+            isVolunteer = false
+            return res.render("ngo/profile", {data: ngo, dataHeaderNgo: req.session.ngo, causes: category, isVisit: true, isVolunteer, amtUserSubscribed, actions, amtActions, telephonesNgo})
         }
     }
     

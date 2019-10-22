@@ -53,8 +53,8 @@ module.exports = {
                     
 
         type_msg = "success_msg"
-        msg = "Usuário cadastrado com sucesso!"
-        return {type_msg, msg}
+        msg = "Seja Bem-vindo!"
+        return {type_msg, msg, user}
     },
     async edit(dataUser, sessionUser){
         await User.update({
