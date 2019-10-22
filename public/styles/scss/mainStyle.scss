@@ -11,6 +11,7 @@ body {
   font-family: $fontFamily;
   overflow-x: hidden;
   position: relative;
+  z-index: 1;
 }
 
 /* width */
@@ -420,32 +421,32 @@ img.rounded-pic {
     flex-flow: row wrap;
     width: 100%;
     padding-top: $margin1;
-    .form-btnCheckbox,
-    .form-btnRadio {
-      flex-grow: 1;
-      text-align: center;
-      font-size: 1.05em;
-      padding: 5px 10px 5px 10px;
-      background: white;
-      color: $mainColor;
-      border: 1px solid $lightBlue;
-      box-shadow: 0 1px 5px -2px $lightBlue;
-      border-radius: 10px;
-      margin: 0 5px 7px 5px;
-      cursor: pointer;
-      transition: 0.25s;
-    }
-    input[type="checkbox"].form-checkbox,
-    input[type="radio"],
-    .form-radio {
-      display: none;
-    }
-    input:checked + .form-btnCheckbox,
-    input:checked + .form-btnRadio {
-      background: $mainColor;
-      color: white;
-      border-color: $mainColor;
-    }
+  }
+  .form-btnCheckbox,
+  .form-btnRadio {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1.05em;
+    padding: 5px 10px 5px 10px;
+    background: white;
+    color: $mainColor;
+    border: 1px solid $lightBlue;
+    box-shadow: 0 1px 5px -2px $lightBlue;
+    border-radius: 10px;
+    margin: 0 5px 7px 5px;
+    cursor: pointer;
+    transition: 0.25s;
+  }
+  input[type="checkbox"].form-checkbox,
+  input[type="radio"],
+  .form-radio {
+    display: none;
+  }
+  input:checked + .form-btnCheckbox,
+  input:checked + .form-btnRadio {
+    background: $mainColor;
+    color: white;
+    border-color: $mainColor;
   }
 
   .form-link {
@@ -484,6 +485,84 @@ input[type="submit"] {
   &:disabled {
     opacity: 0.5;
     cursor: default;
+  }
+}
+
+.wrapper-options {
+  display: inline;
+  position: relative;
+  .open-options {
+    @extend %btn-outlined;
+    padding: 5px 10px 5px 10px;
+    font-weight: 100;
+    color: $mainColor;
+    border-color: $lightBlue;
+    border-radius: 4px;
+    background: white;
+    span {
+      img {
+        height: 15px;
+        width: 15px;
+        margin-left: 5px;
+      }
+    }
+  }
+  .options {
+    @extend %box;
+    max-height: 600px;
+    width: 250px;
+    overflow-y: scroll;
+    padding: 15px 0 15px 0;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 2;
+    display: none;
+    top: calc(100% + $margin1);
+    input.option-checkbox {
+      display: none;
+    }
+    label.label-option {
+      width: 100%;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      color: black;
+      box-sizing: border-box;
+      cursor: pointer;
+      &:hover {
+        background: $lightBlue2;
+        .option-marker {
+          border-color: $lightBlue;
+        }
+      }
+      .option-marker {
+        display: inline-block;
+        margin-right: $margin1 / 2;
+        height: 20px;
+        width: 20px;
+        border: $border;
+        border-radius: 2px;
+        transition: .25s;
+        background: white;
+      }
+    }
+    input.option-checkbox:checked + .label-option{
+      .option-marker{
+        background: $mainColor;
+        border-color: $mainColor;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:before{
+          content: '';
+          position: relative;
+          height: 15px;
+          width: 15px;
+          background-image: url('../../assets/imgs/checkWhite.svg');
+          background-size: cover;
+        }
+      }
+    }
   }
 }
 

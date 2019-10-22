@@ -320,6 +320,10 @@ $borderColor: #eeeeee;
   width: 10vw;
 }
 
+%display-inline, .display-inline{
+  display: inline;
+}
+
 %display-flex, .display-flex{
   display: flex;
 }
