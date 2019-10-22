@@ -83,9 +83,6 @@ $(document).mouseup((e)=>{
     if(!$('.header-options').is(e.target) && $('.header-options').has(e.target).length === 0){
         $('.header-options').hide('fast')
     }
-    if(!$('.options').is(e.target) && $('.options').has(e.target).length === 0){
-        $('.options').hide('fast')
-    }
 })
 
 function doSearch(input){

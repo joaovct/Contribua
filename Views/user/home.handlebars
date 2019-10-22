@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/styles/css/homeUser.css" />
 
 <div class="centralize padding-top4">
-    <div class="container">
+    <div class="container" id="container">
         <h1 class="title">Bem-vindo de volta <span class="blue">{{dataHeader.nameVolunteer}}</span></h1>
         <div class="feed-header">
             <form class="form width-100">
@@ -23,20 +23,20 @@
                     </div>
                 </div>
 
-                <input type="checkbox" id="filter-subscription" name="categories" class="form-checkbox" checked>
+                <input type="checkbox" id="filter-subscription" value="subscribies" name="categories" class="form-checkbox">
                 <label for="filter-subscription" class="form-btnCheckbox">Inscrições</label>
 
-                <input type="checkbox" id="filter-recommended" name="categories" class="form-checkbox" checked>
+                <input type="checkbox" id="filter-recommended" value="recommends" name="categories" class="form-checkbox" checked>
                 <label for="filter-recommended" class="form-btnCheckbox">Recomendações</label>
 
-                <input type="checkbox" id="filter-proximity" name="categories" class="form-checkbox">
+                <input type="checkbox" id="filter-proximity" value="proximity" name="categories" class="form-checkbox">
                 <label for="filter-proximity" class="form-btnCheckbox">Proximidade</label>
 
-                <input type="checkbox" id="filter-featured" name="categories" class="form-checkbox">
+                <input type="checkbox" id="filter-featured" value="contrast" name="categories" class="form-checkbox">
                 <label for="filter-featured" class="form-btnCheckbox">Destaques</label>
 
 
-                <input type="checkbox" id="filter-recent" name="categories" class="form-checkbox">
+                <input type="checkbox" id="filter-recent" value="recent" name="categories" class="form-checkbox">
                 <label for="filter-recent" class="form-btnCheckbox">Recentes</label>
             </form>
 
@@ -103,3 +103,5 @@
         {{/if}}
     </div>
 </div>
+
+<script src="/scripts/homeScript.js"></script>

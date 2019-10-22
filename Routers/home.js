@@ -32,4 +32,15 @@ router.get("/", async (req, res) => {
     }
 })
 
+router.post("/ajax", async(req, res) => {
+    let recommendedActions
+    if(req.query.subscribies != "undefined"){
+        recommendedActions = await actionController.listActionByInscriptions(req.session.user.idVolunteer)
+    }else{
+        recommendedActions = await actionController.listRecommendedActions(req.session.user.idVolunteer)
+    }
+    
+    res.json(recommendedActions)
+})
+
 module.exports = router
