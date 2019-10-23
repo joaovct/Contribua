@@ -84,16 +84,14 @@
         {{#if recommendedNgos}}
 
             <h1 class="title padding-top2 margin-btm1">Ongs recomendadas</h1>
-            <div class="group-articles" id="group-recommendedNgos">
+            <div class="group-ngos" id="group-recommendedNgos">
                 {{#each recommendedNgos}}
                 <a href="{{ngo.userName}}">
-                    <article class="feed-article">
-                        <figure class="article-image">
+                    <article class="feed-ngo">
+                        <figure class="ngo-pic">
                             <img src="/temp/uploads/profile/{{ngo.photoNgo}}" />
                         </figure>
-                        <div class="article-content">
-                            <h1 class="article-title" style="color: #3f3f3f;">{{ngo.nameNgo}}</h1>
-                        </div>
+                        <h1 class="ngo-name">{{ngo.nameNgo}}</h1>
                     </article>
                 </a>
                 {{/each}}

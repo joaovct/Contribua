@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const validations = require("../helpers/validations")
 const userController = require("../controllers/userController")
+const userNgoController = require('../controllers/userNgoController')
 const causesController = require('../controllers/causesController')
 
 router.get('/', async (req, res)=>{
@@ -71,6 +72,7 @@ router.post("/registerUser", async (req, res) => {
 
     if(resp.type_msg === "success_msg"){
         req.session.user = resp.user
+        req.session.ngoUser = await userNgoController.listNgoCreator(req.session.user.idVolunteer)
         return res.redirect("/home")
     }else{
         return res.redirect("/register")

@@ -661,7 +661,7 @@ div.overlay {
     overflow-y: scroll;
     padding: $margin4;
     position: relative;
-    word-break: break-all;
+    word-wrap: normal;
     .icon-input {
       width: 100%;
     }
