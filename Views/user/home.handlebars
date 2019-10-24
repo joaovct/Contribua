@@ -11,32 +11,37 @@
                     </div>
                     <div class="options cause-options">
                         {{#each userCauses}}
-                        <input type="checkbox" class="option-checkbox" value="{{descCategory}}" id="{{descCategory}}" name="categories"
-                            class="form-checkbox" checked>
-                        <label for="{{descCategory}}" class="label-option"><div class="option-marker"></div>{{descCategory}}</label>
+                        <input type="checkbox" class="option-checkbox" value="{{descCategory}}" id="{{descCategory}}"
+                            name="categories" class="form-checkbox" checked>
+                        <label for="{{descCategory}}" class="label-option">
+                            <div class="option-marker"></div>{{descCategory}}
+                        </label>
                         {{/each}}
                         {{#each causesNotParticipe}}
-                        <input type="checkbox" class="option-checkbox" value="{{descCategory}}" id="{{descCategory}}" name="categories"
-                            class="form-checkbox">
-                        <label for="{{descCategory}}" class="label-option"><div class="option-marker"></div>{{descCategory}}</label>
+                        <input type="checkbox" class="option-checkbox" value="{{descCategory}}" id="{{descCategory}}"
+                            name="categories" class="form-checkbox">
+                        <label for="{{descCategory}}" class="label-option">
+                            <div class="option-marker"></div>{{descCategory}}
+                        </label>
                         {{/each}}
                     </div>
                 </div>
 
-                <input type="checkbox" id="filter-subscription" value="subscribies" name="categories" class="form-checkbox">
+                <input type="checkbox" id="filter-subscription" value="subscriptions" class="form-checkbox filters">
                 <label for="filter-subscription" class="form-btnCheckbox">Inscrições</label>
 
-                <input type="checkbox" id="filter-recommended" value="recommends" name="categories" class="form-checkbox" checked>
+                <input type="checkbox" id="filter-recommended" value="recommended" class="form-checkbox filters"
+                    checked>
                 <label for="filter-recommended" class="form-btnCheckbox">Recomendações</label>
 
-                <input type="checkbox" id="filter-proximity" value="proximity" name="categories" class="form-checkbox">
+                <input type="checkbox" id="filter-proximity" value="proximity" class="form-checkbox filters">
                 <label for="filter-proximity" class="form-btnCheckbox">Proximidade</label>
 
-                <input type="checkbox" id="filter-featured" value="contrast" name="categories" class="form-checkbox">
+                <input type="checkbox" id="filter-featured" value="highlights" class="form-checkbox filters">
                 <label for="filter-featured" class="form-btnCheckbox">Destaques</label>
 
 
-                <input type="checkbox" id="filter-recent" value="recent" name="categories" class="form-checkbox">
+                <input type="checkbox" id="filter-recent" value="recents" class="form-checkbox filters">
                 <label for="filter-recent" class="form-btnCheckbox">Recentes</label>
             </form>
 
@@ -44,57 +49,61 @@
         {{#if actions}}
         {{#if actions.recommendedActions}}
         <nav class="nav-articles">
-            <h1 class="title padding-top2 margin-btm1">Eventos recomendados</h1>
-            <div class="group-articles" id="group-recommendedActions">
-                {{#each actions.recommendedActions}}
-                <article class="feed-article">
-                    <a href="event/{{idAction}}">
-                        <figure class="article-image">
-                            <img src="/temp/uploads/action/{{photoAction}}" />
-                        </figure>
-                        <div class="article-content">
-                            <h1 class="article-title">{{nameAction}}</h1>
-                            <h3 class="article-subitle">{{descriptionAction}}
-                            </h3>
-                            <div class="article-ngo-details">
-                                <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
-                                <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
-                                    {{createdAt.year}}</p>
+            <div class="wrapper-articles" data-typeArticles="recommended">
+                <h1 class="title padding-top2 margin-btm1">Eventos recomendados</h1>
+                <div class="group-articles" id="group-recommendedActions">
+                    {{#each actions.recommendedActions}}
+                    <article class="feed-article">
+                        <a href="event/{{idAction}}">
+                            <figure class="article-image">
+                                <img src="/temp/uploads/action/{{photoAction}}" />
+                            </figure>
+                            <div class="article-content">
+                                <h1 class="article-title">{{nameAction}}</h1>
+                                <h3 class="article-subitle">{{descriptionAction}}
+                                </h3>
+                                <div class="article-ngo-details">
+                                    <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
+                                    <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
+                                        {{createdAt.year}}</p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </article>
-                {{/each}}
+                        </a>
+                    </article>
+                    {{/each}}
+                </div>
+            </div>
+            {{/if}}
+
+            {{else}}
+
+            {{!-- ERR Msg --}}
+            <div class="container flex-column align-center margin-top4">
+                <img style="height: 40vh;" src="/assets/imgs/empty4.svg" />
+                <h1 class="big-text text-center margin0 margin-top4">Não esperávamos por essa...</h1>
+                <p class="text text-center margin0 margin-top1">Não conseguimos encontrar nenhum evento ou ONG de acordo
+                    com
+                    seus interesses.<br>Mas você ainda pode pesquisar por eventos e ONGs ou selecionar filtros
+                    diferentes.
+                </p>
             </div>
 
-        {{/if}}
-
-        {{else}}
-
-        {{!-- ERR Msg --}}
-        <div class="container flex-column align-center margin-top4">
-            <img style="height: 40vh;" src="/assets/imgs/empty4.svg" />
-            <h1 class="big-text text-center margin0 margin-top4">Não esperávamos por essa...</h1>
-            <p class="text text-center margin0 margin-top1">Não conseguimos encontrar nenhum evento ou ONG de acordo com
-                seus interesses.<br>Mas você ainda pode pesquisar por eventos e ONGs ou selecionar filtros diferentes.
-            </p>
-        </div>
-
-        {{/if}}
-        {{#if recommendedNgos}}
-
-            <h1 class="title padding-top2 margin-btm1">Ongs recomendadas</h1>
-            <div class="group-ngos" id="group-recommendedNgos">
-                {{#each recommendedNgos}}
-                <a href="{{ngo.userName}}">
-                    <article class="feed-ngo">
-                        <figure class="ngo-pic">
-                            <img src="/temp/uploads/profile/{{ngo.photoNgo}}" />
-                        </figure>
-                        <h1 class="ngo-name">{{ngo.nameNgo}}</h1>
-                    </article>
-                </a>
-                {{/each}}
+            {{/if}}
+            {{#if recommendedNgos}}
+            <div class="wrapper-articles" data-typeArticles="recommended">
+                <h1 class="title padding-top2 margin-btm1">Ongs recomendadas</h1>
+                <div class="group-ngos" id="group-recommendedNgos">
+                    {{#each recommendedNgos}}
+                        <article class="feed-ngo">
+                            <a href="{{userName}}">
+                            <figure class="ngo-pic">
+                                <img src="/temp/uploads/profile/{{photoNgo}}" />
+                            </figure>
+                            <h1 class="ngo-name">{{nameNgo}}</h1>
+                            </a>
+                        </article>
+                    {{/each}}
+                </div>
             </div>
         </nav>
         {{/if}}

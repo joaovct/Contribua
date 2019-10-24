@@ -1,138 +1,168 @@
-const categories = document.getElementsByName("categories")
-const nav = document.getElementsByClassName("nav-articles")[0]
-let subscribies
-let recommends
-let proximity
-let contrast
-let recent
-
-//gambiarra
-let recommendElement = document.getElementById("filter-recommended")
-let subscribeElement = document.getElementById("filter-subscription")
-let gambiarra1 = false
-let gambiarra2 = false
-
-for(let categorie of categories){
-    categorie.addEventListener("click", async () => {
-        $(nav).html('')
-        await filters(categorie)
-    })
+let buttons = document.getElementsByClassName('filters')
+let nav = document.getElementsByClassName('nav-articles')
+let numberSearchs = 0
+let noneArticles = `<div class="noneArticles container flex-column align-center margin-top4">
+                        <img style="height: 40vh;" src="/assets/imgs/empty4.svg" />
+                        <h1 class="big-text text-center margin0 margin-top4">Não esperávamos por essa...</h1>
+                        <p class="text text-center margin0 margin-top1">Não conseguimos encontrar nenhum evento ou ONG de acordo com seus interesses.<br>Mas você ainda pode pesquisar por eventos e ONGs ou selecionar filtros diferentes.</p>
+                    </div>`
+for(let b of buttons){
+    b.addEventListener("click", ()=>{
+        doFiltering(b)
+    })   
 }
 
-async function filters(categorie){
-    subscribies = undefined
-    recommends = undefined
-    proximity = undefined
-    contrast = undefined
-    recent = undefined
-    recommendElement.checked = true
-
-    if(categorie.checked){
-        if(categorie.value === "subscribies"){
-            subscribies = categorie.value
-        }else if(categorie.value === "recommends"){
-            recommends = categorie.value
-        }else if(categorie.value === "proximity"){
-            proximity = categorie.value
-        }else if(categorie.value === "contrast"){
-            contrat = categorie.value
-        }else if(categorie.value === "recent"){
-            recent = categorie.value
-        }
-    }
-
-    const actions = await $.post("http://localhost:3000/home/ajax?subscribies="+subscribies+"&recommends="+recommends+"&proximity="+proximity+"&contrast="+contrast+"&recent="+recent)
-    console.log(actions)
-
-    if(actions.recommendedActions.length > 0){
-        gambiarra1 = false
-        if(subscribies === "subscribies")
-            $(nav).append('<h1 class="title padding-top2 margin-btm1">Eventos de suas inscrições</h1>')
-        else
-            $(nav).append('<h1 class="title padding-top2 margin-btm1">Eventos recomendados</h1>')
-
-        $('#group-recommendedActions').html('')
-        $(nav).append(`<div class="group-articles" id="group-recommendedActions"></div>`)
-        for(let action of actions.recommendedActions){
-            action = await formatAction(action)
-            $('#group-recommendedActions').append(
-                `
-                    <article class='feed-article'>
-                        <a href='event/${action.idAction}'>
-                            <figure class='article-image'>
-                                <img src='/temp/uploads/action/${action.photoAction}' />
-                            </figure>
-                            <div class='article-content'>
-                                <h1 class='article-title'>${action.nameAction}</h1>
-                                <h3 class='article-subitle'>${action.descriptionAction}
-                                </h3>
-                                <div class='article-ngo-details'>
-                                    <!--<p class='article-ngo-name'>Por <a href='#'>${action.nameNgo}</a></p>-->
-                                    <p class='article-ngo-date'>${action.createdAt.day} de ${action.createdAt.month} de
-                                    ${action.createdAt.year}</p>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                `
-            )
-        }
+doFiltering = (filter) => {
+    if(filter.checked){
+        $.post(`http://localhost:3000/home/filter?key=${filter.value}`, (data) => {
+            if(data.articles != undefined || data.ngos != undefined) writeArticles(data)
+            else{
+                checksContent()
+            }
+        })
     }else{
-        gambiarra1 = true
-        $('#group-recommendedActions').html('')
+        $(`[data-typeArticles="${filter.value}"]`).fadeOut(500, ()=>{$(this).remove()})
+        $(`[data-typeArticles="${filter.value}`+'ngos'+``).fadeOut(500, ()=>{$(this).remove()})
+        checksContent()
     }
+}
 
-    if(actions.recommendedNgos.length > 0){
-        gambiarra2 = false
-        $(nav).append('<h1 class="title padding-top2 margin-btm1">Ongs recomendadas</h1>')
-        $('#group-recommendedNgos').html('')
-        $(nav).append(`<div class="group-articles" id="group-recommendedNgos"></div>`)
-        for(let ngo of actions.recommendedNgos){
-            console.log(ngo)
-            $('#group-recommendedNgos').append(
-                `
-                <a href="${ngo.ngo.userName}">
-                    <article class="feed-article">
-                        <figure class="article-image">
-                            <img src="/temp/uploads/profile/${ngo.ngo.photoNgo}" />
-                        </figure>
-                        <div class="article-content">
-                            <h1 class="article-title" style="color: #3f3f3f;">${ngo.ngo.nameNgo}</h1>
+writeArticles = (articles) => {
+    // Write articles
+
+    if(articles.actions.length > 0){
+        $(`[data-typeArticles="${articles.typeArticles}"]`).fadeOut(500, ()=>{$(this).remove()})
+        writeActions(articles) 
+    }
+    if(articles.ngos.length > 0){
+        $(`[data-typeArticles="${articles.typeArticles}`+'ngos'+``).fadeOut(500, ()=>{$(this).remove()})
+        writeNgos(articles)
+    } 
+    if(articles.actions.length > 0 || articles.ngos.length > 0){
+        removeNoneArticles()
+    }else{
+        let msg
+        switch (articles.typeArticles){
+            case "subscriptions":
+                msg = "inscrições"
+                break
+            case "recommended":
+                msg = "recomendações"
+                break
+            case "proximity":
+                msg = "proximidade"
+                break
+            case "highlights":
+                msg = "destaques"
+                break
+            case "recents":
+                msg = "recentes"
+                break
+        }
+        callAlert("Nada encontrado!", `Não conseguimos encontrar nenhum evento ou ONG por "${msg}".`, "warning")
+    }
+}
+
+writeActions = (articles) => {
+    // Prepare wrapper to receive actions
+    $(nav).hide().prepend(`<div class="wrapper-articles" data-typeArticles="${articles.typeArticles}"> <div class="group-articles" data-typeGroup="${articles.typeArticles}"></div> </div>`).fadeIn(500)
+
+    // Give a title to group actions
+    if(articles.typeArticles === "subscriptions") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend('<h1 class="title padding-top2 margin-btm1">Eventos de suas inscrições</h1>')
+    else if(articles.typeArticles === "recommended") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend('<h1 class="title padding-top2 margin-btm1">Eventos recomendados</h1>')
+
+    // Write actions
+    for(let i = 0; i < articles.actions.length; i++){
+        let action = articles.actions[i]
+        let nameNgo = articles.nameNgos[i]
+        // Format date
+        let date = new Date(action.createdAt)
+        date = formatDate(date)
+
+        $(`[data-typeGroup="${articles.typeArticles}"]`).append(
+            `
+            <article class="feed-article">
+                <a href="event/${action.idAction}">
+                    <figure class="article-image">
+                       <img src="/temp/uploads/action/${action.photoAction}" />
+                    </figure>
+                    <div class="article-content">
+                      <h1 class="article-title">${action.nameAction}</h1>
+                       <h3 class="article-subitle">${action.descriptionAction}</h3>
+                            <div class="article-ngo-details">
+                            <p class="article-ngo-name">Por <a href="#">${nameNgo}</a></p>
+                            <p class="article-ngo-date">${date.day} de ${date.month} de ${date.year}</p>
                         </div>
-                    </article>
+                    </div>
                 </a>
-                `
-            )
-        }
-    }else{
-        gambiarra2 = true
-        $('#group-recommendedNgos').html('')
+            </article>   
+            `
+        )
     }
-    
-    if(gambiarra1 && gambiarra2){
-        console.log("teste")
-        // $(group).html("")
-        // $(group).append(
-        //     `
-        //     <div class="container flex-column align-center margin-top4">
-        //     <img style="height: 40vh;" src="/assets/imgs/empty4.svg" />
-        //     <h1 class="big-text text-center margin0 margin-top4">Não esperávamos por essa...</h1>
-        //     <p class="text text-center margin0 margin-top1">Não conseguimos encontrar nenhum evento ou ONG de acordo com
-        //         seus interesses.<br>Mas você ainda pode pesquisar por eventos e ONGs ou selecionar filtros diferentes.
-        //     </p>
-        //     </div>
-        //     `
-        // )
-    }
-
 }
 
-async function formatAction(action){
-    action.descriptionAction = action.descriptionAction.substring(0,100) + "..."
+writeNgos = (articles) => {
+    // Prepare wrapper to receive ngos
+    $(nav).hide().append(`<div class="wrapper-articles" data-typeArticles="${articles.typeArticles}`+'ngos'+`"> <div class="group-ngos" data-typeGroup="${articles.typeArticles}`+'ngos'+`"></div> </div>`).fadeIn(500)
+
+    // Give a title to group ngos
+    if(articles.typeArticles === "recommended") $(`[data-typeArticles="${articles.typeArticles}`+'ngos'+`"]`).prepend('<h1 class="title padding-top2 margin-btm1">ONGs recomendadas</h1>')
+
+    // Write ngos
+    for(let ngo of articles.ngos){
+        $(`[data-typeGroup="${articles.typeArticles}`+'ngos'+`"]`).append(
+            `
+                <article class="feed-ngo">
+                    <a href="${ngo.userName}">
+                        <figure class="ngo-pic">
+                            <img src="/temp/uploads/profile/${ngo.photoNgo}" />
+                        </figure>
+                        <h1 class="ngo-name">${ngo.nameNgo}</h1>
+                    </a>
+                </article>
+            `
+        )
+    }
+}
+
+writeNoneArticles = () => {
+    $(nav).hide().prepend(noneArticles).fadeIn(1100)
+}
+
+removeNoneArticles = () => {
+    $('.noneArticles').remove()
+}
+
+checksContent = () => {
+    let hasContent = [buttons.length]
+    for(var i = 0; i < buttons.length; i++){
+        if(buttons[i].checked){
+            $.post(`http://localhost:3000/home/filter?key=${buttons[i].value}`, (data) => {
+                if(data.articles != undefined || data.ngos != undefined){
+                    writeArticles(data)
+                    hasContent[i] = true
+                }else{
+                    hasContent[i] = false
+                }
+            })
+        }else{
+            hasContent[i] = false
+        }
+    }
+
+    let checks = false
+    for(let hc of hasContent) if(hc) checks = true
+    
+    if(!checks){
+        removeNoneArticles()
+        writeNoneArticles()
+    }
+}
+
+function formatDate(rDate){
     const months = ["Jan", "Fev", "Mar", "Abri", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-    action.createdAt = new Date(action.createdAt)
-    action.createdAt.day = action.createdAt.getDay()
-    action.createdAt.month = months[action.createdAt.getMonth()]
-    action.createdAt.year = action.createdAt.getFullYear()
-    return action
+    rDate.day = rDate.getDay()
+    rDate.month = months[rDate.getMonth()]
+    rDate.year = rDate.getFullYear()
+    return rDate
 }

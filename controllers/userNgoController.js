@@ -83,28 +83,8 @@ module.exports = {
             }
         }
 
-        // enter the NGO id and its level of relevance
-        let recommendedNgos = []
-        let cont = 0
-        levelRecommended.filter((elem, i) => {
-            if(levelRecommended.indexOf(elem) === i){
-                recommendedNgos.push({ngo: elem, level: cont})
-                cont = 0
-            }else{
-                cont++
-                recommendedNgos.pop()
-                recommendedNgos.push({ngo: elem, level: cont})
-            }
-        })
-        
-        // put more relevant ngos at the beginning of the array
-        recommendedNgos.sort((a, b) => {
-            if(a.level < b.level){
-                return 1
-            }
-        })
-
-        return recommendedNgos
+        console.log(allNgos)
+        return allNgos
     },
     async listUser(idNgo){
         const userNgo = await UserNgo.findAll({where: {idNgo: idNgo}})
