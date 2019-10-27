@@ -59,8 +59,9 @@ module.exports = {
         const causes = await causesController.listCausesUser(idVolunteer)
         const actionsByCauses = await this.listActionByCauses(causes)
         for(let action of actionsByCauses){
-            ngo = await Ngo.findOne({where: {idNgo: action.idNgo}, attributes: ['nameNgo']})
+            ngo = await Ngo.findOne({where: {idNgo: action.idNgo}, attributes: ['userName','nameNgo']})
             action.nameNgo = ngo.nameNgo
+            action.username = ngo.userName
         }
         // get actions by skills
         // get actions by local

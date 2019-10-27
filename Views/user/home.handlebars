@@ -63,9 +63,10 @@
                                 <h3 class="article-subitle">{{descriptionAction}}
                                 </h3>
                                 <div class="article-ngo-details">
-                                    <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
-                                    <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
-                                        {{createdAt.year}}</p>
+                                    <p class="article-ngo-name">Por <a href="/{{username}}">{{nameNgo}}</a></p>
+                                    <p class="article-ngo-date"><a href="event/{{idAction}}">{{createdAt.day}} de
+                                            {{createdAt.month}} de
+                                            {{createdAt.year}}</a></p>
                                 </div>
                             </div>
                         </a>
@@ -94,14 +95,14 @@
                 <h1 class="title padding-top2 margin-btm1">Ongs recomendadas</h1>
                 <div class="group-ngos" id="group-recommendedNgos">
                     {{#each recommendedNgos}}
-                        <article class="feed-ngo">
-                            <a href="{{userName}}">
+                    <article class="feed-ngo">
+                        <a href="{{userName}}">
                             <figure class="ngo-pic">
                                 <img src="/temp/uploads/profile/{{photoNgo}}" />
                             </figure>
                             <h1 class="ngo-name">{{nameNgo}}</h1>
-                            </a>
-                        </article>
+                        </a>
+                    </article>
                     {{/each}}
                 </div>
             </div>
