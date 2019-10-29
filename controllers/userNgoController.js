@@ -83,7 +83,6 @@ module.exports = {
             }
         }
 
-        console.log(allNgos)
         return allNgos
     },
     async listUser(idNgo){
