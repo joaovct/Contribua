@@ -27,22 +27,20 @@
                     </div>
                 </div>
 
-                <input type="checkbox" id="filter-subscription" value="subscriptions" class="form-checkbox filters">
+                <input type="checkbox" id="filter-subscription" value="subscriptions" class="form-checkbox filters"
+                    checked>
                 <label for="filter-subscription" class="form-btnCheckbox">Inscrições</label>
 
                 <input type="checkbox" id="filter-recommended" value="recommended" class="form-checkbox filters"
                     checked>
                 <label for="filter-recommended" class="form-btnCheckbox">Recomendações</label>
 
+                <input type="checkbox" id="filter-recent" value="recents" class="form-checkbox filters">
+                <label for="filter-recent" class="form-btnCheckbox">Recentes</label>
+
                 <input type="checkbox" id="filter-proximity" value="proximity" class="form-checkbox filters">
                 <label for="filter-proximity" class="form-btnCheckbox">Proximidade</label>
 
-                <input type="checkbox" id="filter-featured" value="highlights" class="form-checkbox filters">
-                <label for="filter-featured" class="form-btnCheckbox">Destaques</label>
-
-
-                <input type="checkbox" id="filter-recent" value="recents" class="form-checkbox filters">
-                <label for="filter-recent" class="form-btnCheckbox">Recentes</label>
             </form>
 
         </div>
@@ -63,9 +61,10 @@
                                 <h3 class="article-subitle">{{descriptionAction}}
                                 </h3>
                                 <div class="article-ngo-details">
-                                    <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
-                                    <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
-                                        {{createdAt.year}}</p>
+                                    <p class="article-ngo-name">Por <a href="/{{username}}">{{nameNgo}}</a></p>
+                                    <p class="article-ngo-date"><a href="event/{{idAction}}">{{createdAt.day}} de
+                                            {{createdAt.month}} de
+                                            {{createdAt.year}}</a></p>
                                 </div>
                             </div>
                         </a>
@@ -89,19 +88,19 @@
             </div>
 
             {{/if}}
-            {{#if recommendedNgos}}
+        {{#if actions.recommendedNgos}}
             <div class="wrapper-articles" data-typeArticles="recommended">
                 <h1 class="title padding-top2 margin-btm1">Ongs recomendadas</h1>
                 <div class="group-ngos" id="group-recommendedNgos">
-                    {{#each recommendedNgos}}
-                        <article class="feed-ngo">
-                            <a href="{{userName}}">
+                    {{#each actions.recommendedNgos}}
+                    <article class="feed-ngo">
+                        <a href="{{userName}}">
                             <figure class="ngo-pic">
                                 <img src="/temp/uploads/profile/{{photoNgo}}" />
                             </figure>
                             <h1 class="ngo-name">{{nameNgo}}</h1>
-                            </a>
-                        </article>
+                        </a>
+                    </article>
                     {{/each}}
                 </div>
             </div>

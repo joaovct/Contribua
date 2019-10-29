@@ -39,7 +39,9 @@
             </a>
             {{/if}}
             <div class="profile-location-since">
-                <h3 class="content">{{data.cityNgo}} - Desde {{data.createdAt.month}} de {{data.createdAt.year}}.</h3>
+                <h3 class="content"><a href="https:/google.com.br/maps" target="_blank">{{data.addressNgo}},
+                        {{data.numAddressNgo}} - {{data.cityNgo}} {{data.cepNgo}}</a></h3>
+                <h3 class="content">Desde {{data.createdAt.month}} de {{data.createdAt.year}}.</h3>
                 <h3 class="content">Tel
                     {{#each telephonesNgo}}
                     - {{TelephoneNgo}}
@@ -60,36 +62,35 @@
                 <li><span class="number">{{amtUserSubscribed}}</span>Membros</li>
             </ul>
         </div>
-        <div class="group-nav">
-            <nav class="nav-articles">
-                <h1 class="title padding-top2 margin-btm1">Eventos da ONG</h1>
-                <div class="group-articles">
-                    {{#if actions}}
-                    {{#each actions}}
-                    <article class="feed-article">
-                            <a href="event/{{idAction}}">
-                                <figure class="article-image">
-                                    <img src="/temp/uploads/action/{{photoAction}}" />
-                                </figure>
-                                <div class="article-content">
-                                    <h1 class="article-title">{{nameAction}}</h1>
-                                    <h3 class="article-subitle">{{descriptionAction}}
-                                    </h3>
-                                    <div class="article-ngo-details">
-                                        <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
-                                        <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
-                                            {{createdAt.year}}</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                    {{/each}}
-                    {{else}}
-                    <h1>Esta ONG não tem eventos ativos</h1>
-                    {{/if}}
-                </div>
-            </nav>
-        </div>
+        <nav class="nav-articles">
+            <h1 class="title padding-top2 margin-btm1">Eventos da ONG</h1>
+            <div class="group-articles">
+                {{#if actions}}
+                {{#each actions}}
+                <article class="feed-article">
+                    <a href="event/{{idAction}}">
+                        <figure class="article-image">
+                            <img src="/temp/uploads/action/{{photoAction}}" />
+                        </figure>
+                        <div class="article-content">
+                            <h1 class="article-title">{{nameAction}}</h1>
+                            <h3 class="article-subitle">{{descriptionAction}}
+                            </h3>
+                            <div class="article-ngo-details">
+                                <p class="article-ngo-name">Por <a href="/{{username}}">{{nameNgo}}</a></p>
+                                <p class="article-ngo-date"><a href="event/{{idAction}}">{{createdAt.day}} de
+                                        {{createdAt.month}} de
+                                        {{createdAt.year}}</a></p>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                {{/each}}
+                {{else}}
+                <h1>Esta ONG não tem eventos ativos</h1>
+                {{/if}}
+            </div>
+        </nav>
     </div>
 </div>
 
