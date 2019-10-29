@@ -22,14 +22,15 @@ router.get("/", async (req, res) => {
         let recommendedNgos = await userNgoController.listRecommendedNgos(req.session.user.idVolunteer)
         const userCauses = await causesController.listCausesUser(req.session.user.idVolunteer)
         const causesNotParticipe = await causesController.listCausesNotParticipeUser(req.session.user.idVolunteer)
+
         // Format each action
         for(let action of recommendedActions) action = feedUtilities.formatAction(action)
-        let actions = {
-            recommendedActions
-        }
-        // Set to null actions if is empty
-        if(actions.recommendedActions.length == 0) actions = false
-        res.render("user/home", {dataHeader: req.session.user, ngos: req.session.ngoUser, actions, recommendedNgos, userCauses, causesNotParticipe})
+
+        let actions = {recommendedActions, recommendedNgos}
+        // Set to false actions if is empty
+        if(actions.recommendedActions.length < 1 && actions.recommendedNgos < 1) actions = false
+
+        res.render("user/home", {dataHeader: req.session.user, ngos: req.session.ngoUser, actions, userCauses, causesNotParticipe})
     }
 })
 
@@ -38,11 +39,17 @@ router.post("/filter", async(req, res) => {
     let ngos = []
 
     if(req.query.key === "subscriptions") actions = await actionController.listActionByInscriptions(req.session.user.idVolunteer)
+
     else if(req.query.key === "recommended"){
         actions = await actionController.listRecommendedActions(req.session.user.idVolunteer)
         ngos = await userNgoController.listRecommendedNgos(req.session.user.idVolunteer)
-    } 
+    
+    }else if(req.query.key === "recents") actions = await actionController.listRecentActions()
 
+    // }else if(req.query.key === "proximity") actions = await actionController.listActionsByProximity(req.session.user.idVolunteer)
+
+
+    // Name ngo
     let nameNgos = []
     for(let action of actions){
         let ngo = await ngoController.listOneNgo(action.idNgo)
@@ -50,10 +57,7 @@ router.post("/filter", async(req, res) => {
     }
 
     articles = {
-        actions: actions,
-        ngos: ngos,
-        nameNgos: nameNgos,
-        typeArticles: req.query.key
+        actions,ngos,nameNgos,typeArticles: req.query.key
     }
 
     res.json(articles)

@@ -137,5 +137,10 @@ module.exports = {
             }
         }
         return actions
+    },
+    async listRecentActions(){
+        let limit = 8
+        let actions = await Action.findAll({limit: limit, order: [ ['createdAt','DESC'] ]})
+        return actions
     }
 }

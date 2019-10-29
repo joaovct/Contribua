@@ -27,22 +27,20 @@
                     </div>
                 </div>
 
-                <input type="checkbox" id="filter-subscription" value="subscriptions" class="form-checkbox filters">
+                <input type="checkbox" id="filter-subscription" value="subscriptions" class="form-checkbox filters"
+                    checked>
                 <label for="filter-subscription" class="form-btnCheckbox">Inscrições</label>
 
                 <input type="checkbox" id="filter-recommended" value="recommended" class="form-checkbox filters"
                     checked>
                 <label for="filter-recommended" class="form-btnCheckbox">Recomendações</label>
 
+                <input type="checkbox" id="filter-recent" value="recents" class="form-checkbox filters">
+                <label for="filter-recent" class="form-btnCheckbox">Recentes</label>
+
                 <input type="checkbox" id="filter-proximity" value="proximity" class="form-checkbox filters">
                 <label for="filter-proximity" class="form-btnCheckbox">Proximidade</label>
 
-                <input type="checkbox" id="filter-featured" value="highlights" class="form-checkbox filters">
-                <label for="filter-featured" class="form-btnCheckbox">Destaques</label>
-
-
-                <input type="checkbox" id="filter-recent" value="recents" class="form-checkbox filters">
-                <label for="filter-recent" class="form-btnCheckbox">Recentes</label>
             </form>
 
         </div>
@@ -90,11 +88,11 @@
             </div>
 
             {{/if}}
-            {{#if recommendedNgos}}
+        {{#if actions.recommendedNgos}}
             <div class="wrapper-articles" data-typeArticles="recommended">
                 <h1 class="title padding-top2 margin-btm1">Ongs recomendadas</h1>
                 <div class="group-ngos" id="group-recommendedNgos">
-                    {{#each recommendedNgos}}
+                    {{#each actions.recommendedNgos}}
                     <article class="feed-ngo">
                         <a href="{{userName}}">
                             <figure class="ngo-pic">

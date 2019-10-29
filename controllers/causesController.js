@@ -218,7 +218,7 @@ module.exports = {
         }
     },
 
-    //Action
+    //Actions
     async registerCausesAction(idAction, categories){
         for(let i in categories){
             const category = await Category.findOne({where: {descCategory: categories[i]}})

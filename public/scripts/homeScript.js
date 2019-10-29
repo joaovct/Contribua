@@ -70,6 +70,7 @@ writeActions = (articles) => {
     // Give a title to group actions
     if(articles.typeArticles === "subscriptions") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend('<h1 class="title padding-top2 margin-btm1">Eventos de suas inscrições</h1>')
     else if(articles.typeArticles === "recommended") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend('<h1 class="title padding-top2 margin-btm1">Eventos recomendados</h1>')
+    else if(articles.typeArticles === "recents") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend('<h1 class="title padding-top2 margin-btm1">Recentes</h1>')
 
     // Write actions
     for(let i = 0; i < articles.actions.length; i++){
