@@ -1,3 +1,4 @@
+const axios = require('axios')
 const Action = require("../models/Action")
 const Volunteer = require('../Models/Volunteer')
 const Ngo = require('../Models/Ngo')
@@ -127,7 +128,7 @@ module.exports = {
         }
         return actions
     },
-    async listActionByInscriptions(idUser){
+    async listActionsByInscriptions(idUser){
         let ngos = await userNgo.listNgo(idUser)
         let actions = []
         for(let i in ngos){
@@ -142,5 +143,20 @@ module.exports = {
         let limit = 8
         let actions = await Action.findAll({limit: limit, order: [ ['createdAt','DESC'] ]})
         return actions
+    },
+    async listActionsByProximity(idUser){
+        let data  = await Volunteer.findOne({where: {idVolunteer: idUser}})
+
+        let apiKey = 'AIzaSyDRkU_fs2PEkgQpl9VaH4RjIbwBpng1X4Y'
+        let cityOrigin = "Rua cacarema"
+        let cityDestination = "Rio de Janeiro"
+        let options = {
+            url: `https://maps.googleapis.com/maps/api/distancematrix/json?&origins=${cityOrigin}&destinations=${cityDestination}&key=${apiKey}`,
+        }
+    
+        return await axios(options).then(response => {
+            console.log(response.data)
+            return response.data
+        })
     }
 }
