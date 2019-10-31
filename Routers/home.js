@@ -46,7 +46,6 @@ router.post("/filter", async(req, res) => {
     let actions = []
     let ngos = []
     let district
-
     if(req.query.key === "subscriptions"){
         actions = await actionController.listActionsByInscriptions(req.session.user.idVolunteer)
         ngos = await userNgoController.listNgo(req.session.user.idVolunteer)
@@ -60,7 +59,7 @@ router.post("/filter", async(req, res) => {
     else if(req.query.key === "recents") actions = await actionController.listRecentActions()
     
     else if(req.query.key === "proximity"){
-        let data = await actionController.listActionsByProximity(req.session.user.idVolunteer)
+        let data = await actionController.listActionsByProximity(req.session.user.idVolunteer, req.query.distance)
         actions = data.actions
         district = data.district
     } 

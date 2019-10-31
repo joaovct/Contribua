@@ -3,11 +3,14 @@ const express = require("express")
 const handlebars = require("express-handlebars")
 const bodyParser = require("body-parser")
 const app = express()
+const http = require('http').createServer(app)
+const io = require("socket.io")(http)
 const path = require('path')
 const session = require('express-session')
+const cookieParser = require('cookie-parser')
+const cookie = cookieParser("anythingthatyoushoudntknow")
 const flash = require('connect-flash')
 const user = require('./Routers/user.js')
-const ngo = require('./Routers/ngo.js')
 const register = require('./Routers/register')
 const isLogged = require('./helpers/isLogged')
 const search = require('./helpers/doSearch')
@@ -19,14 +22,20 @@ const starting_ong = require("./Routers/starting-ong")
 const subscribe = require("./Routers/subscribe")
 const settings = require("./Routers/settings")
 const event = require("./Routers/event")
-// const morgan = require("morgan")
+const MemoryStore = require('memorystore')(session)
+const store = new MemoryStore()
+const notificationController = require("./controllers/notificationController")
 
 //**Configs**//
+//cookie
+app.use(cookieParser("anythingthatyoushoudntknow"))
+
 // Session
 app.use(session({
     secret: "anythingthatyoushoudntknow",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: store
 }))
 
 app.use(flash())
@@ -45,7 +54,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 app.use(bodyParser.json())
-// app.use(morgan('dev'))
 
 // Handlebars
 app.engine('handlebars', handlebars({
@@ -55,6 +63,43 @@ app.set('view engine', 'handlebars')
 
 //public
 app.use(express.static(path.join(__dirname, "public")))
+
+//sockets
+io.use(function(socket, next) {
+    let data = socket.request
+    cookie(data, {}, function(err) {
+        let sessionID = data.signedCookies["connect.sid"]
+        store.get(sessionID, function(err, session) {
+        if (err || !session) {
+            return next(new Error('Acesso negado!'))
+        } else {
+            socket.handshake.session = session
+            return next()
+        }
+        })
+    })
+})
+
+io.on('connection', async (socket) => {
+
+    let notificationsNgo
+    let session = socket.handshake.session
+
+    if(session)
+        if(session.ngo)
+            notificationsNgo = await notificationController.listNotificationsNgo(session.ngo.idNgo)
+        
+    
+    socket.emit('init', {session, notificationsNgo})
+
+    //NGO notifications
+    socket.on('subscribe', async (idNgo) => {
+        await notificationController.subscribe(session.user, idNgo)
+        notificationsNgo = await notificationController.listNotificationsNgo(idNgo)
+        socket.broadcast.emit('notificationNgo', notificationsNgo)
+    })
+    
+})
 
 // Routers
 app.get("/", (req, res) => {
@@ -90,6 +135,6 @@ app.post('/search', async function(req,res){
 
 // Localhost
 const PORT = 3000;
-app.listen(PORT, () => {
+http.listen(PORT, () => {
     console.log(`Listening on http://localhost:${PORT}`);
 })

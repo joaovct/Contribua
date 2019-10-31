@@ -148,7 +148,7 @@ module.exports = {
         for(let action of actions) action = await feedUtilities.formatAction(action)
         return actions
     },
-    async listActionsByProximity(idUser){  
+    async listActionsByProximity(idUser, radiusDistance){  
         
         let vAddress = await Volunteer.findOne({where: {idVolunteer: idUser}})
         let actions = await Action.findAll({attributes: ['idAction','addressAction', 'numAddressAction', 'districtAction']})
@@ -172,7 +172,7 @@ module.exports = {
 
         // Get id from close actions
 
-        let radius = 35
+        let radius = radiusDistance
         let idActions = []
         for(let i = 0; i < actions.length; i++){
             let d = Math.round(distance[i].distance.value/1000)

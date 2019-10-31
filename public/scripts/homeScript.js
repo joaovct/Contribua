@@ -1,4 +1,5 @@
 let buttons = document.getElementsByClassName('filters')
+let btnProximity = document.getElementById('filter-proximity')
 let nav = document.getElementsByClassName('nav-articles')
 let numberSearchs = 0
 let noneArticles = `<div class="noneArticles container flex-column align-center margin-top4">
@@ -6,24 +7,48 @@ let noneArticles = `<div class="noneArticles container flex-column align-center 
                         <h1 class="big-text text-center margin0 margin-top4">Não esperávamos por essa...</h1>
                         <p class="text text-center margin0 margin-top1">Não conseguimos encontrar nenhum evento ou ONG de acordo com seus interesses.<br>Mas você ainda pode pesquisar por eventos e ONGs ou selecionar filtros diferentes.</p>
                     </div>`
+let msg // Msg to alert  
+  
+// Add event listener to filters
 for(let b of buttons){
     b.addEventListener("click", ()=>{
         doFiltering(b)
-    })   
+    })
+    if(b.type === "range") b.addEventListener("input", ()=>{
+        doFiltering(b)
+    }) 
 }
 
+// Add event listener to proximity button
+btnProximity.addEventListener('click', ()=>{
+    if(btnProximity.checked) doFiltering(btnProximity)
+    else removeArticles(btnProximity.value)
+})
+
 doFiltering = (filter) => {
-    if(filter.checked){
-        $.post(`http://localhost:3000/home/filter?key=${filter.value}`, (data) => {
+    // Normal filters
+    if(filter.checked && filter.value != "proximity"){
+        let url = `http://localhost:3000/home/filter?key=${filter.value}`
+        $.post(url, (data) => {
             if(data.articles != undefined || data.ngos != undefined) writeArticles(data)
             else{
                 checksContent()
             }
         })
-    }else{
-        $(`[data-typeArticles="${filter.value}"]`).fadeOut(500, ()=>{$(this).remove()})
-        $(`[data-typeArticles="${filter.value}`+'ngos'+``).fadeOut(500, ()=>{$(this).remove()})
+    }else if(!filter.checked && filter.type != "range"){
+        removeArticles(filter.value)
         checksContent()
+    }
+
+    if(filter.type === "range"){
+        let valueRange = document.getElementById('filter-proximity-range').value
+        let url = `http://localhost:3000/home/filter?key=${filter.getAttribute('data-type')}&distance=${valueRange}`
+        $.post(url, (data)=>{
+            if(data.articles != undefined || data.ngos != undefined) writeArticles(data)
+            else{
+                checksContent()
+            }
+        })
     }
 }
 
@@ -32,16 +57,18 @@ writeArticles = (articles) => {
 
     if(articles.actions.length > 0){
         $(`[data-typeArticles="${articles.typeArticles}"]`).fadeOut(500, ()=>{$(this).remove()})
-        writeActions(articles) 
+        if(articles.typeArticles === "proximity" && msg === "proximidade") closeAllAlerts()
+        writeActions(articles)
     }
     if(articles.ngos.length > 0){
         $(`[data-typeArticles="${articles.typeArticles}`+'ngos'+``).fadeOut(500, ()=>{$(this).remove()})
+        if(articles.typeArticles === "proximity" && msg === "proximidade") closeAllAlerts()     
         writeNgos(articles)
     } 
+
     if(articles.actions.length > 0 || articles.ngos.length > 0){
         removeNoneArticles()
     }else{
-        let msg
         switch (articles.typeArticles){
             case "subscriptions":
                 msg = "inscrições"
@@ -58,6 +85,10 @@ writeArticles = (articles) => {
             case "recents":
                 msg = "recentes"
                 break
+        }
+        if(msg==="proximidade"){
+            checksContent()
+            closeAllAlerts()
         }
         callAlert("Nada encontrado!", `Não conseguimos encontrar nenhum evento ou ONG por "${msg}".`, "warning")
     }
@@ -126,6 +157,11 @@ writeNgos = (articles) => {
     }
 }
 
+removeArticles = (typeArticles) => {
+    $(`[data-typeArticles="${typeArticles}"]`).fadeOut(500, ()=>{$(this).remove()})
+    $(`[data-typeArticles="${typeArticles}`+'ngos'+``).fadeOut(500, ()=>{$(this).remove()})
+}
+
 writeNoneArticles = () => {
     $(nav).hide().prepend(noneArticles).fadeIn(1100)
 }
@@ -151,6 +187,20 @@ checksContent = () => {
         }
     }
 
+    if(btnProximity.checked){
+        let valueRange = document.getElementById('filter-proximity-range').value
+        let url = `http://localhost:3000/home/filter?key=${btnProximity.value}&distance=${valueRange}`
+        $.post(url, (data)=> {
+            if(data.articles != undefined || data.ngos != undefined){
+                writeArticles(data)
+                hasContent.push(true)
+            }else{
+                hasContent.push = false
+            }
+        })
+    }else{
+        hasContent.push(false)
+    }
     let checks = false
     for(let hc of hasContent) if(hc) checks = true
     

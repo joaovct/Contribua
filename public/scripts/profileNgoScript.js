@@ -13,9 +13,13 @@ btnSubscribe.addEventListener("click", async () => {
         btnSubscribe.value = "off"
         await $.post("http://localhost:3000/subscribe?unsubscribe=true&idNgo="+idNgo)
     }else{   
+        socket.emit('subscribe', idNgo)
+
         lblSubscribe.innerHTML = "Inscrito"
         btnSubscribe.value = "on"
-        await $.post("http://localhost:3000/subscribe?idNgo="+idNgo)
+
+        // await $.post("http://localhost:3000/subscribe?idNgo="+idNgo)
+
     }
     
 })

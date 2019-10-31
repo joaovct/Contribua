@@ -1,3 +1,54 @@
+let socket = io()
+let session
+let linkNotify = document.getElementsByClassName("icon")[0]
+
+socket.on('init', (data) => {
+    session = data.session
+
+    console.log(data)
+
+    if(Array.isArray(data.notificationsNgo)){
+        for(let i in data.notificationsNgo){
+            if(session.ngo.idNgo === data.notificationsNgo[i].notification.idNgo){
+
+                let notification = data.notificationsNgo[i].notification
+                let user = data.notificationsNgo[i].user
+                $(".notifications").prepend(`
+                    <a href="#"><li><img src="temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
+                `)
+
+            }
+        }
+    }else{
+
+    }
+})
+
+socket.on('notificationNgo', (notificationsNgo) => {
+    $(".notifications").html('')
+    if(Array.isArray(notificationsNgo)){
+        for(let i in notificationsNgo){
+            if(session.ngo.idNgo === notificationsNgo[i].notification.idNgo){
+                console.log('passou')
+                $(".icon").addClass("notify")
+                let notification = notificationsNgo[i].notification
+                let user = notificationsNgo[i].user
+                $(".notifications").prepend(`
+                    <a href="#"><li><img src="temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
+                `)
+
+            }
+        }
+    }else{
+
+    }
+})
+
+linkNotify.addEventListener("click", () => {
+    $('.notifications').toggle('fast')
+    $('.icon').removeClass('notify')
+})
+
 function hide(el, n){
     if(n!=undefined && n > -1){
         el = document.getElementsByClassName(el)[n]
@@ -152,6 +203,5 @@ function closeAlert(e){
 
 function closeAllAlerts(){
     let E = document.getElementsByClassName('alert')
-    console.log(E)
     for(let e of E) e.style.display = 'none'
 }

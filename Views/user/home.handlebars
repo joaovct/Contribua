@@ -38,8 +38,32 @@
                 <input type="checkbox" id="filter-recent" value="recents" class="form-checkbox filters">
                 <label for="filter-recent" class="form-btnCheckbox">Recentes</label>
 
-                <input type="checkbox" id="filter-proximity" value="proximity" class="form-checkbox filters">
-                <label for="filter-proximity" class="form-btnCheckbox">Proximidade</label>
+                <div class="wrapper-options">
+                    <input onclick="$('.options-range').toggle('fast').css('display','flex')" type="checkbox" id="filter-proximity" value="proximity" class="form-checkbox">
+                    <label for="filter-proximity" class="form-btnCheckbox open-options">Proximidade</label>
+
+                    <div class="options-range">
+                        <div class="tick-numbers padding-btm1">
+                            <span>5 km</span>
+                            <span >10 km</span>
+                            <span>15 km</span>
+                            <span >20 km</span>
+                            <span>25 km</span>
+                            <span >30 km</span>
+                            <span>35 km</span>
+                        </div>
+                        <input type="range" data-type="proximity" list="tickmarks" min="5" max="35" id="filter-proximity-range" class="form-range display-block filters">
+                        <datalist id="tickmarks">
+                            <option value="5">
+                            <option value="10">
+                            <option value="15">
+                            <option value="20">
+                            <option value="25">
+                            <option value="30">
+                            <option value="35">
+                        </datalist>
+                    </div>
+                </div>
 
             </form>
 
