@@ -1,53 +1,81 @@
 let socket = io()
 let session
 let linkNotify = document.getElementsByClassName("icon")[0]
+let notifications = document.getElementsByClassName("notifications")[0]
 
-socket.on('init', (data) => {
-    session = data.session
-
-    console.log(data)
-
-    if(Array.isArray(data.notificationsNgo)){
-        for(let i in data.notificationsNgo){
-            if(session.ngo.idNgo === data.notificationsNgo[i].notification.idNgo){
-
-                let notification = data.notificationsNgo[i].notification
-                let user = data.notificationsNgo[i].user
-                $(".notifications").prepend(`
-                    <a href="#"><li><img src="temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
-                `)
-
-            }
-        }
-    }else{
-
-    }
+socket.on('init', (dataSession) => {
+    session = dataSession
 })
 
 socket.on('notificationNgo', (notificationsNgo) => {
-    $(".notifications").html('')
-    if(Array.isArray(notificationsNgo)){
-        for(let i in notificationsNgo){
-            if(session.ngo.idNgo === notificationsNgo[i].notification.idNgo){
-                console.log('passou')
-                $(".icon").addClass("notify")
-                let notification = notificationsNgo[i].notification
-                let user = notificationsNgo[i].user
-                $(".notifications").prepend(`
-                    <a href="#"><li><img src="temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
-                `)
+    let oldNotifications = notificationsNgo.oldNotifications
+    let newNotifications = notificationsNgo.newNotifications
+    
+    if(oldNotifications)
+        if(oldNotifications[0].idNgo === session.ngo.idNgo)
+            $(notifications).html('')
 
-            }
-        }
-    }else{
+    if(newNotifications)
+        if(newNotifications[0] === session.ngo.idNgo)
+            $(notifications).html('')
 
-    }
+    //notifications already viewed
+    writeOldNotificationNgo(oldNotifications)
+
+    //notifications not viewed
+    writeNewNotificationNgo(newNotifications)
+
+    if(oldNotifications.length === 0 && newNotifications.length === 0)
+        $(notifications).prepend("<li><h3>Nenhuma notificação por aqui...</h3></li>")
 })
 
 linkNotify.addEventListener("click", () => {
     $('.notifications').toggle('fast')
     $('.icon').removeClass('notify')
+    socket.emit('viewed')
 })
+
+function writeOldNotificationNgo(oldNotifications){
+    if(Array.isArray(oldNotifications)){
+        for(let i in oldNotifications){
+            if(session.ngo.idNgo === oldNotifications[i].notification.idNgo){
+                let notification = oldNotifications[i].notification
+                let user = oldNotifications[i].user
+                $(notifications).prepend(`
+                    <a href="#"><li><img src="temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
+                `)
+
+            }
+        }
+        if(oldNotifications.length != 0){
+            $(notifications).prepend(`
+                <li class="new-and-old">Anteriores</li>
+            `)
+        }
+    }else{
+    }
+}
+
+function writeNewNotificationNgo(newNotifications){
+    if(Array.isArray(newNotifications)){
+        for(let i in newNotifications){
+            if(session.ngo.idNgo === newNotifications[i].notification.idNgo){
+                $(linkNotify).addClass("notify")
+                let notification = newNotifications[i].notification
+                let user = newNotifications[i].user
+                $(notifications).prepend(`
+                    <a href="#"><li><img src="temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
+                `)
+
+            }
+        }
+        if(newNotifications.length != 0){
+            $(notifications).prepend(`
+                <li class="new-and-old">Novas</li>
+            `)
+        }
+    }
+}
 
 function hide(el, n){
     if(n!=undefined && n > -1){

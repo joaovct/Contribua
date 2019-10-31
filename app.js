@@ -85,18 +85,27 @@ io.on('connection', async (socket) => {
     let notificationsNgo
     let session = socket.handshake.session
 
-    if(session)
-        if(session.ngo)
+    socket.emit('init', session)
+
+    if(session){
+        if(session.ngo){
             notificationsNgo = await notificationController.listNotificationsNgo(session.ngo.idNgo)
-        
-    
-    socket.emit('init', {session, notificationsNgo})
+            socket.emit('notificationNgo', notificationsNgo)
+        }else{
+
+        }
+    }
 
     //NGO notifications
     socket.on('subscribe', async (idNgo) => {
         await notificationController.subscribe(session.user, idNgo)
         notificationsNgo = await notificationController.listNotificationsNgo(idNgo)
         socket.broadcast.emit('notificationNgo', notificationsNgo)
+    })
+
+    socket.on('viewed', async () => {
+        if(session.ngo)
+            await notificationController.viewedNotificationNgo(session.ngo.idNgo)
     })
     
 })

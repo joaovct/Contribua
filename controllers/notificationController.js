@@ -15,13 +15,20 @@ module.exports = {
         return notification
     },
     async listNotificationsNgo(idNgo){
-        const notifications = await NotificationNgo.findAll({where: {idNgo: idNgo, viewedNotification: false}})
-        let notifications2 = []
+        const notifications = await NotificationNgo.findAll({where: {idNgo: idNgo}})
+        let oldNotifications = []
+        let newNotifications = []
         let user
         for(let i in notifications){
             user = await userController.listOneUser(notifications[i].idVolunteer)
-            notifications2.push({notification: notifications[i], user: user})
+            if(notifications[i].viewedNotification)
+                oldNotifications.push({notification: notifications[i], user: user})
+            else
+                newNotifications.push({notification: notifications[i], user: user})
         }
-        return notifications2
+        return {oldNotifications, newNotifications}
+    },
+    async viewedNotificationNgo(idNgo){
+        await NotificationNgo.update({viewedNotification: true}, {where: {idNgo: idNgo, viewedNotification: false}})
     }
 }
