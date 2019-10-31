@@ -38,19 +38,45 @@
                 <input type="checkbox" id="filter-recent" value="recents" class="form-checkbox filters">
                 <label for="filter-recent" class="form-btnCheckbox">Recentes</label>
 
-                <input type="checkbox" id="filter-proximity" value="proximity" class="form-checkbox filters">
-                <label for="filter-proximity" class="form-btnCheckbox">Proximidade</label>
+                <div class="wrapper-options">
+                    <input onclick="$('.options-range').toggle('fast').css('display','flex')" type="checkbox" id="filter-proximity" value="proximity" class="form-checkbox">
+                    <label for="filter-proximity" class="form-btnCheckbox open-options">Proximidade</label>
+
+                    <div class="options-range">
+                        <div class="tick-numbers padding-btm1">
+                            <span>5 km</span>
+                            <span >10 km</span>
+                            <span>15 km</span>
+                            <span >20 km</span>
+                            <span>25 km</span>
+                            <span >30 km</span>
+                            <span>35 km</span>
+                        </div>
+                        <input type="range" data-type="proximity" list="tickmarks" min="5" max="35" id="filter-proximity-range" class="form-range display-block filters">
+                        <datalist id="tickmarks">
+                            <option value="5">
+                            <option value="10">
+                            <option value="15">
+                            <option value="20">
+                            <option value="25">
+                            <option value="30">
+                            <option value="35">
+                        </datalist>
+                    </div>
+                </div>
 
             </form>
 
         </div>
-        {{#if actions}}
-        {{#if actions.recommendedActions}}
+
+        {{#if articles}}
         <nav class="nav-articles">
+
+            {{#if articles.recommendedActions}}
             <div class="wrapper-articles" data-typeArticles="recommended">
                 <h1 class="title padding-top2 margin-btm1">Eventos recomendados</h1>
                 <div class="group-articles" id="group-recommendedActions">
-                    {{#each actions.recommendedActions}}
+                    {{#each articles.recommendedActions}}
                     <article class="feed-article">
                         <a href="event/{{idAction}}">
                             <figure class="article-image">
@@ -74,25 +100,39 @@
             </div>
             {{/if}}
 
-            {{else}}
-
-            {{!-- ERR Msg --}}
-            <div class="container flex-column align-center margin-top4">
-                <img style="height: 40vh;" src="/assets/imgs/empty4.svg" />
-                <h1 class="big-text text-center margin0 margin-top4">Não esperávamos por essa...</h1>
-                <p class="text text-center margin0 margin-top1">Não conseguimos encontrar nenhum evento ou ONG de acordo
-                    com
-                    seus interesses.<br>Mas você ainda pode pesquisar por eventos e ONGs ou selecionar filtros
-                    diferentes.
-                </p>
+            {{#if articles.actionsByInscriptions}}
+            <div class="wrapper-articles" data-typeArticles="subscriptions">
+                <h1 class="title padding-top2 margin-btm1">Eventos de suas incrições</h1>
+                <div class="group-articles" id="group-recommendedActions">
+                    {{#each articles.actionsByInscriptions}}
+                    <article class="feed-article">
+                        <a href="event/{{idAction}}">
+                            <figure class="article-image">
+                                <img src="/temp/uploads/action/{{photoAction}}" />
+                            </figure>
+                            <div class="article-content">
+                                <h1 class="article-title">{{nameAction}}</h1>
+                                <h3 class="article-subitle">{{descriptionAction}}
+                                </h3>
+                                <div class="article-ngo-details">
+                                    <p class="article-ngo-name">Por <a href="/{{username}}">{{nameNgo}}</a></p>
+                                    <p class="article-ngo-date"><a href="event/{{idAction}}">{{createdAt.day}} de
+                                            {{createdAt.month}} de
+                                            {{createdAt.year}}</a></p>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    {{/each}}
+                </div>
             </div>
-
             {{/if}}
-        {{#if actions.recommendedNgos}}
+
+            {{#if articles.recommendedNgos}}
             <div class="wrapper-articles" data-typeArticles="recommended">
                 <h1 class="title padding-top2 margin-btm1">Ongs recomendadas</h1>
                 <div class="group-ngos" id="group-recommendedNgos">
-                    {{#each actions.recommendedNgos}}
+                    {{#each articles.recommendedNgos}}
                     <article class="feed-ngo">
                         <a href="{{userName}}">
                             <figure class="ngo-pic">
@@ -104,8 +144,40 @@
                     {{/each}}
                 </div>
             </div>
+            {{/if}}
+
+            {{#if articles.ngosByInscriptions}}
+            <div class="wrapper-articles" data-typeArticles="subscriptions">
+                <h1 class="title padding-top2 margin-btm1">ONGs que você é inscrito</h1>
+                <div class="group-ngos">
+                    {{#each articles.ngosByInscriptions}}
+                    <article class="feed-ngo">
+                        <a href="{{userName}}">
+                            <figure class="ngo-pic">
+                                <img src="/temp/uploads/profile/{{photoNgo}}" />
+                            </figure>
+                            <h1 class="ngo-name">{{nameNgo}}</h1>
+                        </a>
+                    </article>
+                    {{/each}}
+                </div>
+            </div>
+            {{/if}}
+
         </nav>
+        {{else}}
+        {{!-- ERR Msg --}}
+        <div class="container flex-column align-center margin-top4">
+            <img style="height: 40vh;" src="/assets/imgs/empty4.svg" />
+            <h1 class="big-text text-center margin0 margin-top4">Não esperávamos por essa...</h1>
+            <p class="text text-center margin0 margin-top1">Não conseguimos encontrar nenhum evento ou ONG de acordo
+                com
+                seus interesses.<br>Mas você ainda pode pesquisar por eventos e ONGs ou selecionar filtros
+                diferentes.
+            </p>
+        </div>
         {{/if}}
+
     </div>
 </div>
 

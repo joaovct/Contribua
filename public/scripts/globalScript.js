@@ -231,6 +231,5 @@ function closeAlert(e){
 
 function closeAllAlerts(){
     let E = document.getElementsByClassName('alert')
-    console.log(E)
     for(let e of E) e.style.display = 'none'
 }

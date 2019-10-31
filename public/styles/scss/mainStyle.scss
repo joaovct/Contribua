@@ -236,14 +236,14 @@ header {
         $sizeIcon: 22px;
         li.icon {
           cursor: pointer;
-          
+
           img {
             height: $sizeIcon;
             width: $sizeIcon;
             background: white;
           }
 
-          &.notify:after{
+          &.notify:after {
             content: "!";
             background: red;
             font-size: 12px;
@@ -306,7 +306,7 @@ header {
           }
         }
 
-        .notifications{
+        .notifications {
           @extend %box;
           max-height: 250px;
           width: 300px;
@@ -318,7 +318,7 @@ header {
           overflow: auto;
           padding: 0;
 
-          li{
+          li {
             width: 100%;
             padding: 10px 10px;
             margin-right: 0px;
@@ -327,19 +327,17 @@ header {
             box-sizing: border-box;
             border-bottom: $border;
 
-            img{
+            img {
               width: $sizePicture;
               height: $sizePicture;
               border-radius: 50%;
             }
 
-            span{
+            span {
               margin-left: 5px;
             }
-
           }
         }
-
       }
     }
   }
@@ -509,7 +507,9 @@ img.rounded-pic {
     color: white;
     border-color: $mainColor;
   }
-
+  .form-range {
+    width: 90%;
+  }
   .form-link {
     margin: $margin2 0;
     display: block;
@@ -550,16 +550,18 @@ input[type="submit"] {
 }
 
 .wrapper-options {
-  display: inline;
+  display: inline-flex;
+  flex-flow: column nowrap;
   position: relative;
   .open-options {
+    align-self: flex-start;
     @extend %btn-outlined;
     padding: 5px 10px 5px 10px;
     font-weight: 100;
     color: $mainColor;
     border-color: $lightBlue;
-    border-radius: 4px;
     background: white;
+    display: inline;
     span {
       img {
         height: 15px;
@@ -568,7 +570,8 @@ input[type="submit"] {
       }
     }
   }
-  .options {
+  .options,
+  %options {
     @extend %box;
     max-height: 600px;
     width: 250px;
@@ -578,7 +581,8 @@ input[type="submit"] {
     position: absolute;
     z-index: 2;
     display: none;
-    top: calc(100% + $margin1);
+    top: calc(100% + 10px);
+    left: -50%;
     input.option-checkbox {
       display: none;
     }
@@ -603,24 +607,61 @@ input[type="submit"] {
         width: 20px;
         border: $border;
         border-radius: 2px;
-        transition: .25s;
+        transition: 0.25s;
         background: white;
       }
     }
-    input.option-checkbox:checked + .label-option{
-      .option-marker{
+    input.option-checkbox:checked + .label-option {
+      .option-marker {
         background: $mainColor;
         border-color: $mainColor;
         display: flex;
         justify-content: center;
         align-items: center;
-        &:before{
-          content: '';
+        &:before {
+          content: "";
           position: relative;
           height: 15px;
           width: 15px;
-          background-image: url('../../assets/imgs/checkWhite.svg');
+          background-image: url("../../assets/imgs/checkWhite.svg");
           background-size: cover;
+        }
+      }
+    }
+  }
+  .options-range {
+    @extend %options;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      height: 5px;
+      background: $lightGray;
+      border-radius: 7px;
+      outline: none;
+      padding: 0;
+      margin: 0;
+      transition: background .15s ease-in-out;
+      &:hover{
+        background: $mainColorLighter;
+      }
+    }
+    .tick-numbers {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      span {
+        flex: 1 1 0;
+        text-align: center;
+        font-size: 1rem;
+        line-height: 15px;
+        margin-bottom: $margin1;
+        &:nth-child(odd) {
+        }
+        &:nth-child(even) {
+          color: white;
         }
       }
     }

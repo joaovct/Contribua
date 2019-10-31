@@ -1,6 +1,6 @@
 // COLORS
 $mainColor: #3171e0;
-$mainColorLighter1:rgb(82, 137, 231);
+$mainColorLighter:rgb(82, 137, 231);
 $lightBlue: #E0EAFB;
 $lightBlue2: rgb(250, 250, 255);
 $successColor: #2bd659;
@@ -288,6 +288,10 @@ $borderColor: #eeeeee;
   }
 }
 
+.full-width{
+  width: 100%;
+}
+
 .width-100{
   width: 100vw;
 }
@@ -320,12 +324,20 @@ $borderColor: #eeeeee;
   width: 10vw;
 }
 
+%display-block, .display-block{
+  display: block;
+}
+
 %display-inline, .display-inline{
   display: inline;
 }
 
 %display-flex, .display-flex{
   display: flex;
+}
+
+%display-inlineFlex, .display-inlineFlex{
+  display: inline-flex;
 }
 
 %justifyContent-start, .justifyContent-start{
@@ -341,6 +353,16 @@ $borderColor: #eeeeee;
 %justifyContent-end, .justifyContent-end{
   @extend %display-flex;
   justify-content: flex-end;
+}
+
+%justifyContent-between, .justifyContent-between{
+  @extend %display-flex;
+  justify-content: space-between;
+}
+
+%justifyContent-around, .justifyContent-around{
+  @extend %display-flex;
+  justify-content: space-around;
 }
 
 %grow-0, .grow-0{
