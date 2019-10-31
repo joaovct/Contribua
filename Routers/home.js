@@ -18,48 +18,64 @@ router.get("/", async (req, res) => {
         res.render("ngo/Home", {dataHeaderNgo: req.session.ngo, actions, causes})
 
     }else{
+        // Get articles
         let recommendedActions = await actionController.listRecommendedActions(req.session.user.idVolunteer)
+        let actionsByInscriptions = await actionController.listActionsByInscriptions(req.session.user.idVolunteer)
         let recommendedNgos = await userNgoController.listRecommendedNgos(req.session.user.idVolunteer)
+        let ngosByInscriptions = await userNgoController.listNgo(req.session.user.idVolunteer)
+
+        // Get user cases and cases that user does not participe
         const userCauses = await causesController.listCausesUser(req.session.user.idVolunteer)
         const causesNotParticipe = await causesController.listCausesNotParticipeUser(req.session.user.idVolunteer)
 
         // Format each action
-        for(let action of recommendedActions) action = feedUtilities.formatAction(action)
 
-        let actions = {recommendedActions, recommendedNgos}
-        // Set to false actions if is empty
-        if(actions.recommendedActions.length < 1 && actions.recommendedNgos < 1) actions = false
+        let articles = {recommendedActions, actionsByInscriptions, ngosByInscriptions,recommendedNgos}
 
-        res.render("user/home", {dataHeader: req.session.user, ngos: req.session.ngoUser, actions, userCauses, causesNotParticipe})
+        // Set to false if is empty
+        if(articles.recommendedActions.length < 1
+        && articles.actionsByInscriptions.length < 1
+        && articles.recommendedNgos.length < 1
+        && articles.ngosByInscriptions.length < 1) actions = false
+
+        res.render("user/home", {dataHeader: req.session.user, ngos: req.session.ngoUser, articles, userCauses, causesNotParticipe})
     }
 })
 
 router.post("/filter", async(req, res) => {
     let actions = []
     let ngos = []
+    let district
 
-    if(req.query.key === "subscriptions") actions = await actionController.listActionsByInscriptions(req.session.user.idVolunteer)
+    if(req.query.key === "subscriptions"){
+        actions = await actionController.listActionsByInscriptions(req.session.user.idVolunteer)
+        ngos = await userNgoController.listNgo(req.session.user.idVolunteer)
+    }
 
     else if(req.query.key === "recommended"){
         actions = await actionController.listRecommendedActions(req.session.user.idVolunteer)
         ngos = await userNgoController.listRecommendedNgos(req.session.user.idVolunteer)
+    }
     
-    }else if(req.query.key === "recents") actions = await actionController.listRecentActions()
+    else if(req.query.key === "recents") actions = await actionController.listRecentActions()
     
-    else if(req.query.key === "proximity") actions = await actionController.listActionsByProximity(req.session.user.idVolunteer)
-    
-    // Name ngo
+    else if(req.query.key === "proximity"){
+        let data = await actionController.listActionsByProximity(req.session.user.idVolunteer)
+        actions = data.actions
+        district = data.district
+    } 
+
+    // Pass to front an array with the name of ngos
     let nameNgos = []
     if(actions.length > 0){
         for(let action of actions){
             let ngo = await ngoController.listOneNgo(action.idNgo)
             nameNgos.push(ngo.nameNgo)
         }
-    }
-    // }else actions = false
+    }else actions = false
 
     articles = {
-        actions,ngos,nameNgos,typeArticles: req.query.key
+        actions,ngos,district, nameNgos,typeArticles: req.query.key
     }
 
     res.json(articles)

@@ -82,7 +82,6 @@ module.exports = {
                 }
             }
         }
-
         return allNgos
     },
     async listUser(idNgo){

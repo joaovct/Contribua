@@ -1,12 +1,16 @@
+const sequelize = require('sequelize')
+const Op = sequelize.Op
 const axios = require('axios')
 const Action = require("../models/Action")
 const Volunteer = require('../Models/Volunteer')
 const Ngo = require('../Models/Ngo')
+const UserNgo = require('../Models/UserNgo')
 const CategoryAction = require('../Models/CategoryAction')
 const causesController = require("./causesController")
 const vacancyController = require("./vacancyActionController")
 const userNgo = require("./userNgoController")
-
+const feedUtilities = require('../helpers/feedUtilities')
+let maxShow = 8
 module.exports = {
     async register(dataAction, dataPhoto, idNgo){
 
@@ -54,42 +58,6 @@ module.exports = {
         }
         return action
     },
-    
-    async listRecommendedActions(idVolunteer){
-        // get actions by causes
-        const causes = await causesController.listCausesUser(idVolunteer)
-        const actionsByCauses = await this.listActionByCauses(causes)
-        for(let action of actionsByCauses){
-            ngo = await Ngo.findOne({where: {idNgo: action.idNgo}, attributes: ['userName','nameNgo']})
-            action.nameNgo = ngo.nameNgo
-            action.username = ngo.userName
-        }
-        // get actions by skills
-        // get actions by local
-
-        // randomize actions
-        let numbers = [], maxShow = 8, lengthArray = actionsByCauses.length
-
-        if(lengthArray < maxShow) maxShow = lengthArray
-
-        for(var i = 0; i < maxShow;){
-            let pass = true, number = Math.floor((Math.random() * lengthArray - 1) + 1)
-            for(let n of numbers) if(n==number) pass = false
-            if(pass){
-                numbers.push(number)
-                i++;
-            } 
-        }
-
-        let actions = numbers.map((number)=>{
-            return actionsByCauses[number]
-        })
-
-        return actions
-        
-        
-    },
-
     async listActionByCauses(causes){
         let actions = []
         let idActions = []
@@ -126,7 +94,40 @@ module.exports = {
                 }
             }
         }
+
+        for(let action of actions) action = await feedUtilities.formatAction(action)
+
         return actions
+    },
+    async listRecommendedActions(idVolunteer){
+        // get actions by causes
+        const causes = await causesController.listCausesUser(idVolunteer)
+        const actionsByCauses = await this.listActionByCauses(causes)
+        // get actions by skills
+
+        // randomize actions
+        let numbers = [], lengthArray = actionsByCauses.length
+
+        if(lengthArray < maxShow) maxShow = lengthArray
+
+        for(var i = 0; i < maxShow;){
+            let pass = true, number = Math.floor((Math.random() * lengthArray - 1) + 1)
+            for(let n of numbers) if(n==number) pass = false
+            if(pass){
+                numbers.push(number)
+                i++;
+            } 
+        }
+
+        let actions = numbers.map((number)=>{
+            return actionsByCauses[number]
+        })
+
+        for(let action of actions) action = await feedUtilities.formatAction(action)
+
+        return actions
+        
+        
     },
     async listActionsByInscriptions(idUser){
         let ngos = await userNgo.listNgo(idUser)
@@ -137,26 +138,64 @@ module.exports = {
                 actions.push(actionsNgo[j])
             }
         }
+        
+        for(let action of actions) action = await feedUtilities.formatAction(action)
+
         return actions
     },
     async listRecentActions(){
-        let limit = 8
-        let actions = await Action.findAll({limit: limit, order: [ ['createdAt','DESC'] ]})
+        let actions = await Action.findAll({limit: maxShow, order: [ ['createdAt','DESC'] ]})
+        for(let action of actions) action = await feedUtilities.formatAction(action)
         return actions
     },
-    async listActionsByProximity(idUser){
-        let data  = await Volunteer.findOne({where: {idVolunteer: idUser}})
+    async listActionsByProximity(idUser){  
+        
+        let vAddress = await Volunteer.findOne({where: {idVolunteer: idUser}})
+        let actions = await Action.findAll({attributes: ['idAction','addressAction', 'numAddressAction', 'districtAction']})
 
         let apiKey = 'AIzaSyDRkU_fs2PEkgQpl9VaH4RjIbwBpng1X4Y'
-        let cityOrigin = "Rua cacarema"
-        let cityDestination = "Rio de Janeiro"
-        let options = {
-            url: `https://maps.googleapis.com/maps/api/distancematrix/json?&origins=${cityOrigin}&destinations=${cityDestination}&key=${apiKey}`,
+        let origin = this.formatText(vAddress.addressVolunteer + " " + vAddress.districtVolunteer)
+        let destination = ""
+
+        // Join actions address and format
+        for(let a of actions) destination += `| ${a.addressAction} ${a.numAddressAction} ${a.districtAction}`
+        destination = this.formatText(destination)
+
+        let options = { 
+            url: `https://maps.googleapis.com/maps/api/distancematrix/json?&origins=${origin}&destinations=${destination}&key=${apiKey}`,
         }
-    
-        return await axios(options).then(response => {
-            console.log(response.data)
-            return response.data
+
+        // Get distance
+        let distance = await axios(options).then(response => {
+            return response.data.rows[0].elements
         })
-    }
+
+        // Get id from close actions
+
+        let radius = 35
+        let idActions = []
+        for(let i = 0; i < actions.length; i++){
+            let d = Math.round(distance[i].distance.value/1000)
+            if(d <= radius) idActions.push(actions[i].idAction)
+        }
+        let data = {
+            actions: await Action.findAll({where: {idAction: idActions}}),
+            district: vAddress.districtVolunteer 
+        }
+
+        for(let action of data.actions) action = await feedUtilities.formatAction(action)
+
+        return data
+    },
+    formatText (text){
+        text = text.toLowerCase();                                                         
+        text = text.replace(new RegExp('[ÁÀÂÃ]','gi'), 'a')
+        text = text.replace(new RegExp('[ÉÈÊ]','gi'), 'e')
+        text = text.replace(new RegExp('[ÍÌÎ]','gi'), 'i')
+        text = text.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o')
+        text = text.replace(new RegExp('[ÚÙÛ]','gi'), 'u')
+        text = text.replace(new RegExp('[Ç]','gi'), 'c')
+        return text
+    } 
 }
+

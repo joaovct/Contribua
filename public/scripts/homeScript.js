@@ -70,8 +70,8 @@ writeActions = (articles) => {
     // Give a title to group actions
     if(articles.typeArticles === "subscriptions") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend('<h1 class="title padding-top2 margin-btm1">Eventos de suas inscrições</h1>')
     else if(articles.typeArticles === "recommended") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend('<h1 class="title padding-top2 margin-btm1">Eventos recomendados</h1>')
-    else if(articles.typeArticles === "recents") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend('<h1 class="title padding-top2 margin-btm1">Recentes</h1>')
-
+    else if(articles.typeArticles === "recents") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend('<h1 class="title padding-top2 margin-btm1">Eventos mais recentes</h1>')
+    else if(articles.typeArticles === "proximity") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend(`<h1 class="title padding-top2 margin-btm1">Eventos próximos a ${articles.district}</h1>`)
     // Write actions
     for(let i = 0; i < articles.actions.length; i++){
         let action = articles.actions[i]
@@ -108,7 +108,7 @@ writeNgos = (articles) => {
 
     // Give a title to group ngos
     if(articles.typeArticles === "recommended") $(`[data-typeArticles="${articles.typeArticles}`+'ngos'+`"]`).prepend('<h1 class="title padding-top2 margin-btm1">ONGs recomendadas</h1>')
-
+    if(articles.typeArticles === "subscriptions") $(`[data-typeArticles="${articles.typeArticles}`+'ngos'+`"]`).prepend('<h1 class="title padding-top2 margin-btm1">ONGs que você é inscrito</h1>')
     // Write ngos
     for(let ngo of articles.ngos){
         $(`[data-typeGroup="${articles.typeArticles}`+'ngos'+`"]`).append(
