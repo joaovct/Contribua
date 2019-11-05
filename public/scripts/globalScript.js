@@ -10,14 +10,26 @@ socket.on('init', (dataSession) => {
 socket.on('notificationNgo', (notificationsNgo) => {
     let oldNotifications = notificationsNgo.oldNotifications
     let newNotifications = notificationsNgo.newNotifications
-    
-    if(oldNotifications)
-        if(oldNotifications[0].idNgo === session.ngo.idNgo)
-            $(notifications).html('')
 
-    if(newNotifications)
-        if(newNotifications[0] === session.ngo.idNgo)
-            $(notifications).html('')
+    if(oldNotifications.length != 0){
+        if(Array.isArray(oldNotifications)){
+            if(oldNotifications[0].notification.idNgo === session.ngo.idNgo)
+                $(notifications).html('')
+        }else{
+            if(oldNotifications.notification.idNgo === session.ngo.idNgo)
+                $(notifications).html('')
+        }
+    }
+
+    if(newNotifications.length != 0){
+        if(Array.isArray(newNotifications)){
+            if(newNotifications[0].notification.idNgo === session.ngo.idNgo)
+                $(notifications).html('')
+        }else{
+            if(newNotifications.notification.idNgo === session.ngo.idNgo)
+                $(notifications).html('')
+        }
+    }
 
     //notifications already viewed
     writeOldNotificationNgo(oldNotifications)

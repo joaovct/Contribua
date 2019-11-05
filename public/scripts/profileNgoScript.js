@@ -18,7 +18,7 @@ btnSubscribe.addEventListener("click", async () => {
         lblSubscribe.innerHTML = "Inscrito"
         btnSubscribe.value = "on"
 
-        // await $.post("http://localhost:3000/subscribe?idNgo="+idNgo)
+        await $.post("http://localhost:3000/subscribe?idNgo="+idNgo)
 
     }
     
