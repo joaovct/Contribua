@@ -15,3 +15,26 @@ function initMap(){
     })
     
 }
+
+const lblSubscribe = document.getElementById("subscribe")
+const btnSubscribe = document.getElementById("checkbox-subscribe")
+const btnCancel = document.getElementById("cancel-subcribe")
+const idAction = parseInt(lblSubscribe.parentNode.id)
+
+btnSubscribe.addEventListener("click", async () => {
+    if(btnSubscribe.value === "on"){
+        lblSubscribe.innerHTML = "Inscrever-se"
+        btnSubscribe.value = "off"
+
+        // await $.post("http://localhost:3000/subscribe?unsubscribe=true&idNgo="+idNgo)
+    }else{   
+
+        lblSubscribe.innerHTML = "Inscrito"
+        btnSubscribe.value = "on"
+        await $.post("http://localhost:3000/event/subscribe?idAction="+idAction)
+    }
+})
+
+btnCancel.addEventListener("click", () => {
+    $('.overlay-job').slideUp('fast')
+})
