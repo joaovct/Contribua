@@ -37,6 +37,6 @@ const NotificationNgo = db.sequelize.define("tbNotificationNgo", {
     collate: "utf8_general_ci"
 })
 
-//NotificationNgo.sync({force: true})
+// NotificationNgo.sync({force: true})
 
 module.exports = NotificationNgo

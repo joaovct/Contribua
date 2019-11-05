@@ -822,6 +822,35 @@ div.overlay {
       }
     }
   }
+  .member-options-icon{
+    height: 40px;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 12.5px;
+    cursor: pointer;
+    box-sizing: border-box;
+    background: white;
+    border: $border;
+    border-radius: 100%;
+    img{
+      height: auto;
+      width: 100%;
+    }
+  }
+  .member-options{
+    height: auto;
+    width: auto;
+    @extend %box;
+    position: absolute;
+    right: $margin2 * -1;
+    margin-top: $margin2 * -1;
+    padding: 0;
+    z-index: 999;
+    display: none;
+  }
   .table-header {
     width: 100%;
     .row {
@@ -841,30 +870,15 @@ div.overlay {
       transition: 0.5s;
       border-radius: 7px;
       align-items: center;
+      cursor: default;
       &:nth-child(even) {
         background: #f9f9f9;
       }
       &:hover {
-        background: $lightBlue2 !important;
+        background: $lightBlue2;
         .member-options-icon{
           visibility: visible;
         }
-      }
-    }
-  }
-  .wrapper-options{
-    .member-options-icon{
-      height: 45px;
-      width: 45px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 100%;
-      margin: 0 $margin2 0 0;
-      padding: 12.5px;
-      img{
-        height: auto;
-        width: 100%;
       }
     }
   }

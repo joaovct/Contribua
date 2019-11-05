@@ -37,6 +37,6 @@ const NotificationVolunteer = db.sequelize.define("tbNotificationVolunteer", {
     collate: "utf8_general_ci"
 })
 
-//NotificationVolunteer.sync({force: true})
+// NotificationVolunteer.sync({force: true})
 
 module.exports = NotificationVolunteer

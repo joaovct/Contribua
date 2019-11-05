@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/styles/css/homeUser.css" />
+<script src="/scripts/homeNgoScript.js"></script>
 <div class="centralize padding-top4">
     <div class="container">
         <div class="feed-header">
@@ -64,11 +65,9 @@
                         <div class="flex-row">Tipo de membro</div>
                         <div class="flex-row">Avaliação</div>
                         <div class="flex-row">N° de eventos participados</div>
-                        <div class="wrapper-options">
-                            <figure class="member-options-icon visibility-hidden">
-                                <img src="/assets/imgs/threedots.svg">
-                            </figure>
-                        </div>
+                        <figure class="member-options-icon visibility-hidden">
+                            <img src="/assets/imgs/threedots.svg">
+                        </figure>
                     </div>
                 </div>
                 <div class="table-body">
@@ -88,17 +87,15 @@
                         </div>
                         <div class="flex-row">4,6/5</div>
                         <div class="flex-row">12</div>
-                        <div class="wrapper-options">
-                            <figure onclick="$('.member-options-1').toggle('fast')" class="open-options member-options-icon">
-                                <img src="/assets/imgs/threedots.svg">
-                            </figure>
-                            <div class="options member-options-1">
-                                <ul class="items">
-                                    <li class="item">Tornar administrador</li>
-                                    <li class="item">Expulsar</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <figure onclick="hideOptions('.member-options-1')" class="member-options-icon">
+                            <img src="/assets/imgs/threedots.svg">
+                        </figure>
+                    </div>
+                    <div class="member-options member-options-1 mouseUpSlideUp">
+                        <ul class="items">
+                            <li class="item">Tornar administrador</li>
+                            <li class="item red">Cancelar inscrição</li>
+                        </ul>
                     </div>
                     <div class="row">
                         <div class="flex-row">
@@ -113,17 +110,15 @@
                         <div class="flex-row">Voluntário</div>
                         <div class="flex-row">3.7/5</div>
                         <div class="flex-row">26</div>
-                        <div class="wrapper-options">
-                            <figure onclick="$('.member-options-4').toggle('fast')" class="open-options member-options-icon">
-                                <img src="/assets/imgs/threedots.svg">
-                            </figure>
-                            <div class="options member-options-4">
-                                <ul class="items">
-                                    <li class="item">Tornar administrador</li>
-                                    <li class="item">Expulsar</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <figure onclick="hideOptions('.member-options-2');" class="member-options-icon">
+                            <img src="/assets/imgs/threedots.svg">
+                        </figure>
+                    </div>
+                    <div class="member-options member-options-2 mouseUpSlideUp">
+                        <ul class="items">
+                            <li class="item">Tornar administrador</li>
+                            <li class="item red">Cancelar inscrição</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -136,7 +131,6 @@
 </div>
 
 <script>
-    //$( '.feed-members' ).hide();
+    $( '.feed-members' ).hide();
     $( '.feed-search' ).hide()
-    $( '.feed-events' ).hide();
 </script>

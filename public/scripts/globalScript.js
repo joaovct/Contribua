@@ -125,18 +125,6 @@ function changeOpacity(x, el, n){
     }
 }
 
-function progressStep(el, n){
-    if(n!=undefined && n > -1){
-        el = document.getElementsByClassName(el)[n]
-        el.classList.add('progress')
-    }else{
-        el = document.getElementsByClassName(el)
-        for(let i of el){
-            i.classList.add('progress')
-        }
-    }
-}
-
 function removeDiv(el){
     $(el).fadeOut(300,()=>{
         $(this).remove()
@@ -168,12 +156,10 @@ function addClass(el, Class, n){
 }
 
 $(document).mouseup((e)=>{
-    if(!$('.search-results').is(e.target) && $('.search-results').has(e.target).length === 0){
-        removeDiv('.search-results')
-    }
-    if(!$('.header-options').is(e.target) && $('.header-options').has(e.target).length === 0){
-        $('.header-options').hide('fast')
-    }
+    if(!$('.mouseUpHide').is(e.target) && $('.mouseUpHide').has(e.target).length === 0) $('.mouseUpHide').hide()
+    if(!$('.mouseUpFadeOut').is(e.target) && $('.mouseUpFadeOut').has(e.target).length === 0) $('.mouseUpFadeOut').fadeOut('fast')
+    if(!$('.mouseUpSlideUp').is(e.target) && $('.mouseUpSlideUp').has(e.target).length === 0) $('.mouseUpSlideUp').slideUp('fast')
+
 })
 
 function doSearch(input){
@@ -191,7 +177,7 @@ function doSearch(input){
                     else if(object.typeResult == "case") cases.push(object)
                 }
                 if(data.length > 0){
-                    $('.search-form').append('<ul class="search-results"></ul>')
+                    $('.search-form').append('<ul class="search-results mouseUpFadeOut"></ul>')
                     if(volunteers.length>0) writeVolunteers(volunteers)
                     if(ngos.length>0) writeNgos(ngos)
                 }
