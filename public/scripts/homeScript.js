@@ -195,7 +195,6 @@ checksContent = () => {
     for(let hc of hasContent) if(hc) checks = true
     
     if(!checks){
-        console.log('alow')
         removeNoneArticles()
         writeNoneArticles()
     }

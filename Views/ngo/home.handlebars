@@ -15,7 +15,6 @@
             </ul>
             <a href="/event"><button class="btn-callaction">Criar um evento</button></a>
         </div>
-
         <div class="group-nav feed-events" id="ngo-events">
             {{#if actions}}
             {{#if actions.activeActions}}
@@ -25,19 +24,19 @@
                     {{#each actions.activeActions}}
                     <article class="feed-article">
                         <a href="event/{{idAction}}">
-                        <figure class="article-image">
-                            <img src="/temp/uploads/action/{{photoAction}}" />
-                        </figure>
-                        <div class="article-content">
-                            <h1 class="article-title">{{nameAction}}</h1>
-                            <h3 class="article-subitle">{{descriptionAction}}
-                            </h3>
-                            <div class="article-ngo-details">
-                                <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
-                                <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
-                                    {{createdAt.year}}</p>
+                            <figure class="article-image">
+                                <img src="/temp/uploads/action/{{photoAction}}" />
+                            </figure>
+                            <div class="article-content">
+                                <h1 class="article-title">{{nameAction}}</h1>
+                                <h3 class="article-subitle">{{descriptionAction}}
+                                </h3>
+                                <div class="article-ngo-details">
+                                    <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
+                                    <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
+                                        {{createdAt.year}}</p>
+                                </div>
                             </div>
-                        </div>
                         </a>
                     </article>
                     {{/each}}
@@ -57,20 +56,87 @@
         </div>
 
         <div class="group-nav feed-members" id="ngo-members">
-            <nav class="nav-articles">
-                <h1 class="title padding-top2 margin-btm1">Membros da ONG</h1>
-            </nav>
+            <h1 class="title padding-top2 margin-btm1">Membros da ONG (2)</h1>
+            <div class="table-container">
+                <div class="table-header">
+                    <div class="row">
+                        <div class="flex-row">Nome completo</div>
+                        <div class="flex-row">Tipo de membro</div>
+                        <div class="flex-row">Avaliação</div>
+                        <div class="flex-row">N° de eventos participados</div>
+                        <div class="wrapper-options">
+                            <figure class="member-options-icon visibility-hidden">
+                                <img src="/assets/imgs/threedots.svg">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="row">
+                        <div class="flex-row">
+                            <figure class="table-pic">
+                                <img src="/temp/uploads/profile/user.svg" />
+                            </figure>
+                            <article class="margin-left1">
+                                <h1 class="small-text medium-weight-text margin0 padding0">João Victor da Silva Pereira
+                                </h1>
+                                <p class="gray smallest-text margin0 padding0">São Paulo, SP.</p>
+                            </article>
+                        </div>
+                        <div class="flex-row">
+                            <p><span class="blue-rounded">Administrador</span></p>
+                        </div>
+                        <div class="flex-row">4,6/5</div>
+                        <div class="flex-row">12</div>
+                        <div class="wrapper-options">
+                            <figure onclick="$('.member-options-1').toggle('fast')" class="open-options member-options-icon">
+                                <img src="/assets/imgs/threedots.svg">
+                            </figure>
+                            <div class="options member-options-1">
+                                <ul class="items">
+                                    <li class="item">Tornar administrador</li>
+                                    <li class="item">Expulsar</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="flex-row">
+                            <figure class="table-pic">
+                                <img src="/temp/uploads/profile/felipe.jpg" />
+                            </figure>
+                            <article class="margin-left1">
+                                <h1 class="small-text medium-weight-text margin0 padding0">Felipe Gringonelli</h1>
+                                <p class="gray smallest-text margin0 padding0">São Paulo, SP.</p>
+                            </article>
+                        </div>
+                        <div class="flex-row">Voluntário</div>
+                        <div class="flex-row">3.7/5</div>
+                        <div class="flex-row">26</div>
+                        <div class="wrapper-options">
+                            <figure onclick="$('.member-options-4').toggle('fast')" class="open-options member-options-icon">
+                                <img src="/assets/imgs/threedots.svg">
+                            </figure>
+                            <div class="options member-options-4">
+                                <ul class="items">
+                                    <li class="item">Tornar administrador</li>
+                                    <li class="item">Expulsar</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="group-nav feed-search" id="search-volunteers">
-            <nav class="nav-articles">
-                <h1 class="title padding-top2 margin-btm1">Procurar por voluntários</h1>
-            </nav>
+            <h1 class="title padding-top2 margin-btm1">Procurar por voluntários</h1>
         </div>
     </div>
 </div>
 
 <script>
-    $( '#ngo-members' ).hide();
-    $( '#search-volunteers' ).hide()
+    //$( '.feed-members' ).hide();
+    $( '.feed-search' ).hide()
+    $( '.feed-events' ).hide();
 </script>
