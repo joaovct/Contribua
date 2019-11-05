@@ -155,11 +155,12 @@ function addClass(el, Class, n){
     }
 }
 
-$(document).mouseup((e)=>{
-    if(!$('.mouseUpHide').is(e.target) && $('.mouseUpHide').has(e.target).length === 0) $('.mouseUpHide').hide()
-    if(!$('.mouseUpFadeOut').is(e.target) && $('.mouseUpFadeOut').has(e.target).length === 0) $('.mouseUpFadeOut').fadeOut('fast')
-    if(!$('.mouseUpSlideUp').is(e.target) && $('.mouseUpSlideUp').has(e.target).length === 0) $('.mouseUpSlideUp').slideUp('fast')
+function alow(msg){
+    console.log('alow '+msg)
+}
 
+$(document).mouseup((e)=>{
+    if(!$('.search-results').is(e.target) && $('.search-results').has(e.target).length === 0) $('.search-results').fadeOut('fast')
 })
 
 function doSearch(input){

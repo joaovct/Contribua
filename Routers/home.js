@@ -10,12 +10,14 @@ router.get("/", async (req, res) => {
     const causes = await causesController.listCauses()
     if(req.session.ngo){
         let activeActions = await actionController.listActiveActionsNgo(req.session.ngo.idNgo)
+        const ngoCauses = await causesController.listCausesNgo(req.session.ngo.idNgo)
+        const causesNotParticipe = await causesController.listCausesNotParticipeNgo(req.session.ngo.idNgo)
         for(let action of activeActions) action = feedUtilities.formatAction(action)
         let actions = {
             activeActions
         }
         if(actions.activeActions.length == 0) actions = false
-        res.render("ngo/Home", {dataHeaderNgo: req.session.ngo, actions, causes})
+        res.render("ngo/Home", {dataHeaderNgo: req.session.ngo, actions, ngoCauses, causesNotParticipe})
 
     }else{
         // Get articles

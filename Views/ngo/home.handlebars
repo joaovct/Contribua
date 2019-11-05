@@ -4,14 +4,14 @@
     <div class="container">
         <div class="feed-header">
             <ul class="group-categories">
-                <a class="home-link medium-text margin-right1"
-                    onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 0); $('.group-nav').hide(); $('.feed-events').show()"
+                <a class="home-link medium-text margin-right2"
+                    onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 0); $('.group-nav').fadeOut('fast'); $('.feed-events').fadeIn('fast')"
                     href="#">Meus eventos</a>
-                <a class="home-link medium-text gray margin-right1"
-                    onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 1); $('.group-nav').hide(); $('.feed-members').show()"
+                <a class="home-link medium-text gray margin-right2"
+                    onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 1); $('.group-nav').fadeOut('fast'); $('.feed-members').fadeIn('fast')"
                     href="#">Membros</a>
                 <a class="home-link medium-text gray"
-                    onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 2); $('.group-nav').hide(); $('.feed-search').show()"
+                    onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 2); $('.group-nav').fadeOut('fast'); $('.feed-search').fadeIn('fast')"
                     href="#">Procurar voluntários</a>
             </ul>
             <a href="/event"><button class="btn-callaction">Criar um evento</button></a>
@@ -47,10 +47,9 @@
             {{else}}
             {{!-- ERR Msg --}}
             <div class="container flex-column align-center margin-top4">
-                <img style="height: 40vh;" src="/assets/imgs/empty2.svg" />
+                <img style="height: 35vh;" src="/assets/imgs/empty2.svg" />
                 <h1 class="big-text text-center margin0 margin-top4">Nada encontrado!</h1>
-                <p class="text text-center margin0 margin-top1">Parece que sua ONG não tem nenhum evento de acordo com
-                    esses filtros.</p>
+                <p class="text text-center margin0 margin-top1">Parece que sua ONG ainda não tem nenhum evento.</p>
             </div>
 
             {{/if}}
@@ -125,12 +124,62 @@
         </div>
 
         <div class="group-nav feed-search" id="search-volunteers">
-            <h1 class="title padding-top2 margin-btm1">Procurar por voluntários</h1>
+            <h1 class="title padding-top2 margin-btm1">Procurar por novos voluntários</h1>
+            <form class="form full-width">
+                <div class="wrapper-options">
+                    <div onclick="$('.cause-options').toggle('fast')" class="open-options callShow margin-right1">
+                        <span>Causas <img src="/assets/imgs/arrow-down.svg" /></span>
+                    </div>
+                    <div class="options cause-options ">
+                        {{#each ngoCauses}}
+                        <input type="checkbox" class="option-checkbox" value="{{descCategory}}" id="{{descCategory}}"
+                            name="categories" class="form-checkbox" checked>
+                        <label for="{{descCategory}}" class="label-option">
+                            <div class="option-marker"></div>{{descCategory}}
+                        </label>
+                        {{/each}}
+                        {{#each causesNotParticipe}}
+                        <input type="checkbox" class="option-checkbox" value="{{descCategory}}" id="{{descCategory}}"
+                            name="categories" class="form-checkbox">
+                        <label for="{{descCategory}}" class="label-option">
+                            <div class="option-marker"></div>{{descCategory}}
+                        </label>
+                        {{/each}}
+                    </div>
+                </div>
+
+                <div class="wrapper-options">
+                    <div onclick="$('.skills-options').toggle('fast')" class="open-options callShow margin-right1">
+                        <span>Habilidades <img src="/assets/imgs/arrow-down.svg" /></span>
+                    </div>
+                    <div class="options skills-options ">
+                        <input type="checkbox" class="option-checkbox" value="habilidade" id="habilidade"
+                            name="categories" class="form-checkbox" checked>
+                        <label for="habilidade" class="label-option">
+                            <div class="option-marker"></div>Habilidade
+                        </label>
+                    </div>
+                </div>
+
+                <input onclick="" type="checkbox" id="filter-proximity" value="proximity" class="form-checkbox">
+                <label for="filter-proximity" class="form-btnCheckbox open-options">Proximidade</label>
+
+                <div class="search-bar margin-top2">
+                    <input class="form-input display-inline" type="text" placeholder="Pesquise por voluntários"/>
+                    <img src="/assets/imgs/search.svg"/>
+                </div>
+            </form>
+            <div class="container flex-column align-center margin-top4">
+                <img style="height: 35vh;" src="/assets/imgs/empty2.svg" />
+                <h1 class="big-text text-center margin0 margin-top4">Nada encontrado!</h1>
+                <p class="text text-center margin0 margin-top1">Não conseguimos encontrar nenhum voluntário por meio desses filtros.</p>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
     $( '.feed-members' ).hide();
-    $( '.feed-search' ).hide()
+    //$( '.feed-search' ).hide()
+    $('.feed-events').hide()
 </script>

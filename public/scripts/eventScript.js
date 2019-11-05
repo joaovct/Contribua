@@ -6,8 +6,9 @@ function initMap(){
     let cep = address.dataset.cep
     address = address.dataset.address
     console.log(`${address} ${number} ${district}`)
-    let apiKey = ''
+    let apiKey = 'AIzaSyA36tg5LqcFuIXDpeMtAlDeVGj87qqxrVk'
     $.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${address} ${number} ${district}+CA&key=${apiKey}`, (data)=>{
+        console.log(data)
         let location = data.results[0].geometry.location
         let position = {lat: location.lat, lng: location.lng}
         let map = new google.maps.Map(document.getElementById('map'), {zoom: 20, center: position})

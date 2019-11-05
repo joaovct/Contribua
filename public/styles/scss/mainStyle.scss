@@ -498,6 +498,9 @@ img.rounded-pic {
     margin: 0 5px 7px 5px;
     cursor: pointer;
     transition: 0.25s;
+    &::first-letter{
+      text-transform: uppercase;
+    }
   }
   input[type="checkbox"].form-checkbox,
   input[type="radio"],
@@ -613,6 +616,9 @@ input[type="submit"] {
         transition: 0.25s;
         background: white;
       }
+    }
+    label.label-option::first-letter{
+      color: red;
     }
     input.option-checkbox:checked + .label-option {
       .option-marker {
