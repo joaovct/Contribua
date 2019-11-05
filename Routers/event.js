@@ -56,4 +56,8 @@ router.post("/register", multer(multerConfig.action()).single('thumbnail'), asyn
     return res.redirect("/home")
 })
 
+router.post("/subscribe", async (req, res) => {
+    await actionController.subscribe(req.session.user.idVolunteer, req.query.idAction)
+})
+
 module.exports = router

@@ -31,7 +31,6 @@ const ActionVolunteer = db.sequelize.define("tbActionVolunteer", {
         type: db.Sequelize.DATE
     },
     attendance: {
-        allowNull: false,
         type: db.Sequelize.STRING(25)
     }
 }, {

@@ -10,6 +10,7 @@ const causesController = require("./causesController")
 const vacancyController = require("./vacancyActionController")
 const userNgo = require("./userNgoController")
 const feedUtilities = require('../helpers/feedUtilities')
+const ActionVolunteer = require('../models/ActionVolunteer')
 let maxShow = 8
 module.exports = {
     async register(dataAction, dataPhoto, idNgo){
@@ -44,6 +45,14 @@ module.exports = {
                             }
         //cadastra vagas
         await vacancyController.register(dataVacancy, action.idAction)
+    },
+    async subscribe(idUser, idAction){
+        console.log('passou')
+        await ActionVolunteer.create({
+            idVolunteer: idUser,
+            idAction: idAction,
+            dateInterest: Date.now(),
+        })
     },
     async listOneAction(idAction){
         const action = await Action.findOne({where: {idAction: idAction}})
