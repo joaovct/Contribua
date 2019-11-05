@@ -162,7 +162,7 @@ module.exports = {
         let vAddress = await Volunteer.findOne({where: {idVolunteer: idUser}})
         let actions = await Action.findAll({attributes: ['idAction','addressAction', 'numAddressAction', 'districtAction']})
 
-        let apiKey = 'AIzaSyDRkU_fs2PEkgQpl9VaH4RjIbwBpng1X4Y'
+        let apiKey = ''
         let origin = this.formatText(vAddress.addressVolunteer + " " + vAddress.districtVolunteer)
         let destination = ""
 

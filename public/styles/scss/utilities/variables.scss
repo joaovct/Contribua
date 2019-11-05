@@ -72,7 +72,7 @@ $borderColor: #eeeeee;
 }
 
 %smallest-text, .smallest-text{
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 %small-text, .small-text {
@@ -105,6 +105,25 @@ $borderColor: #eeeeee;
 
 %blue, .blue {
   color: $mainColor;
+}
+
+%span-rounded, .span-rounded{
+  padding: 5px 10px 5px 10px;
+  border-radius: 7px;
+  text-align: center;
+  vertical-align: center;
+}
+
+%blue-rounded, .blue-rounded{
+  @extend %span-rounded;
+  background: $mainColor;
+  color: white;
+}
+
+%green-rounded, .green-rounded{
+  @extend %span-rounded;
+  background: $successColor;
+  color: white;
 }
 
 %gray, .gray{
@@ -338,6 +357,10 @@ $borderColor: #eeeeee;
 
 %display-inlineFlex, .display-inlineFlex{
   display: inline-flex;
+}
+
+%visibility-hidden, .visibility-hidden{
+  visibility: hidden;
 }
 
 %justifyContent-start, .justifyContent-start{

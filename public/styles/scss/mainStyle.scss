@@ -213,7 +213,7 @@ header {
             position: relative;
           }
         }
-        li.new-and-old{
+        li.new-and-old {
           background: #f8f8f8;
           color: #8d8d8d;
           height: 25px;
@@ -371,9 +371,12 @@ ul.items {
   display: block;
   list-style-type: none;
   padding: 0;
+  margin: 0;
   li.item {
     display: block;
-    padding: 10px 0 10px 0;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+    box-sizing: border-box;
     border-bottom: $border;
   }
 }
@@ -642,8 +645,8 @@ input[type="submit"] {
       outline: none;
       padding: 0;
       margin: 0;
-      transition: background .15s ease-in-out;
-      &:hover{
+      transition: background 0.15s ease-in-out;
+      &:hover {
         background: $mainColorLighter;
       }
     }
@@ -792,6 +795,76 @@ div.overlay {
         @extend %btn-secondary;
         padding: 10px 15px 10px 15px;
         margin-right: $margin2;
+      }
+    }
+  }
+}
+
+.table-container {
+  box-sizing: border-box;
+  .row {
+    width: 100%;
+    display: flex;
+    padding: 7px;
+    .flex-row {
+      padding: 10px;
+      display: flex;
+      width: calc(100% / 4);
+    }
+    .table-pic {
+      margin: 0;
+      padding: 0;
+      img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+  }
+  .table-header {
+    width: 100%;
+    .row {
+      width: 100%;
+      display: flex;
+      background: $lightBlue;
+      border-radius: 7px;
+      .flex-row {
+        padding: 15px 10px 15px 10px;
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+    }
+  }
+  .table-body {
+    .row {
+      transition: 0.5s;
+      border-radius: 7px;
+      align-items: center;
+      &:nth-child(even) {
+        background: #f9f9f9;
+      }
+      &:hover {
+        background: $lightBlue2 !important;
+        .member-options-icon{
+          visibility: visible;
+        }
+      }
+    }
+  }
+  .wrapper-options{
+    .member-options-icon{
+      height: 45px;
+      width: 45px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      margin: 0 $margin2 0 0;
+      padding: 12.5px;
+      img{
+        height: auto;
+        width: 100%;
       }
     }
   }
