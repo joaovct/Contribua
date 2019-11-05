@@ -1,6 +1,7 @@
 let buttons = document.getElementsByClassName('filters')
 let btnProximity = document.getElementById('filter-proximity')
 let btnProximityRange = document.getElementById('filter-proximity-range')
+let boxRange = document.getElementById('options-range')
 let nav = document.getElementsByClassName('nav-articles')
 let numberSearchs = 0
 let noneArticles = `<div class="noneArticles container flex-column align-center margin-top4"><img style="height: 40vh;" src="/assets/imgs/empty4.svg" /><h1 class="big-text text-center margin0 margin-top4">Não esperávamos por essa...</h1><p class="text text-center margin0 margin-top1">Não conseguimos encontrar nenhum evento ou ONG de acordo com seus interesses.<br>Mas você ainda pode pesquisar por eventos e ONGs ou selecionar filtros diferentes.</p></div>`
@@ -21,6 +22,12 @@ for(let b of buttons){
 
 // Add event listener to proximity button
 btnProximity.addEventListener('click', ()=>{
+
+    // Show or not box
+
+    if(!$(boxRange).is(':visible') && btnProximity.checked) $(boxRange).fadeIn('fast').css('display','flex')
+    else $(boxRange).fadeOut('fast')
+
     if(btnProximity.checked) doFiltering(btnProximityRange)
     else{
         removeArticles(btnProximity.value)
