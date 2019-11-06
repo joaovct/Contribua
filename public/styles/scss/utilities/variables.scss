@@ -111,6 +111,12 @@ $borderColor: #eeeeee;
   color: $errorColor;
 }
 
+img.inline-icon{
+  height: 1.2rem;
+  width: auto;
+  display: inline-block;
+}
+
 %span-rounded, .span-rounded{
   padding: 5px 10px 5px 10px;
   border-radius: 7px;

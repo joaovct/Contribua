@@ -343,7 +343,7 @@ header {
   }
 }
 
-ul.cases {
+ul.cases,ul.causes {
   padding: 0;
   margin: 0;
   width: 100%;
@@ -351,7 +351,7 @@ ul.cases {
   flex-flow: row wrap;
   list-style: none;
   margin-top: 5px;
-  li.case {
+  li.case,li.cause {
     font-size: 1em;
     font-weight: 500;
     text-align: center;
@@ -386,7 +386,7 @@ ul.icons {
   list-style: none;
   display: flex;
   flex-flow: row wrap;
-  .icon {
+  li.icon {
     img {
       height: 24px;
       width: 24px;
