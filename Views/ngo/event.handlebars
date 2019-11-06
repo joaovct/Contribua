@@ -55,11 +55,15 @@
             <h1 class="title text-left">{{nameVacancyAction}}</h1>
             <p class="text medium-weight-text margin0">Vagas <span class="blue">{{qtdVacancyAction}}</span></p> 
             <p class="text margin-top2">{{descVacancyAction}}</p>
-            <div class="modal-options margin-top2" id="{{idAction}}">
+            <div class="modal-options margin-top2" id="{{idVacancyAction}}">
                 <div id="cancel-subcribe" onclick="$('.overlay-job').slideUp('fast')" class="btn-secondary">Cancelar
                 </div>
-                <input type="checkbox" id="checkbox-subscribe" style="opacity: 0;" value="off">
-                <label id="subscribe" for="checkbox-subscribe" class="btn-primary">Inscrever-se</label>
+                {{#if isSubscribed}}
+                <input type="checkbox" class="subscribe-checkbox" id="checkbox-subscribe" style="opacity: 0;" value="on" checked>
+                {{else}}
+                <input type="checkbox" class="subscribe-checkbox" id="checkbox-subscribe" style="opacity: 0;" value="off">
+                {{/if}}
+                <label for="checkbox-subscribe" class="btn-primary subscribe"></label>
             </div>
         </div>
     </div>

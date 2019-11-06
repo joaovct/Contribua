@@ -46,14 +46,6 @@ module.exports = {
         //cadastra vagas
         await vacancyController.register(dataVacancy, action.idAction)
     },
-    async subscribe(idUser, idAction){
-        console.log('passou')
-        await ActionVolunteer.create({
-            idVolunteer: idUser,
-            idAction: idAction,
-            dateInterest: Date.now(),
-        })
-    },
     async listOneAction(idAction){
         const action = await Action.findOne({where: {idAction: idAction}})
         return action
@@ -195,6 +187,22 @@ module.exports = {
         for(let action of data.actions) action = await feedUtilities.formatAction(action)
 
         return data
+    },
+
+    //ACTION VOLUNTEER
+    async subscribe(idUser, idVacancyAction){
+        await ActionVolunteer.create({
+            idVolunteer: idUser,
+            idVacancyAction: idVacancyAction,
+            dateInterest: Date.now(),
+        })
+    },
+    async unsubscribe(idUser, idVacancyAction){
+        await ActionVolunteer.destroy({where: {idVolunteer: idUser, idVacancyAction: idVacancyAction}})
+    },
+    async listActionVolunteer(idUser){
+        const actions = await ActionVolunteer.findAll({where: {idVolunteer: idUser}})
+        return actions
     },
     formatText (text){
         text = text.toLowerCase();                                                         
