@@ -26,6 +26,7 @@ router.get("/:id", async (req,res) => {
     let vacancies
     let user
     let ngo
+    let subscribes
 
     if(!req.session.ngo){
         dataHeader = req.session.user
@@ -36,10 +37,23 @@ router.get("/:id", async (req,res) => {
     }
 
     if(action){
+        subscribes = await actionController.listActionVolunteer(req.session.user.idVolunteer)
         vacancies = await vacancyActionController.listVacanciesAction(action.idAction)
         user = await userController.listOneUser(action.idVolunteer)
         ngo  = await ngoController.listOneNgo(action.idNgo)
-        res.render('ngo/event', {action: action, category: category, ngo, user, vacancies, dataHeader, dataHeaderNgo})
+
+        for(let i in subscribes){
+            for(let j in vacancies){
+                if(subscribes[i].idVacancyAction === vacancies[j].idVacancyAction){
+                    vacancies[j].isSubscribed = true
+                    break
+                }else{
+                    vacancies.isSubscribed = false
+                }
+            }
+        }
+
+        res.render('ngo/event', {action, category, ngo, user, vacancies, dataHeader, dataHeaderNgo})
     }else{
         res.render('error', {dataHeader, dataHeaderNgo})
     }
@@ -57,7 +71,11 @@ router.post("/register", multer(multerConfig.action()).single('thumbnail'), asyn
 })
 
 router.post("/subscribe", async (req, res) => {
-    await actionController.subscribe(req.session.user.idVolunteer, req.query.idAction)
+    if(req.query.unsubscribe){
+        await actionController.unsubscribe(req.session.user.idVolunteer, req.query.idVacancyAction)
+    }else{
+        await actionController.subscribe(req.session.user.idVolunteer, req.query.idVacancyAction)
+    }
 })
 
 module.exports = router

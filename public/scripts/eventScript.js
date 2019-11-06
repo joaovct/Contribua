@@ -16,25 +16,29 @@ function initMap(){
     
 }
 
-const lblSubscribe = document.getElementById("subscribe")
-const btnSubscribe = document.getElementById("checkbox-subscribe")
-const btnCancel = document.getElementById("cancel-subcribe")
-const idAction = parseInt(lblSubscribe.parentNode.id)
+const lblSubscribe = document.getElementsByClassName("subscribe")
+const btnSubscribe = document.getElementsByClassName("subscribe-checkbox")
+const btnCancel = document.getElementsByClassName("cancel-subcribe")
 
-btnSubscribe.addEventListener("click", async () => {
-    if(btnSubscribe.value === "on"){
-        lblSubscribe.innerHTML = "Inscrever-se"
-        btnSubscribe.value = "off"
+for(let i = 0; i < lblSubscribe.length; i++){
+    let idVacancyAction = parseInt(lblSubscribe[i].parentNode.id)
 
-        // await $.post("http://localhost:3000/subscribe?unsubscribe=true&idNgo="+idNgo)
-    }else{   
+    if(btnSubscribe[i].value === "on") 
+        lblSubscribe[i].innerHTML = "Inscrito"
+    else 
+        lblSubscribe[i].innerHTML = "Inscrever-se"
 
-        lblSubscribe.innerHTML = "Inscrito"
-        btnSubscribe.value = "on"
-        await $.post("http://localhost:3000/event/subscribe?idAction="+idAction)
-    }
-})
-
-btnCancel.addEventListener("click", () => {
-    $('.overlay-job').slideUp('fast')
-})
+    btnSubscribe[i].addEventListener("click", async () => {
+        if(btnSubscribe[i].value === "on"){
+            lblSubscribe[i].innerHTML = "Inscrever-se"
+            btnSubscribe[i].value = "off"
+    
+            await $.post("http://localhost:3000/event/subscribe?unsubscribe=true&idVacancyAction="+idVacancyAction)
+        }else{   
+    
+            lblSubscribe[i].innerHTML = "Inscrito"
+            btnSubscribe[i].value = "on"
+            await $.post("http://localhost:3000/event/subscribe?idVacancyAction="+idVacancyAction)
+        }
+    })  
+}

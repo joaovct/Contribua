@@ -15,12 +15,12 @@ const ActionVolunteer = db.sequelize.define("tbActionVolunteer", {
             key: "idVolunteer"
         }
     },
-    idAction: {
+    idVacancyAction: {
         allowNull: false,
         type: db.Sequelize.INTEGER,
         references: {
-            model: "tbAction",
-            key: "idAction"
+            model: "tbVacancyAction",
+            key: "idVacancyAction"
         }
     },
     dateInterest: {
