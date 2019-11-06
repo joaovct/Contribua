@@ -4,7 +4,7 @@
     <div class="container" id="container">
         <h1 class="title">Bem-vindo de volta <span class="blue">{{dataHeader.nameVolunteer}}</span></h1>
         <div class="feed-header">
-            <form class="form width-100">
+            <form class="form full-width">
                 <div class="wrapper-options">
                     <div onclick="$('.cause-options').toggle('fast')" class="open-options margin-right1">
                         <span>Causas <img src="/assets/imgs/arrow-down.svg" /></span>
@@ -26,6 +26,19 @@
                         {{/each}}
                     </div>
                 </div>
+                
+                <div class="wrapper-options">
+                    <div onclick="$('.skills-options').toggle('fast')" class="open-options callShow margin-right1">
+                        <span>Habilidades <img src="/assets/imgs/arrow-down.svg" /></span>
+                    </div>
+                    <div class="options skills-options ">
+                        <input type="checkbox" class="option-checkbox" value="habilidade" id="habilidade"
+                            name="categories" class="form-checkbox" checked>
+                        <label for="habilidade" class="label-option">
+                            <div class="option-marker"></div>Habilidade
+                        </label>
+                    </div>
+                </div>
 
                 <input type="checkbox" id="filter-subscription" value="subscriptions" class="form-checkbox filters"
                     checked>
@@ -39,10 +52,10 @@
                 <label for="filter-recent" class="form-btnCheckbox">Recentes</label>
 
                 <div class="wrapper-options">
-                    <input onclick="$('.options-range').toggle('fast').css('display','flex')" type="checkbox" id="filter-proximity" value="proximity" class="form-checkbox">
+                    <input type="checkbox" id="filter-proximity" value="proximity" class="form-checkbox">
                     <label for="filter-proximity" class="form-btnCheckbox open-options">Proximidade</label>
 
-                    <div class="options-range">
+                    <div id="options-range" class="options-range">
                         <div class="tick-numbers padding-btm1">
                             <span>5 km</span>
                             <span >10 km</span>

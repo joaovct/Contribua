@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: baseline;
   width: 100%;
-  padding-bottom: $margin2;
+  padding-bottom: $margin1;
   border-bottom: $border;
   .group-categories {
     display: flex;
@@ -13,7 +13,7 @@
     align-items: center;
     list-style-type: none;
     padding: 0;
-    margin: 0 0 $margin2 0;
+    margin: 0 0 0 0;
     .item-category {
       margin: $margin2 / 2 $margin2 / 2 0 0;
       border-radius: 7px;
@@ -180,6 +180,21 @@
         box-sizing: border-box;
       }
     }
+  }
+}
+
+.search-bar{
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  position: relative;
+  .form-input{
+    margin: 0;
+  }
+  img{
+    height: 2em;
+    margin-left: $margin1;
+    cursor: pointer;
   }
 }
 
