@@ -96,5 +96,9 @@ module.exports = {
     async listOneUser(idUser){
         const user = await User.findOne({where: idUser})
         return user
+    },
+    async listUsers(idUsers){
+        const users = await User.findAll({where: {idVolunteer: idUsers}})
+        return users
     }
 }

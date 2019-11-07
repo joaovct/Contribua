@@ -12,6 +12,7 @@
             class="links medium-text blue gray transition-025 margin-right2">Gerenciamento</a>
     </div>
     <div id="request-content" class="container margin-top2 content">
+        {{#if volunteersSubscribers}}
         <div class="table-container">
             <div class="table-header">
                 <div class="row">
@@ -22,74 +23,35 @@
                 </div>
             </div>
             <div class="table-body">
+                {{#each volunteersSubscribers}}
+                <script>
+                    console.log(subscribers)
+                </script>
                 <div class="row">
                     <form class="full-width display-flex">
                         <div class="flex-row">
                             <figure class="table-pic">
-                                <img src="/temp/uploads/profile/user.svg" />
+                                <img src="/temp/uploads/profile/{{photoVolunteer}}" />
                             </figure>
                             <article class="margin-left1">
-                                <h1 class="small-text medium-weight-text margin0 padding0">João Victor da Silva Pereira
-                                </h1>
-                                <p class="gray smallest-text margin0 padding0">São Paulo, SP.</p>
+                                <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}} {{lastNameVolunteer}}</h1>
+                                <p class="gray smallest-text margin0 padding0">{{cityVolunteer}}</p>
                             </article>
                         </div>
                         <div class="flex-row">
-                            <p class="text">Assistente geral</p>
+                            <p class="text">{{nameVacancy}}</p>
                         </div>
-                        <div class="flex-row">4,6/5</div>
+                        <div class="flex-row">{{averageStarVolunteer}}</div>
                         <div class="flex-row justifyContent-end">
                             <button class="btn-danger-outlined margin-right2">Recusar</button>
                             <button class="btn-primary">Aceitar inscrição</button>
                         </div>
                     </form>
                 </div>
-                <div class="row">
-                    <form class="full-width display-flex">
-                        <div class="flex-row">
-                            <figure class="table-pic">
-                                <img src="/temp/uploads/profile/user.svg" />
-                            </figure>
-                            <article class="margin-left1">
-                                <h1 class="small-text medium-weight-text margin0 padding0">João Victor da Silva Pereira
-                                </h1>
-                                <p class="gray smallest-text margin0 padding0">São Paulo, SP.</p>
-                            </article>
-                        </div>
-                        <div class="flex-row">
-                            <p class="text">Assistente geral</p>
-                        </div>
-                        <div class="flex-row">4,6/5</div>
-                        <div class="flex-row justifyContent-end">
-                            <button class="btn-danger-outlined margin-right2">Recusar</button>
-                            <button class="btn-primary">Aceitar inscrição</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="row">
-                    <form class="full-width display-flex">
-                        <div class="flex-row">
-                            <figure class="table-pic">
-                                <img src="/temp/uploads/profile/user.svg" />
-                            </figure>
-                            <article class="margin-left1">
-                                <h1 class="small-text medium-weight-text margin0 padding0">João Victor da Silva Pereira
-                                </h1>
-                                <p class="gray smallest-text margin0 padding0">São Paulo, SP.</p>
-                            </article>
-                        </div>
-                        <div class="flex-row">
-                            <p class="text">Assistente geral</p>
-                        </div>
-                        <div class="flex-row">4,6/5</div>
-                        <div class="flex-row justifyContent-end">
-                            <button class="btn-danger-outlined margin-right2">Recusar</button>
-                            <button class="btn-primary">Aceitar inscrição</button>
-                        </div>
-                    </form>
-                </div>
+                {{/each}}
             </div>
         </div>
+        {{/if}}
     </div>
     <div id="management-content" class="box container margin-top2 content display-none">
         <h1>"Hello"</h1>

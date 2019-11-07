@@ -201,8 +201,8 @@ module.exports = {
         await ActionVolunteer.destroy({where: {idVolunteer: idUser, idVacancyAction: idVacancyAction}})
     },
     async listActionVolunteer(idUser){
-        const actions = await ActionVolunteer.findAll({where: {idVolunteer: idUser}})
-        return actions
+        const action = await ActionVolunteer.findOne({where: {idVolunteer: idUser}})
+        return action
     },
     formatText (text){
         text = text.toLowerCase();                                                         
