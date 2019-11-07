@@ -107,7 +107,7 @@ module.exports = {
         // get actions by skills
 
         // randomize actions
-        let numbers = [], lengthArray = actionsByCauses.length
+        let numbers = [], lengthArray = actionsByCauses.length, maxShow = 8
 
         if(lengthArray < maxShow) maxShow = lengthArray
 
@@ -201,8 +201,8 @@ module.exports = {
         await ActionVolunteer.destroy({where: {idVolunteer: idUser, idVacancyAction: idVacancyAction}})
     },
     async listActionVolunteer(idUser){
-        const actions = await ActionVolunteer.findAll({where: {idVolunteer: idUser}})
-        return actions
+        const action = await ActionVolunteer.findOne({where: {idVolunteer: idUser}})
+        return action
     },
     formatText (text){
         text = text.toLowerCase();                                                         

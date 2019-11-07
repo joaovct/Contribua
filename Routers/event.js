@@ -26,7 +26,7 @@ router.get("/:id", async (req,res) => {
     let vacancies
     let user
     let ngo
-    let subscribes
+    let subscribers
 
     if(!req.session.ngo){
         dataHeader = req.session.user
@@ -56,6 +56,37 @@ router.get("/:id", async (req,res) => {
         res.render('ngo/event', {action, category, ngo, user, vacancies, dataHeader, dataHeaderNgo})
     }else{
         res.render('error', {dataHeader, dataHeaderNgo})
+    }
+})
+
+router.get('/:id/management', async(req,res)=>{
+    const action = await actionController.listOneAction(req.params.id)
+    const category = await causesController.listCausesAction(req.params.id)
+    let vacancies
+    let volunteersSubscribers
+
+    dataHeader = req.session.user
+    dataHeaderNgo = null
+    if(req.session.ngo){
+        dataHeaderNgo = req.session.ngo
+        dataHeader = null
+    }
+
+    if(!req.session.ngo || req.session.ngo.idNgo != action.idNgo){
+        res.render('error', {dataHeader, dataHeaderNgo})
+    }else{
+
+        if(action.isActive){
+            vacancies = await vacancyActionController.listVacanciesAction(action.idAction)
+            let idVacancies = vacancies.map((vacancy)=>{
+                return vacancy.idVacancyAction
+            })
+            volunteersSubscribers = await vacancyActionController.listVolunteersWithVacancy(idVacancies)
+
+            res.render('ngo/eventManagement', {action, category, volunteersSubscribers, dataHeader, dataHeaderNgo})
+        }else{
+            res.render('error', {dataHeader, dataHeaderNgo})
+        }
     }
 })
 

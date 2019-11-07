@@ -1,0 +1,122 @@
+<link rel="stylesheet" href="/styles/css/event.css" />
+
+<div class="centralize padding-top4">
+    <div class="container">
+        <a href="#"
+            onclick="addClass('links', 'gray'); removeClass('links','gray', 0); $('#management-content').hide(); $('#request-content').show()"
+            class="links medium-text blue transition-025 margin-right2">Solicitações</a>
+        <a href="#"
+            onclick="addClass('links', 'gray'); removeClass('links','gray', 1); $('#request-content').hide(); $('#management-content').show()"
+            class="links medium-text blue gray transition-025 margin-right2">Gerenciamento</a>
+    </div>
+    <div id="request-content" class="container margin-top2 content">
+        {{#if volunteersSubscribers}}
+        <div class="table-container">
+            <div class="table-header">
+                <div class="row">
+                    <div class="flex-row">Nome completo</div>
+                    <div class="flex-row">Vaga</div>
+                    <div class="flex-row">Avaliação</div>
+                    <div class="flex-row"></div>
+                </div>
+            </div>
+            <div class="table-body">
+                {{#each volunteersSubscribers}}
+                <script>
+                    console.log( subscribers )
+                </script>
+                <div class="row">
+                    <form class="full-width display-flex">
+                        <div class="flex-row">
+                            <figure class="table-pic">
+                                <img src="/temp/uploads/profile/{{photoVolunteer}}" />
+                            </figure>
+                            <article class="margin-left1">
+                                <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}}
+                                    {{lastNameVolunteer}}</h1>
+                                <p class="gray smallest-text margin0 padding0">{{cityVolunteer}}</p>
+                            </article>
+                        </div>
+                        <div class="flex-row">
+                            <p class="text">{{nameVacancy}}</p>
+                        </div>
+                        <div class="flex-row">{{averageStarVolunteer}}</div>
+                        <div class="flex-row justifyContent-end">
+                            <button class="btn-danger-outlined margin-right2">Recusar</button>
+                            <button class="btn-primary">Aceitar inscrição</button>
+                        </div>
+                    </form>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/if}}
+    </div>
+    <div id="management-content" class="box container margin-top2 content display-none">
+        <form class="form full-width">
+            <div class="full-width justifyContent-center">
+                <figure class="change-action-pic">
+                    <label for="change-action-pic" class="btn-change-action-pic">
+                        <p>Mudar foto da ONG</p>
+                    </label>
+                    <input id="change-action-pic" type="file" name="photo" />
+                </figure>
+            </div>
+            <h1 class="medium-text margin-top4 margin-btm2">Informações do evento</h1>
+            <label class="form-label">Título</label>
+            <input class="form-input" value="Qui consectetur incididunt laboris commodo officia ea ut Lorem." />
+            <label class="form-label">Artigo</label>
+            <textarea class="form-input form-textarea" id="textarea-content"
+                onkeyup="autosize($('#textarea-content'));">
+                    Velit eu minim nostrud quis quis ex sit consequat mollit adipisicing adipisicing. Tempor irure qui irure commodo amet dolore ullamco consectetur eiusmod consequat deserunt. Officia Lorem voluptate sunt consectetur qui tempor qui ex labore in sit anim aliquip amet. Commodo aliquip ex incididunt mollit commodo voluptate cillum nostrud dolor non laboris. Laborum ipsum laborum voluptate ullamco. Lorem tempor reprehenderit dolore sint ea dolor mollit exercitation mollit. Duis aliquip nisi aliqua fugiat.
+                    Proident ut qui culpa deserunt nulla amet. Aliqua in consequat enim magna anim minim reprehenderit aliqua magna consectetur proident consequat id consequat. Nulla ex qui sint elit laboris exercitation ex mollit ut duis ad ea. Ea elit officia adipisicing consequat laboris ad nulla.
+                </textarea>
+            <div class="display-flex">
+                <div class="margin-right4">
+                    <label class="form-label">Data de início</label>
+                    <div class="collumns-2 gap-2">
+                        <input type="time" class="form-input margin-right2" />
+                        <input type="time" class="form-input">
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label">Data de término</label>
+                    <div class="collumns-2 gap-2">
+                        <input type="time" class="form-input margin-right2">
+                        <input type="time" class="form-input">
+                    </div>
+                </div>
+            </div>
+            
+            <h1 class="medium-text margin-top4 margin-btm2">Endereço</h1>
+            <p class="text medium-weight-text blue-rounded display-inline margin0">
+                Rua caçarema, 279 - Vila Popular, São Paulo.
+            </p>
+            <div class="display-flex margin-top2">
+                <div class="margin-right4">
+                    <label class="form-label">CEP</label>
+                    <input class="form-input-long-number margin-right2" />
+                </div>
+                <div class="">
+                    <label class="form-label">Número</label>
+                    <input class="form-input-number" />
+                </div>
+            </div>
+
+            <h1 class="medium-text margin-top4 margin-btm2">Vaga de Assistente geral</h1>
+            <label class="form-label">Nome</label>
+            <input class="form-input" value="Assistente geral" />
+            <label class="form-label">Descrição</label>
+            <textarea
+                class="form-input form-textarea">Ex voluptate labore Lorem dolor nulla cillum. Aute et ad irure excepteur reprehenderit voluptate labore ipsum ipsum nulla adipisicing. Est nulla reprehenderit minim enim ut in. Ea velit anim irure ad voluptate pariatur veniam elit culpa deserunt et. Sunt est aute exercitation et consequat ex do est ad aliquip fugiat.</textarea>
+            <label class="form-label">Quantidade</label>
+            <input type="number" class="form-input" value="10">
+
+            <button class="btn-primary margin0 margin-top2">Salvar edições</button>
+
+            <h1 class="medium-text red margin-top4 margin-btm2">Área de risco</h1>
+            <button class="btn-danger margin0">Encerrar evento</button>
+    </div>
+    </form>
+</div>
+</div>
