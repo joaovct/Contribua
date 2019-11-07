@@ -111,6 +111,10 @@ $borderColor: #eeeeee;
   color: $errorColor;
 }
 
+%transition-025, .transition-025{
+  transition: .25s;
+}
+
 img.inline-icon{
   height: 1.2rem;
   width: auto;
@@ -304,7 +308,19 @@ img.inline-icon{
   background: $errorColor;
   color: white;
   border: $border;
-  border-radius: 7px;
+}
+
+%btn-danger-outlined, .btn-danger-outlined{
+  @extend %button;
+  background: $lightGray3;
+  color: $errorColor;
+  border: $border;
+}
+
+%btn-danger-borderless, .btn-danger-borderless{
+  @extend %btn-danger-outlined;
+  border: none;
+  background: none;
 }
 
 .group-asides {
@@ -351,6 +367,10 @@ img.inline-icon{
 
 .width-10{
   width: 10vw;
+}
+
+%display-none, .display-none{
+  display: none;
 }
 
 %display-block, .display-block{

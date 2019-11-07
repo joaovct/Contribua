@@ -1,0 +1,97 @@
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA36tg5LqcFuIXDpeMtAlDeVGj87qqxrVk&callback=initMap"></script>
+<link rel="stylesheet" href="/styles/css/event.css" />
+
+<div class="centralize padding-top4">
+    <div class="container">
+        <a href="#"
+            onclick="addClass('links', 'gray'); removeClass('links','gray', 0); $('#management-content').hide(); $('#request-content').show()"
+            class="links medium-text blue transition-025 margin-right2">Solicitações</a>
+        <a href="#"
+            onclick="addClass('links', 'gray'); removeClass('links','gray', 1); $('#request-content').hide(); $('#management-content').show()"
+            class="links medium-text blue gray transition-025 margin-right2">Gerenciamento</a>
+    </div>
+    <div id="request-content" class="container margin-top2 content">
+        <div class="table-container">
+            <div class="table-header">
+                <div class="row">
+                    <div class="flex-row">Nome completo</div>
+                    <div class="flex-row">Vaga</div>
+                    <div class="flex-row">Avaliação</div>
+                    <div class="flex-row"></div>
+                </div>
+            </div>
+            <div class="table-body">
+                <div class="row">
+                    <form class="full-width display-flex">
+                        <div class="flex-row">
+                            <figure class="table-pic">
+                                <img src="/temp/uploads/profile/user.svg" />
+                            </figure>
+                            <article class="margin-left1">
+                                <h1 class="small-text medium-weight-text margin0 padding0">João Victor da Silva Pereira
+                                </h1>
+                                <p class="gray smallest-text margin0 padding0">São Paulo, SP.</p>
+                            </article>
+                        </div>
+                        <div class="flex-row">
+                            <p class="text">Assistente geral</p>
+                        </div>
+                        <div class="flex-row">4,6/5</div>
+                        <div class="flex-row justifyContent-end">
+                            <button class="btn-danger-outlined margin-right2">Recusar</button>
+                            <button class="btn-primary">Aceitar inscrição</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <form class="full-width display-flex">
+                        <div class="flex-row">
+                            <figure class="table-pic">
+                                <img src="/temp/uploads/profile/user.svg" />
+                            </figure>
+                            <article class="margin-left1">
+                                <h1 class="small-text medium-weight-text margin0 padding0">João Victor da Silva Pereira
+                                </h1>
+                                <p class="gray smallest-text margin0 padding0">São Paulo, SP.</p>
+                            </article>
+                        </div>
+                        <div class="flex-row">
+                            <p class="text">Assistente geral</p>
+                        </div>
+                        <div class="flex-row">4,6/5</div>
+                        <div class="flex-row justifyContent-end">
+                            <button class="btn-danger-outlined margin-right2">Recusar</button>
+                            <button class="btn-primary">Aceitar inscrição</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <form class="full-width display-flex">
+                        <div class="flex-row">
+                            <figure class="table-pic">
+                                <img src="/temp/uploads/profile/user.svg" />
+                            </figure>
+                            <article class="margin-left1">
+                                <h1 class="small-text medium-weight-text margin0 padding0">João Victor da Silva Pereira
+                                </h1>
+                                <p class="gray smallest-text margin0 padding0">São Paulo, SP.</p>
+                            </article>
+                        </div>
+                        <div class="flex-row">
+                            <p class="text">Assistente geral</p>
+                        </div>
+                        <div class="flex-row">4,6/5</div>
+                        <div class="flex-row justifyContent-end">
+                            <button class="btn-danger-outlined margin-right2">Recusar</button>
+                            <button class="btn-primary">Aceitar inscrição</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="management-content" class="box container margin-top2 content display-none">
+        <h1>"Hello"</h1>
+    </div>
+</div>

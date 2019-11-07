@@ -24,7 +24,7 @@
                 <div class="group-articles">
                     {{#each actions.activeActions}}
                     <article class="feed-article">
-                        <a href="event/{{idAction}}">
+                        <a href="event/{{idAction}}/management">
                             <figure class="article-image">
                                 <img src="/temp/uploads/action/{{photoAction}}" />
                             </figure>
@@ -69,7 +69,7 @@
                         </figure>
                     </div>
                 </div>
-                <div class="table-body">
+                <div class="table-body-options">
                     <div class="row">
                         <div class="flex-row">
                             <figure class="table-pic">
@@ -285,6 +285,6 @@
 
 <script>
     $( '.feed-members' ).hide();
-    //$( '.feed-search' ).hide()
-    $( '.feed-events' ).hide()
+    $( '.feed-search' ).hide()
+    //$( '.feed-events' ).hide()
 </script>

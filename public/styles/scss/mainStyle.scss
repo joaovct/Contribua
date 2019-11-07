@@ -871,13 +871,20 @@ div.overlay {
       }
     }
   }
-  .table-body {
+  %table-body, .table-body {
     .row {
       transition: 0.5s;
       border-radius: 7px;
       align-items: center;
       cursor: default;
-      &:nth-child(even) {
+      .flex-row{
+        display: flex;
+        align-items: center;
+        button{
+          margin-top: 0;
+        }
+      }
+      &:nth-of-type(even){
         background: #f9f9f9;
       }
       &:hover {
@@ -886,6 +893,15 @@ div.overlay {
           visibility: visible;
         }
       }
+    }
+  }
+  .table-body-options{
+    @extend %table-body;
+    .row:nth-child(3n){
+      background: #f9f9f9;
+    }
+    .row:nth-child(even){
+      background: inherit;
     }
   }
 }
