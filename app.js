@@ -103,6 +103,12 @@ io.on('connection', async (socket) => {
         socket.broadcast.emit('notificationNgo', notificationsNgo)
     })
 
+    socket.on('subscribe-vacancy', async (idVacancy) => {
+        const idNgo = await notificationController.subscribeVacancy(session.user, idVacancy)
+        notificationsNgo = await notificationController.listNotificationsNgo(idNgo)
+        socket.broadcast.emit('notificationNgo', notificationsNgo)
+    })
+
     socket.on('viewed', async () => {
         if(session.ngo)
             await notificationController.viewedNotificationNgo(session.ngo.idNgo)

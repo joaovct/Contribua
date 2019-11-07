@@ -23,5 +23,9 @@ module.exports = {
     async listVacanciesAction(idAction){
         const vacancyAction = await VacancyAction.findAll({where: {idAction: idAction}})
         return vacancyAction
+    },
+    async listOneVacancyAction(idVacancy){
+        const vacancyAction = await VacancyAction.findOne({where: {idVacancyAction: idVacancy}})
+        return vacancyAction
     }
 }

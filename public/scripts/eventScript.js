@@ -36,10 +36,11 @@ for(let i = 0; i < lblSubscribe.length; i++){
     
             await $.post("http://localhost:3000/event/subscribe?unsubscribe=true&idVacancyAction="+idVacancyAction)
         }else{   
-    
+            socket.emit('subscribe-vacancy', idVacancyAction)
+
             lblSubscribe[i].innerHTML = "Inscrito"
             btnSubscribe[i].value = "on"
-            await $.post("http://localhost:3000/event/subscribe?idVacancyAction="+idVacancyAction)
+            // await $.post("http://localhost:3000/event/subscribe?idVacancyAction="+idVacancyAction)
         }
     })  
 }
