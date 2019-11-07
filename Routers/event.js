@@ -83,7 +83,6 @@ router.get('/:id/management', async(req,res)=>{
             })
             volunteersSubscribers = await vacancyActionController.listVolunteersWithVacancy(idVacancies)
 
-            // res.json(volunteers)
             res.render('ngo/eventManagement', {action, category, volunteersSubscribers, dataHeader, dataHeaderNgo})
         }else{
             res.render('error', {dataHeader, dataHeaderNgo})

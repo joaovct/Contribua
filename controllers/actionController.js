@@ -107,7 +107,7 @@ module.exports = {
         // get actions by skills
 
         // randomize actions
-        let numbers = [], lengthArray = actionsByCauses.length
+        let numbers = [], lengthArray = actionsByCauses.length, maxShow = 8
 
         if(lengthArray < maxShow) maxShow = lengthArray
 

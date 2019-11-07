@@ -32,9 +32,6 @@ module.exports = {
     },
     async listVolunteersWithVacancy(idVacancyAction){
         const volunteersVacancy = await actionVolunteer.findAll({where: {idVacancyAction}})
-        // let idVolunteers = volunteersVacancy.map((volunteer)=>{
-        //     return volunteer.idVolunteer
-        // })
         let volunteersWithVacancy = volunteersVacancy.map( async (volunteerVacancy)=>{
             let vacancy = await this.listVacancyAction(volunteerVacancy.idVacancyAction)
             let volunteer = await userController.listOneUser(volunteerVacancy.idVolunteer)
@@ -49,7 +46,6 @@ module.exports = {
             return Volunteer
         })
         volunteersWithVacancy = await Promise.all(volunteersWithVacancy).then( (results) => {return results})
-        console.log(volunteersWithVacancy)
         return volunteersWithVacancy
     }
 }

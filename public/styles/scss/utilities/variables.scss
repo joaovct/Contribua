@@ -153,75 +153,75 @@ img.inline-icon{
 }
 
 .margin0{
-  margin: 0;
+  margin: 0 !important;
 }
 
 .margin-top1 {
-  margin-top: $margin2 / 2;
+  margin-top: $margin2 / 2 !important;
 }
 
 .margin-top2 {
-  margin-top: $margin2;
+  margin-top: $margin2 !important;
 }
 
 .margin-top4 {
-  margin-top: $margin4;
+  margin-top: $margin4 !important;
 }
 
 .margin-right1{
-  margin-right: $margin2 / 2;
+  margin-right: $margin2 / 2 !important;
 }
 
 .margin-right2{
-  margin-right: $margin2;
+  margin-right: $margin2 !important;
 }
 
 .margin-right4{
-  margin-right: $margin4;
+  margin-right: $margin4 !important;
 }
 
 .margin-btm4 {
-  margin-bottom: $margin4;
+  margin-bottom: $margin4 !important;
 }
 
 .margin-btm2 {
-  margin-bottom: $margin2;
+  margin-bottom: $margin2 !important;
 }
 
 .margin-btm1 {
-  margin-bottom: $margin2 / 2;
+  margin-bottom: $margin2 / 2 !important;
 }
 
 .margin-left1{
-  margin-left: $margin2 / 2;
+  margin-left: $margin2 / 2 !important;
 }
 
 .margin-left2{
-  margin-left: $margin2;
+  margin-left: $margin2 !important;
 }
 
 .margin-left4{
-  margin-left: $margin4;
+  margin-left: $margin4 !important;
 }
 
 .padding-top2 {
-  padding-top: $margin2;
+  padding-top: $margin2 !important;
 }
 
 .padding-top4 {
-  padding-top: $margin4;
+  padding-top: $margin4 !important;
 }
 
 .padding-right2{
-  padding-right: $margin2;
+  padding-right: $margin2 !important;
 }
 
 .padding-right4{
-  padding-right: $margin4;
+  padding-right: $margin4 !important;
 }
 
 .padding-left2{
-  padding-left: $margin2;
+  padding-left: $margin2 !important;
 }
 
 .padding-left4{
@@ -267,6 +267,10 @@ img.inline-icon{
   outline: 0;
   &:focus{
     box-shadow: inset 0 0 5px $lightGray2;
+  }
+  &:disabled {
+    opacity: 0.25;
+    cursor: default;
   }
 }
 
@@ -385,6 +389,10 @@ img.inline-icon{
   display: flex;
 }
 
+%display-grid, .display-grid{
+  display: grid;
+}
+
 %display-inlineFlex, .display-inlineFlex{
   display: inline-flex;
 }
@@ -428,6 +436,28 @@ img.inline-icon{
 
 %grow-2fr, .grow-2fr{
   flex-grow: 2fr;
+}
+
+%collumns-2, .collumns-2{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+%collumns-4, .collumns-4{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+%gap-1, .gap-1{
+  grid-gap: $margin1;
+}
+
+%gap-2, .gap-2{
+  grid-gap: $margin2;
+}
+
+%gap-4, .gap-4{
+  grid-gap: $margin2;
 }
 
 %flex-column, .flex-column{
