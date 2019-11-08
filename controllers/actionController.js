@@ -190,18 +190,52 @@ module.exports = {
     },
 
     //ACTION VOLUNTEER
-    async subscribe(idUser, idVacancyAction){
+    async subscribe(idVolunteer, idVacancyAction, idAction){
+
+        let nameVacancy = await vacancyController.listVacancyAction(idVacancyAction)
+        nameVacancy = nameVacancy.nameVacancyAction
+
+        let vacanciesAction = await vacancyController.listVacanciesAction(idAction)
+        let idVacanciesActions = vacanciesAction.map((vacancy)=>{
+            return vacancy.idVacancyAction
+        })
+        idVacanciesActions.push(idVacancyAction)
+
+        let actionVolunteer = await ActionVolunteer.findAll({where: {idVolunteer, idVacancyAction: idVacanciesActions}})
+
+        if(actionVolunteer.length > 0){
+            return {
+                title: "Houve um erro!",
+                msg: "Aparentemente você já está inscrito em uma outra vaga desse mesmo evento.",
+                type: "error"
+            }
+        }
         await ActionVolunteer.create({
-            idVolunteer: idUser,
+            idVolunteer: idVolunteer,
             idVacancyAction: idVacancyAction,
             dateInterest: Date.now(),
         })
+        return {
+            title: "Sucesso!",
+            msg: `Você se inscreveu para a vaga de ${nameVacancy}. Aguarde a ONG aprovar a sua inscrição.`,
+            type: "success"
+        }
     },
-    async unsubscribe(idUser, idVacancyAction){
-        await ActionVolunteer.destroy({where: {idVolunteer: idUser, idVacancyAction: idVacancyAction}})
+    async unsubscribe(idVolunteer, idVacancyAction){
+        let nameVacancy = await vacancyController.listVacancyAction(idVacancyAction)
+        nameVacancy = nameVacancy.nameVacancyAction
+        console.log(nameVacancy)
+
+        await ActionVolunteer.destroy({where: {idVolunteer, idVacancyAction}})
+
+        return {
+            title: "Inscrição anulada",
+            msg: `Você anulou sua inscrição para a vaga de ${nameVacancy}.`,
+            type: "warning"
+        }
     },
-    async listActionVolunteer(idUser){
-        const action = await ActionVolunteer.findOne({where: {idVolunteer: idUser}})
+    async listActionsVolunteer(idUser){
+        const action = await ActionVolunteer.findAll({where: {idVolunteer: idUser}})
         return action
     },
     formatText (text){

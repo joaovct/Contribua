@@ -17,7 +17,7 @@ module.exports = {
         return notification
     },
     async subscribeVacancy(user, idVacancy){
-        const vacancy = await vacancyController.listOneVacancyAction(idVacancy)
+        const vacancy = await vacancyController.listVacancyAction(idVacancy)
         const action = await actionController.listOneAction(vacancy.idAction)
         const ngo = await ngoController.listOneNgo(action.idNgo)
 

@@ -41,7 +41,8 @@ module.exports = {
                 lastNameVolunteer: volunteer.lastNameVolunteer,
                 cityVolunteer: volunteer.cityVolunteer,
                 averageStarVolunteer: volunteer.averageStarVolunteer,
-                nameVacancy: vacancy.nameVacancyAction
+                nameVacancy: vacancy.nameVacancyAction,
+                isSubscribed: null,
             }
             return Volunteer
         })

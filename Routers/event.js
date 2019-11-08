@@ -26,7 +26,6 @@ router.get("/:id", async (req,res) => {
     let vacancies
     let user
     let ngo
-    let subscribers
 
     if(!req.session.ngo){
         dataHeader = req.session.user
@@ -35,25 +34,31 @@ router.get("/:id", async (req,res) => {
         dataHeaderNgo = req.session.ngo
         dataHeader = null
     }
-
     if(action){
-        subscribes = await actionController.listActionVolunteer(req.session.user.idVolunteer)
+        volunteerSubscribed = await actionController.listActionsVolunteer(req.session.user.idVolunteer)
         vacancies = await vacancyActionController.listVacanciesAction(action.idAction)
         user = await userController.listOneUser(action.idVolunteer)
         ngo  = await ngoController.listOneNgo(action.idNgo)
 
-        for(let i in subscribes){
-            for(let j in vacancies){
-                if(subscribes[i].idVacancyAction === vacancies[j].idVacancyAction){
-                    vacancies[j].isSubscribed = true
-                    break
-                }else{
-                    vacancies.isSubscribed = false
-                }
-            }
-        }
+        let volunteerVacancies = [vacancies.lenght]
 
-        res.render('ngo/event', {action, category, ngo, user, vacancies, dataHeader, dataHeaderNgo})
+        volunteerSubscribed.forEach((volunteer,i)=>{
+            vacancies.forEach((vacancy,j)=>{
+                volunteerVacancies[j] = {
+                    idVacancyAction: vacancy.idVacancyAction,
+                    nameVacancyAction: vacancy.nameVacancyAction,
+                    descVacancyAction: vacancy.descVacancyAction,
+                    qtdVacancyAction: vacancy.qtdVacancyAction,
+                    isSubscribed: false
+                }
+                if(vacancy.idVacancyAction === volunteer.idVacancyAction){
+                    volunteerVacancies[j].isSubscribed = true
+                }
+            })
+        })
+
+        // res.json(volunteerVacancies)
+        res.render('ngo/event', {action, category, ngo, user, vacancies: volunteerVacancies, dataHeader, dataHeaderNgo})
     }else{
         res.render('error', {dataHeader, dataHeaderNgo})
     }
@@ -103,9 +108,9 @@ router.post("/register", multer(multerConfig.action()).single('thumbnail'), asyn
 
 router.post("/subscribe", async (req, res) => {
     if(req.query.unsubscribe){
-        await actionController.unsubscribe(req.session.user.idVolunteer, req.query.idVacancyAction)
+        res.json(await actionController.unsubscribe(req.session.user.idVolunteer, req.query.idVacancyAction))
     }else{
-        await actionController.subscribe(req.session.user.idVolunteer, req.query.idVacancyAction)
+        res.json(await actionController.subscribe(req.session.user.idVolunteer, req.query.idVacancyAction, req.query.idAction))
     }
 })
 

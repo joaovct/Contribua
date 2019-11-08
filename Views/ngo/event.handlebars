@@ -1,7 +1,7 @@
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA36tg5LqcFuIXDpeMtAlDeVGj87qqxrVk&callback=initMap"></script>
+{{!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA36tg5LqcFuIXDpeMtAlDeVGj87qqxrVk&callback=initMap"></script> --}}
 <link rel="stylesheet" href="/styles/css/event.css"/>
 
-<div class="centralize" data-cep="{{action.cepAction}}" data-address="{{action.addressAction}}" data-district="{{action.districtAction}}" data-number="{{action.numAddressAction}}">
+<div class="centralize" data-idAction="{{action.idAction}}" data-cep="{{action.cepAction}}" data-address="{{action.addressAction}}" data-district="{{action.districtAction}}" data-number="{{action.numAddressAction}}">
     <div class="container display-flex">
         <article class="content">
             <figure class="action-bg">
@@ -56,14 +56,15 @@
             <p class="text medium-weight-text margin0">Vagas <span class="blue">{{qtdVacancyAction}}</span></p> 
             <p class="text margin-top2">{{descVacancyAction}}</p>
             <div class="modal-options margin-top2" id="{{idVacancyAction}}">
+                {{#if isSubscribed}}
+                    <input type="checkbox" class="subscribe-checkbox display-none" id="checkbox-subscribe-{{idVacancyAction}}" checked>
+                {{else}}
+                    <input type="checkbox" class="subscribe-checkbox display-none" id="checkbox-subscribe-{{idVacancyAction}}" >
+                {{/if}}
+
                 <div id="cancel-subcribe" onclick="$('.overlay-job').slideUp('fast')" class="btn-secondary">Cancelar
                 </div>
-                {{#if isSubscribed}}
-                <input type="checkbox" class="subscribe-checkbox" id="checkbox-subscribe" style="opacity: 0;" value="on" checked>
-                {{else}}
-                <input type="checkbox" class="subscribe-checkbox" id="checkbox-subscribe" style="opacity: 0;" value="off">
-                {{/if}}
-                <label for="checkbox-subscribe" class="btn-primary subscribe"></label>
+                <label for="checkbox-subscribe-{{idVacancyAction}}" class="btn-primary subscribe" onclick="$('.overlay-job').slideUp('fast')"></label>
             </div>
         </div>
     </div>
