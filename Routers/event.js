@@ -9,7 +9,8 @@ const multer = require("multer")
 const multerConfig = require("../config/multer")
 
 router.get("/", (req, res) => {
-    return res.render("ngo/addEventPresentation", {dataHeaderNgo: req.session.ngo})
+    console.log(req.session.ngoUser)
+    return res.render("ngo/addEventPresentation", {dataHeaderNgo: req.session.ngo, ngos: req.session.ngoUser})
 })
 
 router.get("/register", async (req, res) => {
@@ -58,9 +59,9 @@ router.get("/:id", async (req,res) => {
         })
 
         // res.json(volunteerVacancies)
-        res.render('ngo/event', {action, category, ngo, user, vacancies: volunteerVacancies, dataHeader, dataHeaderNgo})
+        res.render('ngo/event', {action, category, ngo, user, vacancies: volunteerVacancies, dataHeader, dataHeaderNgo, ngos: req.session.ngoUser})
     }else{
-        res.render('error', {dataHeader, dataHeaderNgo})
+        res.render('error', {dataHeader, dataHeaderNgo, ngos: req.session.ngoUser})
     }
 })
 
