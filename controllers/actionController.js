@@ -13,7 +13,7 @@ const feedUtilities = require('../helpers/feedUtilities')
 const ActionVolunteer = require('../models/ActionVolunteer')
 let maxShow = 8
 module.exports = {
-    async register(dataAction, dataPhoto, idNgo){
+    async register(dataAction, idNgo){
 
         if(typeof dataPhoto === "undefined"){
             dataPhoto.filename = "successImage.png"
@@ -45,6 +45,26 @@ module.exports = {
                             }
         //cadastra vagas
         await vacancyController.register(dataVacancy, action.idAction)
+    },
+    async edit(dataAction, idAction){
+        await Action.update({
+            nameAction: dataAction.name,
+            descriptionAction: dataAction.description,
+            cepAction: dataAction.cep,
+            cityAction: dataAction.city,
+            districtAction: dataAction.district,
+            addressAction: dataAction.address,
+            numAddressAction: dataAction.numAddress
+        }, {where: {idAction}})
+
+    },
+    async deactivate(idAction){
+        await Action.update({isActive: false},{where: {idAction}})
+    },
+    async editPhoto(dataPhoto, idAction){
+        await Action.update({
+            photoAction: dataPhoto.filename
+        },{where: {idAction}})
     },
     async listOneAction(idAction){
         const action = await Action.findOne({where: {idAction: idAction}})

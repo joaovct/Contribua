@@ -108,6 +108,24 @@ router.get('/:id/management', async(req,res)=>{
     }
 })
 
+router.post("/:id/edit", multer(multerConfig.action()).single('thumbnail'), async (req,res) => {
+    let data = req.body
+    let dataPhoto = req.file
+
+    if(typeof dataPhoto != "undefined"){
+        await actionController.editPhoto(dataPhoto, req.params.id)
+    }
+
+    await actionController.edit(data, req.params.id)
+
+    return res.redirect("/event/"+req.params.id+"/management")
+})
+
+router.post("/:id/deactivate", async (req,res) => {
+    await actionController.deactivate(req.params.id)
+    return res.redirect("/home")
+})
+
 router.post("/register", multer(multerConfig.action()).single('thumbnail'), async (req,res) => {
     req.body.eventCEP = req.body.eventCEP.replace(/\D/g,"")
     dataAction = req.body

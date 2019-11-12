@@ -54,7 +54,7 @@ function writeOldNotificationNgo(oldNotifications){
                 let notification = oldNotifications[i].notification
                 let user = oldNotifications[i].user
                 $(notifications).prepend(`
-                    <a href="#"><li><img src="temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
+                    <a href="#"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
                 `)
 
             }
@@ -76,7 +76,7 @@ function writeNewNotificationNgo(newNotifications){
                 let notification = newNotifications[i].notification
                 let user = newNotifications[i].user
                 $(notifications).prepend(`
-                    <a href="#"><li><img src="temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
+                    <a href="#"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
                 `)
 
             }
@@ -231,4 +231,14 @@ function closeAlert(e){
 function closeAllAlerts(){
     let E = document.getElementsByClassName('alert')
     for(let e of E) e.style.display = 'none'
+}
+
+function previewPhoto(){
+    if(this.files && this.files[0]){
+        var obj = new FileReader();
+        obj.onload = function(dado){
+            preview.style.background = "url("+dado.target.result+") center center / cover";
+        }
+        obj.readAsDataURL(this.files[0]);
+    }
 }

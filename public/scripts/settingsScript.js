@@ -17,16 +17,6 @@ cep.addEventListener("keyup", () => {
     document.body.appendChild(script)
 })
 
-function previewPhoto(){
-    if(this.files && this.files[0]){
-        var obj = new FileReader();
-        obj.onload = function(dado){
-            preview.style.background = "url("+dado.target.result+") center center / cover";
-        }
-        obj.readAsDataURL(this.files[0]);
-    }
-}
-
 function fillCep(conteudo){
     if (!("erro" in conteudo)) {
         city.value = (conteudo.localidade)
