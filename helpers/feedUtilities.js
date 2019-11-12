@@ -11,5 +11,17 @@ module.exports = {
         action.nameNgo = ngo.nameNgo
         action.username = ngo.userName
         return action
+    },
+    async formatHours(date){
+        let str = date.toISOString()
+        str = str.replace("Z","").replace("T"," ")
+
+        let hours =  (new Date(str).getHours() < 10 ? '0':'') + new Date(str).getHours()
+        let minutes = (new Date(str).getMinutes() < 10 ? '0':'') + new Date(str).getMinutes()
+        return `${hours}:${minutes}`
+    },
+    async formatMonthOrDay(date){
+        if(date < 10)return "0"+date
+        else return date
     }
 }

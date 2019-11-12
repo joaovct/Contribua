@@ -5,6 +5,7 @@ const actionController = require("../controllers/actionController")
 const userController = require("../controllers/userController")
 const vacancyActionController = require("../controllers/vacancyActionController")
 const ngoController = require("../controllers/ngoController")
+const feedUtilities = require('../helpers/feedUtilities')
 const multer = require("multer")
 const multerConfig = require("../config/multer")
 
@@ -66,10 +67,22 @@ router.get("/:id", async (req,res) => {
 })
 
 router.get('/:id/management', async(req,res)=>{
-    const action = await actionController.listOneAction(req.params.id)
+    let action = await actionController.listOneAction(req.params.id)
     const category = await causesController.listCausesAction(req.params.id)
     let vacancies
     let volunteersSubscribers
+    let dateStartAction = {
+        year: action.dateAction.getFullYear(),
+        month: await feedUtilities.formatMonthOrDay(action.dateAction.getMonth()+1),
+        day: await feedUtilities.formatMonthOrDay(action.dateAction.getDate()),
+        hours: await feedUtilities.formatHours(action.dateAction)
+    }
+    let dateEndAction = {
+        year: action.dateEndAction.getFullYear(),
+        month: await feedUtilities.formatMonthOrDay(action.dateEndAction.getMonth()+1),
+        day: await feedUtilities.formatMonthOrDay(action.dateEndAction.getDate()),
+        hours: await feedUtilities.formatHours(action.dateEndAction)
+    }
 
     dataHeader = req.session.user
     dataHeaderNgo = null
@@ -81,7 +94,6 @@ router.get('/:id/management', async(req,res)=>{
     if(!req.session.ngo || req.session.ngo.idNgo != action.idNgo){
         res.render('error', {dataHeader, dataHeaderNgo})
     }else{
-
         if(action.isActive){
             vacancies = await vacancyActionController.listVacanciesAction(action.idAction)
             let idVacancies = vacancies.map((vacancy)=>{
@@ -89,7 +101,7 @@ router.get('/:id/management', async(req,res)=>{
             })
             volunteersSubscribers = await vacancyActionController.listVolunteersWithVacancy(idVacancies)
 
-            res.render('ngo/eventManagement', {action, category, volunteersSubscribers, dataHeader, dataHeaderNgo})
+            res.render('ngo/eventManagement', {action, dateStartAction, dateEndAction, category, volunteersSubscribers, dataHeader, dataHeaderNgo})
         }else{
             res.render('error', {dataHeader, dataHeaderNgo})
         }
@@ -114,5 +126,10 @@ router.post("/subscribe", async (req, res) => {
         res.json(await actionController.subscribe(req.session.user.idVolunteer, req.query.idVacancyAction, req.query.idAction))
     }
 })
+
+function formatHours(hours, minutes){
+    let date = (hours < 10 ? "0": '')+ hours + ':' + (minutes < 10 ? '0':'') + minutes
+    return date
+}
 
 module.exports = router

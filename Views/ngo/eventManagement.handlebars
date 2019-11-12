@@ -1,5 +1,11 @@
 <link rel="stylesheet" href="/styles/css/event.css" />
 
+<style>
+    .btn-change-action-pic {
+        background: url("/temp/uploads/action/{{action.photoAction}}") center center / cover !important;
+    }
+</style>
+
 <div class="centralize padding-top4">
     <div class="container">
         <a href="#"
@@ -54,51 +60,48 @@
             <div class="full-width justifyContent-center">
                 <figure class="change-action-pic">
                     <label for="change-action-pic" class="btn-change-action-pic">
-                        <p>Mudar foto da ONG</p>
+                        <p>Mudar foto do evento</p>
                     </label>
-                    <input id="change-action-pic" type="file" name="photo" />
+                    <input id="change-action-pic" value="{{action.photoAction}}" type="file" name="photo" />
                 </figure>
             </div>
             <h1 class="medium-text margin-top4 margin-btm2">Informações do evento</h1>
             <label class="form-label">Título</label>
-            <input class="form-input" value="Qui consectetur incididunt laboris commodo officia ea ut Lorem." />
+            <input class="form-input" value="{{action.nameAction}}" />
             <label class="form-label">Artigo</label>
             <textarea class="form-input form-textarea" id="textarea-content"
-                onkeyup="autosize($('#textarea-content'));">
-                    Velit eu minim nostrud quis quis ex sit consequat mollit adipisicing adipisicing. Tempor irure qui irure commodo amet dolore ullamco consectetur eiusmod consequat deserunt. Officia Lorem voluptate sunt consectetur qui tempor qui ex labore in sit anim aliquip amet. Commodo aliquip ex incididunt mollit commodo voluptate cillum nostrud dolor non laboris. Laborum ipsum laborum voluptate ullamco. Lorem tempor reprehenderit dolore sint ea dolor mollit exercitation mollit. Duis aliquip nisi aliqua fugiat.
-                    Proident ut qui culpa deserunt nulla amet. Aliqua in consequat enim magna anim minim reprehenderit aliqua magna consectetur proident consequat id consequat. Nulla ex qui sint elit laboris exercitation ex mollit ut duis ad ea. Ea elit officia adipisicing consequat laboris ad nulla.
-                </textarea>
+                onkeyup="autosize($('#textarea-content'));">{{action.descriptionAction}}</textarea>
             <div class="display-flex">
                 <div class="margin-right4">
                     <label class="form-label">Data de início</label>
                     <div class="collumns-2 gap-2">
-                        <input type="time" class="form-input margin-right2" />
-                        <input type="time" class="form-input">
+                        <input type="date" value="{{dateStartAction.year}}-{{dateStartAction.month}}-{{dateStartAction.day}}" class="form-input margin-right2" />
+                        <input type="time" value="{{dateStartAction.hours}}" class="form-input">
                     </div>
                 </div>
                 <div>
                     <label class="form-label">Data de término</label>
                     <div class="collumns-2 gap-2">
-                        <input type="time" class="form-input margin-right2">
-                        <input type="time" class="form-input">
+                        <input type="date" value="{{dateEndAction.year}}-{{dateEndAction.month}}-{{dateEndAction.day}}" class="form-input margin-right2">
+                        <input type="time" value="{{dateEndAction.hours}}"class="form-input">
                     </div>
                 </div>
             </div>
             
             <h1 class="medium-text margin-top4 margin-btm2">Endereço</h1>
-            <p class="text medium-weight-text blue-rounded display-inline margin0">
-                Rua caçarema, 279 - Vila Popular, São Paulo.
-            </p>
             <div class="display-flex margin-top2">
                 <div class="margin-right4">
                     <label class="form-label">CEP</label>
-                    <input class="form-input-long-number margin-right2" />
+                    <input value="{{action.cepAction}}" class="form-input-long-number margin-right2" />
                 </div>
                 <div class="">
                     <label class="form-label">Número</label>
-                    <input class="form-input-number" />
+                    <input value="{{action.numAddressAction}}"" class="form-input-number" />
                 </div>
             </div>
+            <p class="text medium-weight-text blue-rounded display-inline margin0">
+                {{action.addressAction}}, {{action.numAddressAction}} - {{action.districtAction}}, {{action.cityAction}}.
+            </p>
 
             <h1 class="medium-text margin-top4 margin-btm2">Vaga de Assistente geral</h1>
             <label class="form-label">Nome</label>
