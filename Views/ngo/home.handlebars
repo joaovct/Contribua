@@ -56,7 +56,7 @@
         </div>
 
         <div class="group-nav feed-members" id="ngo-members">
-            <h1 class="title padding-top2 margin-btm1">Membros da ONG (2)</h1>
+            <h1 class="title padding-top2 margin-btm1">Membros da ONG ({{membersNgo.qtdMembers}})</h1>
             <div class="table-container">
                 <div class="table-header">
                     <div class="row">
@@ -70,55 +70,40 @@
                     </div>
                 </div>
                 <div class="table-body-options">
+                    {{#each membersNgo.volunteers}}
                     <div class="row">
                         <div class="flex-row">
                             <figure class="table-pic">
-                                <img src="/temp/uploads/profile/user.svg" />
+                                <img src="/temp/uploads/profile/{{photoVolunteer}}" />
                             </figure>
                             <article class="margin-left1">
-                                <h1 class="small-text medium-weight-text margin0 padding0">João Victor da Silva Pereira
+                                <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}} {{lastNameVolunteer}}
                                 </h1>
-                                <p class="gray smallest-text margin0 padding0">São Paulo, SP.</p>
+                                <p class="gray smallest-text margin0 padding0">{{districtVolunteer}}</p>
                             </article>
                         </div>
                         <div class="flex-row">
+                            {{#if isCreator}}
                             <p><span class="blue-rounded">Administrador</span></p>
+                            {{/if}}
                         </div>
-                        <div class="flex-row">4,6/5</div>
-                        <div class="flex-row">12</div>
-                        <figure onclick="hideOptions('.member-options-1')" class="member-options-icon">
+                        <div class="flex-row">{{averageStarVolunteer}}</div>
+                        <div class="flex-row">{{qtdActions}}</div>
+                        <figure onclick="hideOptions('.member-options-{{idVolunteer}}')" class="member-options-icon">
                             <img src="/assets/imgs/threedots.svg">
                         </figure>
                     </div>
-                    <div class="member-options member-options-1 mouseUpSlideUp">
+                    <div class="member-options member-options-{{idVolunteer}} mouseUpSlideUp">
                         <ul class="items">
-                            <li class="item">Tornar administrador</li>
+                            {{#if isCreator}}
+                            {{else}}
+                                <li class="item">Tornar administrador</li>
+                            {{/if}}
                             <li class="item red">Cancelar inscrição</li>
                         </ul>
                     </div>
-                    <div class="row">
-                        <div class="flex-row">
-                            <figure class="table-pic">
-                                <img src="/temp/uploads/profile/felipe.jpg" />
-                            </figure>
-                            <article class="margin-left1">
-                                <h1 class="small-text medium-weight-text margin0 padding0">Felipe Gringonelli</h1>
-                                <p class="gray smallest-text margin0 padding0">São Paulo, SP.</p>
-                            </article>
-                        </div>
-                        <div class="flex-row">Voluntário</div>
-                        <div class="flex-row">3.7/5</div>
-                        <div class="flex-row">26</div>
-                        <figure onclick="hideOptions('.member-options-2');" class="member-options-icon">
-                            <img src="/assets/imgs/threedots.svg">
-                        </figure>
-                    </div>
-                    <div class="member-options member-options-2 mouseUpSlideUp">
-                        <ul class="items">
-                            <li class="item">Tornar administrador</li>
-                            <li class="item red">Cancelar inscrição</li>
-                        </ul>
-                    </div>
+                    {{/each}}
+                    
                 </div>
             </div>
         </div>
