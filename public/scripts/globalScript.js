@@ -155,10 +155,6 @@ function addClass(el, Class, n){
     }
 }
 
-function alow(msg){
-    console.log('alow '+msg)
-}
-
 $(document).mouseup((e)=>{
     if(!$('.search-results').is(e.target) && $('.search-results').has(e.target).length === 0) $('.search-results').fadeOut('fast')
 })
@@ -204,7 +200,6 @@ function writeNgosSearch(data){
     for(let object of data){
         if(i==0) $('.search-results').append('<h1 class="title">ONGs</h1>')
         $('.search-results').append(`<li class="ngo"> <img src="/temp/uploads/profile/${object.photoNgo}"/> <div class="item-content"> <a href="/${object.nameNgo}" class="item-title"> <p class="smallest-text margin0 large-weight-text item-username">${object.nameNgo}</p> <p class="margin0">${object.name}</p> </a></div> </li>`)
-        console.log(object.photoNgo)        
         i++
     }
 }
@@ -212,8 +207,10 @@ function writeNgosSearch(data){
 function writeArticlesSearch(data){
     var i = 0
     for(let object of data){
-            $('.search-results').append(`<li class="action"> <a href="/event/${object.idAction}">  <figure class="image-action"> <img src="/temp/uploads/action/${object.photoAction}"/>  </figure> <h1 class="item-title">${object.nameAction}</h1> </a> </li>`)
-        }
+        if(i==0) $('.search-results').append('<h1 class="title">Eventos</h1>')    
+        $('.search-results').append(`<li class="action"> <a href="/event/${object.idAction}">  <figure class="image-action"> <img src="/temp/uploads/action/${object.photoAction}"/>  </figure> <h1 class="item-title">${object.nameAction}</h1> </a> </li>`)
+        i++
+    }
 }
 
 function callAlert(title, message, type){
@@ -255,7 +252,6 @@ var degrees = 45
 
 function rotate90(el){
     element = document.getElementById(el)
-    console.log(element)
     $(element).css('transform',`rotate(${degrees}deg)`)
     degrees+= 45   
 }
