@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/styles/css/event.css" />
 
 <style>
-    .change-action-pic{
+    .change-action-pic {
         background: url("/temp/uploads/action/{{action.photoAction}}") center center / cover;
     }
 </style>
@@ -15,7 +15,7 @@
             onclick="addClass('links', 'gray'); removeClass('links','gray', 1); $('#request-content').hide(); $('#management-content').show()"
             class="links medium-text blue gray transition-025 margin-right2">Gerenciamento</a>
     </div>
-    <div id="request-content" class="container margin-top2 content">
+    <div id="request-content" class="container margin-top2 content display-none">
         {{#if volunteersSubscribers}}
         <div class="table-container">
             <div class="table-header">
@@ -55,8 +55,9 @@
         </div>
         {{/if}}
     </div>
-    <div id="management-content" class="box container margin-top2 content display-none">
-        <form class="form full-width" action="/event/{{action.idAction}}/edit" method="POST" enctype="multipart/form-data">
+    <div id="management-content" class="box container margin-top2 content">
+        <form class="form full-width" action="/event/{{action.idAction}}/edit" method="POST"
+            enctype="multipart/form-data">
             <div class="full-width justifyContent-center">
                 <figure class="change-action-pic" id="preview">
                     <label for="change-action-pic" class="btn-change-action-pic">
@@ -69,26 +70,28 @@
             <label class="form-label">Título</label>
             <input class="form-input" name="name" value="{{action.nameAction}}" />
             <label class="form-label">Artigo</label>
-            <textarea name="article" class="form-input form-textarea" id="textarea-content" onkeyup="autosize($('#textarea-content'));">
-                {{action.descriptionAction}}
-            </textarea>
+            <textarea name="article" class="form-input form-textarea" id="textarea-content"
+                onkeyup="autosize($('#textarea-content'));">{{action.descriptionAction}}</textarea>
             <div class="display-flex">
                 <div class="margin-right4">
                     <label class="form-label">Data de início</label>
                     <div class="collumns-2 gap-2">
-                        <input type="date" value="{{dateStartAction.year}}-{{dateStartAction.month}}-{{dateStartAction.day}}" class="form-input margin-right2" />
+                        <input type="date"
+                            value="{{dateStartAction.year}}-{{dateStartAction.month}}-{{dateStartAction.day}}"
+                            class="form-input margin-right2" />
                         <input type="time" value="{{dateStartAction.hours}}" class="form-input">
                     </div>
                 </div>
                 <div>
                     <label class="form-label">Data de término</label>
                     <div class="collumns-2 gap-2">
-                        <input type="date" value="{{dateEndAction.year}}-{{dateEndAction.month}}-{{dateEndAction.day}}" class="form-input margin-right2">
-                        <input type="time" value="{{dateEndAction.hours}}"class="form-input">
+                        <input type="date" value="{{dateEndAction.year}}-{{dateEndAction.month}}-{{dateEndAction.day}}"
+                            class="form-input margin-right2">
+                        <input type="time" value="{{dateEndAction.hours}}" class="form-input">
                     </div>
                 </div>
             </div>
-            
+
             <h1 class="medium-text margin-top4 margin-btm2">Endereço</h1>
             <div class="display-flex margin-top2">
                 <div class="margin-right4">
@@ -101,24 +104,41 @@
                 </div>
             </div>
             <p class="text medium-weight-text blue-rounded display-inline margin0">
-                {{action.addressAction}}, {{action.numAddressAction}} - {{action.districtAction}}, {{action.cityAction}}.
+                {{action.addressAction}}, {{action.numAddressAction}} - {{action.districtAction}},
+                {{action.cityAction}}.
             </p>
+            <input type="hidden" name="address" value="{{action.addressAction}}">
+            <input type="hidden" name="district" value="{{action.districtAction}}">
+            <input type="hidden" name="city" value="{{action.cityAction}}">
 
-            {{!-- <h1 class="medium-text margin-top4 margin-btm2">Vaga de Assistente geral</h1>
-            <label class="form-label">Nome</label>
-            <input class="form-input" value="Assistente geral" />
-            <label class="form-label">Descrição</label>
-            <textarea
-                class="form-input form-textarea">Ex voluptate labore Lorem dolor nulla cillum. Aute et ad irure excepteur reprehenderit voluptate labore ipsum ipsum nulla adipisicing. Est nulla reprehenderit minim enim ut in. Ea velit anim irure ad voluptate pariatur veniam elit culpa deserunt et. Sunt est aute exercitation et consequat ex do est ad aliquip fugiat.</textarea>
-            <label class="form-label">Quantidade</label>
-            <input type="number" class="form-input" value="10"> --}}
+            {{#if vacancies}}
+            <h1 class="medium-text margin-top4 margin-btm2">Vagas</h1>
+            {{#each vacancies}}
+            <h1 onclick="$('#job-{{idVacancyAction}}').slideToggle('fast'); rotate90('btn-job-{{idVacancyAction}}')"
+                class="margin0 margin-top2 btn-outlined justifyContent-between">Vaga de {{nameVacancyAction}} <img
+                    id="btn-job-{{idVacancyAction}}" class="inline-icon transition-050" src="/assets/imgs/plus.svg">
+            </h1>
+            <div class="border-left border-bottom border-right border-radius-7 padding-2 display-none"
+                id="job-{{idVacancyAction}}">
+                <label class="form-label">Nome</label>
+                <input class="form-input" value="{{nameVacancyAction}}" />
+                <label class="form-label">Descrição</label>
+                <textarea class="form-input form-textarea">{{descVacancyAction}}</textarea>
+                <label class="form-label">Quantidade</label>
+                <input type="number" class="form-input" value="{{qtdVacancyAction}}">
+            </div>
+            {{/each}}
+            {{else}}
+            <h1 class="medium-text gray margin-top4 margin-btm2">Houve um erro ao exibir as vagas desse evento...</h1>
+            {{/if}}
 
             <button class="btn-primary display-block margin0 margin-top4">Salvar edições</button>
 
             <h1 class="medium-text red margin-top4 margin-btm2">Área de risco</h1>
         </form>
         <form action="/event/{{action.idAction}}/deactivate" id="deactivate-form" method="POST">
-            <div onclick="$('.disable-account').slideDown('slow').css('display', 'flex')" class="btn-danger margin0">Encerrar evento</div>
+            <div onclick="$('.disable-account').slideDown('slow').css('display', 'flex')" class="btn-danger margin0">
+                Encerrar evento</div>
         </form>
     </div>
 </div>

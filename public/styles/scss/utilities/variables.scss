@@ -111,8 +111,44 @@ $borderColor: #eeeeee;
   color: $errorColor;
 }
 
+%border, .border{
+  border: $border !important;
+}
+
+%border-none, .border-none{
+  border: none !important;
+}
+
+%border-top, .border-top{
+  border-top: $border;
+}
+
+%border-left, .border-left{
+  border-left: $border;
+}
+
+%border-right, .border-right{
+  border-right: $border;
+}
+
+%border-bottom, .border-bottom{
+  border-bottom: $border;
+}
+
+%border-radius-4, .border-radius-4{
+  border-radius: 4px;
+}
+
+%border-radius-7, .border-radius-7{
+  border-radius: 7px;
+}
+
 %transition-025, .transition-025{
   transition: .25s;
+}
+
+%transition-050, .transition-050{
+  transition: .50s;
 }
 
 img.inline-icon{

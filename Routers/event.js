@@ -59,7 +59,6 @@ router.get("/:id", async (req,res) => {
             })
         })
 
-        // res.json(volunteerVacancies)
         res.render('ngo/event', {action, category, ngo, user, vacancies: volunteerVacancies, dataHeader, dataHeaderNgo, ngos: req.session.ngoUser})
     }else{
         res.render('error', {dataHeader, dataHeaderNgo, ngos: req.session.ngoUser})
@@ -101,7 +100,8 @@ router.get('/:id/management', async(req,res)=>{
             })
             volunteersSubscribers = await vacancyActionController.listVolunteersWithVacancy(idVacancies)
 
-            res.render('ngo/eventManagement', {action, dateStartAction, dateEndAction, category, volunteersSubscribers, dataHeader, dataHeaderNgo})
+            // res.json(vacancies)
+            res.render('ngo/eventManagement', {action, dateStartAction, dateEndAction, category, volunteersSubscribers, vacancies, dataHeader, dataHeaderNgo})
         }else{
             res.render('error', {dataHeader, dataHeaderNgo})
         }

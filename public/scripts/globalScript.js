@@ -242,3 +242,12 @@ function previewPhoto(){
         obj.readAsDataURL(this.files[0]);
     }
 }
+
+var degrees = 45
+
+function rotate90(el){
+    element = document.getElementById(el)
+    console.log(element)
+    $(element).css('transform',`rotate(${degrees}deg)`)
+    degrees+= 45   
+}
