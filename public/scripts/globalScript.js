@@ -169,18 +169,19 @@ function doSearch(input){
         nullSpace = value.trim()
         if(value.length > 0 && nullSpace.length > 0){
             var results = $.post('http://localhost:3000/search?key=' + value, (data) => {
-                let volunteers = [], ngos = [], events = [], cases = []
+                let volunteers = [], ngos = [], actions = [], cases = []
                 removeDiv('.search-results')
                 for(let object of data){
                     if(object.typeResult == "volunteer") volunteers.push(object)
                     else if(object.typeResult == "ngo") ngos.push(object)
-                    else if(object.typeResult == "event") events.push(object)
+                    else if(object.typeResult == "action") actions.push(object)
                     else if(object.typeResult == "case") cases.push(object)
                 }
                 if(data.length > 0){
                     $('.search-form').append('<ul class="search-results mouseUpFadeOut"></ul>')
-                    if(volunteers.length>0) writeVolunteers(volunteers)
-                    if(ngos.length>0) writeNgos(ngos)
+                    if(volunteers.length>0) writeVolunteersSearch(volunteers)
+                    if(ngos.length>0) writeNgosSearch(ngos)
+                    if(actions.length>0) writeArticlesSearch(actions)
                 }
             })
         }else{
@@ -189,7 +190,7 @@ function doSearch(input){
     })
 }
 
-function writeVolunteers(data){
+function writeVolunteersSearch(data){
     var i = 0
     for(let object of data){
         if(i==0) $('.search-results').append('<h1 class="title">Voluntários</h1>')
@@ -198,7 +199,7 @@ function writeVolunteers(data){
     }
 }
 
-function writeNgos(data){
+function writeNgosSearch(data){
     var i = 0
     for(let object of data){
         if(i==0) $('.search-results').append('<h1 class="title">ONGs</h1>')
@@ -206,6 +207,13 @@ function writeNgos(data){
         console.log(object.photoNgo)        
         i++
     }
+}
+
+function writeArticlesSearch(data){
+    var i = 0
+    for(let object of data){
+            $('.search-results').append(`<li class="action"> <a href="/event/${object.idAction}">  <figure class="image-action"> <img src="/temp/uploads/action/${object.photoAction}"/>  </figure> <h1 class="item-title">${object.nameAction}</h1> </a> </li>`)
+        }
 }
 
 function callAlert(title, message, type){

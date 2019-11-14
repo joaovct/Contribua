@@ -10,6 +10,17 @@
                 <img src="/assets/imgs/search.svg" />
                 <input placeholder="Pesquisar" oninput="doSearch(this)" class="search-input" name="search-input"
                     type="text" />
+                {{!-- <div class="search-results"> --}}
+                    {{!-- <h1 class="title">Eventos</h1> --}}
+                    {{!-- <li class="action">
+                        <a href="/event/17">
+                            <figure class="image-action">
+                                <img src="/temp/uploads/action/8a48c47eb27bb3a6d7980a51a8706345-model-background.jpg" />
+                            </figure>
+                            <h1 class="item-title">Aula de português para refugiados</h1>
+                        </a>
+                    </li> --}}
+                {{!-- </div> --}}
             </form>
         </div>
         <nav class="nav-header">
@@ -39,43 +50,45 @@
             <img onclick="$('.my-ngos').slideUp('fast')" class="modal-close-btn" src="/assets/imgs/close.svg" />
         </div>
         {{#if ngos}}
-            <h1 class="title large-weight-text margin0 margin-btm1 text-left">Administrando</h1>
-            <ul class="items margin0">
+        <h1 class="title large-weight-text margin0 margin-btm1 text-left">Administrando</h1>
+        <ul class="items margin0">
             {{#each ngos}}
-                <form action="/login-ngo" method="post">
-                    <button id="{{userName}}" type="submit" style="display:none;"></button>
-                    <input type="hidden" name="nameNgo" value="{{nameNgo}}">  
-                    <input type="hidden" name="descriptionNgo" value="{{descriptionNgo}}">  
-                    <input type="hidden" name="cnpjNgo" value="{{cnpjNgo}}">  
-                    <input type="hidden" name="emailNgo" value="{{emailNgo}}">  
-                    <input type="hidden" name="userName" value="{{userName}}">  
-                    <input type="hidden" name="sitNgo" value="{{siteNgo}}">  
-                    <input type="hidden" name="cepNgo" value="{{cepNgo}}">  
-                    <input type="hidden" name="cityNgo" value="{{cityNgo}}">  
-                    <input type="hidden" name="districtNgo" value="{{districtNgo}}">  
-                    <input type="hidden" name="addressNgo" value="{{addressNgo}}">  
-                    <input type="hidden" name="photoNgo" value="{{photoNgo}}">  
-                    <input type="hidden" name="averageStarsNgo" value="{{averageStarNgo}}">  
-                    <input type="hidden" name="createdAt" value="{{createdAt}}">  
-                    <label for="{{userName}}" style="cursor: pointer;">
-                        <li class="item align-center margin0">
-                            <img src="/temp/uploads/profile/{{photoNgo}}" class="rounded-pic margin-right1" />
-                            <h1 class="medium-text blue margin0">{{nameNgo}}</h1>
-                        </li>
-                    </label>
-                </form>
+            <form action="/login-ngo" method="post">
+                <button id="{{userName}}" type="submit" style="display:none;"></button>
+                <input type="hidden" name="nameNgo" value="{{nameNgo}}">
+                <input type="hidden" name="descriptionNgo" value="{{descriptionNgo}}">
+                <input type="hidden" name="cnpjNgo" value="{{cnpjNgo}}">
+                <input type="hidden" name="emailNgo" value="{{emailNgo}}">
+                <input type="hidden" name="userName" value="{{userName}}">
+                <input type="hidden" name="sitNgo" value="{{siteNgo}}">
+                <input type="hidden" name="cepNgo" value="{{cepNgo}}">
+                <input type="hidden" name="cityNgo" value="{{cityNgo}}">
+                <input type="hidden" name="districtNgo" value="{{districtNgo}}">
+                <input type="hidden" name="addressNgo" value="{{addressNgo}}">
+                <input type="hidden" name="photoNgo" value="{{photoNgo}}">
+                <input type="hidden" name="averageStarsNgo" value="{{averageStarNgo}}">
+                <input type="hidden" name="createdAt" value="{{createdAt}}">
+                <label for="{{userName}}" style="cursor: pointer;">
+                    <li class="item align-center margin0">
+                        <img src="/temp/uploads/profile/{{photoNgo}}" class="rounded-pic margin-right1" />
+                        <h1 class="medium-text blue margin0">{{nameNgo}}</h1>
+                    </li>
+                </label>
+            </form>
             {{/each}}
-            </ul>
+        </ul>
 
         {{else}}
-            <div style="max-width: 350px;" class="justifyContent-center flex-column flex-nowrap margin-top4">
-                <img height="150px" src="/assets/imgs/empty2.svg"/>
-                <h1 class="title text-center margin0 margin-top4">Ops...</h1>
-                <p class="text margin0 margin-top1 text-center">Parece que você não segue e nem administra nenhuma ONG. Que tal começar a cadastrar uma clicando no botão abaixo?</p>
-            </div>
+        <div style="max-width: 350px;" class="justifyContent-center flex-column flex-nowrap margin-top4">
+            <img height="150px" src="/assets/imgs/empty2.svg" />
+            <h1 class="title text-center margin0 margin-top4">Ops...</h1>
+            <p class="text margin0 margin-top1 text-center">Parece que você não segue e nem administra nenhuma ONG. Que
+                tal começar a cadastrar uma clicando no botão abaixo?</p>
+        </div>
         {{/if}}
         <div class="centralize-auto margin0">
-            <a href="/starting-ong" onclick="$('.my-ngos').slideUp('fast')" class="btn-callaction margin0 margin-top2">Criar uma
+            <a href="/starting-ong" onclick="$('.my-ngos').slideUp('fast')"
+                class="btn-callaction margin0 margin-top2">Criar uma
                 ONG</a>
         </div>
     </div>
