@@ -67,6 +67,7 @@ module.exports = {
                         cityNgo: dataNgo.city,
                         districtNgo: dataNgo.district,
                         addressNgo: dataNgo.address,
+                        numAddressNgo: dataNgo.number,
                         siteNgo: dataNgo.site
                     },{where: {idNgo: sessionNgo.idNgo}})
 
@@ -76,6 +77,7 @@ module.exports = {
             sessionNgo.cityNgo = dataNgo.city
             sessionNgo.districtNgo = dataNgo.district
             sessionNgo.addressNgo = dataNgo.address
+            sessionNgo.numAddressNgo = dataNgo.number
             sessionNgo.siteNgo = dataNgo.site
 
             return sessionNgo

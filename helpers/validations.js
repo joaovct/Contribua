@@ -4,6 +4,16 @@ module.exports = {
             return false
         }
 
+        if(field.length < 1){
+            return false
+        }
+        return true
+    },
+    filledFieldName(field){
+        if(!field || field == undefined || field == null){
+            return false
+        }
+
         if(field.length < 3){
             return false
         }

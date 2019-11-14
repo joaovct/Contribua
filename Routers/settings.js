@@ -111,7 +111,7 @@ router.post("/edit-profile-ngo", multer(multerConfig.user()).single('photo'), as
     const dataNgo = req.body
     const dataPhoto = req.file
 
-    if(!validations.filledField(dataNgo.name)){
+    if(!validations.filledFieldName(dataNgo.name)){
         req.flash("error_msg", "O nome deve ter no mínimo 4 caracteres!")
         return res.redirect("/settings")
     }
@@ -134,6 +134,11 @@ router.post("/edit-profile-ngo", multer(multerConfig.user()).single('photo'), as
     if(!validations.filledField(dataNgo.address)){
         req.flash("error_msg", "Endereço inválido")
         return res.redirect("/settings")
+    }
+
+    if(!validations.filledField(dataNgo.number)){
+        req.flash('error_msg', "Número de endereço inválido")
+        return res.redirect('/settings')
     }
 
     const categories = req.body.categories
