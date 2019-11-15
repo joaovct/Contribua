@@ -46,7 +46,7 @@ module.exports = {
         //cadastra vagas
         await vacancyController.register(dataVacancy, action.idAction)
     },
-    async edit(dataAction, idAction){
+    async editPunctual(dataAction, idAction){
         await Action.update({
             nameAction: dataAction.name,
             descriptionAction: dataAction.description,
@@ -54,7 +54,9 @@ module.exports = {
             cityAction: dataAction.city,
             districtAction: dataAction.district,
             addressAction: dataAction.address,
-            numAddressAction: dataAction.numAddress
+            numAddressAction: dataAction.numAddress,
+            dateAction: dataAction.startDate+" "+dataAction.startTime,
+            dateEndAction: dataAction.startDate+" "+dataAction.endDate
         }, {where: {idAction}})
 
     },

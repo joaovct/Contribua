@@ -73,20 +73,36 @@
                 {{action.descriptionAction}}
             </textarea>
             <div class="display-flex">
-                <div class="margin-right4">
-                    <label class="form-label">Data de início</label>
-                    <div class="collumns-2 gap-2">
-                        <input type="date" value="{{dateStartAction.year}}-{{dateStartAction.month}}-{{dateStartAction.day}}" class="form-input margin-right2" />
-                        <input type="time" value="{{dateStartAction.hours}}" class="form-input">
+                {{#if action.isPunctual}}
+                    <div class="margin-right4">
+                        <label class="form-label">Data e horário de início</label>
+                        <div class="collumns-2 gap-2">
+                            <input type="date" name="startDate" value="{{dateStartAction.year}}-{{dateStartAction.month}}-{{dateStartAction.day}}" class="form-input margin-right2" />
+                            <input type="time" name="startTime" value="{{dateStartAction.hours}}" class="form-input">
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <label class="form-label">Data de término</label>
-                    <div class="collumns-2 gap-2">
-                        <input type="date" value="{{dateEndAction.year}}-{{dateEndAction.month}}-{{dateEndAction.day}}" class="form-input margin-right2">
-                        <input type="time" value="{{dateEndAction.hours}}"class="form-input">
+                    <div class="margin-right4">
+                        <label class="form-label">Horário de Término</label>
+                        <div class="collumns-2 gap-2">
+                            <input type="time" name="endTime" value="{{dateEndAction.hours}}" class="form-input">
+                        </div>
                     </div>
-                </div>
+                {{else}}
+                    <div class="margin-right4">
+                        <label class="form-label">Data de início</label>
+                        <div class="collumns-2 gap-2">
+                            <input type="date" name="startDate" value="{{dateStartAction.year}}-{{dateStartAction.month}}-{{dateStartAction.day}}" class="form-input margin-right2" />
+                            <input type="time" name="startTime" value="{{dateStartAction.hours}}" class="form-input">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">Data de término</label>
+                        <div class="collumns-2 gap-2">
+                            <input type="date" name="endDate" value="{{dateEndAction.year}}-{{dateEndAction.month}}-{{dateEndAction.day}}" class="form-input margin-right2">
+                            <input type="time" name="endTime" value="{{dateEndAction.hours}}"class="form-input">
+                        </div>
+                    </div>
+                {{/if}}
             </div>
             
             <h1 class="medium-text margin-top4 margin-btm2">Endereço</h1>
@@ -100,6 +116,9 @@
                     <input value="{{action.numAddressAction}}" class="form-input-number" />
                 </div>
             </div>
+            <input type="hidden" name="address" value="{{action.addressAction}}">
+            <input type="hidden" name="district" value="{{action.districtAction}}">
+            <input type="hidden" name="city" value="{{action.cityAction}}">
             <p class="text medium-weight-text blue-rounded display-inline margin0">
                 {{action.addressAction}}, {{action.numAddressAction}} - {{action.districtAction}}, {{action.cityAction}}.
             </p>

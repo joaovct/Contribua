@@ -154,7 +154,7 @@ router.post("/edit-profile-ngo", multer(multerConfig.user()).single('photo'), as
         req.session.ngo.photoNgo = await ngoController.editPhoto(dataPhoto, req.session.ngo)
     }
 
-    req.session.ngoUser = await userNgoController.listNgo(req.session.user.idVolunteer)
+    req.session.ngoUser = await userNgoController.listNgoCreator(req.session.user.idVolunteer)
 
     req.flash("success_msg", "Ong editada com sucesso!")
     return res.redirect("/settings")

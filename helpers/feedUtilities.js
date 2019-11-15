@@ -13,7 +13,7 @@ module.exports = {
         return action
     },
     async formatHours(date){
-        let str = date.toISOString()
+        let str = date.toString()
         str = str.replace("Z","").replace("T"," ")
 
         let hours =  (new Date(str).getHours() < 10 ? '0':'') + new Date(str).getHours()
