@@ -1,8 +1,10 @@
 const Ngo = require("../models/Ngo")
+const UserNgo = require('../models/UserNgo')
 const verifyEmail = require("../helpers/verifyEmail")
 const telephoneController = require("./telephoneController")
 const verifyTelephone = require("../helpers/verifyTelephone")
 const verifyCNPJ = require("../helpers/verifyCNPJ")
+const userController = require('../controllers/userController')
 const userNgoController = require("./userNgoController")
 const causesController = require("./causesController")
 
@@ -67,6 +69,7 @@ module.exports = {
                         cityNgo: dataNgo.city,
                         districtNgo: dataNgo.district,
                         addressNgo: dataNgo.address,
+                        numAddressNgo: dataNgo.number,
                         siteNgo: dataNgo.site
                     },{where: {idNgo: sessionNgo.idNgo}})
 
@@ -76,6 +79,7 @@ module.exports = {
             sessionNgo.cityNgo = dataNgo.city
             sessionNgo.districtNgo = dataNgo.district
             sessionNgo.addressNgo = dataNgo.address
+            sessionNgo.numAddressNgo = dataNgo.number
             sessionNgo.siteNgo = dataNgo.site
 
             return sessionNgo
@@ -97,5 +101,31 @@ module.exports = {
     async listOneNgo(idNgo){
         const ngo = await Ngo.findOne({where: {idNgo: idNgo}})
         return ngo
+    },
+    async listMembersNgo(idNgo){
+        const idVolunteers = await UserNgo.findAll({attributes: ['idVolunteer','isCreator'], where: {idNgo}})
+        let membersNgo = {
+            volunteers: [],
+            qtdMembers: 0
+        }
+        let i = 0
+        for (let id of idVolunteers){
+            let volunteer = await userController.listOneUser(id.idVolunteer)
+            if(volunteer){
+                i++
+                membersNgo.volunteers.push({
+                    idVolunteer: volunteer.idVolunteer,
+                    nameVolunteer: volunteer.nameVolunteer,
+                    lastNameVolunteer: volunteer.lastNameVolunteer,
+                    photoVolunteer: volunteer.photoVolunteer,
+                    averageStarsVolunteer: volunteer.averageStarsVolunteer,
+                    districtVolunteer: volunteer.districtVolunteer,
+                    isCreator: (id.isCreator ? true : false)
+                })
+            }
+        }
+        if(i>0) membersNgo.qtdMembers = i
+        else membersNgo = false
+        return membersNgo
     }
 }

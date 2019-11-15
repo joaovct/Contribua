@@ -111,8 +111,44 @@ $borderColor: #eeeeee;
   color: $errorColor;
 }
 
+%border, .border{
+  border: $border !important;
+}
+
+%border-none, .border-none{
+  border: none !important;
+}
+
+%border-top, .border-top{
+  border-top: $border;
+}
+
+%border-left, .border-left{
+  border-left: $border;
+}
+
+%border-right, .border-right{
+  border-right: $border;
+}
+
+%border-bottom, .border-bottom{
+  border-bottom: $border;
+}
+
+%border-radius-4, .border-radius-4{
+  border-radius: 4px;
+}
+
+%border-radius-7, .border-radius-7{
+  border-radius: 7px;
+}
+
 %transition-025, .transition-025{
   transition: .25s;
+}
+
+%transition-050, .transition-050{
+  transition: .50s;
 }
 
 img.inline-icon{
@@ -225,23 +261,27 @@ img.inline-icon{
 }
 
 .padding-left4{
-  padding-left: $margin4;
+  padding-left: $margin4 !important;
 }
 
 .padding-btm2 {
-  padding-bottom: $margin2;
+  padding-bottom: $margin2 !important;
 }
 
 .padding-btm4 {
-  padding-bottom: $margin4;
+  padding-bottom: $margin4 !important;
+}
+
+.padding-1{
+  padding: $margin1 !important;
 }
 
 .padding-2{
-  padding: $margin2;
+  padding: $margin2 !important;
 }
 
 .padding-4 {
-  padding: $margin4;
+  padding: $margin4 !important;
 }
 
 .border-box {
@@ -424,6 +464,14 @@ img.inline-icon{
 %justifyContent-around, .justifyContent-around{
   @extend %display-flex;
   justify-content: space-around;
+}
+
+%grow-0, .grow-0{
+  flex-grow: 0;
+}
+
+%grow-1, .grow-1{
+  flex-grow: 1;
 }
 
 %grow-0, .grow-0{

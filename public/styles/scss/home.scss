@@ -188,14 +188,13 @@
     grid-gap: $margin4;
     .feed-volunteer{
       @extend %box;
-      padding: 0 0 $margin2 0;
-      box-sizing: border-box;
+      padding: 0;
       max-height: 600px;
       width: 350px;
-      overflow-y: auto;
-      border-radius: 7px;
+      box-shadow: none;
       border: $border;
-      box-shadow: 0 5px 15px -2px rgba(0,0,0,0.06);
+      box-sizing: border-box;
+      overflow-y: auto;
       .volunteer-pic{
         padding: 0;
         margin: 0;
@@ -209,8 +208,11 @@
         }
       }
       .volunteer-content{
-        padding: $margin1 $margin1 0 $margin1;
+        padding: $margin1 $margin1 $margin2 $margin1;
         color: black;
+        .button{
+          flex-grow: 1;
+        }
       }
       &::-webkit-scrollbar {
         width: 5px;
@@ -221,35 +223,39 @@
 
 .header-search-volunteers{
   width: 100%;
-  display: grid;
-  grid-template-columns: auto auto auto 2fr;
-  grid-gap: $margin1;
+  display: flex;
   align-items: center;
-  flex-flow: row nowrap;
   position: relative;
   z-index: 2;
+  
   .wrapper-options{
+    flex-grow: 0;
+    margin: 0 $margin1 0 0;
     .open-options{
       margin: 0;
     }
   }
   .form-btnCheckbox{
-    margin: 0;
+    flex-grow: 0;
+    margin: 0 $margin1 0 0;
   }
 
   .search-bar{
+    flex-grow: 1;
     display: flex;
     align-items: center;
     flex-flow: row nowrap;
     position: relative;
-    padding-left: $margin1;
     box-sizing: border-box;
+    margin: 0;
     .form-input{
       margin: 0;
+      padding-right: $margin4 + $margin2;
     }
     img{
-      height: 1.5em;
-      margin-left: $margin1;
+      height: 1.2rem;
+      position: absolute;
+      right: 20px;
       cursor: pointer;
     }
   }

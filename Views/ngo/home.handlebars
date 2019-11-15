@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="/styles/css/homeUser.css" />
+<link rel="stylesheet" href="/styles/css/home.css" />
+
 <script src="/scripts/homeNgoScript.js"></script>
 <div class="centralize padding-top4">
     <div class="container">
@@ -56,7 +57,7 @@
         </div>
 
         <div class="group-nav feed-members" id="ngo-members">
-            <h1 class="title padding-top2 margin-btm1">Membros da ONG (2)</h1>
+            <h1 class="title padding-top2 margin-btm1">Membros da ONG ({{membersNgo.qtdMembers}})</h1>
             <div class="table-container">
                 <div class="table-header">
                     <div class="row">
@@ -70,61 +71,46 @@
                     </div>
                 </div>
                 <div class="table-body-options">
+                    {{#each membersNgo.volunteers}}
                     <div class="row">
                         <div class="flex-row">
                             <figure class="table-pic">
-                                <img src="/temp/uploads/profile/user.svg" />
+                                <img src="/temp/uploads/profile/{{photoVolunteer}}" />
                             </figure>
                             <article class="margin-left1">
-                                <h1 class="small-text medium-weight-text margin0 padding0">João Victor da Silva Pereira
+                                <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}} {{lastNameVolunteer}}
                                 </h1>
-                                <p class="gray smallest-text margin0 padding0">São Paulo, SP.</p>
+                                <p class="gray smallest-text margin0 padding0">{{districtVolunteer}}</p>
                             </article>
                         </div>
                         <div class="flex-row">
+                            {{#if isCreator}}
                             <p><span class="blue-rounded">Administrador</span></p>
+                            {{/if}}
                         </div>
-                        <div class="flex-row">4,6/5</div>
-                        <div class="flex-row">12</div>
-                        <figure onclick="hideOptions('.member-options-1')" class="member-options-icon">
+                        <div class="flex-row">{{averageStarVolunteer}}</div>
+                        <div class="flex-row">{{qtdActions}}</div>
+                        <figure onclick="hideOptions('.member-options-{{idVolunteer}}')" class="member-options-icon">
                             <img src="/assets/imgs/threedots.svg">
                         </figure>
                     </div>
-                    <div class="member-options member-options-1 mouseUpSlideUp">
+                    <div class="member-options member-options-{{idVolunteer}} mouseUpSlideUp">
                         <ul class="items">
-                            <li class="item">Tornar administrador</li>
+                            {{#if isCreator}}
+                            {{else}}
+                                <li class="item">Tornar administrador</li>
+                            {{/if}}
                             <li class="item red">Cancelar inscrição</li>
                         </ul>
                     </div>
-                    <div class="row">
-                        <div class="flex-row">
-                            <figure class="table-pic">
-                                <img src="/temp/uploads/profile/felipe.jpg" />
-                            </figure>
-                            <article class="margin-left1">
-                                <h1 class="small-text medium-weight-text margin0 padding0">Felipe Gringonelli</h1>
-                                <p class="gray smallest-text margin0 padding0">São Paulo, SP.</p>
-                            </article>
-                        </div>
-                        <div class="flex-row">Voluntário</div>
-                        <div class="flex-row">3.7/5</div>
-                        <div class="flex-row">26</div>
-                        <figure onclick="hideOptions('.member-options-2');" class="member-options-icon">
-                            <img src="/assets/imgs/threedots.svg">
-                        </figure>
-                    </div>
-                    <div class="member-options member-options-2 mouseUpSlideUp">
-                        <ul class="items">
-                            <li class="item">Tornar administrador</li>
-                            <li class="item red">Cancelar inscrição</li>
-                        </ul>
-                    </div>
+                    {{/each}}
+                    
                 </div>
             </div>
         </div>
 
         <div class="group-nav feed-search" id="search-volunteers">
-            <h1 class="title padding-top2 margin-btm1">Procurar por novos voluntários</h1>
+            <h1 class="title padding-top2 margin-btm1">Procurar voluntários</h1>
             <form class="form header-search-volunteers">
                 <div class="wrapper-options">
                     <div onclick="$('.cause-options').toggle('fast')" class="open-options">
@@ -162,17 +148,17 @@
                 </div>
 
                 <input onclick="" type="checkbox" id="filter-proximity" value="proximity" class="form-checkbox">
-                <label for="filter-proximity" class="form-btnCheckbox open-options margin0">Proximidade</label>
+                <label for="filter-proximity" class="form-btnCheckbox open-options">Proximidade</label>
 
-                <div class="search-bar">
-                    <input class="form-input display-inline" type="text" placeholder="Pesquise por voluntários" />
+                <div class="search-bar width-auto">
+                    <input class="form-input display-inline" type="text" oninput="doSearchVolunteer(this.value)" placeholder="Pesquise por voluntários" />
                     <img src="/assets/imgs/search.svg" />
                 </div>
             </form>
             <nav class="nav-articles">
 
                 <div class="wrapper-articles">
-                    <h1 class="medium-text margin-top2 padding0">3 voluntários encontrados</h1>
+                    <h1 class="medium-text light-weight-text margin0 margin-top2 padding0">3 voluntários encontrados</h1>
                     <div class="group-volunteers margin-top2">
                         <article class="feed-volunteer">
                             <figure class="volunteer-pic">
@@ -186,24 +172,19 @@
                                     </h1>
                                 </div>
                                 <h1 class="text gray margin0">São Paulo, SP.</h1>
-
                                 <p class="margin0 margin-top2 small-text medium-weight-text">Causas</p>
                                 <ul class="causes">
                                     <li class="cause">Direitos humanos</li>
                                     <li class="cause">Animal</li>
-                                    <li class="cause">Pobreza</li>
-                                    <li class="cause">Jovens</li>
-                                    <li class="cause">Educação</li>
                                 </ul>
                                 <p class="margin0 margin-top1 small-text medium-weight-text">Habilidades</p>
                                 <ul class="causes">
                                     <li class="cause">Habilidade 1</li>
                                     <li class="cause">Habilidade 2</li>
-                                    <li class="cause">Habilidade 3</li>
                                 </ul>
                                 <div class="justifyContent-center">
-                                    <button class="btn-primary small-text">Convidar para ONG</button>
-                                    <button class="btn-secondary margin-left2">Mais...</button>
+                                    <button class="btn-primary small-text grow-1">Convidar para ONG</button>
+                                    <button class="btn-secondary grow-1 margin-left2">Mais...</button>
                                 </div>
                             </div>
                         </article>
@@ -219,24 +200,19 @@
                                     </h1>
                                 </div>
                                 <h1 class="text gray margin0">São Paulo, SP.</h1>
-
                                 <p class="margin0 margin-top2 small-text medium-weight-text">Causas</p>
                                 <ul class="causes">
                                     <li class="cause">Direitos humanos</li>
                                     <li class="cause">Animal</li>
-                                    <li class="cause">Pobreza</li>
-                                    <li class="cause">Jovens</li>
-                                    <li class="cause">Educação</li>
                                 </ul>
                                 <p class="margin0 margin-top1 small-text medium-weight-text">Habilidades</p>
                                 <ul class="causes">
                                     <li class="cause">Habilidade 1</li>
                                     <li class="cause">Habilidade 2</li>
-                                    <li class="cause">Habilidade 3</li>
                                 </ul>
                                 <div class="justifyContent-center">
-                                    <button class="btn-primary small-text">Convidar para ONG</button>
-                                    <button class="btn-secondary margin-left2">Mais...</button>
+                                    <button class="btn-primary small-text grow-1">Convidar para ONG</button>
+                                    <button class="btn-secondary grow-1 margin-left2">Mais...</button>
                                 </div>
                             </div>
                         </article>
@@ -252,28 +228,22 @@
                                     </h1>
                                 </div>
                                 <h1 class="text gray margin0">São Paulo, SP.</h1>
-
                                 <p class="margin0 margin-top2 small-text medium-weight-text">Causas</p>
                                 <ul class="causes">
                                     <li class="cause">Direitos humanos</li>
                                     <li class="cause">Animal</li>
-                                    <li class="cause">Pobreza</li>
-                                    <li class="cause">Jovens</li>
-                                    <li class="cause">Educação</li>
                                 </ul>
                                 <p class="margin0 margin-top1 small-text medium-weight-text">Habilidades</p>
                                 <ul class="causes">
                                     <li class="cause">Habilidade 1</li>
                                     <li class="cause">Habilidade 2</li>
-                                    <li class="cause">Habilidade 3</li>
                                 </ul>
                                 <div class="justifyContent-center">
-                                    <button class="btn-primary small-text">Convidar para ONG</button>
-                                    <button class="btn-secondary margin-left2">Mais...</button>
+                                    <button class="btn-primary small-text grow-1">Convidar para ONG</button>
+                                    <button class="btn-secondary grow-1 margin-left2">Mais...</button>
                                 </div>
                             </div>
                         </article>
-
                     </div>
                 </div>
             </nav>
@@ -289,6 +259,6 @@
 
 <script>
     $( '.feed-members' ).hide();
-    $( '.feed-search' ).hide()
-    //$( '.feed-events' ).hide()
+    //$( '.feed-search' ).hide()
+    $( '.feed-events' ).hide()
 </script>
