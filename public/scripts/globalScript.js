@@ -164,7 +164,7 @@ function doSearch(input){
     $(document).ready(()=>{
         nullSpace = value.trim()
         if(value.length > 0 && nullSpace.length > 0){
-            var results = $.post('http://localhost:3000/search?key=' + value, (data) => {
+            $.post('http://localhost:3000/search?key=' + value, (data) => {
                 let volunteers = [], ngos = [], actions = [], cases = []
                 removeDiv('.search-results')
                 for(let object of data){

@@ -7,9 +7,13 @@ var results = []
 
 async function findVolunteers(key){
     const users = await Volunteer.findAll({
-        where: Sequelize.where(Sequelize.fn("concat", Sequelize.col("nameVolunteer")," ", Sequelize.col("lastNameVolunteer")), {
-            [Op.like]: key
-        })
+        where: 
+        Sequelize.or(
+            Sequelize.where(Sequelize.fn("concat", Sequelize.col("nameVolunteer")," ", Sequelize.col("lastNameVolunteer")), {
+                [Op.like]: key
+            }),
+            {userName: {[Op.like]: key}}
+        )
     })
     for(let volunteer of users){
         let object = {
@@ -59,12 +63,18 @@ async function findActions(key){
 } 
 
 module.exports = {
-    doSearch: async function(key){
+    doSearch: async (key)=>{
         results = []
         key = "%" + key + "%"
         await findVolunteers(key)
         await findNgos(key)
         await findActions(key)
+        return results
+    },
+    doSearchVolunteer: async (key)=>{
+        results = []
+        key = "%" + key + "%"
+        await findVolunteers(key)
         return results
     }
 }

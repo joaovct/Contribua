@@ -144,8 +144,12 @@ app.use("/event", isLogged, event)
 app.use("/ajax-checkers", ajax_checkers)
 app.use("/", isLogged, user)
 
-app.post('/search', async function(req,res){
+app.post('/search', async (req,res)=>{
     res.json(await search.doSearch(req.query.key))
+})
+
+app.post('/searchVolunteer', async (req,res)=>{
+    res.json(await search.doSearchVolunteer(req.query.key))
 })
 
 // Localhost
