@@ -260,6 +260,18 @@ module.exports = {
         const action = await ActionVolunteer.findAll({where: {idVolunteer: idUser}})
         return action
     },
+    async listOneActionVolunteer(idActionVolunteer){
+        const actionVolunteer = await ActionVolunteer.findOne({where: {idActionVolunteer}})
+        return actionVolunteer
+    },
+    async acceptSubscribe(idActionVolunteer){
+        const actionVolunteer = await ActionVolunteer.update({acceptedNgo: true}, {where: {idActionVolunteer}})
+        return actionVolunteer.idVolunteer
+    },
+    async refuseSubscribe(idActionVolunteer){
+        const actionVolunteer = await ActionVolunteer.update({acceptedNgo: false}, {where: {idActionVolunteer}})
+        return actionVolunteer
+    },
     formatText (text){
         text = text.toLowerCase();                                                         
         text = text.replace(new RegExp('[ÁÀÂÃ]','gi'), 'a')

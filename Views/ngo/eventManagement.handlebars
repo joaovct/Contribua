@@ -28,8 +28,8 @@
             </div>
             <div class="table-body">
                 {{#each volunteersSubscribers}}
-                <div class="row">
-                    <form class="full-width display-flex">
+                <div class="row row-subscribe" data-id="{{idActionVolunteer}}">
+                    <div class="full-width display-flex">
                         <div class="flex-row">
                             <figure class="table-pic">
                                 <img src="/temp/uploads/profile/{{photoVolunteer}}" />
@@ -45,10 +45,10 @@
                         </div>
                         <div class="flex-row">{{averageStarVolunteer}}</div>
                         <div class="flex-row justifyContent-end">
-                            <button class="btn-danger-outlined margin-right2">Recusar</button>
-                            <button class="btn-primary">Aceitar inscrição</button>
+                            <button class="btn-danger-outlined margin-right2 refuse">Recusar</button>
+                            <button class="btn-primary accepted">Aceitar inscrição</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 {{/each}}
             </div>

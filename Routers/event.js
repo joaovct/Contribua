@@ -137,6 +137,16 @@ router.post("/:id/deactivate", async (req,res) => {
     return res.redirect("/home")
 })
 
+router.post("/accept-event", async (req, res) => {
+    if(req.query.accepted){
+        await actionController.acceptSubscribe(req.query.idActionVolunteer)
+    }
+
+    if(req.query.refuse){
+        await actionController.refuseSubscribe(req.query.idActionVolunteer)
+    }
+})
+
 router.post("/register", multer(multerConfig.action()).single('thumbnail'), async (req,res) => {
     req.body.eventCEP = req.body.eventCEP.replace(/\D/g,"")
     dataAction = req.body

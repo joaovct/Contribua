@@ -41,6 +41,38 @@ socket.on('notificationNgo', (notificationsNgo) => {
         $(notifications).prepend("<li><h3>Nenhuma notificação por aqui...</h3></li>")
 })
 
+socket.on('notificationUser', (notificationsUser) => {
+    let oldNotifications = notificationsUser.oldNotifications
+    let newNotifications = notificationsUser.newNotifications
+
+    if(oldNotifications.length != 0){
+        if(Array.isArray(oldNotifications)){
+            if(oldNotifications[0].notification.idUser === session.user.idUser)
+                $(notifications).html('')
+        }else{
+            if(oldNotifications.notification.idUser === session.user.idUser)
+                $(notifications).html('')
+        }
+    }
+
+    if(newNotifications.length != 0){
+        if(Array.isArray(newNotifications)){
+            if(newNotifications[0].notification.idUser === session.user.idUser)
+                $(notifications).html('')
+        }else{
+            if(newNotifications.notification.idUser === session.user.idUser)
+                $(notifications).html('')
+        }
+    }
+
+    writeNewNotificationUser(newNotifications)
+
+    writeOldNotificationUser(oldNotifications)
+
+    if(oldNotifications.length === 0 && newNotifications.length === 0)
+        $(notifications).prepend("<li><h3>Nenhuma notificação por aqui...</h3></li>")
+})
+
 linkNotify.addEventListener("click", () => {
     $('.notifications').toggle('fast')
     $('.icon').removeClass('notify')
@@ -48,44 +80,76 @@ linkNotify.addEventListener("click", () => {
 })
 
 function writeOldNotificationNgo(oldNotifications){
-    if(Array.isArray(oldNotifications)){
-        for(let i in oldNotifications){
-            if(session.ngo.idNgo === oldNotifications[i].notification.idNgo){
-                let notification = oldNotifications[i].notification
-                let user = oldNotifications[i].user
-                $(notifications).prepend(`
-                    <a href="#"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
-                `)
-
-            }
-        }
-        if(oldNotifications.length != 0){
+    for(let i in oldNotifications){
+        if(session.ngo.idNgo === oldNotifications[i].notification.idNgo){
+            let notification = oldNotifications[i].notification
+            let user = oldNotifications[i].user
             $(notifications).prepend(`
-                <li class="new-and-old">Anteriores</li>
+                <a href="#"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
             `)
+
         }
-    }else{
+    }
+    if(oldNotifications.length != 0){
+        $(notifications).prepend(`
+            <li class="new-and-old">Anteriores</li>
+        `)
     }
 }
 
 function writeNewNotificationNgo(newNotifications){
-    if(Array.isArray(newNotifications)){
-        for(let i in newNotifications){
-            if(session.ngo.idNgo === newNotifications[i].notification.idNgo){
-                $(linkNotify).addClass("notify")
-                let notification = newNotifications[i].notification
-                let user = newNotifications[i].user
-                $(notifications).prepend(`
-                    <a href="#"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
-                `)
-
-            }
-        }
-        if(newNotifications.length != 0){
+    for(let i in newNotifications){
+        if(session.ngo.idNgo === newNotifications[i].notification.idNgo){
+            $(linkNotify).addClass("notify")
+            let notification = newNotifications[i].notification
+            let user = newNotifications[i].user
             $(notifications).prepend(`
-                <li class="new-and-old">Novas</li>
+                <a href="#"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
             `)
+
         }
+    }
+    if(newNotifications.length != 0){
+        $(notifications).prepend(`
+            <li class="new-and-old">Novas</li>
+        `)
+    }
+}
+
+function writeOldNotificationUser(oldNotifications){
+    for(let i in oldNotifications){
+        if(session.user.idVolunteer === oldNotifications[i].notification.idVolunteer){
+            let notification = oldNotifications[i].notification
+            let ngo = oldNotifications[i].ngo
+            $(notifications).prepend(`
+                <a href="#"><li><img src="/temp/uploads/profile/${ngo.photoNgo}"> <span>${notification.msgNotification}</span></li></a>
+            `)
+
+        }
+    }
+    if(oldNotifications.length != 0){
+        $(notifications).prepend(`
+            <li class="new-and-old">Anteriores</li>
+        `)
+    }
+}
+
+function writeNewNotificationUser(newNotifications){
+    for(let i in newNotifications){
+        if(session.user.idVolunteer === newNotifications[i].notification.idVolunteer){
+            $(linkNotify).addClass("notify")
+            let notification = newNotifications[i].notification
+            let ngo = newNotifications[i].ngo
+            $(notifications).prepend(`
+                <a href="#"><li><img src="/temp/uploads/profile/${ngo.photoNgo}"> <span>${notification.msgNotification}</span></li></a>
+            `)
+
+        }
+    }
+    if(newNotifications.length != 0){
+        $(notifications).prepend(`
+            <li class="new-and-old">Novas</li>
+        `)
     }
 }
 
