@@ -65,9 +65,9 @@ socket.on('notificationUser', (notificationsUser) => {
         }
     }
 
-    writeNewNotificationUser(newNotifications)
-
     writeOldNotificationUser(oldNotifications)
+
+    writeNewNotificationUser(newNotifications)
 
     if(oldNotifications.length === 0 && newNotifications.length === 0)
         $(notifications).prepend("<li><h3>Nenhuma notificação por aqui...</h3></li>")

@@ -246,7 +246,6 @@ module.exports = {
     async unsubscribe(idVolunteer, idVacancyAction){
         let nameVacancy = await vacancyController.listVacancyAction(idVacancyAction)
         nameVacancy = nameVacancy.nameVacancyAction
-        console.log(nameVacancy)
 
         await ActionVolunteer.destroy({where: {idVolunteer, idVacancyAction}})
 

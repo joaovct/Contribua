@@ -10,7 +10,6 @@ const multer = require("multer")
 const multerConfig = require("../config/multer")
 
 router.get("/", (req, res) => {
-    console.log(req.session.ngoUser)
     return res.render("ngo/addEventPresentation", {dataHeaderNgo: req.session.ngo, ngos: req.session.ngoUser})
 })
 
