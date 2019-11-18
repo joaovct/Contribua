@@ -27,8 +27,8 @@ const ActionVolunteer = db.sequelize.define("tbActionVolunteer", {
         allowNull: false,
         type: db.Sequelize.DATE
     },
-    dateAcceptedNgo: {
-        type: db.Sequelize.DATE
+    acceptedNgo: {
+        type: db.Sequelize.BOOLEAN
     },
     attendance: {
         type: db.Sequelize.STRING(25)

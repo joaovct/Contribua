@@ -14,7 +14,7 @@ const ActionVolunteer = require('../models/ActionVolunteer')
 const apiKey = "AIzaSyA36tg5LqcFuIXDpeMtAlDeVGj87qqxrVk"
 let maxShow = 8
 module.exports = {
-    async register(dataAction, idNgo){
+    async register(dataAction, dataPhoto, idNgo){
 
         if(typeof dataPhoto === "undefined"){
             dataPhoto.filename = "successImage.png"
@@ -47,7 +47,7 @@ module.exports = {
         //cadastra vagas
         await vacancyController.register(dataVacancy, action.idAction)
     },
-    async edit(dataAction, idAction){
+    async editPunctual(dataAction, idAction){
         await Action.update({
             nameAction: dataAction.name,
             descriptionAction: dataAction.description,
@@ -55,9 +55,16 @@ module.exports = {
             cityAction: dataAction.city,
             districtAction: dataAction.district,
             addressAction: dataAction.address,
-            numAddressAction: dataAction.numAddress
+            numAddressAction: dataAction.numAddress,
+            dateAction: dataAction.startDate+" "+dataAction.startTime,
+            dateEndAction: dataAction.startDate+" "+dataAction.endTime
         }, {where: {idAction}})
 
+        let {idVacancy, nameVacancy, descVacancy, qtdVacancy} = dataAction
+
+        let dataVacancy = {idVacancy, nameVacancy, descVacancy, qtdVacancy}
+
+        await vacancyController.edit(dataVacancy)
     },
     async deactivate(idAction){
         await Action.update({isActive: false},{where: {idAction}})
@@ -244,7 +251,6 @@ module.exports = {
     async unsubscribe(idVolunteer, idVacancyAction){
         let nameVacancy = await vacancyController.listVacancyAction(idVacancyAction)
         nameVacancy = nameVacancy.nameVacancyAction
-        console.log(nameVacancy)
 
         await ActionVolunteer.destroy({where: {idVolunteer, idVacancyAction}})
 
@@ -257,6 +263,18 @@ module.exports = {
     async listActionsVolunteer(idUser){
         const action = await ActionVolunteer.findAll({where: {idVolunteer: idUser}})
         return action
+    },
+    async listOneActionVolunteer(idActionVolunteer){
+        const actionVolunteer = await ActionVolunteer.findOne({where: {idActionVolunteer}})
+        return actionVolunteer
+    },
+    async acceptSubscribe(idActionVolunteer){
+        const actionVolunteer = await ActionVolunteer.update({acceptedNgo: true}, {where: {idActionVolunteer}})
+        return actionVolunteer.idVolunteer
+    },
+    async refuseSubscribe(idActionVolunteer){
+        const actionVolunteer = await ActionVolunteer.update({acceptedNgo: false}, {where: {idActionVolunteer}})
+        return actionVolunteer
     },
     formatText (text){
         text = text.toLowerCase();                                                         

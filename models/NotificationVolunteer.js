@@ -24,7 +24,7 @@ const NotificationVolunteer = db.sequelize.define("tbNotificationVolunteer", {
         }
     },
     msgNotification:{
-        type: db.Sequelize.STRING(50),
+        type: db.Sequelize.STRING(120),
         allowNull: false
     },
     viewedNotification:{

@@ -28,8 +28,8 @@
             </div>
             <div class="table-body">
                 {{#each volunteersSubscribers}}
-                <div class="row">
-                    <form class="full-width display-flex">
+                <div class="row row-subscribe" data-id="{{idActionVolunteer}}">
+                    <div class="full-width display-flex">
                         <div class="flex-row">
                             <figure class="table-pic">
                                 <img src="/temp/uploads/profile/{{photoVolunteer}}" />
@@ -45,10 +45,10 @@
                         </div>
                         <div class="flex-row">{{averageStarVolunteer}}</div>
                         <div class="flex-row justifyContent-end">
-                            <button class="btn-danger-outlined margin-right2">Recusar</button>
-                            <button class="btn-primary">Aceitar inscrição</button>
+                            <button class="btn-danger-outlined margin-right2 refuse">Recusar</button>
+                            <button class="btn-primary accepted">Aceitar inscrição</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 {{/each}}
             </div>
@@ -73,59 +73,73 @@
             <textarea name="article" class="form-input form-textarea" id="textarea-content"
                 onkeyup="autosize($('#textarea-content'));">{{action.descriptionAction}}</textarea>
             <div class="display-flex">
-                <div class="margin-right4">
-                    <label class="form-label">Data de início</label>
-                    <div class="collumns-2 gap-2">
-                        <input type="date"
-                            value="{{dateStartAction.year}}-{{dateStartAction.month}}-{{dateStartAction.day}}"
-                            class="form-input margin-right2" />
-                        <input type="time" value="{{dateStartAction.hours}}" class="form-input">
+                {{#if action.isPunctual}}
+                    <div class="margin-right4">
+                        <label class="form-label">Data e horário de início</label>
+                        <div class="collumns-2 gap-2">
+                            <input type="date" name="startDate" value="{{dateStartAction.year}}-{{dateStartAction.month}}-{{dateStartAction.day}}" class="form-input margin-right2" />
+                            <input type="time" name="startTime" value="{{dateStartAction.hours}}" class="form-input">
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <label class="form-label">Data de término</label>
-                    <div class="collumns-2 gap-2">
-                        <input type="date" value="{{dateEndAction.year}}-{{dateEndAction.month}}-{{dateEndAction.day}}"
-                            class="form-input margin-right2">
-                        <input type="time" value="{{dateEndAction.hours}}" class="form-input">
+                    <div class="margin-right4">
+                        <label class="form-label">Horário de Término</label>
+                        <div class="collumns-2 gap-2">
+                            <input type="time" name="endTime" value="{{dateEndAction.hours}}" class="form-input">
+                        </div>
                     </div>
-                </div>
+                {{else}}
+                    <div class="margin-right4">
+                        <label class="form-label">Data de início</label>
+                        <div class="collumns-2 gap-2">
+                            <input type="date" name="startDate" value="{{dateStartAction.year}}-{{dateStartAction.month}}-{{dateStartAction.day}}" class="form-input margin-right2" />
+                            <input type="time" name="startTime" value="{{dateStartAction.hours}}" class="form-input">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">Data de término</label>
+                        <div class="collumns-2 gap-2">
+                            <input type="date" name="endDate" value="{{dateEndAction.year}}-{{dateEndAction.month}}-{{dateEndAction.day}}" class="form-input margin-right2">
+                            <input type="time" name="endTime" value="{{dateEndAction.hours}}"class="form-input">
+                        </div>
+                    </div>
+                {{/if}}
             </div>
 
             <h1 class="medium-text margin-top4 margin-btm2">Endereço</h1>
             <div class="display-flex margin-top2">
                 <div class="margin-right4">
                     <label class="form-label">CEP</label>
-                    <input value="{{action.cepAction}}" class="form-input-long-number margin-right2" />
+                    <input id="cep" value="{{action.cepAction}}" class="form-input-long-number margin-right2" />
                 </div>
                 <div class="">
                     <label class="form-label">Número</label>
-                    <input value="{{action.numAddressAction}}" class="form-input-number" />
+                    <input id="number" value="{{action.numAddressAction}}" class="form-input-number" />
                 </div>
             </div>
-            <p class="text medium-weight-text blue-rounded display-inline margin0">
-                {{action.addressAction}}, {{action.numAddressAction}} - {{action.districtAction}},
-                {{action.cityAction}}.
-            </p>
             <input type="hidden" name="address" value="{{action.addressAction}}">
             <input type="hidden" name="district" value="{{action.districtAction}}">
             <input type="hidden" name="city" value="{{action.cityAction}}">
+            <p id="address-preview" class="text medium-weight-text blue-rounded display-inline margin0">
+                {{action.addressAction}}, {{action.numAddressAction}} - {{action.districtAction}},
+                {{action.cityAction}}.
+            </p>
 
             {{#if vacancies}}
             <h1 class="medium-text margin-top4 margin-btm2">Vagas</h1>
             {{#each vacancies}}
             <h1 onclick="$('#job-{{idVacancyAction}}').slideToggle('fast'); rotate90('btn-job-{{idVacancyAction}}')"
-                class="margin0 margin-top2 btn-outlined justifyContent-between">Vaga de {{nameVacancyAction}} <img
+                class="margin0 margin-top2 btn-outlined justifyContent-between">{{nameVacancyAction}} <img
                     id="btn-job-{{idVacancyAction}}" class="inline-icon transition-050" src="/assets/imgs/plus.svg">
             </h1>
             <div class="border-left border-bottom border-right border-radius-7 padding-2 display-none"
                 id="job-{{idVacancyAction}}">
+                <input type="hidden" name="idVacancy" value="{{idVacancyAction}}">
                 <label class="form-label">Nome</label>
-                <input class="form-input" value="{{nameVacancyAction}}" />
+                <input class="form-input" name="nameVacancy" value="{{nameVacancyAction}}" />
                 <label class="form-label">Descrição</label>
-                <textarea class="form-input form-textarea">{{descVacancyAction}}</textarea>
+                <textarea class="form-input form-textarea" name="descVacancy">{{descVacancyAction}}</textarea>
                 <label class="form-label">Quantidade</label>
-                <input type="number" class="form-input" value="{{qtdVacancyAction}}">
+                <input type="number" class="form-input" name="qtdVacancy" value="{{qtdVacancyAction}}">
             </div>
             {{/each}}
             {{else}}

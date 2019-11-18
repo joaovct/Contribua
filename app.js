@@ -83,6 +83,7 @@ io.use(function(socket, next) {
 io.on('connection', async (socket) => {
 
     let notificationsNgo
+    let notificationsUser
     let session = socket.handshake.session
 
     socket.emit('init', session)
@@ -91,8 +92,9 @@ io.on('connection', async (socket) => {
         if(session.ngo){
             notificationsNgo = await notificationController.listNotificationsNgo(session.ngo.idNgo)
             socket.emit('notificationNgo', notificationsNgo)
-        }else{
-
+        }else if(session.user){
+            notificationsUser = await notificationController.listNotificationsUser(session.user.idVolunteer)
+            socket.emit('notificationUser', notificationsUser)
         }
     }
 
@@ -109,9 +111,24 @@ io.on('connection', async (socket) => {
         socket.broadcast.emit('notificationNgo', notificationsNgo)
     })
 
+    //User notifications
+    socket.on('accept-subscribe', async (idActionVolunteer) => {
+        const idUser = await notificationController.acceptSubscribe(idActionVolunteer)
+        notificationsUser = await notificationController.listNotificationsUser(idUser)
+        socket.broadcast.emit('notificationUser', notificationsUser)
+    })
+
+    socket.on('refuse-subscribe', async (idActionVolunteer) => {
+        const idUser = await notificationController.refuseSubscribe(idActionVolunteer)
+        notificationsUser = await notificationController.listNotificationsUser(idUser)
+        socket.broadcast.emit('notificationUser', notificationsUser)
+    })
+
     socket.on('viewed', async () => {
         if(session.ngo)
             await notificationController.viewedNotificationNgo(session.ngo.idNgo)
+        else
+            await notificationController.viewedNotificationUser(session.user.idVolunteer)
     })
     
 })

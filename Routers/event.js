@@ -8,9 +8,9 @@ const ngoController = require("../controllers/ngoController")
 const feedUtilities = require('../helpers/feedUtilities')
 const multer = require("multer")
 const multerConfig = require("../config/multer")
+const moment = require("moment")
 
 router.get("/", (req, res) => {
-    console.log(req.session.ngoUser)
     return res.render("ngo/addEventPresentation", {dataHeaderNgo: req.session.ngo, ngos: req.session.ngoUser})
 })
 
@@ -42,23 +42,34 @@ router.get("/:id", async (req,res) => {
         user = await userController.listOneUser(action.idVolunteer)
         ngo  = await ngoController.listOneNgo(action.idNgo)
 
-        let volunteerVacancies = [vacancies.lenght]
+        let volunteerVacancies = [vacancies.length]
 
-        volunteerSubscribed.forEach((volunteer,i)=>{
-            vacancies.forEach((vacancy,j)=>{
-                volunteerVacancies[j] = {
-                    idVacancyAction: vacancy.idVacancyAction,
-                    nameVacancyAction: vacancy.nameVacancyAction,
-                    descVacancyAction: vacancy.descVacancyAction,
-                    qtdVacancyAction: vacancy.qtdVacancyAction,
+        if(volunteerSubscribed.length === 0){
+            for(let i in vacancies){
+                volunteerVacancies[i] = {
+                    idVacancyAction: vacancies[i].idVacancyAction,
+                    nameVacancyAction: vacancies[i].nameVacancyAction,
+                    descVacancyAction: vacancies[i].descVacancyAction,
+                    qtdVacancyAction: vacancies[i].qtdVacancyAction,
                     isSubscribed: false
                 }
-                if(vacancy.idVacancyAction === volunteer.idVacancyAction){
-                    volunteerVacancies[j].isSubscribed = true
+            }
+        }else{
+            for(let i in vacancies){
+                for(let j in volunteerSubscribed){
+                    volunteerVacancies[i] = {
+                        idVacancyAction: vacancies[i].idVacancyAction,
+                        nameVacancyAction: vacancies[i].nameVacancyAction,
+                        descVacancyAction: vacancies[i].descVacancyAction,
+                        qtdVacancyAction: vacancies[i].qtdVacancyAction,
+                        isSubscribed: false
+                    }
+                    if(vacancies[i].idVacancyAction === volunteerSubscribed[j].idVacancyAction){
+                        volunteerVacancies[i].isSubscribed = true
+                    }
                 }
-            })
-        })
-
+            }
+        }
         res.render('ngo/event', {action, category, ngo, user, vacancies: volunteerVacancies, dataHeader, dataHeaderNgo, ngos: req.session.ngoUser})
     }else{
         res.render('error', {dataHeader, dataHeaderNgo, ngos: req.session.ngoUser})
@@ -115,8 +126,8 @@ router.post("/:id/edit", multer(multerConfig.action()).single('thumbnail'), asyn
     if(typeof dataPhoto != "undefined"){
         await actionController.editPhoto(dataPhoto, req.params.id)
     }
-
-    await actionController.edit(data, req.params.id)
+    if(typeof data.endDate === "undefined")
+        await actionController.editPunctual(data, req.params.id)
 
     return res.redirect("/event/"+req.params.id+"/management")
 })
@@ -124,6 +135,16 @@ router.post("/:id/edit", multer(multerConfig.action()).single('thumbnail'), asyn
 router.post("/:id/deactivate", async (req,res) => {
     await actionController.deactivate(req.params.id)
     return res.redirect("/home")
+})
+
+router.post("/accept-event", async (req, res) => {
+    if(req.query.accepted){
+        await actionController.acceptSubscribe(req.query.idActionVolunteer)
+    }
+
+    if(req.query.refuse){
+        await actionController.refuseSubscribe(req.query.idActionVolunteer)
+    }
 })
 
 router.post("/register", multer(multerConfig.action()).single('thumbnail'), async (req,res) => {

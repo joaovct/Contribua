@@ -109,7 +109,7 @@ module.exports = {
             qtdMembers: 0
         }
         let i = 0
-        for await (let id of idVolunteers){
+        for (let id of idVolunteers){
             let volunteer = await userController.listOneUser(id.idVolunteer)
             if(volunteer){
                 i++

@@ -33,14 +33,12 @@ Array.from(btnSubscribe).forEach( (button, i) => {
 
         if(!checkboxSubscribe[i].checked){
             await $.post("http://localhost:3000/event/subscribe?unsubscribe=true&idVacancyAction="+idVacancyAction, msg => alert = msg)
-            console.log(alert)
             if(alert.type === "warning"){
                 btnSubscribe[i].innerHTML = "Inscrever-se"
             }
         
         }else{
             await $.post(`http://localhost:3000/event/subscribe?idVacancyAction=${idVacancyAction}&idAction=${idAction}`, msg => alert = msg)
-            console.log(alert)
             if(alert.type === "success"){
                 btnSubscribe[i].innerHTML = "Inscrito"
                 socket.emit('subscribe-vacancy', idVacancyAction)
