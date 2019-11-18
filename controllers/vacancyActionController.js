@@ -22,6 +22,23 @@ module.exports = {
             })
         }
     },
+    async edit(dataVacancy){
+        if(Array.isArray(dataVacancy.idVacancy)){
+            for(let i = 0; i < dataVacancy.idVacancy.length; i++){
+                await VacancyAction.update({
+                    nameVacancyAction: dataVacancy.nameVacancy[i],
+                    descVacancyAction: dataVacancy.descVacancy[i],
+                    qtdVacancyAction: dataVacancy.qtdVacancy[i]
+                }, {where: {idVacancyAction: dataVacancy.idVacancy[i]}})
+            }
+        }else{
+            await VacancyAction.update({
+                nameVacancyAction: dataVacancy.nameVacancy,
+                descVacancyAction: dataVacancy.descVacancy,
+                qtdVacancyAction: dataVacancy.qtdVacancy
+            }, {where: {idVacancyAction: dataVacancy.idVacancy}})
+        }
+    },
     async listVacanciesAction(idAction){
         const vacancyAction = await VacancyAction.findAll({where: {idAction}})
         return vacancyAction

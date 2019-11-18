@@ -8,6 +8,7 @@ const ngoController = require("../controllers/ngoController")
 const feedUtilities = require('../helpers/feedUtilities')
 const multer = require("multer")
 const multerConfig = require("../config/multer")
+const moment = require("moment")
 
 router.get("/", (req, res) => {
     return res.render("ngo/addEventPresentation", {dataHeaderNgo: req.session.ngo, ngos: req.session.ngoUser})

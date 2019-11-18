@@ -13,7 +13,7 @@ const feedUtilities = require('../helpers/feedUtilities')
 const ActionVolunteer = require('../models/ActionVolunteer')
 let maxShow = 8
 module.exports = {
-    async register(dataAction, idNgo){
+    async register(dataAction, dataPhoto, idNgo){
 
         if(typeof dataPhoto === "undefined"){
             dataPhoto.filename = "successImage.png"
@@ -56,9 +56,14 @@ module.exports = {
             addressAction: dataAction.address,
             numAddressAction: dataAction.numAddress,
             dateAction: dataAction.startDate+" "+dataAction.startTime,
-            dateEndAction: dataAction.startDate+" "+dataAction.endDate
+            dateEndAction: dataAction.startDate+" "+dataAction.endTime
         }, {where: {idAction}})
 
+        let {idVacancy, nameVacancy, descVacancy, qtdVacancy} = dataAction
+
+        let dataVacancy = {idVacancy, nameVacancy, descVacancy, qtdVacancy}
+
+        await vacancyController.edit(dataVacancy)
     },
     async deactivate(idAction){
         await Action.update({isActive: false},{where: {idAction}})

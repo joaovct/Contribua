@@ -109,39 +109,37 @@
             <div class="display-flex margin-top2">
                 <div class="margin-right4">
                     <label class="form-label">CEP</label>
-                    <input value="{{action.cepAction}}" class="form-input-long-number margin-right2" />
+                    <input id="cep" value="{{action.cepAction}}" class="form-input-long-number margin-right2" />
                 </div>
                 <div class="">
                     <label class="form-label">Número</label>
-                    <input value="{{action.numAddressAction}}" class="form-input-number" />
+                    <input id="number" value="{{action.numAddressAction}}" class="form-input-number" />
                 </div>
             </div>
             <input type="hidden" name="address" value="{{action.addressAction}}">
             <input type="hidden" name="district" value="{{action.districtAction}}">
             <input type="hidden" name="city" value="{{action.cityAction}}">
-            <p class="text medium-weight-text blue-rounded display-inline margin0">
+            <p id="address-preview" class="text medium-weight-text blue-rounded display-inline margin0">
                 {{action.addressAction}}, {{action.numAddressAction}} - {{action.districtAction}},
                 {{action.cityAction}}.
             </p>
-            <input type="hidden" name="address" value="{{action.addressAction}}">
-            <input type="hidden" name="district" value="{{action.districtAction}}">
-            <input type="hidden" name="city" value="{{action.cityAction}}">
 
             {{#if vacancies}}
             <h1 class="medium-text margin-top4 margin-btm2">Vagas</h1>
             {{#each vacancies}}
             <h1 onclick="$('#job-{{idVacancyAction}}').slideToggle('fast'); rotate90('btn-job-{{idVacancyAction}}')"
-                class="margin0 margin-top2 btn-outlined justifyContent-between">Vaga de {{nameVacancyAction}} <img
+                class="margin0 margin-top2 btn-outlined justifyContent-between">{{nameVacancyAction}} <img
                     id="btn-job-{{idVacancyAction}}" class="inline-icon transition-050" src="/assets/imgs/plus.svg">
             </h1>
             <div class="border-left border-bottom border-right border-radius-7 padding-2 display-none"
                 id="job-{{idVacancyAction}}">
+                <input type="hidden" name="idVacancy" value="{{idVacancyAction}}">
                 <label class="form-label">Nome</label>
-                <input class="form-input" value="{{nameVacancyAction}}" />
+                <input class="form-input" name="nameVacancy" value="{{nameVacancyAction}}" />
                 <label class="form-label">Descrição</label>
-                <textarea class="form-input form-textarea">{{descVacancyAction}}</textarea>
+                <textarea class="form-input form-textarea" name="descVacancy">{{descVacancyAction}}</textarea>
                 <label class="form-label">Quantidade</label>
-                <input type="number" class="form-input" value="{{qtdVacancyAction}}">
+                <input type="number" class="form-input" name="qtdVacancy" value="{{qtdVacancyAction}}">
             </div>
             {{/each}}
             {{else}}
