@@ -11,6 +11,7 @@ const vacancyController = require("./vacancyActionController")
 const userNgo = require("./userNgoController")
 const feedUtilities = require('../helpers/feedUtilities')
 const ActionVolunteer = require('../models/ActionVolunteer')
+const apiKey = "AIzaSyA36tg5LqcFuIXDpeMtAlDeVGj87qqxrVk"
 let maxShow = 8
 module.exports = {
     async register(dataAction, idNgo){
@@ -174,7 +175,6 @@ module.exports = {
         let vAddress = await Volunteer.findOne({where: {idVolunteer: idUser}})
         let actions = await Action.findAll({attributes: ['idAction','addressAction', 'numAddressAction', 'districtAction']})
 
-        let apiKey = ''
         let origin = this.formatText(vAddress.addressVolunteer + " " + vAddress.districtVolunteer)
         let destination = ""
 

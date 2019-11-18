@@ -7,6 +7,8 @@
   width: 100%;
   padding-bottom: $margin2;
   border-bottom: $border;
+  position: relative;
+  z-index: 2;
   .group-categories {
     display: flex;
     flex-flow: row wrap;
