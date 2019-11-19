@@ -185,32 +185,33 @@
 
   .group-volunteers{
     display: grid;
-    grid-template-columns: repeat(auto-fit, 350px);
+    grid-template-columns: repeat(auto-fit, 325px);
     grid-auto-rows: 1fr;
     grid-gap: $margin4;
     .feed-volunteer{
       @extend %box;
       padding: 0;
       max-height: 600px;
-      width: 350px;
+      width: 100%;
       box-shadow: none;
       border: $border;
       box-sizing: border-box;
       overflow-y: auto;
       .volunteer-pic{
         padding: 0;
-        margin: 0;
+        margin: 0 0 $margin1 0;
         height: 175px;
         img{
           height: 100%;
           width: 100%;
-          border-top-left-radius: 7px;
-          border-top-right-radius: 7px;
+          border-radius: 4px;
+          // border-top-left-radius: 7px;
+          // border-top-right-radius: 7px;
           object-fit: cover;
         }
       }
       .volunteer-content{
-        padding: $margin1 $margin1 $margin2 $margin1;
+        padding: 0 $margin2 $margin2 $margin2;
         color: black;
         .button{
           flex-grow: 1;

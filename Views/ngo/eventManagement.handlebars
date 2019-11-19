@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="/styles/css/event.css" />
-
+<link rel="stylesheet" href="/styles/css/eventmanagement.css" />
 <style>
     .change-action-pic {
         background: url("/temp/uploads/action/{{action.photoAction}}") center center / cover;
@@ -7,55 +6,351 @@
 </style>
 
 <div class="centralize padding-top4">
-    <div class="container">
+
+    <div class="container padding-btm1 border-bottom">
         <a href="#"
-            onclick="addClass('links', 'gray'); removeClass('links','gray', 0); $('#management-content').hide(); $('#request-content').show()"
-            class="links medium-text blue transition-025 margin-right2">Solicitações</a>
+            onclick="removeClass('links', 'blue'); $(this).addClass('blue'); $('#management-content').hide(); $('#jobs-content').show()"
+            class="links medium-text gray blue transition-025 margin-right2">Vagas</a>
         <a href="#"
-            onclick="addClass('links', 'gray'); removeClass('links','gray', 1); $('#request-content').hide(); $('#management-content').show()"
-            class="links medium-text blue gray transition-025 margin-right2">Gerenciamento</a>
+            onclick="removeClass('links','blue'); $(this).addClass('blue'); $('#jobs-content').hide(); $('#management-content').show()"
+            class="links medium-text gray transition-025 margin-right2">Gerenciamento</a>
     </div>
-    <div id="request-content" class="container margin-top2 content">
-        {{#if volunteersSubscribers}}
-        <div class="table-container">
-            <div class="table-header">
-                <div class="row">
-                    <div class="flex-row">Nome completo</div>
-                    <div class="flex-row">Vaga</div>
-                    <div class="flex-row">Avaliação</div>
-                    <div class="flex-row"></div>
+
+    <div id="jobs-content" class="box container display-flex margin-top2 padding0">
+        <ul class="side-menu">
+            <li onclick="removeClass('sidelinks','active'); $(this).addClass('active'); $('.job-inscriptions').hide(); $('#all-jobs').show()"
+                class="sidelinks active">Todas
+                as vagas</li>
+            <li onclick="removeClass('sidelinks','active'); $(this).addClass('active'); $('.job-inscriptions').hide(); $('#assistente').show()"
+                class="sidelinks">Assistente
+                geral</li>
+            <li onclick="removeClass('sidelinks','active'); $(this).addClass('active')" class="sidelinks">Recepcionista
+            </li>
+            <li onclick="removeClass('sidelinks','active'); $(this).addClass('active')" class="sidelinks">Curador de
+                livros</li>
+        </ul>
+        <div class="job-inscriptions" id="all-jobs">
+            <div class="job-header margin-top2">
+                <div class="job-description">
+                    <h1 class="big-text margin0">Todas as vagas</h1>
+                </div>
+                <div class="job-useful">
+                    <ul class="job-data">
+                        <li>
+                            <p>Voluntários inscritos</p>
+                            <h3>28</h3>
+                        </li>
+                        <li>
+                            <p>Vagas restantes</p>
+                            <h3>30</h3>
+                        </li>
+                        <li>
+                            <p>Solicitações</p>
+                            <h3>300</h3>
+                        </li>
+                    </ul>
+                    <button class="btn-callaction">Relatório das vagas</button>
                 </div>
             </div>
-            <div class="table-body">
-                {{#each volunteersSubscribers}}
-                <div class="row row-subscribe" data-id="{{idActionVolunteer}}">
-                    <div class="full-width display-flex">
-                        <div class="flex-row">
-                            <figure class="table-pic">
-                                <img src="/temp/uploads/profile/{{photoVolunteer}}" />
-                            </figure>
-                            <article class="margin-left1">
-                                <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}}
-                                    {{lastNameVolunteer}}</h1>
-                                <p class="gray smallest-text margin0 padding0">{{cityVolunteer}}</p>
-                            </article>
+            <h1 onclick="$('#table-requests').slideToggle('fast'); rotate90('btn-table-requests-all-jobs')"
+                class="medium-text margin0 margin-top4 margin-btm1 cursor-pointer justifyContent-between">Solicitações <img
+                    id="btn-table-requests-all-jobs" class="inline-icon transition-050" src="/assets/imgs/plus.svg" />
+            </h1>
+            {{#if volunteersSubscribers}}
+            <div class="table-container" id="table-requests">
+                <div class="table-header">
+                    <div class="row">
+                        <div class="flex-row">Nome completo</div>
+                        <div class="flex-row">Vaga</div>
+                        <div class="flex-row">Avaliação</div>
+                        <div class="flex-row"></div>
+                    </div>
+                </div>
+                <div class="table-body">
+                    {{#each volunteersSubscribers}}
+                    <div class="row row-subscribe" data-id="{{idActionVolunteer}}">
+                        <div class="full-width display-flex">
+                            <div class="flex-row">
+                                <figure class="table-pic">
+                                    <img src="/temp/uploads/profile/{{photoVolunteer}}" />
+                                </figure>
+                                <article class="margin-left1">
+                                    <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}}
+                                        {{lastNameVolunteer}}</h1>
+                                    <p class="gray smallest-text margin0 padding0">{{cityVolunteer}}</p>
+                                </article>
+                            </div>
+                            <div class="flex-row">
+                                <p class="text">{{nameVacancy}}</p>
+                            </div>
+                            <div class="flex-row">{{averageStarVolunteer}}</div>
+                            <div class="flex-row justifyContent-end">
+                                <button class="btn-danger-outlined margin-right2 refuse">Recusar</button>
+                                <button class="btn-primary accepted">Aceitar inscrição</button>
+                            </div>
                         </div>
-                        <div class="flex-row">
-                            <p class="text">{{nameVacancy}}</p>
-                        </div>
-                        <div class="flex-row">{{averageStarVolunteer}}</div>
-                        <div class="flex-row justifyContent-end">
-                            <button class="btn-danger-outlined margin-right2 refuse">Recusar</button>
-                            <button class="btn-primary accepted">Aceitar inscrição</button>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{else}}
+            <div class="container flex-column align-center margin-top4">
+                <img style="height: 35vh;" src="/assets/imgs/empty.svg" />
+                <h1 class="big-text text-center margin0 margin-top4">Tudo limpo!</h1>
+                <p class="text text-center margin0 margin-top1">Esse evento não tem nenhuma solicitação de vaga
+                    pendente.
+                </p>
+            </div>
+            {{/if}}
+            <h1 class="medium-text margin0 margin-top2 margin-btm1">Voluntários inscritos</h1>
+            <div class="table-container">
+                <div class="table-header">
+                    <div class="row">
+                        <div class="flex-row">Nome completo</div>
+                        <div class="flex-row">Vaga</div>
+                        <div class="flex-row">Avaliação</div>
+                        <div class="flex-row">Status</div>
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="row row-subscribe">
+                        <div class="full-width display-flex">
+                            <div class="flex-row">
+                                <figure class="table-pic">
+                                    <img src="/assets/imgs/man2.jpg" />
+                                </figure>
+                                <article class="margin-left1">
+                                    <h1 class="small-text medium-weight-text margin0 padding0">João Victor da S. Pereira
+                                    </h1>
+                                    <p class="gray smallest-text margin0 padding0">São Paulo</p>
+                                </article>
+                            </div>
+                            <div class="flex-row">
+                                <p class="text">Assistente geral</p>
+                            </div>
+                            <div class="flex-row">12</div>
+                            <div class="flex-row">
+                                <span class="green-rounded">Aceito</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                {{/each}}
+            </div>
+            <h1 class="medium-text margin0 margin-top2 margin-btm1">Inscrições não aceitas </h1>
+            <div class="table-container">
+                <div class="table-header">
+                    <div class="row">
+                        <div class="flex-row">Nome completo</div>
+                        <div class="flex-row">Vaga</div>
+                        <div class="flex-row">Avaliação</div>
+                        <div class="flex-row">Status</div>
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="row row-subscribe">
+                        <div class="full-width display-flex">
+                            <div class="flex-row">
+                                <figure class="table-pic">
+                                    <img src="/assets/imgs/man2.jpg" />
+                                </figure>
+                                <article class="margin-left1">
+                                    <h1 class="small-text medium-weight-text margin0 padding0">João Victor da S. Pereira
+                                    </h1>
+                                    <p class="gray smallest-text margin0 padding0">São Paulo</p>
+                                </article>
+                            </div>
+                            <div class="flex-row">
+                                <p class="text">Assistente geral</p>
+                            </div>
+                            <div class="flex-row">12</div>
+                            <div class="flex-row">
+                                <span class="red-rounded">Não aceito</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        {{/if}}
+        <div class="job-inscriptions display-none" id="assistente">
+            <div class="job-header margin-top2">
+                <div class="job-description">
+                    <h1 class="big-text margin0">Assistente geral</h1>
+                    <p class="text">Aliqua cillum proident qui incididunt minim nostrud in id aliqua aliqua dolor magna
+                        incididunt reprehenderit.</p>
+                </div>
+                <div class="job-useful">
+                    <ul class="job-data">
+                        <li>
+                            <p>Voluntários inscritos</p>
+                            <h3>18</h3>
+                        </li>
+                        <li>
+                            <p>Vagas restantes</p>
+                            <h3>10</h3>
+                        </li>
+                        <li>
+                            <p>Solicitações</p>
+                            <h3>120</h3>
+                        </li>
+                    </ul>
+                    <button class="btn-callaction">Relatório da vaga</button>
+                </div>
+            </div>
+            <h1 class="medium-text margin0 margin-top4 margin-btm1">Solicitações</h1>
+            <div class="table-container">
+                <div class="table-header">
+                    <div class="row">
+                        <div class="flex-row">Nome completo</div>
+                        <div class="flex-row">Vaga</div>
+                        <div class="flex-row">Avaliação</div>
+                        <div class="flex-row"></div>
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="row row-subscribe">
+                        <div class="full-width display-flex">
+                            <div class="flex-row">
+                                <figure class="table-pic">
+                                    <img src="/assets/imgs/man2.jpg" />
+                                </figure>
+                                <article class="margin-left1">
+                                    <h1 class="small-text medium-weight-text margin0 padding0">João Victor da S. Pereira
+                                    </h1>
+                                    <p class="gray smallest-text margin0 padding0">São Paulo</p>
+                                    <p class="gray smallest-text margin0 padding0">Solicitado em 24/12/2019</p>
+                                </article>
+                            </div>
+                            <div class="flex-row">
+                                <p class="text">Assistente geral</p>
+                            </div>
+                            <div class="flex-row">12</div>
+                            <div class="flex-row justifyContent-end">
+                                <button class="btn-danger-outlined margin-right2 refuse">Recusar</button>
+                                <button class="btn-primary accepted">Aceitar inscrição</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1 class="medium-text margin0 margin-top2 margin-btm1">Voluntários inscritos</h1>
+            <div class="table-container">
+                <div class="table-header">
+                    <div class="row">
+                        <div class="flex-row">Nome completo</div>
+                        <div class="flex-row">Vaga</div>
+                        <div class="flex-row">Avaliação</div>
+                        <div class="flex-row">Status</div>
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="row row-subscribe">
+                        <div class="full-width display-flex">
+                            <div class="flex-row">
+                                <figure class="table-pic">
+                                    <img src="/assets/imgs/man2.jpg" />
+                                </figure>
+                                <article class="margin-left1">
+                                    <h1 class="small-text medium-weight-text margin0 padding0">João Victor da S. Pereira
+                                    </h1>
+                                    <p class="gray smallest-text margin0 padding0">São Paulo</p>
+                                </article>
+                            </div>
+                            <div class="flex-row">
+                                <p class="text">Assistente geral</p>
+                            </div>
+                            <div class="flex-row">12</div>
+                            <div class="flex-row">
+                                <span class="green-rounded">Aceito</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1 class="medium-text margin0 margin-top2 margin-btm1">Inscrições não aceitas</h1>
+            <div class="table-container">
+                <div class="table-header">
+                    <div class="row">
+                        <div class="flex-row">Nome completo</div>
+                        <div class="flex-row">Vaga</div>
+                        <div class="flex-row">Avaliação</div>
+                        <div class="flex-row">Status</div>
+                    </div>
+                </div>
+                <div class="table-body">
+                    <div class="row row-subscribe">
+                        <div class="full-width display-flex">
+                            <div class="flex-row">
+                                <figure class="table-pic">
+                                    <img src="/assets/imgs/man2.jpg" />
+                                </figure>
+                                <article class="margin-left1">
+                                    <h1 class="small-text medium-weight-text margin0 padding0">João Victor da S. Pereira
+                                    </h1>
+                                    <p class="gray smallest-text margin0 padding0">São Paulo</p>
+                                </article>
+                            </div>
+                            <div class="flex-row">
+                                <p class="text">Assistente geral</p>
+                            </div>
+                            <div class="flex-row">12</div>
+                            <div class="flex-row">
+                                <span class="red-rounded">Não aceito</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="requests-jobs" class="display-none">
+            {{#if volunteersSubscribers}}
+            <div class="table-container">
+                <div class="table-header">
+                    <div class="row">
+                        <div class="flex-row">Nome completo</div>
+                        <div class="flex-row">Vaga</div>
+                        <div class="flex-row">Avaliação</div>
+                        <div class="flex-row"></div>
+                    </div>
+                </div>
+                <div class="table-body">
+                    {{#each volunteersSubscribers}}
+                    <div class="row row-subscribe" data-id="{{idActionVolunteer}}">
+                        <div class="full-width display-flex">
+                            <div class="flex-row">
+                                <figure class="table-pic">
+                                    <img src="/temp/uploads/profile/{{photoVolunteer}}" />
+                                </figure>
+                                <article class="margin-left1">
+                                    <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}}
+                                        {{lastNameVolunteer}}</h1>
+                                    <p class="gray smallest-text margin0 padding0">{{cityVolunteer}}</p>
+                                </article>
+                            </div>
+                            <div class="flex-row">
+                                <p class="text">{{nameVacancy}}</p>
+                            </div>
+                            <div class="flex-row">{{averageStarVolunteer}}</div>
+                            <div class="flex-row justifyContent-end">
+                                <button class="btn-danger-outlined margin-right2 refuse">Recusar</button>
+                                <button class="btn-primary accepted">Aceitar inscrição</button>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{else}}
+            <div class="container flex-column align-center margin-top4">
+                <img style="height: 35vh;" src="/assets/imgs/empty.svg" />
+                <h1 class="big-text text-center margin0 margin-top4">Tudo limpo!</h1>
+                <p class="text text-center margin0 margin-top1">Esse evento não tem nenhuma solicitação de vaga
+                    pendente.
+                </p>
+            </div>
+            {{/if}}
+        </div>
     </div>
-    <div id="management-content" class="box container margin-top2 content display-none">
+    <div id="management-content" class="box container margin-top2 display-none">
         <form class="form full-width" action="/event/{{action.idAction}}/edit" method="POST"
             enctype="multipart/form-data">
             <div class="full-width justifyContent-center">
@@ -74,34 +369,40 @@
                 onkeyup="autosize($('#textarea-content'));">{{action.descriptionAction}}</textarea>
             <div class="display-flex">
                 {{#if action.isPunctual}}
-                    <div class="margin-right4">
-                        <label class="form-label">Data e horário de início</label>
-                        <div class="collumns-2 gap-2">
-                            <input type="date" name="startDate" value="{{dateStartAction.year}}-{{dateStartAction.month}}-{{dateStartAction.day}}" class="form-input margin-right2" />
-                            <input type="time" name="startTime" value="{{dateStartAction.hours}}" class="form-input">
-                        </div>
+                <div class="margin-right4">
+                    <label class="form-label">Data e horário de início</label>
+                    <div class="collumns-2 gap-2">
+                        <input type="date" name="startDate"
+                            value="{{dateStartAction.year}}-{{dateStartAction.month}}-{{dateStartAction.day}}"
+                            class="form-input margin-right2" />
+                        <input type="time" name="startTime" value="{{dateStartAction.hours}}" class="form-input">
                     </div>
-                    <div class="margin-right4">
-                        <label class="form-label">Horário de Término</label>
-                        <div class="collumns-2 gap-2">
-                            <input type="time" name="endTime" value="{{dateEndAction.hours}}" class="form-input">
-                        </div>
+                </div>
+                <div class="margin-right4">
+                    <label class="form-label">Horário de Término</label>
+                    <div class="collumns-2 gap-2">
+                        <input type="time" name="endTime" value="{{dateEndAction.hours}}" class="form-input">
                     </div>
+                </div>
                 {{else}}
-                    <div class="margin-right4">
-                        <label class="form-label">Data de início</label>
-                        <div class="collumns-2 gap-2">
-                            <input type="date" name="startDate" value="{{dateStartAction.year}}-{{dateStartAction.month}}-{{dateStartAction.day}}" class="form-input margin-right2" />
-                            <input type="time" name="startTime" value="{{dateStartAction.hours}}" class="form-input">
-                        </div>
+                <div class="margin-right4">
+                    <label class="form-label">Data de início</label>
+                    <div class="collumns-2 gap-2">
+                        <input type="date" name="startDate"
+                            value="{{dateStartAction.year}}-{{dateStartAction.month}}-{{dateStartAction.day}}"
+                            class="form-input margin-right2" />
+                        <input type="time" name="startTime" value="{{dateStartAction.hours}}" class="form-input">
                     </div>
-                    <div>
-                        <label class="form-label">Data de término</label>
-                        <div class="collumns-2 gap-2">
-                            <input type="date" name="endDate" value="{{dateEndAction.year}}-{{dateEndAction.month}}-{{dateEndAction.day}}" class="form-input margin-right2">
-                            <input type="time" name="endTime" value="{{dateEndAction.hours}}"class="form-input">
-                        </div>
+                </div>
+                <div>
+                    <label class="form-label">Data de término</label>
+                    <div class="collumns-2 gap-2">
+                        <input type="date" name="endDate"
+                            value="{{dateEndAction.year}}-{{dateEndAction.month}}-{{dateEndAction.day}}"
+                            class="form-input margin-right2">
+                        <input type="time" name="endTime" value="{{dateEndAction.hours}}" class="form-input">
                     </div>
+                </div>
                 {{/if}}
             </div>
 

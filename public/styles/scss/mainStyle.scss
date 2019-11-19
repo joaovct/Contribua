@@ -842,14 +842,20 @@ div.overlay {
 
 .table-container {
   box-sizing: border-box;
+  border: $border;
+  border-radius: 7px;
   .row {
     width: 100%;
     display: flex;
-    padding: 7px;
     .flex-row {
-      padding: 10px;
-      display: flex;
       width: calc(100% / 4);
+      padding: 10px;
+      box-sizing: border-box;
+      button{
+        padding: $margin1;
+        font-size: 1em;
+        width: auto;
+      }
     }
     .table-pic {
       margin: 0;
@@ -860,6 +866,55 @@ div.overlay {
         border-radius: 50%;
         object-fit: cover;
       }
+    }
+  }
+  .table-header {
+    width: 100%;
+    .row {
+      width: 100%;
+      display: flex;
+      background: $lightBlue;
+      border-radius: 7px;
+      box-sizing: border-box;
+      .flex-row {
+        padding: 15px 10px 15px 10px;
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+    }
+  }
+  %table-body,
+  .table-body {
+    .row {
+      transition: 0.5s;
+      border-radius: 7px;
+      align-items: center;
+      cursor: default;
+      .flex-row {
+        display: flex;
+        align-items: center;
+        button {
+          margin: 0;
+        }
+      }
+      &:nth-of-type(even) {
+        background: #f9f9f9;
+      }
+      &:hover {
+        background: $lightBlue2;
+        .member-options-icon {
+          visibility: visible;
+        }
+      }
+    }
+  }
+  .table-body-options {
+    @extend %table-body;
+    .row:nth-child(3n) {
+      background: #f9f9f9;
+    }
+    .row:nth-child(even) {
+      background: inherit;
     }
   }
   .member-options-icon {
@@ -890,54 +945,6 @@ div.overlay {
     padding: 0;
     z-index: 999;
     display: none;
-  }
-  .table-header {
-    width: 100%;
-    .row {
-      width: 100%;
-      display: flex;
-      background: $lightBlue;
-      border-radius: 7px;
-      .flex-row {
-        padding: 15px 10px 15px 10px;
-        font-size: 1.2rem;
-        font-weight: 500;
-      }
-    }
-  }
-  %table-body,
-  .table-body {
-    .row {
-      transition: 0.5s;
-      border-radius: 7px;
-      align-items: center;
-      cursor: default;
-      .flex-row {
-        display: flex;
-        align-items: center;
-        button {
-          margin-top: 0;
-        }
-      }
-      &:nth-of-type(even) {
-        background: #f9f9f9;
-      }
-      &:hover {
-        background: $lightBlue2;
-        .member-options-icon {
-          visibility: visible;
-        }
-      }
-    }
-  }
-  .table-body-options {
-    @extend %table-body;
-    .row:nth-child(3n) {
-      background: #f9f9f9;
-    }
-    .row:nth-child(even) {
-      background: inherit;
-    }
   }
 }
 
