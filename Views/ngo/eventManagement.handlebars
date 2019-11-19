@@ -15,7 +15,7 @@
             onclick="addClass('links', 'gray'); removeClass('links','gray', 1); $('#request-content').hide(); $('#management-content').show()"
             class="links medium-text blue gray transition-025 margin-right2">Gerenciamento</a>
     </div>
-    <div id="request-content" class="container margin-top2 content display-none">
+    <div id="request-content" class="container margin-top2 content">
         {{#if volunteersSubscribers}}
         <div class="table-container">
             <div class="table-header">
@@ -55,7 +55,7 @@
         </div>
         {{/if}}
     </div>
-    <div id="management-content" class="box container margin-top2 content">
+    <div id="management-content" class="box container margin-top2 content display-none">
         <form class="form full-width" action="/event/{{action.idAction}}/edit" method="POST"
             enctype="multipart/form-data">
             <div class="full-width justifyContent-center">

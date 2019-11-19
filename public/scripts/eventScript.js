@@ -1,20 +1,22 @@
-// function initMap(){
-//     let address = document.querySelector('[data-address]')
 
-//     let district = address.dataset.district
-//     let number = address.dataset.number
-//     let cep = address.dataset.cep
-//     address = address.dataset.address
-//     console.log(`${address} ${number} ${district}`)
-//     let apiKey = 'AIzaSyA36tg5LqcFuIXDpeMtAlDeVGj87qqxrVk'
-//     $.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${address} ${number} ${district}+CA&key=${apiKey}`, (data)=>{
-//         console.log(data)
-//         let location = data.results[0].geometry.location
-//         let position = {lat: location.lat, lng: location.lng}
-//         let map = new google.maps.Map(document.getElementById('map'), {zoom: 20, center: position})
-//         let marker = new google.maps.Marker({position, map})
-//     })
-// }
+function initMap(){
+    let address = document.querySelector('[data-address]')
+
+    let district = address.dataset.district
+    let number = address.dataset.number
+    let cep = address.dataset.cep
+    address = address.dataset.address
+    const apiKey = "AIzaSyA36tg5LqcFuIXDpeMtAlDeVGj87qqxrVk"
+    console.log(apiKey)
+    console.log(`${address} ${number} ${district}`)
+    $.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${address} ${number} ${district}+CA&key=${apiKey}`, (data)=>{
+        console.log(data)
+        let location = data.results[0].geometry.location
+        let position = {lat: location.lat, lng: location.lng}
+        let map = new google.maps.Map(document.getElementById('map'), {zoom: 20, center: position})
+        let marker = new google.maps.Marker({position, map})
+    })
+}
 
 let alert
 let btnSubscribe = document.getElementsByClassName("subscribe")
