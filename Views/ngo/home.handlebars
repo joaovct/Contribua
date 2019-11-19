@@ -11,9 +11,9 @@
                 <a class="home-link medium-text gray margin-right2"
                     onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 1); $('.group-nav').fadeOut('fast'); $('.feed-members').fadeIn('fast')"
                     href="#">Membros</a>
-                <a class="home-link medium-text gray"
+                {{!-- <a class="home-link medium-text gray"
                     onclick="addClass('home-link', 'gray'); removeClass('home-link','gray', 2); $('.group-nav').fadeOut('fast'); $('.feed-search').fadeIn('fast')"
-                    href="#">Procurar voluntários</a>
+                    href="#">Procurar voluntários</a> --}}
             </ul>
             <a href="/event"><button class="btn-callaction">Criar um evento</button></a>
         </div>
@@ -109,7 +109,7 @@
             </div>
         </div>
 
-        <div class="group-nav feed-search" id="search-volunteers">
+        {{!-- <div class="group-nav feed-search" id="search-volunteers">
             <h1 class="title padding-top2 margin-btm1">Procurar voluntários</h1>
             <form class="form header-search-volunteers">
                 <div class="wrapper-options">
@@ -246,7 +246,7 @@
                         </article>
                     </div>
                 </div>
-            </nav>
+            </nav> --}}
             {{!-- ERR MSG --}}
             {{!-- <div class="container flex-column align-center margin-top4">
                 <img style="height: 35vh;" src="/assets/imgs/empty2.svg" />
@@ -260,5 +260,5 @@
 <script>
     $( '.feed-members' ).hide();
     //$( '.feed-search' ).hide()
-    $( '.feed-events' ).hide()
+    //$( '.feed-events' ).hide()
 </script>

@@ -85,13 +85,13 @@ router.get('/:id/management', async(req,res)=>{
         year: action.dateAction.getFullYear(),
         month: await feedUtilities.formatMonthOrDay(action.dateAction.getMonth()+1),
         day: await feedUtilities.formatMonthOrDay(action.dateAction.getDate()),
-        hours: await feedUtilities.formatHours(action.dateAction)
+        hours: moment(action.dateAction).format("HH:mm")
     }
     let dateEndAction = {
         year: action.dateEndAction.getFullYear(),
         month: await feedUtilities.formatMonthOrDay(action.dateEndAction.getMonth()+1),
         day: await feedUtilities.formatMonthOrDay(action.dateEndAction.getDate()),
-        hours: await feedUtilities.formatHours(action.dateEndAction)
+        hours: moment(action.dateEndAction).format("HH:mm")
     }
 
     dataHeader = req.session.user
