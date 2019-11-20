@@ -85,13 +85,13 @@ router.get('/:id/management', async(req,res)=>{
         year: action.dateAction.getFullYear(),
         month: await feedUtilities.formatMonthOrDay(action.dateAction.getMonth()+1),
         day: await feedUtilities.formatMonthOrDay(action.dateAction.getDate()),
-        hours: await feedUtilities.formatHours(action.dateAction)
+        hours: moment(action.dateAction).format("HH:mm")
     }
     let dateEndAction = {
         year: action.dateEndAction.getFullYear(),
         month: await feedUtilities.formatMonthOrDay(action.dateEndAction.getMonth()+1),
         day: await feedUtilities.formatMonthOrDay(action.dateEndAction.getDate()),
-        hours: await feedUtilities.formatHours(action.dateEndAction)
+        hours: moment(action.dateEndAction).format("HH:mm")
     }
 
     dataHeader = req.session.user
@@ -109,10 +109,17 @@ router.get('/:id/management', async(req,res)=>{
             let idVacancies = vacancies.map((vacancy)=>{
                 return vacancy.idVacancyAction
             })
-            volunteersSubscribers = await vacancyActionController.listVolunteersWithVacancy(idVacancies)
+            vacanciesRequests = await vacancyActionController.listVacancyVolunteers(idVacancies)
+            vacanciesAccepted = await vacancyActionController.listVacancyVolunteers(idVacancies, true)
+            vacanciesRejected = await vacancyActionController.listVacancyVolunteers(idVacancies, false)
+
+            vacancies.data = {
+                qtdInscriptions: vacanciesAccepted.length,
+                qtdRequests: vacanciesRequests.length,
+            }
 
             // res.json(vacancies)
-            res.render('ngo/eventManagement', {action, dateStartAction, dateEndAction, category, volunteersSubscribers, vacancies, dataHeader, dataHeaderNgo})
+            res.render('ngo/eventManagement', {action, dateStartAction, dateEndAction, vacanciesRequests, vacanciesAccepted, vacanciesRejected, category, vacancies, dataHeader, dataHeaderNgo})
         }else{
             res.render('error', {dataHeader, dataHeaderNgo})
         }

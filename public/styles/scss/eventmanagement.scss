@@ -86,4 +86,17 @@ ul.side-menu{
             }
         }
     }
+    .title-table{
+        @extend %medium-text;
+        font-weight: 700;
+        margin: $margin2 0 $margin1 0;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        img{
+            @extend %inline-icon;
+            transition: .5s;
+            transform: rotate(45deg);
+        }
+    }
 }

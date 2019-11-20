@@ -19,15 +19,11 @@
     <div id="jobs-content" class="box container display-flex margin-top2 padding0">
         <ul class="side-menu">
             <li onclick="removeClass('sidelinks','active'); $(this).addClass('active'); $('.job-inscriptions').hide(); $('#all-jobs').show()"
-                class="sidelinks active">Todas
-                as vagas</li>
-            <li onclick="removeClass('sidelinks','active'); $(this).addClass('active'); $('.job-inscriptions').hide(); $('#assistente').show()"
-                class="sidelinks">Assistente
-                geral</li>
-            <li onclick="removeClass('sidelinks','active'); $(this).addClass('active')" class="sidelinks">Recepcionista
-            </li>
-            <li onclick="removeClass('sidelinks','active'); $(this).addClass('active')" class="sidelinks">Curador de
-                livros</li>
+                class="sidelinks active">Todas as vagas</li>
+            {{#each vacancies}}
+            <li onclick="removeClass('sidelinks','active'); $(this).addClass('active'); $('.job-inscriptions').hide(); $('#jobs-{{idVacancy}}').show()"
+                class="sidelinks">{{nameVacancyAction}}</li>
+            {{/each}}
         </ul>
         <div class="job-inscriptions" id="all-jobs">
             <div class="job-header margin-top2">
@@ -38,7 +34,7 @@
                     <ul class="job-data">
                         <li>
                             <p>Voluntários inscritos</p>
-                            <h3>28</h3>
+                            <h3>{{vacancies.data.qtdInscriptions}}</h3>
                         </li>
                         <li>
                             <p>Vagas restantes</p>
@@ -46,17 +42,16 @@
                         </li>
                         <li>
                             <p>Solicitações</p>
-                            <h3>300</h3>
+                            <h3>{{vacancies.data.qtdRequests}}</h3>
                         </li>
                     </ul>
                     <button class="btn-callaction">Relatório das vagas</button>
                 </div>
             </div>
-            <h1 onclick="$('#table-requests').slideToggle('fast'); rotate90('btn-table-requests-all-jobs')"
-                class="medium-text margin0 margin-top4 margin-btm1 cursor-pointer justifyContent-between">Solicitações <img
-                    id="btn-table-requests-all-jobs" class="inline-icon transition-050" src="/assets/imgs/plus.svg" />
+            <h1 onclick="showTable('#table-requests','btn-table-requests')" class="title-table">Solicitações
+                <img id="btn-table-requests" src="/assets/imgs/plus.svg" />
             </h1>
-            {{#if volunteersSubscribers}}
+            {{#if vacanciesRequests}}
             <div class="table-container" id="table-requests">
                 <div class="table-header">
                     <div class="row">
@@ -67,7 +62,7 @@
                     </div>
                 </div>
                 <div class="table-body">
-                    {{#each volunteersSubscribers}}
+                    {{#each vacanciesRequests}}
                     <div class="row row-subscribe" data-id="{{idActionVolunteer}}">
                         <div class="full-width display-flex">
                             <div class="flex-row">
@@ -93,90 +88,110 @@
                     {{/each}}
                 </div>
             </div>
-            {{else}}
-            <div class="container flex-column align-center margin-top4">
-                <img style="height: 35vh;" src="/assets/imgs/empty.svg" />
-                <h1 class="big-text text-center margin0 margin-top4">Tudo limpo!</h1>
-                <p class="text text-center margin0 margin-top1">Esse evento não tem nenhuma solicitação de vaga
-                    pendente.
-                </p>
+            {{/if}}
+            <h1 onclick="showTable('#table-accepted','btn-table-accepted')" class="title-table">Inscrições aceitas
+                <img id="btn-table-accepted" src="/assets/imgs/plus.svg" />
+            </h1>
+            {{#if vacanciesAccepted}}
+            <div class="table-container" id="table-accepted">
+                <div class="table-header">
+                    <div class="row">
+                        <div class="flex-row">Nome completo</div>
+                        <div class="flex-row">Vaga</div>
+                        <div class="flex-row">Avaliação</div>
+                        <div class="flex-row"></div>
+                    </div>
+                </div>
+                <div class="table-body-options">
+                    {{#each vacanciesAccepted}}
+                    <div class="row row-action" data-id="{{idActionVolunteer}}">
+                        <div class="full-width display-flex">
+                            <div class="flex-row">
+                                <figure class="table-pic">
+                                    <img src="/temp/uploads/profile/{{photoVolunteer}}" />
+                                </figure>
+                                <article class="margin-left1">
+                                    <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}}
+                                        {{lastNameVolunteer}}</h1>
+                                    <p class="gray smallest-text margin0 padding0">{{cityVolunteer}}</p>
+                                </article>
+                            </div>
+                            <div class="flex-row">
+                                <p class="text">{{nameVacancy}}</p>
+                            </div>
+                            <div class="flex-row">{{averageStarVolunteer}}</div>
+                            <div class="flex-row justifyContent-end">
+                                <figure onclick="hideOptions('.member-options-{{idActionVolunteer}}')"
+                                    class="member-options-icon">
+                                    <img src="/assets/imgs/threedots.svg">
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-options member-options-{{idActionVolunteer}}">
+                        <ul class="items">
+                            <li class="item red refuse">Cancelar inscrição</li>
+                        </ul>
+                    </div>
+                    {{/each}}
+                </div>
             </div>
             {{/if}}
-            <h1 class="medium-text margin0 margin-top2 margin-btm1">Voluntários inscritos</h1>
-            <div class="table-container">
+            <h1 onclick="showTable('#table-rejected', 'btn-table-rejected')" class="title-table">Inscrições não aceitas
+                <img id="btn-table-rejected" src="/assets/imgs/plus.svg" />
+            </h1>
+            {{#if vacanciesRejected}}
+            <div class="table-container" id="table-rejected">
                 <div class="table-header">
                     <div class="row">
                         <div class="flex-row">Nome completo</div>
                         <div class="flex-row">Vaga</div>
                         <div class="flex-row">Avaliação</div>
-                        <div class="flex-row">Status</div>
+                        <div class="flex-row"></div>
                     </div>
                 </div>
                 <div class="table-body">
-                    <div class="row row-subscribe">
+                    {{#each vacanciesRejected}}
+                    <div class="row row-action" data-id="{{idActionVolunteer}}">
                         <div class="full-width display-flex">
                             <div class="flex-row">
                                 <figure class="table-pic">
-                                    <img src="/assets/imgs/man2.jpg" />
+                                    <img src="/temp/uploads/profile/{{photoVolunteer}}" />
                                 </figure>
                                 <article class="margin-left1">
-                                    <h1 class="small-text medium-weight-text margin0 padding0">João Victor da S. Pereira
-                                    </h1>
-                                    <p class="gray smallest-text margin0 padding0">São Paulo</p>
+                                    <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}}
+                                        {{lastNameVolunteer}}</h1>
+                                    <p class="gray smallest-text margin0 padding0">{{cityVolunteer}}</p>
                                 </article>
                             </div>
                             <div class="flex-row">
-                                <p class="text">Assistente geral</p>
+                                <p class="text">{{nameVacancy}}</p>
                             </div>
-                            <div class="flex-row">12</div>
-                            <div class="flex-row">
-                                <span class="green-rounded">Aceito</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h1 class="medium-text margin0 margin-top2 margin-btm1">Inscrições não aceitas </h1>
-            <div class="table-container">
-                <div class="table-header">
-                    <div class="row">
-                        <div class="flex-row">Nome completo</div>
-                        <div class="flex-row">Vaga</div>
-                        <div class="flex-row">Avaliação</div>
-                        <div class="flex-row">Status</div>
-                    </div>
-                </div>
-                <div class="table-body">
-                    <div class="row row-subscribe">
-                        <div class="full-width display-flex">
-                            <div class="flex-row">
-                                <figure class="table-pic">
-                                    <img src="/assets/imgs/man2.jpg" />
+                            <div class="flex-row">{{averageStarVolunteer}}</div>
+                            <div class="flex-row justifyContent-end">
+                                <figure onclick="hideOptions('.member-options-{{idActionVolunteer}}')"
+                                    class="member-options-icon">
+                                    <img src="/assets/imgs/threedots.svg">
                                 </figure>
-                                <article class="margin-left1">
-                                    <h1 class="small-text medium-weight-text margin0 padding0">João Victor da S. Pereira
-                                    </h1>
-                                    <p class="gray smallest-text margin0 padding0">São Paulo</p>
-                                </article>
-                            </div>
-                            <div class="flex-row">
-                                <p class="text">Assistente geral</p>
-                            </div>
-                            <div class="flex-row">12</div>
-                            <div class="flex-row">
-                                <span class="red-rounded">Não aceito</span>
                             </div>
                         </div>
                     </div>
+                    <div class="member-options member-options-{{idActionVolunteer}}">
+                        <ul class="items">
+                            <li class="item accepted">Aceitar inscrição</li>
+                        </ul>
+                    </div>
+                    {{/each}}
                 </div>
             </div>
+            {{/if}}
         </div>
-        <div class="job-inscriptions display-none" id="assistente">
+        {{#each vacancies}}
+        <div class="job-inscriptions display-none" id="jobs-{{idVacancy}}">
             <div class="job-header margin-top2">
                 <div class="job-description">
-                    <h1 class="big-text margin0">Assistente geral</h1>
-                    <p class="text">Aliqua cillum proident qui incididunt minim nostrud in id aliqua aliqua dolor magna
-                        incididunt reprehenderit.</p>
+                    <h1 class="big-text margin0">{{nameVacancyAction}}</h1>
+                    <p class="text">{{descVacancyAction}}</p>
                 </div>
                 <div class="job-useful">
                     <ul class="job-data">
@@ -301,54 +316,7 @@
                 </div>
             </div>
         </div>
-        <div id="requests-jobs" class="display-none">
-            {{#if volunteersSubscribers}}
-            <div class="table-container">
-                <div class="table-header">
-                    <div class="row">
-                        <div class="flex-row">Nome completo</div>
-                        <div class="flex-row">Vaga</div>
-                        <div class="flex-row">Avaliação</div>
-                        <div class="flex-row"></div>
-                    </div>
-                </div>
-                <div class="table-body">
-                    {{#each volunteersSubscribers}}
-                    <div class="row row-subscribe" data-id="{{idActionVolunteer}}">
-                        <div class="full-width display-flex">
-                            <div class="flex-row">
-                                <figure class="table-pic">
-                                    <img src="/temp/uploads/profile/{{photoVolunteer}}" />
-                                </figure>
-                                <article class="margin-left1">
-                                    <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}}
-                                        {{lastNameVolunteer}}</h1>
-                                    <p class="gray smallest-text margin0 padding0">{{cityVolunteer}}</p>
-                                </article>
-                            </div>
-                            <div class="flex-row">
-                                <p class="text">{{nameVacancy}}</p>
-                            </div>
-                            <div class="flex-row">{{averageStarVolunteer}}</div>
-                            <div class="flex-row justifyContent-end">
-                                <button class="btn-danger-outlined margin-right2 refuse">Recusar</button>
-                                <button class="btn-primary accepted">Aceitar inscrição</button>
-                            </div>
-                        </div>
-                    </div>
-                    {{/each}}
-                </div>
-            </div>
-            {{else}}
-            <div class="container flex-column align-center margin-top4">
-                <img style="height: 35vh;" src="/assets/imgs/empty.svg" />
-                <h1 class="big-text text-center margin0 margin-top4">Tudo limpo!</h1>
-                <p class="text text-center margin0 margin-top1">Esse evento não tem nenhuma solicitação de vaga
-                    pendente.
-                </p>
-            </div>
-            {{/if}}
-        </div>
+        {{/each}}
     </div>
     <div id="management-content" class="box container margin-top2 display-none">
         <form class="form full-width" action="/event/{{action.idAction}}/edit" method="POST"
@@ -471,4 +439,5 @@
     </div>
 </div>
 
-<script src="/scripts/managementEventScript.js"></script>
+<script src="/scripts/eventManagement.js"></script>
+<script>$( "#management-content" ).hide()</script>

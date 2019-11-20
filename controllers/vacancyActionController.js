@@ -47,13 +47,18 @@ module.exports = {
         const vacancyAction = await VacancyAction.findOne({where: {idVacancyAction}})
         return vacancyAction
     },
-    async listVolunteersWithVacancy(idVacancyAction){
-        const volunteersVacancy = await actionVolunteer.findAll({where: {idVacancyAction, acceptedNgo: null}})
+    async listVacancyVolunteers(idVacancyAction, isAccepted){
+        
+        if(isAccepted) isAccepted = '1'
+        else if(isAccepted === false) isAccepted = '0'
+        else isAccepted = null
+        const volunteersVacancy = await actionVolunteer.findAll({where: {idVacancyAction, acceptedNgo: isAccepted}})
         let volunteersWithVacancy = volunteersVacancy.map( async (volunteerVacancy)=>{
             let vacancy = await this.listVacancyAction(volunteerVacancy.idVacancyAction)
             let volunteer = await userController.listOneUser(volunteerVacancy.idVolunteer)
             let Volunteer = {
                 idActionVolunteer: volunteerVacancy.idActionVolunteer,
+                idVolunteer: volunteerVacancy.idVolunteer,
                 photoVolunteer: volunteer.photoVolunteer,
                 nameVolunteer: volunteer.nameVolunteer,
                 lastNameVolunteer: volunteer.lastNameVolunteer,
