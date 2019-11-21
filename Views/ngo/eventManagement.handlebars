@@ -5,7 +5,7 @@
     }
 </style>
 
-<div class="centralize padding-top4">
+<div data-idAction="{{action.idAction}}" id="keeper-idAction" class="centralize padding-top4">
 
     <div class="container padding-btm1 border-bottom">
         <a href="#"
@@ -48,12 +48,12 @@
                     <button class="btn-callaction">Relatório das vagas</button>
                 </div>
             </div>
-            <h1 onclick="showTable('#table-requests','btn-table-requests')" class="title-table">Solicitações
+            <h1 onclick="showTable('#table-requests','btn-table-requests')" class="title-table" id="title-table-requests">Solicitações
                 <img id="btn-table-requests" src="/assets/imgs/plus.svg" />
             </h1>
             {{#if vacanciesRequests}}
             <div class="table-container" id="table-requests">
-                <div class="table-header">
+                <div class="table-header" id="table-header-requests">
                     <div class="row">
                         <div class="flex-row">Nome completo</div>
                         <div class="flex-row">Vaga</div>
@@ -61,9 +61,9 @@
                         <div class="flex-row"></div>
                     </div>
                 </div>
-                <div class="table-body">
+                <div class="table-body" id="table-body-requests">
                     {{#each vacanciesRequests}}
-                    <div class="row row-subscribe" data-id="{{idActionVolunteer}}">
+                    <div class="row row-subscribe">
                         <div class="full-width display-flex">
                             <div class="flex-row">
                                 <figure class="table-pic">
@@ -80,8 +80,8 @@
                             </div>
                             <div class="flex-row">{{averageStarVolunteer}}</div>
                             <div class="flex-row justifyContent-end">
-                                <button class="btn-danger-outlined margin-right2 refuse">Recusar</button>
-                                <button class="btn-primary accepted">Aceitar inscrição</button>
+                                <button data-type="refuse" data-id="{{idActionVolunteer}}" class="btn-danger-outlined margin-right2 btn-request">Recusar</button>
+                                <button data-type="accept" data-id="{{idActionVolunteer}}" class="btn-primary btn-request">Aceitar inscrição</button>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                 </div>
             </div>
             {{/if}}
-            <h1 onclick="showTable('#table-accepted','btn-table-accepted')" class="title-table">Inscrições aceitas
+            <h1 onclick="showTable('#table-accepted','btn-table-accepted')" class="title-table" id="title-table-accepted">Inscrições aceitas
                 <img id="btn-table-accepted" src="/assets/imgs/plus.svg" />
             </h1>
             {{#if vacanciesAccepted}}
@@ -102,9 +102,9 @@
                         <div class="flex-row"></div>
                     </div>
                 </div>
-                <div class="table-body-options">
+                <div class="table-body-options" id="table-body-accepted">
                     {{#each vacanciesAccepted}}
-                    <div class="row row-action" data-id="{{idActionVolunteer}}">
+                    <div class="row row-action">
                         <div class="full-width display-flex">
                             <div class="flex-row">
                                 <figure class="table-pic">
@@ -130,14 +130,14 @@
                     </div>
                     <div class="member-options member-options-{{idActionVolunteer}}">
                         <ul class="items">
-                            <li class="item red refuse">Cancelar inscrição</li>
+                            <li data-type="refuse" data-id="{{idActionVolunteer}}" class="item red btn-request">Cancelar inscrição</li>
                         </ul>
                     </div>
                     {{/each}}
                 </div>
             </div>
             {{/if}}
-            <h1 onclick="showTable('#table-rejected', 'btn-table-rejected')" class="title-table">Inscrições não aceitas
+            <h1 onclick="showTable('#table-rejected', 'btn-table-rejected')" class="title-table" id="title-table-rejected">Inscrições não aceitas
                 <img id="btn-table-rejected" src="/assets/imgs/plus.svg" />
             </h1>
             {{#if vacanciesRejected}}
@@ -150,7 +150,7 @@
                         <div class="flex-row"></div>
                     </div>
                 </div>
-                <div class="table-body">
+                <div class="table-body" id="table-body-rejected">
                     {{#each vacanciesRejected}}
                     <div class="row row-action" data-id="{{idActionVolunteer}}">
                         <div class="full-width display-flex">
@@ -178,7 +178,7 @@
                     </div>
                     <div class="member-options member-options-{{idActionVolunteer}}">
                         <ul class="items">
-                            <li class="item accepted">Aceitar inscrição</li>
+                            <li data-type="accept" data-id="{{idActionVolunteer}}" class="item btn-request">Aceitar inscrição</li>
                         </ul>
                     </div>
                     {{/each}}
