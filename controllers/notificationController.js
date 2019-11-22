@@ -25,6 +25,7 @@ module.exports = {
             idVolunteer: user.idVolunteer,
             idNgo: ngo.idNgo,
             msgNotification: "solicitou participação na vaga "+vacancy.nameVacancyAction,
+            linkNotification: "/event/"+action.idAction+"/management",
             viewedNotification: false
         })
 

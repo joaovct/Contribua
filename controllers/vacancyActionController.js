@@ -65,6 +65,7 @@ module.exports = {
                 nameVolunteer: volunteer.nameVolunteer,
                 lastNameVolunteer: volunteer.lastNameVolunteer,
                 cityVolunteer: volunteer.cityVolunteer,
+                emailVolunteer: volunteer.emailVolunteer,
                 averageStarVolunteer: volunteer.averageStarVolunteer,
                 nameVacancy: vacancy.nameVacancyAction,
                 // isSubscribed: null,

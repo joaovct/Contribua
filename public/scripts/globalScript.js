@@ -85,7 +85,7 @@ function writeOldNotificationNgo( oldNotifications ) {
             let notification=oldNotifications[ i ].notification
             let user=oldNotifications[ i ].user
             $( notifications ).prepend( `
-                <a href="#"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
+                <a href="${notification.linkNotification}"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
             `)
 
         }
@@ -104,7 +104,7 @@ function writeNewNotificationNgo( newNotifications ) {
             let notification=newNotifications[ i ].notification
             let user=newNotifications[ i ].user
             $( notifications ).prepend( `
-                <a href="#"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
+                <a href="${notification.linkNotification}"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
             `)
 
         }
