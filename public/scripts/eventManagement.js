@@ -204,7 +204,8 @@ const city = document.getElementsByName("city")[0]
 
 cep.addEventListener("keyup", () => {
     addressPreview.innerHTML = "..."
-    addressPreview.style.background = "#3171e0"
+    addressPreview.classList.remove("red-rounded")
+    addressPreview.classList.add("blue-rounded")
     let script = document.createElement('script')
     script.src = 'https://viacep.com.br/ws/'+ cep.value + '/json/?callback=fillCep'
     document.body.appendChild(script)
@@ -218,7 +219,8 @@ function fillCep(conteudo){
         address.value = "..."
     }else{
         addressPreview.innerHTML = "CEP não encontrado"
-        addressPreview.style.background = "#e42200"
+        addressPreview.classList.remove("blue-rounded")
+        addressPreview.classList.add("red-rounded")
         city.value = ""
         district.value = ""
         address.value = ""

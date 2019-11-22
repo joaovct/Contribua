@@ -10,3 +10,6 @@ public/styles/.sass-cache/*
 
 #ignore uploads
 public/temp/*
+
+#ignore reports
+reports/*

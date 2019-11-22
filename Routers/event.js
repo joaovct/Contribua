@@ -9,6 +9,8 @@ const feedUtilities=require( '../helpers/feedUtilities' )
 const multer=require( "multer" )
 const multerConfig=require( "../config/multer" )
 const moment=require( "moment" )
+const path = require("path")
+const report = require("../helpers/reports")
 
 router.get( "/", ( req, res ) => {
     return res.render( "ngo/addEventPresentation", { dataHeaderNgo: req.session.ngo, ngos: req.session.ngoUser } )
@@ -188,6 +190,30 @@ router.post( "/subscribe", async ( req, res ) => {
         res.json( await actionController.subscribe( req.session.user.idVolunteer, req.query.idVacancyAction, req.query.idAction ) )
     }
 } )
+
+router.post("/report-event/:id", async (req, res) => {
+
+    const action = await actionController.listOneAction(req.params.id)
+    const ngo = await ngoController.listOneNgo(action.idNgo)
+    const vacancies = await vacancyActionController.listVacanciesAction(action.idAction)
+    let user
+
+    if(vacancies.length === 1){
+        user = await vacancyActionController.listVacancyVolunteers(vacancies[0].idVacancyAction, true)
+    }else{
+        for(let i = 0; i < vacancies.length; i++){
+            user = await vacancyActionController.listVacancyVolunteers(vacancies[i].idVacancyAction, true)
+        }
+    }
+
+    let data = {action, ngo, user}
+
+    await report.event(data)
+
+    let file = path.resolve(".")+"/reports/Relatorio-Contribua.pdf"
+    res.download(file)
+    // res.redirect("/event/"+req.params.id+"/management")
+})
 
 function formatHours( hours, minutes ) {
     let date=( hours<10? "0":'' )+hours+':'+( minutes<10? '0':'' )+minutes
