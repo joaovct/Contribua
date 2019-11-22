@@ -1,6 +1,7 @@
 const VacancyAction = require("../models/VacancyAction")
 const userController = require('../controllers/userController')
 const actionVolunteer = require('../models/ActionVolunteer')
+const moment = require('moment')
 
 module.exports = {
     async register(dataVacancy, idAction){
@@ -65,7 +66,7 @@ module.exports = {
                 cityVolunteer: volunteer.cityVolunteer,
                 averageStarVolunteer: volunteer.averageStarVolunteer,
                 nameVacancy: vacancy.nameVacancyAction,
-                isSubscribed: null,
+                // isSubscribed: null,
             }
             return Volunteer
         })

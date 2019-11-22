@@ -5,7 +5,7 @@ const idAction = document.getElementById('keeper-idAction').dataset.idaction
 async function addEventToButtons () {
     let btnRequest = document.getElementsByClassName('btn-request')
     btnRequest = Array.from(btnRequest)
-    btnRequest.map(btn=>{
+    btnRequest.map((btn)=>{
         btn.addEventListener('click', async ()=>{
             let type = btn.dataset.type
             let id = btn.dataset.id
@@ -36,9 +36,11 @@ async function refuseRequest (idActionVolunteer) {
 async function updateTable(){
     setTimeout(async () => { 
         await $.post(`http://localhost:3000/event/${idAction}/management/subscribers`, async (data)=>{
-            await writeVacanciesRequests(data.vacanciesRequests)
-            await writeVacanciesAccepted(data.vacanciesAccepted)
-            await writeVacanciesRejected(data.vacanciesRejected)
+            console.log(data)
+            writeVacanciesRequests(data.vacanciesRequests)
+            writeVacanciesAccepted(data.vacanciesAccepted)
+            writeVacanciesRejected(data.vacanciesRejected)
+            writeNumbersData(data)
             addEventToButtons()
         })
      }, 100);
@@ -55,7 +57,7 @@ async function writeVacanciesRequests(vacancies){
     $(title).html(`Solicitações (${vacancies.length})`)
     
     if(vacancies.length){
-        table.show()
+        tableBody.show()
         tableBody.empty()
         vacancies.map((vacancy,i)=>{
             tableBody.append(`
@@ -84,7 +86,7 @@ async function writeVacanciesRequests(vacancies){
             `)
         })
     }else{
-        $(table).hide()
+        tableBody.hide()
     }
 }
 
@@ -99,7 +101,7 @@ async function writeVacanciesAccepted(vacancies){
     $(title).html(`Inscrições aceitas (${vacancies.length})`)
     
     if(vacancies.length){
-        table.show()
+        tableBody.show()
         tableBody.empty()
         vacancies.map((vacancy,i)=>{
             tableBody.append(`
@@ -119,7 +121,8 @@ async function writeVacanciesAccepted(vacancies){
                             <p class="text">${vacancy.nameVacancy}</p>
                         </div>
                         <div class="flex-row">${vacancy.averageStarVolunteer}</div>
-                        <div class="flex-row justifyContent-end">
+                        <div class="flex-row">
+                            <p class="green-rounded margin0 margin-right4">Aceito</p>
                             <figure onclick="hideOptions('.member-options-${vacancy.idActionVolunteer}')"
                                 class="member-options-icon">
                                 <img src="/assets/imgs/threedots.svg">
@@ -135,7 +138,7 @@ async function writeVacanciesAccepted(vacancies){
             `)
         })
     }else{
-        table.hide()
+        tableBody.hide()
     }
 }
 
@@ -150,7 +153,7 @@ async function writeVacanciesRejected(vacancies){
     $(title).html(`Inscrições não aceitas (${vacancies.length})`)
     
     if(vacancies.length){
-        table.show()
+        tableBody.show()
         tableBody.empty()
         vacancies.map((vacancy,i)=>{
             tableBody.append(`
@@ -170,7 +173,8 @@ async function writeVacanciesRejected(vacancies){
                             <p class="text">${vacancy.nameVacancy}</p>
                         </div>
                         <div class="flex-row">${vacancy.averageStarVolunteer}</div>
-                        <div class="flex-row justifyContent-end">
+                        <div class="flex-row">
+                            <p class="red-rounded margin0 margin-right4">Não aceito</p>
                             <figure onclick="hideOptions('.member-options-${vacancy.idActionVolunteer}')"
                                 class="member-options-icon">
                                 <img src="/assets/imgs/threedots.svg">
@@ -186,8 +190,27 @@ async function writeVacanciesRejected(vacancies){
             `)
         })
     }else{
-        table.hide()
+        tableBody.hide()
     }
+}
+
+async function writeNumbersData(data){
+    let elData = $('#all-jobs-data')
+    elData.empty()
+    elData.prepend(`
+        <li>
+            <p>Voluntários inscritos</p>
+            <h3>${data.qtdInscriptions}</h3>
+        </li>
+        <li>
+            <p>Vagas restantes</p>
+            <h3>${data.qtdRemaining}</h3>
+        </li>
+        <li>
+            <p>Voluntários inscritos</p>
+            <h3>${data.qtdRequests}</h3>
+        </li>
+    `)
 }
 
 const inputPhoto = document.getElementsByName("thumbnail")[0]
