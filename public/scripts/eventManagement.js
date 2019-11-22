@@ -135,7 +135,7 @@ async function writeVacanciesAccepted(vacancies){
             `)
         })
     }else{
-        $(table).hide()
+        table.hide()
     }
 }
 
@@ -186,7 +186,7 @@ async function writeVacanciesRejected(vacancies){
             `)
         })
     }else{
-        $(table).hide()
+        table.hide()
     }
 }
 

@@ -37,6 +37,15 @@ router.get( "/:id", async ( req, res ) => {
         dataHeader=null
     }
     if ( action ) {
+    
+        // date = new Date(moment(action.dateAction.toString()).locale('pt-br').format('D MMM YYYY, H:mm'))
+
+        let date = new Date(action.dateAction.toString())
+        action.dateStartActionFormatted = moment(date).locale('pt-br').format('D [de] MMM [de] YYYY [às] HH:mm')
+        
+        date = new Date(action.dateEndAction.toString())
+        action.dateEndActionFormatted = moment(date).locale('pt-br').format('D [de] MMM [de] YYYY [às] HH:mm')
+
         volunteerSubscribed=await actionController.listActionsVolunteer( req.session.user.idVolunteer )
         vacancies=await vacancyActionController.listVacanciesAction( action.idAction )
         user=await userController.listOneUser( action.idVolunteer )

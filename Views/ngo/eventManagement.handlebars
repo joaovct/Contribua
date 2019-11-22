@@ -48,7 +48,7 @@
                     <button class="btn-callaction">Relatório das vagas</button>
                 </div>
             </div>
-            <h1 onclick="showTable('#table-requests','btn-table-requests')" class="title-table" id="title-table-requests">Solicitações
+            <h1 onclick="showTable('#table-requests','btn-table-requests')" class="title-table" id="title-table-requests">Solicitações ({{vacanciesRequests.length}})
                 <img id="btn-table-requests" src="/assets/imgs/plus.svg" />
             </h1>
             {{#if vacanciesRequests}}
@@ -89,7 +89,7 @@
                 </div>
             </div>
             {{/if}}
-            <h1 onclick="showTable('#table-accepted','btn-table-accepted')" class="title-table" id="title-table-accepted">Inscrições aceitas
+            <h1 onclick="showTable('#table-accepted','btn-table-accepted')" class="title-table" id="title-table-accepted">Inscrições aceitas ({{vacanciesAccepted.length}})
                 <img id="btn-table-accepted" src="/assets/imgs/plus.svg" />
             </h1>
             {{#if vacanciesAccepted}}
@@ -137,7 +137,7 @@
                 </div>
             </div>
             {{/if}}
-            <h1 onclick="showTable('#table-rejected', 'btn-table-rejected')" class="title-table" id="title-table-rejected">Inscrições não aceitas
+            <h1 onclick="showTable('#table-rejected', 'btn-table-rejected')" class="title-table" id="title-table-rejected">Inscrições não aceitas ({{vacanciesRejected.length}})
                 <img id="btn-table-rejected" src="/assets/imgs/plus.svg" />
             </h1>
             {{#if vacanciesRejected}}
