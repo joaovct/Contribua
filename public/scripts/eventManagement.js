@@ -9,6 +9,9 @@ async function addEventToButtons () {
         btn.addEventListener('click', async ()=>{
             let type = btn.dataset.type
             let id = btn.dataset.id
+            let idVacancy = btn.dataset.idVacancy 
+            if(idVacancy) console.log('fala comigo')
+            else console.log('falow')
             if (await type==="accept"){
                 await acceptRequest(id)
                 await updateTable()
@@ -33,9 +36,10 @@ async function refuseRequest (idActionVolunteer) {
     $.post(`http://localhost:3000/event/accept-event?refuse=true&idActionVolunteer=${idActionVolunteer}`)
 }
 
-async function updateTable(){
+async function updateTable(idVacancy){
     setTimeout(async () => { 
-        await $.post(`http://localhost:3000/event/${idAction}/management/subscribers`, async (data)=>{
+        if(idVacancy == undefined) idVacancy = null
+        await $.post(`http://localhost:3000/event/${idAction}/management/subscribers/${idVacancy}`, async (data)=>{
             console.log(data)
             writeVacanciesRequests(data.vacanciesRequests)
             writeVacanciesAccepted(data.vacanciesAccepted)

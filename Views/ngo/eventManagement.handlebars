@@ -20,8 +20,8 @@
         <ul class="side-menu">
             <li onclick="removeClass('sidelinks','active'); $(this).addClass('active'); $('.job-inscriptions').hide(); $('#all-jobs').show()"
                 class="sidelinks active">Todas as vagas</li>
-            {{#each vacancies}}
-            <li onclick="removeClass('sidelinks','active'); $(this).addClass('active'); $('.job-inscriptions').hide(); $('#jobs-{{idVacancy}}').show()"
+            {{#each vacancies.individualVacancy}}
+            <li onclick="removeClass('sidelinks','active'); $(this).addClass('active'); $('.job-inscriptions').hide(); $('#jobs-{{idVacancy}}').show();"
                 class="sidelinks">{{nameVacancyAction}}</li>
             {{/each}}
         </ul>
@@ -199,7 +199,8 @@
             </div>
 
         </div>
-        {{#each vacancies}}
+        {{#each vacancies.individualVacancy}}
+    
         <div class="job-inscriptions display-none" id="jobs-{{idVacancy}}">
             <div class="job-header margin-top2">
                 <div class="job-description">
@@ -207,26 +208,29 @@
                     <p class="text">{{descVacancyAction}}</p>
                 </div>
                 <div class="job-useful">
-                    <ul class="job-data">
+                    <ul class="job-data" id="job-data-{{idVacancy}}">
                         <li>
                             <p>Voluntários inscritos</p>
-                            <h3>18</h3>
+                            <h3>{{qtdInscriptions}}</h3>
                         </li>
                         <li>
                             <p>Vagas restantes</p>
-                            <h3>10</h3>
+                            <h3>{{qtdRemaining}}</h3>
                         </li>
                         <li>
                             <p>Solicitações</p>
-                            <h3>120</h3>
+                            <h3>{{qtdRequests}}</h3>
                         </li>
                     </ul>
-                    <button class="btn-callaction">Relatório da vaga</button>
                 </div>
             </div>
-            <h1 class="medium-text margin0 margin-top4 margin-btm1">Solicitações</h1>
-            <div class="table-container">
-                <div class="table-header">
+
+            <h1 onclick="showTable('#table-requests-{{idVacancy}}','btn-table-requests-{{idVacancy}}')" class="title-table"
+                id="title-table-requests-{{idVacancy}}">Solicitações ({{vacanciesRequests.length}})
+                <img id="btn-table-requests-{{idVacancy}}" src="/assets/imgs/plus.svg" />
+            </h1>
+            <div class="table-container" id="table-requests-{{idVacancy}}">
+                <div class="table-header" id="table-header-requests-{{idVacancy}}">
                     <div class="row">
                         <div class="flex-row">Nome completo</div>
                         <div class="flex-row">Vaga</div>
@@ -234,35 +238,44 @@
                         <div class="flex-row"></div>
                     </div>
                 </div>
-                <div class="table-body">
+                <div class="table-body" id="table-body-requests-{{idVacancy}}">
+                    {{#if vacanciesRequests}}
+                    {{#each vacanciesRequests}}
                     <div class="row row-subscribe">
                         <div class="full-width display-flex">
                             <div class="flex-row">
                                 <figure class="table-pic">
-                                    <img src="/assets/imgs/man2.jpg" />
+                                    <img src="/temp/uploads/profile/{{photoVolunteer}}" />
                                 </figure>
                                 <article class="margin-left1">
-                                    <h1 class="small-text medium-weight-text margin0 padding0">João Victor da S. Pereira
-                                    </h1>
-                                    <p class="gray smallest-text margin0 padding0">São Paulo</p>
-                                    <p class="gray smallest-text margin0 padding0">Solicitado em 24/12/2019</p>
+                                    <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}}
+                                        {{lastNameVolunteer}}</h1>
+                                    <p class="gray smallest-text margin0 padding0">{{cityVolunteer}}</p>
                                 </article>
                             </div>
                             <div class="flex-row">
-                                <p class="text">Assistente geral</p>
+                                <p class="text">{{nameVacancy}}</p>
                             </div>
-                            <div class="flex-row">12</div>
+                            <div class="flex-row">{{averageStarVolunteer}}</div>
                             <div class="flex-row justifyContent-end">
-                                <button class="btn-danger-outlined margin-right2 refuse">Recusar</button>
-                                <button class="btn-primary accepted">Aceitar inscrição</button>
+                                <button data-type="refuse" data-id="{{idActionVolunteer}}"
+                                    class="btn-danger-outlined margin-right2 btn-request">Recusar</button>
+                                <button data-type="accept" data-id="{{idActionVolunteer}}"
+                                    class="btn-primary btn-request">Aceitar inscrição</button>
                             </div>
                         </div>
                     </div>
+                    {{/each}}
+                    {{/if}}
                 </div>
             </div>
-            <h1 class="medium-text margin0 margin-top2 margin-btm1">Voluntários inscritos</h1>
-            <div class="table-container">
-                <div class="table-header">
+
+            <h1 onclick="showTable('#table-accepted-{{idVacancy}}','btn-table-accepted-{{idVacancy}}')" class="title-table"
+                id="title-table-accepted-{{idVacancy}}">Inscrições aceitas ({{vacanciesAccepted.length}})
+                <img id="btn-table-accepted-{{idVacancy}}" src="/assets/imgs/plus.svg" />
+            </h1>
+            <div class="table-container" id="table-accepted-{{idVacancy}}">
+                <div class="table-header" id="table-header-accepted-{{idVacancy}}">
                     <div class="row">
                         <div class="flex-row">Nome completo</div>
                         <div class="flex-row">Vaga</div>
@@ -270,33 +283,51 @@
                         <div class="flex-row">Status</div>
                     </div>
                 </div>
-                <div class="table-body">
-                    <div class="row row-subscribe">
+                <div class="table-body-options" id="table-body-accepted-{{idVacancy}}">
+                    {{#if vacanciesAccepted}}
+                    {{#each vacanciesAccepted}}
+                    <div class="row row-action">
                         <div class="full-width display-flex">
                             <div class="flex-row">
                                 <figure class="table-pic">
-                                    <img src="/assets/imgs/man2.jpg" />
+                                    <img src="/temp/uploads/profile/{{photoVolunteer}}" />
                                 </figure>
                                 <article class="margin-left1">
-                                    <h1 class="small-text medium-weight-text margin0 padding0">João Victor da S. Pereira
-                                    </h1>
-                                    <p class="gray smallest-text margin0 padding0">São Paulo</p>
+                                    <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}}
+                                        {{lastNameVolunteer}}</h1>
+                                    <p class="gray smallest-text margin0 padding0">{{cityVolunteer}}</p>
                                 </article>
                             </div>
                             <div class="flex-row">
-                                <p class="text">Assistente geral</p>
+                                <p class="text">{{nameVacancy}}</p>
                             </div>
-                            <div class="flex-row">12</div>
+                            <div class="flex-row">{{averageStarVolunteer}}</div>
                             <div class="flex-row">
-                                <span class="green-rounded">Aceito</span>
+                                <p class="green-rounded margin0 margin-right4">Aceito</p>
+                                <figure onclick="hideOptions('.member-options-{{idVacancy}}-{{idActionVolunteer}}')"
+                                    class="member-options-icon">
+                                    <img src="/assets/imgs/threedots.svg">
+                                </figure>
                             </div>
                         </div>
                     </div>
+                    <div class="member-options member-options-{{idVacancy}}-{{idActionVolunteer}}">
+                        <ul class="items">
+                            <li data-type="refuse" data-id="{{idActionVolunteer}}" data-idvacancy="{{vacanciesAccepted.idVacancy}}" class="item red btn-request">Cancelar
+                                inscrição</li>
+                        </ul>
+                    </div>
+                    {{/each}}
+                    {{/if}}
                 </div>
             </div>
-            <h1 class="medium-text margin0 margin-top2 margin-btm1">Inscrições não aceitas</h1>
-            <div class="table-container">
-                <div class="table-header">
+
+            <h1 onclick="showTable('#table-rejected-{{idVacancy}}', 'btn-table-rejected-{{idVacancy}}')" class="title-table"
+                id="title-table-rejected-{{idVacancy}}">Inscrições não aceitas ({{vacanciesRejected.length}})
+                <img id="btn-table-rejected-{{idVacancy}}" src="/assets/imgs/plus.svg" />
+            </h1>
+            <div class="table-container" id="table-rejected-{{idVacancy}}">
+                <div class="table-header" id="table-header-rejected-{{idVacancy}}">
                     <div class="row">
                         <div class="flex-row">Nome completo</div>
                         <div class="flex-row">Vaga</div>
@@ -304,31 +335,47 @@
                         <div class="flex-row">Status</div>
                     </div>
                 </div>
-                <div class="table-body">
-                    <div class="row row-subscribe">
+                <div class="table-body" id="table-body-rejected-{{idVacancy}}">
+                    {{#if vacanciesRejected}}
+                    {{#each vacanciesRejected}}
+                    <div class="row row-action" data-id="{{idActionVolunteer}}">
                         <div class="full-width display-flex">
                             <div class="flex-row">
                                 <figure class="table-pic">
-                                    <img src="/assets/imgs/man2.jpg" />
+                                    <img src="/temp/uploads/profile/{{photoVolunteer}}" />
                                 </figure>
                                 <article class="margin-left1">
-                                    <h1 class="small-text medium-weight-text margin0 padding0">João Victor da S. Pereira
-                                    </h1>
-                                    <p class="gray smallest-text margin0 padding0">São Paulo</p>
+                                    <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}}
+                                        {{lastNameVolunteer}}</h1>
+                                    <p class="gray smallest-text margin0 padding0">{{cityVolunteer}}</p>
                                 </article>
                             </div>
                             <div class="flex-row">
-                                <p class="text">Assistente geral</p>
+                                <p class="text">{{nameVacancy}}</p>
                             </div>
-                            <div class="flex-row">12</div>
+                            <div class="flex-row">{{averageStarVolunteer}}</div>
                             <div class="flex-row">
-                                <span class="red-rounded">Não aceito</span>
+                                <p class="red-rounded margin0 margin-right4">Não aceito</p>
+                                <figure onclick="hideOptions('.member-options-{{idVacancy}}-{{idActionVolunteer}}')"
+                                    class="member-options-icon">
+                                    <img src="/assets/imgs/threedots.svg">
+                                </figure>
                             </div>
                         </div>
                     </div>
+                    <div class="member-options member-options-{{idVacancy}}-{{idActionVolunteer}}">
+                        <ul class="items">
+                            <li data-type="accept" data-id="{{idActionVolunteer}}" data-idvacancy="{{idVacancy}}" class="item btn-request">Aceitar
+                                inscrição</li>
+                        </ul>
+                    </div>
+                    {{/each}}
+                    {{/if}}
                 </div>
             </div>
+            
         </div>
+        {{!-- <h1 class="title">{{qtdRemaining}}</h1> --}}
         {{/each}}
     </div>
     <div id="management-content" class="box container margin-top2 display-none">

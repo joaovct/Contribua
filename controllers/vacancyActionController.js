@@ -60,6 +60,7 @@ module.exports = {
             let Volunteer = {
                 idActionVolunteer: volunteerVacancy.idActionVolunteer,
                 idVolunteer: volunteerVacancy.idVolunteer,
+                idVacancyAction: vacancy.idVacancyAction,
                 photoVolunteer: volunteer.photoVolunteer,
                 nameVolunteer: volunteer.nameVolunteer,
                 lastNameVolunteer: volunteer.lastNameVolunteer,

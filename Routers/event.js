@@ -86,7 +86,6 @@ router.get( "/:id", async ( req, res ) => {
 router.get( '/:id/management', async ( req, res ) => {
     let action=await actionController.listOneAction( req.params.id )
     const category=await causesController.listCausesAction( req.params.id )
-    let vacancies
     let dateStartAction={
         year: action.dateAction.getFullYear(),
         month: await feedUtilities.formatMonthOrDay( action.dateAction.getMonth()+1 ),
@@ -111,7 +110,7 @@ router.get( '/:id/management', async ( req, res ) => {
         res.render( 'error', { dataHeader, dataHeaderNgo } )
     } else {
         if ( action.isActive ) {
-            vacancies=await vacancyActionController.listVacanciesAction( action.idAction )
+            let vacancies = await vacancyActionController.listVacanciesAction( action.idAction )
             let qtdRemaining = 0
             let idVacancies=vacancies.map( ( vacancy ) => {
                 qtdRemaining += vacancy.qtdVacancyAction
@@ -126,6 +125,62 @@ router.get( '/:id/management', async ( req, res ) => {
                 qtdRequests: vacanciesRequests.length
             }
             vacancies.data.qtdRemaining = qtdRemaining - vacancies.data.qtdInscriptions
+            
+            vacancies.individualVacancy = [vacancies.length]
+
+            vacancies.map( (vacancy,i) => {
+                let idVacancy = vacancy.idVacancyAction
+                let qtdRemaining = vacancy.qtdVacancyAction
+                
+                vacancies.individualVacancy[i] = { 
+                    nameVacancyAction: vacancy.nameVacancyAction,
+                    descVacancyAction: vacancy.descVacancyAction,
+                    idVacancy: vacancy.idVacancyAction
+                }
+
+                vacancies.individualVacancy[i].vacanciesRequests =  vacanciesRequests.map( vr =>{
+                    if(vr.idVacancyAction === idVacancy){
+                        return vr
+                    } 
+                })
+
+                vacancies.individualVacancy[i].vacanciesAccepted = vacanciesAccepted.map( va => {
+                    if(va.idVacancyAction === idVacancy){
+                        return va
+                    }
+                })
+
+                vacancies.individualVacancy[i].vacanciesRejected = vacanciesRejected.map( vr => {
+                    if(vr.idVacancyAction === idVacancy){
+                        return vr
+                    }
+                })
+                
+                vacancies.individualVacancy[i].vacanciesAccepted.idVacancy = idVacancy
+                vacancies.individualVacancy[i].vacanciesRequests.idVacancy = idVacancy
+                vacancies.individualVacancy[i].vacanciesRejected.idVacancy = idVacancy
+
+                let filtering = vacancies.individualVacancy[i].vacanciesAccepted.filter(value=>{
+                    return value != undefined
+                })
+                if(filtering.length < 1) vacancies.individualVacancy[i].vacanciesAccepted = []
+
+                filtering = vacancies.individualVacancy[i].vacanciesRequests.filter(value=>{
+                    return value != undefined
+                })
+                if(filtering.length < 1) vacancies.individualVacancy[i].vacanciesRequests = []
+
+                filtering = vacancies.individualVacancy[i].vacanciesRejected.filter(value=>{
+                    return value != undefined
+                })
+                if(filtering.length < 1) vacancies.individualVacancy[i].vacanciesRejected = []
+                
+                vacancies.individualVacancy[i].qtdInscriptions = vacancies.individualVacancy[i].vacanciesAccepted.length
+                vacancies.individualVacancy[i].qtdRequests = vacancies.individualVacancy[i].vacanciesRequests.length
+                vacancies.individualVacancy[i].qtdRemaining = qtdRemaining - vacancies.individualVacancy[i].qtdInscriptions
+            })
+
+            console.log(vacancies.individualVacancy[0].vacanciesAccepted)
 
             res.render( 'ngo/eventManagement', { action, dateStartAction, dateEndAction, vacanciesRequests, vacanciesAccepted, vacanciesRejected, category, vacancies, dataHeader, dataHeaderNgo } )
         } else {
@@ -134,26 +189,34 @@ router.get( '/:id/management', async ( req, res ) => {
     }
 } )
 
-router.post('/:id/management/subscribers', async ( req, res ) => {
-    let action = await actionController.listOneAction( req.params.id )
-
-    vacancies = await vacancyActionController.listVacanciesAction( action.idAction )
+router.post('/:idAction/management/subscribers/:idVacancy', async ( req, res ) => {
+    const idAction = req.params.idAction
+    const idVacancy = req.params.idVacancy
+    let idVacancies
     let qtdRemaining = 0
-    let idVacancies = vacancies.map( ( vacancy ) => {
+    if(idVacancy=="null"){
+        let action = await actionController.listOneAction( idAction )
+        let vacancies = await vacancyActionController.listVacanciesAction( action.idAction )
+        idVacancies = vacancies.map( ( vacancy ) => {
+            qtdRemaining += vacancy.qtdVacancyAction
+            return vacancy.idVacancyAction
+        })
+    }else{
+        let vacancy = await vacancyActionController.listVacancyAction(idVacancy)
         qtdRemaining += vacancy.qtdVacancyAction
-        return vacancy.idVacancyAction
-    } )
-
-    let Vacancies = await {
+        idVacancies = idVacancy
+    }
+    
+    let vacancies = await {
         vacanciesRequests: await vacancyActionController.listVacancyVolunteers( idVacancies ),
         vacanciesAccepted: await vacancyActionController.listVacancyVolunteers( idVacancies, true ),
         vacanciesRejected: await vacancyActionController.listVacancyVolunteers( idVacancies, false ),
         
     }
-    Vacancies.qtdInscriptions = Vacancies.vacanciesAccepted.length,
-    Vacancies.qtdRequests = Vacancies.vacanciesRequests.length,
-    Vacancies.qtdRemaining = qtdRemaining - Vacancies.qtdInscriptions
-    res.json(Vacancies)
+    vacancies.qtdInscriptions = vacancies.vacanciesAccepted.length,
+    vacancies.qtdRequests = vacancies.vacanciesRequests.length,
+    vacancies.qtdRemaining = qtdRemaining - vacancies.qtdInscriptions
+    res.json(vacancies)
 })
 
 router.post( "/:id/edit", multer( multerConfig.action() ).single( 'thumbnail' ), async ( req, res ) => {
