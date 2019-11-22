@@ -24,8 +24,11 @@ const NotificationNgo = db.sequelize.define("tbNotificationNgo", {
         }
     },
     msgNotification:{
-        type: db.Sequelize.STRING(120),
+        type: db.Sequelize.STRING(300),
         allowNull: false
+    },
+    linkNotification: {
+        type: db.Sequelize.STRING(300)
     },
     viewedNotification:{
         type: db.Sequelize.BOOLEAN,
