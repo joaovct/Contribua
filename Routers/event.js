@@ -39,6 +39,13 @@ router.get( "/:id", async ( req, res ) => {
         dataHeader=null
     }
     if ( action ) {
+    
+        let date = new Date(action.dateAction.toString())
+        action.dateStartActionFormatted = moment(date).locale('pt-br').format('D [de] MMM [de] YYYY [às] HH:mm')
+        
+        date = new Date(action.dateEndAction.toString())
+        action.dateEndActionFormatted = moment(date).locale('pt-br').format('D [de] MMM [de] YYYY [às] HH:mm')
+
         volunteerSubscribed=await actionController.listActionsVolunteer( req.session.user.idVolunteer )
         vacancies=await vacancyActionController.listVacanciesAction( action.idAction )
         user=await userController.listOneUser( action.idVolunteer )
@@ -82,7 +89,6 @@ router.get( '/:id/management', async ( req, res ) => {
     let action=await actionController.listOneAction( req.params.id )
     const category=await causesController.listCausesAction( req.params.id )
     let vacancies
-    let volunteersSubscribers
     let dateStartAction={
         year: action.dateAction.getFullYear(),
         month: await feedUtilities.formatMonthOrDay( action.dateAction.getMonth()+1 ),
@@ -108,19 +114,21 @@ router.get( '/:id/management', async ( req, res ) => {
     } else {
         if ( action.isActive ) {
             vacancies=await vacancyActionController.listVacanciesAction( action.idAction )
+            let qtdRemaining = 0
             let idVacancies=vacancies.map( ( vacancy ) => {
+                qtdRemaining += vacancy.qtdVacancyAction
                 return vacancy.idVacancyAction
             } )
             vacanciesRequests=await vacancyActionController.listVacancyVolunteers( idVacancies )
             vacanciesAccepted=await vacancyActionController.listVacancyVolunteers( idVacancies, true )
             vacanciesRejected=await vacancyActionController.listVacancyVolunteers( idVacancies, false )
-
-            vacancies.data={
+            
+            vacancies.data = {
                 qtdInscriptions: vacanciesAccepted.length,
-                qtdRequests: vacanciesRequests.length,
+                qtdRequests: vacanciesRequests.length
             }
+            vacancies.data.qtdRemaining = qtdRemaining - vacancies.data.qtdInscriptions
 
-            // res.json(vacancies)
             res.render( 'ngo/eventManagement', { action, dateStartAction, dateEndAction, vacanciesRequests, vacanciesAccepted, vacanciesRejected, category, vacancies, dataHeader, dataHeaderNgo } )
         } else {
             res.render( 'error', { dataHeader, dataHeaderNgo } )
@@ -132,15 +140,21 @@ router.post('/:id/management/subscribers', async ( req, res ) => {
     let action = await actionController.listOneAction( req.params.id )
 
     vacancies = await vacancyActionController.listVacanciesAction( action.idAction )
-        let idVacancies=vacancies.map( ( vacancy ) => {
+    let qtdRemaining = 0
+    let idVacancies = vacancies.map( ( vacancy ) => {
+        qtdRemaining += vacancy.qtdVacancyAction
         return vacancy.idVacancyAction
     } )
 
     let Vacancies = await {
         vacanciesRequests: await vacancyActionController.listVacancyVolunteers( idVacancies ),
         vacanciesAccepted: await vacancyActionController.listVacancyVolunteers( idVacancies, true ),
-        vacanciesRejected: await vacancyActionController.listVacancyVolunteers( idVacancies, false )
+        vacanciesRejected: await vacancyActionController.listVacancyVolunteers( idVacancies, false ),
+        
     }
+    Vacancies.qtdInscriptions = Vacancies.vacanciesAccepted.length,
+    Vacancies.qtdRequests = Vacancies.vacanciesRequests.length,
+    Vacancies.qtdRemaining = qtdRemaining - Vacancies.qtdInscriptions
     res.json(Vacancies)
 })
 

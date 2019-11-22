@@ -28,10 +28,12 @@
                 <h1 class="medium-text bold margin0">Informações do evento</h1>
                 <ul class="icons">
                     {{#if action.isPunctual}}
-                        <li class="icon align-center"><img src="/assets/imgs/clock.svg"/> Pontual</li>
+                        <li class="icon align-center"><img src="/assets/imgs/clock.svg"/> Evento pontual</li>
                     {{else}}
-                        <li class="icon align-center"><img src="/assets/imgs/clock.svg"/> Recorrente</li>
+                        <li class="icon align-center"><img src="/assets/imgs/clock.svg"/> Evento recorrente</li>
                     {{/if}}
+                    <li>Início em {{action.dateStartActionFormatted}}</li>
+                    <li>Término em {{action.dateEndActionFormatted}}</li>
                     <li class="icon"><img src="/assets/imgs/fillPlaceholder.svg"/>{{action.addressAction}}, n° {{action.numAddressAction}}</li>
                     {{!-- <li class="icon"><img src="/assets/imgs/fillUser.svg"/>Faltam 12 voluntários</li> --}}
                 </ul>
