@@ -258,3 +258,12 @@ function showTable (table, btn){
     $(table).slideToggle('fast')
      rotate90(btn)
 }
+
+const btnReport = document.getElementById("btn-report")
+
+btnReport.addEventListener("click", async () => {
+    let file = await $.post("http://localhost:3000/event/report-event/"+idAction)
+    setTimeout(() => {
+        window.open("http://localhost:3000/reports/"+file)
+    }, 500)
+})

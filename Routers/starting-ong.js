@@ -6,12 +6,12 @@ const causesController = require("../controllers/causesController")
 const userNgoController = require("../controllers/userNgoController")
 
 router.get("/", (req, res) => {
-    res.render('register/presentation', {dataHeader: req.session.user})
+    res.render('register/presentation', {dataHeader: req.session.user, ngos: req.session.ngoUser})
 })
 
 router.get("/register", async (req, res) => {
     const categories = await causesController.listCauses()
-    res.render('register/addNGO', {data: req.session.user, dataHeader: req.session.user, causes: categories})
+    res.render('register/addNGO', {data: req.session.user, dataHeader: req.session.user, causes: categories, ngos: req.session.ngoUser})
 })
 
 router.post('/register', async (req, res) => {

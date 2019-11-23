@@ -64,6 +64,9 @@ app.set('view engine', 'handlebars')
 //public
 app.use(express.static(path.join(__dirname, "public")))
 
+//reports
+app.use("/reports", isLogged, express.static(path.join(__dirname, "reports")))
+
 //sockets
 io.use(function(socket, next) {
     let data = socket.request

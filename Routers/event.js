@@ -286,10 +286,8 @@ router.post("/report-event/:id", async (req, res) => {
     let data = {action, ngo, user}
 
     await report.event(data)
-
-    let file = path.resolve(".")+"/reports/Relatorio-Contribua.pdf"
-    res.download(file)
-    // res.redirect("/event/"+req.params.id+"/management")
+    let file = "relatorio-presenca"+req.params.id+".pdf"
+    res.json(file)
 })
 
 function formatHours( hours, minutes ) {
