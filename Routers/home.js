@@ -4,6 +4,7 @@ const actionController = require("../controllers/actionController")
 const causesController = require('../controllers/causesController')
 const userNgoController = require("../controllers/userNgoController")
 const ngoController = require('../controllers/ngoController')
+const userController = require('../controllers/userController')
 const feedUtilities = require('../helpers/feedUtilities')
 
 router.get("/", async (req, res) => {
@@ -97,6 +98,36 @@ router.post("/ajax", async(req, res) => {
     recommendedNgos = await userNgoController.listRecommendedNgos(req.session.user.idVolunteer)
 
     res.json({recommendedActions, recommendedNgos})
+})
+
+router.post("/members-management", async(req, res) => {
+    const data = req.body
+    let creator = await userNgoController.listUserCreator(req.session.ngo.idNgo)
+
+    if(data.makeAdm){
+        let idUser = parseInt(data.makeAdm)
+
+        if(creator.idVolunteer === req.session.user.idVolunteer){
+            let user = await userController.listOneUser(idUser)
+            await userNgoController.makeAdm(req.session.ngo.idNgo, idUser)
+            req.flash("success_msg", user.nameVolunteer+" agora é um administrador!")
+        }else{
+            req.flash("error_msg", "Apenas o criador da ong pode efetuar essa operação!")
+        }
+    }
+
+    if(data.removeAdm){
+        let idUser = parseInt(data.removeAdm)
+        if(creator.idVolunteer === req.session.user.idVolunteer){
+            let user = await userController.listOneUser(idUser)
+            await userNgoController.removeAdm(req.session.ngo.idNgo, idUser)
+            req.flash("success_msg", user.nameVolunteer+" não é mais um administrador!")
+        }else{
+            req.flash("error_msg", "Apenas o criador da ong pode efetuar essa operação!")
+        }
+    }
+    
+    return res.redirect("/home")
 })
 
 module.exports = router

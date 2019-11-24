@@ -103,7 +103,7 @@ module.exports = {
         return ngo
     },
     async listMembersNgo(idNgo){
-        const idVolunteers = await UserNgo.findAll({attributes: ['idVolunteer','isCreator'], where: {idNgo}})
+        const idVolunteers = await UserNgo.findAll({attributes: ['idVolunteer','isCreator', 'isAdmin'], where: {idNgo}})
         let membersNgo = {
             volunteers: [],
             qtdMembers: 0
@@ -120,7 +120,8 @@ module.exports = {
                     photoVolunteer: volunteer.photoVolunteer,
                     averageStarsVolunteer: volunteer.averageStarsVolunteer,
                     districtVolunteer: volunteer.districtVolunteer,
-                    isCreator: (id.isCreator ? true : false)
+                    isCreator: (id.isCreator ? true : false),
+                    isAdmin: (id.isAdmin ? true : false)
                 })
             }
         }

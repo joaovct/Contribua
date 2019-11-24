@@ -127,6 +127,18 @@ io.on('connection', async (socket) => {
         socket.broadcast.emit('notificationUser', notificationsUser)
     })
 
+    socket.on('make-adm', async (data) => {
+        await notificationController.makeAdm(data.idUser, data.idNgo)
+        notificationsUser = await notificationController.listNotificationsUser(data.idUser)
+        socket.broadcast.emit('notificationUser', notificationsUser)
+    })
+
+    socket.on('remove-adm', async(data) => {
+        await notificationController.removeAdm(data.idUser, data.idNgo)
+        notificationsUser = await notificationController.listNotificationsUser(data.idUser)
+        socket.broadcast.emit('notificationUser', notificationsUser)
+    })
+
     socket.on('viewed', async () => {
         if(session.ngo)
             await notificationController.viewedNotificationNgo(session.ngo.idNgo)

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/styles/css/home.css" />
 
-<script src="/scripts/homeNgoScript.js"></script>
+
 <div class="centralize padding-top4">
     <div class="container">
         <div class="feed-header">
@@ -56,7 +56,7 @@
             {{/if}}
         </div>
 
-        <div class="group-nav feed-members" id="ngo-members">
+        <div class="group-nav feed-members" id="ngo-members" data-idngo="{{dataHeaderNgo.idNgo}}">
             <h1 class="title padding-top2 margin-btm1">Membros da ONG ({{membersNgo.qtdMembers}})</h1>
             <div class="table-container">
                 <div class="table-header">
@@ -85,6 +85,9 @@
                         </div>
                         <div class="flex-row">
                             {{#if isCreator}}
+                            <p><span class="blue-rounded">Criador</span></p>
+                            {{/if}}
+                            {{#if isAdmin}}
                             <p><span class="blue-rounded">Administrador</span></p>
                             {{/if}}
                         </div>
@@ -96,11 +99,18 @@
                     </div>
                     <div class="member-options member-options-{{idVolunteer}} mouseUpSlideUp">
                         <ul class="items">
-                            {{#if isCreator}}
-                            {{else}}
-                                <li class="item">Tornar administrador</li>
-                            {{/if}}
-                            <li class="item red">Cancelar inscrição</li>
+                            <form action="/home/members-management" method="post">
+                                {{#if isCreator}}
+                                {{else}}
+                                    {{#if isAdmin}}
+                                    <li class="item red btn-management-remove" data-idvolunteer="{{idVolunteer}}">Remover administrador</li>
+                                    <input type="hidden" name="removeAdm" value="{{idVolunteer}}">
+                                    {{else}}
+                                    <li class="item btn-management-make" data-idvolunteer="{{idVolunteer}}">Tornar administrador</li>
+                                    <input type="hidden" name="makeAdm" value="{{idVolunteer}}">
+                                    {{/if}}
+                                {{/if}}
+                            </form>
                         </ul>
                     </div>
                     {{/each}}
@@ -262,3 +272,4 @@
     $( '.feed-members' ).hide();
     $( '.feed-search' ).hide()
 </script>
+<script src="/scripts/homeNgoScript.js"></script>

@@ -26,6 +26,9 @@ const UserNgo = db.sequelize.define("tbUserNgo", {
     isCreator: {
         type: db.Sequelize.BOOLEAN,
         allowNull: false
+    },
+    isAdmin: {
+        type: db.Sequelize.BOOLEAN
     }
 }, {
     freezeTableName: true,
