@@ -57,7 +57,7 @@ ul.side-menu{
             max-width: 50%;
         }
         .job-useful{
-            max-width: 50%;
+            max-width: 70%;
             display: flex;
             flex-flow: column nowrap;
             align-items: flex-end;
@@ -89,7 +89,7 @@ ul.side-menu{
     .title-table{
         @extend %medium-text;
         font-weight: 700;
-        margin: $margin2 0 $margin1 0;
+        margin: $margin4 0 $margin1 0;
         cursor: pointer;
         display: flex;
         justify-content: space-between;

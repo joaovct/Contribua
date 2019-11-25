@@ -221,6 +221,7 @@ function addClass( el, Class, n ) {
 
 $( document ).mouseup( ( e ) => {
     if ( !$( '.search-results' ).is( e.target )&&$( '.search-results' ).has( e.target ).length===0 ) $( '.search-results' ).fadeOut( 'fast' )
+    if ( !$( '.options-range' ).is( e.target )&&$( '.options-range' ).has( e.target ).length===0 ) $( '.options-range' ).fadeOut( 'fast' )
 } )
 
 function doSearch( input ) {

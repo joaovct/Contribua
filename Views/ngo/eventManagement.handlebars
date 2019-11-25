@@ -21,8 +21,10 @@
             <li onclick="removeClass('sidelinks','active'); $(this).addClass('active'); $('.job-inscriptions').hide(); $('#all-jobs').show()"
                 class="sidelinks active">Todas as vagas</li>
             {{#each vacancies.individualVacancy}}
-            <li onclick="removeClass('sidelinks','active'); $(this).addClass('active'); $('.job-inscriptions').hide(); $('#jobs-{{idVacancy}}').show();"
+            <li onclick="removeClass('sidelinks','active'); $(this).addClass('active'); $('.job-inscriptions').hide(); $('#jobs-{{idVacancy}}').show(); updateTable({{idVacancy}});"
                 class="sidelinks">{{nameVacancyAction}}</li>
+
+            <input name="idVacancies" type="hidden" value="{{idVacancy}}"/>
             {{/each}}
         </ul>
         <div class="job-inscriptions" id="all-jobs">
@@ -51,7 +53,6 @@
 
             <h1 onclick="showTable('#table-requests','btn-table-requests')" class="title-table"
                 id="title-table-requests">Solicitações ({{vacanciesRequests.length}})
-                <img id="btn-table-requests" src="/assets/imgs/plus.svg" />
             </h1>
             <div class="table-container" id="table-requests">
                 <div class="table-header" id="table-header-requests">
@@ -96,7 +97,6 @@
 
             <h1 onclick="showTable('#table-accepted','btn-table-accepted')" class="title-table"
                 id="title-table-accepted">Inscrições aceitas ({{vacanciesAccepted.length}})
-                <img id="btn-table-accepted" src="/assets/imgs/plus.svg" />
             </h1>
             <div class="table-container" id="table-accepted">
                 <div class="table-header">
@@ -148,7 +148,6 @@
 
             <h1 onclick="showTable('#table-rejected', 'btn-table-rejected')" class="title-table"
                 id="title-table-rejected">Inscrições não aceitas ({{vacanciesRejected.length}})
-                <img id="btn-table-rejected" src="/assets/imgs/plus.svg" />
             </h1>
             <div class="table-container" id="table-rejected">
                 <div class="table-header">
@@ -227,7 +226,6 @@
 
             <h1 onclick="showTable('#table-requests-{{idVacancy}}','btn-table-requests-{{idVacancy}}')" class="title-table"
                 id="title-table-requests-{{idVacancy}}">Solicitações ({{vacanciesRequests.length}})
-                <img id="btn-table-requests-{{idVacancy}}" src="/assets/imgs/plus.svg" />
             </h1>
             <div class="table-container" id="table-requests-{{idVacancy}}">
                 <div class="table-header" id="table-header-requests-{{idVacancy}}">
@@ -258,9 +256,9 @@
                             </div>
                             <div class="flex-row">{{averageStarVolunteer}}</div>
                             <div class="flex-row justifyContent-end">
-                                <button data-type="refuse" data-id="{{idActionVolunteer}}"
+                                <button data-type="refuse" data-id="{{idActionVolunteer}}" data-updatevacancy="true"
                                     class="btn-danger-outlined margin-right2 btn-request">Recusar</button>
-                                <button data-type="accept" data-id="{{idActionVolunteer}}"
+                                <button data-type="accept" data-id="{{idActionVolunteer}}" data-updatevacancy="true"
                                     class="btn-primary btn-request">Aceitar inscrição</button>
                             </div>
                         </div>
@@ -272,7 +270,6 @@
 
             <h1 onclick="showTable('#table-accepted-{{idVacancy}}','btn-table-accepted-{{idVacancy}}')" class="title-table"
                 id="title-table-accepted-{{idVacancy}}">Inscrições aceitas ({{vacanciesAccepted.length}})
-                <img id="btn-table-accepted-{{idVacancy}}" src="/assets/imgs/plus.svg" />
             </h1>
             <div class="table-container" id="table-accepted-{{idVacancy}}">
                 <div class="table-header" id="table-header-accepted-{{idVacancy}}">
@@ -283,7 +280,7 @@
                         <div class="flex-row">Status</div>
                     </div>
                 </div>
-                <div class="table-body-options" id="table-body-accepted-{{idVacancy}}">
+                <div class="table-body-options" id="table-body-accepted-{{idVacancy}}" data-idvacancy="{{idVacancy}}">
                     {{#if vacanciesAccepted}}
                     {{#each vacanciesAccepted}}
                     <div class="row row-action">
@@ -304,16 +301,16 @@
                             <div class="flex-row">{{averageStarVolunteer}}</div>
                             <div class="flex-row">
                                 <p class="green-rounded margin0 margin-right4">Aceito</p>
-                                <figure onclick="hideOptions('.member-options-{{idVacancy}}-{{idActionVolunteer}}')"
+                                <figure onclick="hideOptions('.member-options-{{idActionVolunteer}}-{{idActionVolunteer}}')"
                                     class="member-options-icon">
                                     <img src="/assets/imgs/threedots.svg">
                                 </figure>
                             </div>
                         </div>
                     </div>
-                    <div class="member-options member-options-{{idVacancy}}-{{idActionVolunteer}}">
+                    <div class="member-options member-options-{{idActionVolunteer}}-{{idActionVolunteer}}">
                         <ul class="items">
-                            <li data-type="refuse" data-id="{{idActionVolunteer}}" data-idvacancy="{{vacanciesAccepted.idVacancy}}" class="item red btn-request">Cancelar
+                            <li data-type="refuse" data-id="{{idActionVolunteer}}" data-updatevacancy="true" class="item red btn-request">Cancelar
                                 inscrição</li>
                         </ul>
                     </div>
@@ -324,7 +321,6 @@
 
             <h1 onclick="showTable('#table-rejected-{{idVacancy}}', 'btn-table-rejected-{{idVacancy}}')" class="title-table"
                 id="title-table-rejected-{{idVacancy}}">Inscrições não aceitas ({{vacanciesRejected.length}})
-                <img id="btn-table-rejected-{{idVacancy}}" src="/assets/imgs/plus.svg" />
             </h1>
             <div class="table-container" id="table-rejected-{{idVacancy}}">
                 <div class="table-header" id="table-header-rejected-{{idVacancy}}">
@@ -335,7 +331,7 @@
                         <div class="flex-row">Status</div>
                     </div>
                 </div>
-                <div class="table-body" id="table-body-rejected-{{idVacancy}}">
+                <div class="table-body" id="table-body-rejected-{{idVacancy}}" data-idvacancy="{{idVacancy}}">
                     {{#if vacanciesRejected}}
                     {{#each vacanciesRejected}}
                     <div class="row row-action" data-id="{{idActionVolunteer}}">
@@ -356,16 +352,16 @@
                             <div class="flex-row">{{averageStarVolunteer}}</div>
                             <div class="flex-row">
                                 <p class="red-rounded margin0 margin-right4">Não aceito</p>
-                                <figure onclick="hideOptions('.member-options-{{idVacancy}}-{{idActionVolunteer}}')"
+                                <figure onclick="hideOptions('.member-options-{{idActionVolunteer}}-{{idActionVolunteer}}')"
                                     class="member-options-icon">
                                     <img src="/assets/imgs/threedots.svg">
                                 </figure>
                             </div>
                         </div>
                     </div>
-                    <div class="member-options member-options-{{idVacancy}}-{{idActionVolunteer}}">
+                    <div class="member-options member-options-{{idActionVolunteer}}-{{idActionVolunteer}}">
                         <ul class="items">
-                            <li data-type="accept" data-id="{{idActionVolunteer}}" data-idvacancy="{{idVacancy}}" class="item btn-request">Aceitar
+                            <li data-type="accept" data-id="{{idActionVolunteer}}" data-updatevacancy="true" class="item btn-request">Aceitar
                                 inscrição</li>
                         </ul>
                     </div>

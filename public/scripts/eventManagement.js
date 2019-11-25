@@ -1,6 +1,11 @@
 "use strict"
 
 const idAction = document.getElementById('keeper-idAction').dataset.idaction
+let inputIdVacancies = document.getElementsByName('idVacancies')
+inputIdVacancies = Array.from(inputIdVacancies)
+const idVacancies = inputIdVacancies.map(id=>{
+    return id.value
+})
 
 async function addEventToButtons () {
     let btnRequest = document.getElementsByClassName('btn-request')
@@ -9,16 +14,22 @@ async function addEventToButtons () {
         btn.addEventListener('click', async ()=>{
             let type = btn.dataset.type
             let id = btn.dataset.id
-            let idVacancy = btn.dataset.idVacancy 
-            if(idVacancy) console.log('fala comigo')
-            else console.log('falow')
+
+            let doUpdateTable = btn.dataset.updatevacancy
+
             if (await type==="accept"){
                 await acceptRequest(id)
-                await updateTable()
             } 
             else if(await type==="refuse"){
                 await refuseRequest(id)
-                await updateTable()
+            }
+
+            console.log(doUpdateTable)
+            updateTable()
+            if(doUpdateTable){
+                idVacancies.map(id=>{
+                    updateTable(id)
+                })
             }
         })
     })
@@ -40,29 +51,37 @@ async function updateTable(idVacancy){
     setTimeout(async () => { 
         if(idVacancy == undefined) idVacancy = null
         await $.post(`http://localhost:3000/event/${idAction}/management/subscribers/${idVacancy}`, async (data)=>{
-            console.log(data)
-            writeVacanciesRequests(data.vacanciesRequests)
-            writeVacanciesAccepted(data.vacanciesAccepted)
-            writeVacanciesRejected(data.vacanciesRejected)
-            writeNumbersData(data)
+            writeVacanciesRequests(data.vacanciesRequests, idVacancy)
+            writeVacanciesAccepted(data.vacanciesAccepted, idVacancy)
+            writeVacanciesRejected(data.vacanciesRejected, idVacancy)
+            writeNumbersData(data, idVacancy)
             addEventToButtons()
         })
      }, 100);
 }
 
-async function writeVacanciesRequests(vacancies){
-    let title = $("#title-table-requests")
-    let table = $("#table-requests")
-    let tableBody = $("#table-body-requests")
+async function writeVacanciesRequests(vacancies, idVacancy){
+    let title, table, tableBody, updateTable
+    if(idVacancy){
+        title = $(`#title-table-requets-${idVacancy}`)
+        table = $(`#table-requests-${idVacancy}`)
+        tableBody = $(`#table-body-requests-${idVacancy}`)
+        updateTable = "data-updatevacancy='true'"
+    }else{
+        title = $("#title-table-requests")
+        table = $("#table-requests")
+        tableBody = $("#table-body-requests")
+        updateTable = ""
+    }
 
     if(vacancies === undefined) vacancies = []
     Array.from(vacancies)
 
     $(title).html(`Solicitações (${vacancies.length})`)
+    tableBody.empty()
     
     if(vacancies.length){
-        tableBody.show()
-        tableBody.empty()
+
         vacancies.map((vacancy,i)=>{
             tableBody.append(`
             <div class="row row-subscribe">
@@ -71,8 +90,7 @@ async function writeVacanciesRequests(vacancies){
                         <figure class="table-pic">
                             <img src="/temp/uploads/profile/${vacancy.photoVolunteer}" />
                         </figure>
-                        <article class="margin-left1">
-                            <h1 class="small-text medium-weight-text margin0 padding0">${vacancy.nameVolunteer}
+                        <article class="margin-left1">${vacancy.nameVolunteer}
                                 ${vacancy.lastNameVolunteer}</h1>
                             <p class="gray smallest-text margin0 padding0">${vacancy.cityVolunteer}</p>
                         </article>
@@ -82,124 +100,149 @@ async function writeVacanciesRequests(vacancies){
                     </div>
                     <div class="flex-row">${vacancy.averageStarVolunteer}</div>
                     <div class="flex-row justifyContent-end">
-                        <button data-type="refuse" data-id="${vacancy.idActionVolunteer}" class="btn-danger-outlined margin-right2 btn-request">Recusar</button>
-                        <button data-type="accept" data-id="${vacancy.idActionVolunteer}" class="btn-primary btn-request">Aceitar inscrição</button>
+                        <button data-type="refuse" data-id="${vacancy.idActionVolunteer}" ${updateTable} class="btn-danger-outlined margin-right2 btn-request">Recusar</button>
+                        <button data-type="accept" data-id="${vacancy.idActionVolunteer}" ${updateTable} class="btn-primary btn-request">Aceitar inscrição</button>
                     </div>
                 </div>
             </div>
             `)
         })
-    }else{
-        tableBody.hide()
     }
 }
 
-async function writeVacanciesAccepted(vacancies){
-    let title = $("#title-table-accepted")
-    let table = $("#table-accepted")
-    let tableBody = $("#table-body-accepted")
+async function writeVacanciesAccepted(vacancies, idVacancy){
+    let title, table, tableBody, updateTable, repeated
+
+    if(idVacancy){
+        title = $(`#title-table-accepted-${idVacancy}`)
+        table = $(`#table-accepted-${idVacancy}`)
+        tableBody = $(`#table-body-accepted-${idVacancy}`)
+        updateTable = "data-updatevacancy='true'"
+        repeated = "-repeated"
+    }else{
+        title = $("#title-table-accepted")
+        table = $("#table-accepted")
+        tableBody = $("#table-body-accepted")
+        updateTable = ""
+        repeated = ""
+    }
 
     if(vacancies === undefined) vacancies = []
     Array.from(vacancies)
 
     $(title).html(`Inscrições aceitas (${vacancies.length})`)
+    tableBody.empty()
     
     if(vacancies.length){
-        tableBody.show()
-        tableBody.empty()
         vacancies.map((vacancy,i)=>{
-            tableBody.append(`
-            <div class="row row-action">
-                    <div class="full-width display-flex">
-                        <div class="flex-row">
-                            <figure class="table-pic">
-                                <img src="/temp/uploads/profile/${vacancy.photoVolunteer}" />
-                            </figure>
-                            <article class="margin-left1">
-                                <h1 class="small-text medium-weight-text margin0 padding0">${vacancy.nameVolunteer}
-                                    ${vacancy.lastNameVolunteer}</h1>
-                                <p class="gray smallest-text margin0 padding0">${vacancy.cityVolunteer}</p>
-                            </article>
-                        </div>
-                        <div class="flex-row">
-                            <p class="text">${vacancy.nameVacancy}</p>
-                        </div>
-                        <div class="flex-row">${vacancy.averageStarVolunteer}</div>
-                        <div class="flex-row">
-                            <p class="green-rounded margin0 margin-right4">Aceito</p>
-                            <figure onclick="hideOptions('.member-options-${vacancy.idActionVolunteer}')"
-                                class="member-options-icon">
-                                <img src="/assets/imgs/threedots.svg">
-                            </figure>
+                tableBody.append(`
+                <div class="row row-action">
+                        <div class="full-width display-flex">
+                            <div class="flex-row">
+                                <figure class="table-pic">
+                                    <img src="/temp/uploads/profile/${vacancy.photoVolunteer}" />
+                                </figure>
+                                <article class="margin-left1">
+                                    <h1 class="small-text medium-weight-text margin0 padding0">${vacancy.nameVolunteer}
+                                        ${vacancy.lastNameVolunteer}</h1>
+                                    <p class="gray smallest-text margin0 padding0">${vacancy.cityVolunteer}</p>
+                                </article>
+                            </div>
+                            <div class="flex-row">
+                                <p class="text">${vacancy.nameVacancy}</p>
+                            </div>
+                            <div class="flex-row">${vacancy.averageStarVolunteer}</div>
+                            <div class="flex-row">
+                                <p class="green-rounded margin0 margin-right4">Aceito</p>
+                                <figure onclick="hideOptions('.member-options-${vacancy.idActionVolunteer}${repeated}')"
+                                    class="member-options-icon">
+                                    <img src="/assets/imgs/threedots.svg">
+                                </figure>
+                            </div>
                         </div>
                     </div>
+                    <div class="member-options member-options-${vacancy.idActionVolunteer}${repeated}">
+                    <ul class="items">
+                        <li data-type="refuse" data-id="${vacancy.idActionVolunteer}" ${updateTable} class="item red btn-request">Cancelar inscrição</li>
+                    </ul>
                 </div>
-                <div class="member-options member-options-${vacancy.idActionVolunteer}">
-                <ul class="items">
-                    <li data-type="refuse" data-id="${vacancy.idActionVolunteer}" class="item red btn-request">Cancelar inscrição</li>
-                </ul>
-            </div>
-            `)
+                `)
         })
-    }else{
-        tableBody.hide()
     }
 }
 
-async function writeVacanciesRejected(vacancies){
-    let title = $("#title-table-rejected")
-    let table = $("#table-rejected")
-    let tableBody = $("#table-body-rejected")
+async function writeVacanciesRejected(vacancies, idVacancy){
+    let title, table, tableBody, updateTable, repeated
+
+    if(idVacancy){
+        title = $(`#title-table-rejected-${idVacancy}`)
+        table = $(`#table-rejected-${idVacancy}`)
+        tableBody = $(`#table-body-rejected-${idVacancy}`)
+        updateTable = "data-updatevacancy='true'"
+        repeated = "-repeated"
+    }else{
+        title = $("#title-table-rejected")
+        table = $("#table-rejected")
+        tableBody = $("#table-body-rejected")
+        updateTable
+        repeated = ""
+    }
 
     if(vacancies === undefined) vacancies = []
     Array.from(vacancies)
 
     $(title).html(`Inscrições não aceitas (${vacancies.length})`)
+    tableBody.empty()
     
     if(vacancies.length){
-        tableBody.show()
-        tableBody.empty()
-        vacancies.map((vacancy,i)=>{
-            tableBody.append(`
-            <div class="row row-action">
-                    <div class="full-width display-flex">
-                        <div class="flex-row">
-                            <figure class="table-pic">
-                                <img src="/temp/uploads/profile/${vacancy.photoVolunteer}" />
-                            </figure>
-                            <article class="margin-left1">
-                                <h1 class="small-text medium-weight-text margin0 padding0">${vacancy.nameVolunteer}
-                                    ${vacancy.lastNameVolunteer}</h1>
-                                <p class="gray smallest-text margin0 padding0">${vacancy.cityVolunteer}</p>
-                            </article>
-                        </div>
-                        <div class="flex-row">
-                            <p class="text">${vacancy.nameVacancy}</p>
-                        </div>
-                        <div class="flex-row">${vacancy.averageStarVolunteer}</div>
-                        <div class="flex-row">
-                            <p class="red-rounded margin0 margin-right4">Não aceito</p>
-                            <figure onclick="hideOptions('.member-options-${vacancy.idActionVolunteer}')"
-                                class="member-options-icon">
-                                <img src="/assets/imgs/threedots.svg">
-                            </figure>
+
+            vacancies.map((vacancy,i)=>{
+                tableBody.append(`
+                <div class="row row-action">
+                        <div class="full-width display-flex">
+                            <div class="flex-row">
+                                <figure class="table-pic">
+                                    <img src="/temp/uploads/profile/${vacancy.photoVolunteer}" />
+                                </figure>
+                                <article class="margin-left1">
+                                    <h1 class="small-text medium-weight-text margin0 padding0">${vacancy.nameVolunteer}
+                                        ${vacancy.lastNameVolunteer}</h1>
+                                    <p class="gray smallest-text margin0 padding0">${vacancy.cityVolunteer}</p>
+                                </article>
+                            </div>
+                            <div class="flex-row">
+                                <p class="text">${vacancy.nameVacancy}</p>
+                            </div>
+                            <div class="flex-row">${vacancy.averageStarVolunteer}</div>
+                            <div class="flex-row">
+                                <p class="red-rounded margin0 margin-right4">Não aceito</p>
+                                <figure onclick="hideOptions('.member-options-${vacancy.idActionVolunteer}${repeated}')"
+                                    class="member-options-icon">
+                                    <img src="/assets/imgs/threedots.svg">
+                                </figure>
+                            </div>
                         </div>
                     </div>
+                    <div class="member-options member-options-${vacancy.idActionVolunteer}${repeated}">
+                    <ul class="items">
+                        <li data-type="accept" data-id="${vacancy.idActionVolunteer}" ${updateTable} class="item btn-request">Aceitar inscrição</li>
+                    </ul>
                 </div>
-                <div class="member-options member-options-${vacancy.idActionVolunteer}">
-                <ul class="items">
-                    <li data-type="accept" data-id="${vacancy.idActionVolunteer}" class="item btn-request">Aceitar inscrição</li>
-                </ul>
-            </div>
-            `)
-        })
-    }else{
-        tableBody.hide()
+                `)
+            })
+        
     }
 }
 
-async function writeNumbersData(data){
-    let elData = $('#all-jobs-data')
+async function writeNumbersData(data, idVacancy){
+    let elData
+
+    if(idVacancy){
+        elData = $(`#job-data-${idVacancy}`)
+    }else{
+        elData = $('#all-jobs-data')
+    }
+
     elData.empty()
     elData.prepend(`
         <li>
@@ -211,7 +254,7 @@ async function writeNumbersData(data){
             <h3>${data.qtdRemaining}</h3>
         </li>
         <li>
-            <p>Voluntários inscritos</p>
+            <p>Solicitações</p>
             <h3>${data.qtdRequests}</h3>
         </li>
     `)

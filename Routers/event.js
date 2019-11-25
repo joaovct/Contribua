@@ -182,7 +182,7 @@ router.get( '/:id/management', async ( req, res ) => {
                 vacancies.individualVacancy[i].qtdRemaining = qtdRemaining - vacancies.individualVacancy[i].qtdInscriptions
             })
 
-            console.log(vacancies.individualVacancy[0].vacanciesAccepted)
+            // console.log(vacancies.individualVacancy[0].vacanciesAccepted)
 
             res.render( 'ngo/eventManagement', { action, dateStartAction, dateEndAction, vacanciesRequests, vacanciesAccepted, vacanciesRejected, category, vacancies, dataHeader, dataHeaderNgo } )
         } else {
