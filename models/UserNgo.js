@@ -26,6 +26,9 @@ const UserNgo = db.sequelize.define("tbUserNgo", {
     isCreator: {
         type: db.Sequelize.BOOLEAN,
         allowNull: false
+    },
+    isAdmin: {
+        type: db.Sequelize.BOOLEAN
     }
 }, {
     freezeTableName: true,
@@ -33,6 +36,6 @@ const UserNgo = db.sequelize.define("tbUserNgo", {
     collate: "utf8_general_ci"
 })
 
-//UserNgo.sync({force: true})
+// UserNgo.sync({force: true})
 
 module.exports = UserNgo

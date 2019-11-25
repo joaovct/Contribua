@@ -10,7 +10,7 @@ module.exports = {
         this.header(doc, data, "Relatório de Presença em Evento")
         this.table(doc, data)
 
-        doc.pipe(fs.createWriteStream(__dirname+"/../reports/Relatorio-Contribua.pdf"))
+        doc.pipe(fs.createWriteStream(__dirname+"/../reports/relatorio-presenca"+data.action.idAction+".pdf"))
         doc.end()
     },
     async header(doc, data, type){

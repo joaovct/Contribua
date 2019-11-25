@@ -90,6 +90,24 @@ module.exports = {
         })
         return actionVolunteer.idVolunteer
     },
+    async makeAdm(idUser, idNgo){
+        const ngo = await ngoController.listOneNgo(idNgo)
+        await NotificationVolunteer.create({
+            idNgo: idNgo,
+            idVolunteer: idUser,
+            msgNotification: "A ong <strong>"+ngo.userName+"</strong> te tornou um adiministrador!",
+            viewedNotification: false
+        })
+    },
+    async removeAdm(idUser, idNgo){
+        const ngo = await ngoController.listOneNgo(idNgo)
+        await NotificationVolunteer.create({
+            idNgo: idNgo,
+            idVolunteer: idUser,
+            msgNotification: "Você não é mais um administrador da ong <strong>"+ngo.userName+"</strong>",
+            viewedNotification: false
+        })
+    },
     async viewedNotificationUser(idUser){
         await NotificationVolunteer.update({viewedNotification: true}, {where: {idVolunteer: idUser, viewedNotification: false}})
     }

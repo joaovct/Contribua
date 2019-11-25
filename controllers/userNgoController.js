@@ -24,6 +24,16 @@ module.exports = {
     async delete(idNgo, idUser){
         await UserNgo.destroy({where: {idVolunteer: idUser, idNgo: idNgo}})
     },
+    async makeAdm(idNgo, idUser){
+        await UserNgo.update({
+            isAdmin: true
+        },{where: {idNgo, idVolunteer: idUser}})
+    },
+    async removeAdm(idNgo, idUser){
+        await UserNgo.update({
+            isAdmin: false
+        },{where: {idNgo, idVolunteer: idUser}})
+    },
     async listNgo(idUser){
         const userNgo = await UserNgo.findAll({where: {idVolunteer: idUser}})
         let ngo = []
@@ -33,7 +43,7 @@ module.exports = {
         return ngo
     },
     async listNgoCreator(idUser){
-        const userNgo = await UserNgo.findAll({where: {idVolunteer: idUser, isCreator: true}})
+        const userNgo = await UserNgo.findAll({where: {idVolunteer: idUser, [Op.or]: [{isCreator: true}, {isAdmin: true}]}})
         let ngo = []
         for(let i in userNgo){
             ngo[i] = await Ngo.findOne({where: {idNgo: userNgo[i].idNgo}})
@@ -90,6 +100,11 @@ module.exports = {
         for(let i in userNgo){
             user[i] = await User.findOne({where:{idVolunteer: userNgo[i].idVolunteer}})
         }
+        return user
+    },
+    async listUserCreator(idNgo){
+        const userNgo = await UserNgo.findOne({where: {idNgo, isCreator: true}})
+        const user = await User.findOne({where: {idVolunteer: userNgo.idVolunteer}})
         return user
     }
 

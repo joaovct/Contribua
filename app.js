@@ -64,6 +64,9 @@ app.set('view engine', 'handlebars')
 //public
 app.use(express.static(path.join(__dirname, "public")))
 
+//reports
+app.use("/reports", isLogged, express.static(path.join(__dirname, "reports")))
+
 //sockets
 io.use(function(socket, next) {
     let data = socket.request
@@ -121,6 +124,18 @@ io.on('connection', async (socket) => {
     socket.on('refuse-subscribe', async (idActionVolunteer) => {
         const idUser = await notificationController.refuseSubscribe(idActionVolunteer)
         notificationsUser = await notificationController.listNotificationsUser(idUser)
+        socket.broadcast.emit('notificationUser', notificationsUser)
+    })
+
+    socket.on('make-adm', async (data) => {
+        await notificationController.makeAdm(data.idUser, data.idNgo)
+        notificationsUser = await notificationController.listNotificationsUser(data.idUser)
+        socket.broadcast.emit('notificationUser', notificationsUser)
+    })
+
+    socket.on('remove-adm', async(data) => {
+        await notificationController.removeAdm(data.idUser, data.idNgo)
+        notificationsUser = await notificationController.listNotificationsUser(data.idUser)
         socket.broadcast.emit('notificationUser', notificationsUser)
     })
 

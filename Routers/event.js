@@ -182,8 +182,6 @@ router.get( '/:id/management', async ( req, res ) => {
                 vacancies.individualVacancy[i].qtdRemaining = qtdRemaining - vacancies.individualVacancy[i].qtdInscriptions
             })
 
-            // console.log(vacancies.individualVacancy[0].vacanciesAccepted)
-
             res.render( 'ngo/eventManagement', { action, dateStartAction, dateEndAction, vacanciesRequests, vacanciesAccepted, vacanciesRejected, category, vacancies, dataHeader, dataHeaderNgo } )
         } else {
             res.render( 'error', { dataHeader, dataHeaderNgo } )
@@ -286,10 +284,8 @@ router.post("/report-event/:id", async (req, res) => {
     let data = {action, ngo, user}
 
     await report.event(data)
-
-    let file = path.resolve(".")+"/reports/Relatorio-Contribua.pdf"
-    res.download(file)
-    // res.redirect("/event/"+req.params.id+"/management")
+    let file = "relatorio-presenca"+req.params.id+".pdf"
+    res.json(file)
 })
 
 function formatHours( hours, minutes ) {
