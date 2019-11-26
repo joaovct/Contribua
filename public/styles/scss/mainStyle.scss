@@ -977,3 +977,21 @@ div.overlay {
     display: none;
   }
 }
+
+.rate-stars{
+  display: flex;
+  justify-content: center;
+  .star{
+    display: block;
+    height: 35px;
+    width: 35px;
+    margin: 0 $margin1 0 $margin1;
+    background: url('../../assets/imgs/star.svg');
+    background-size: cover;
+    opacity: .40;
+    transition: opacity .5s;
+    &:hover{
+      opacity: 1;
+    }
+  }
+}

@@ -189,6 +189,22 @@ router.get( '/:id/management', async ( req, res ) => {
     }
 } )
 
+router.get('/:id/rating', async(req,res)=>{
+    let action = await actionController.listOneAction(req.params.id)
+    dataHeader = req.session.user
+    dataHeaderNgo = null
+    if(req.session.ngo) { 
+        dataHeaderNgo = req.session.ngo
+        dataHeader = null
+    }
+
+    if( !req.session.ngo || req.session.ngo.idNgo != action.idNgo){
+        res.render('error', {dataHeader, dataHeaderNgo})
+    }else{
+        res.render('ngo/eventRating', {dataHeaderNgo, action})
+    }
+})
+
 router.post('/:idAction/management/subscribers/:idVacancy', async ( req, res ) => {
     const idAction = req.params.idAction
     const idVacancy = req.params.idVacancy

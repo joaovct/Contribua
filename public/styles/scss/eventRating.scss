@@ -1,0 +1,82 @@
+@import 'utilities/variables';
+
+body{
+    height: calc(100vh - 40px);
+}
+
+.action-miniature{
+    width: 300px;
+    margin: 0;
+    padding: 0;
+    a{
+        color: black;
+        text-decoration: none;
+    }
+    img{
+        height: 150px;
+        width: 100%;
+        border: $border;
+        border-radius: 7px;
+    }
+    p{
+        @extend %medium-text;
+        font-weight: 500;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.title-table{
+    @extend %medium-text;
+    font-weight: 700;
+    margin: $margin4 0 $margin2 0;
+}
+
+.rate-popup{
+    @extend %box;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: $margin2;
+    position: absolute;
+    left: 50%;
+    bottom: $margin2;
+    transform: translateX(-50%);
+    .rate-pic{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        img{
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+            border-radius: 100%;
+        }
+        .rate-content{
+            padding-left: $margin2;
+            .rate-name{
+                margin: 0;
+                font-size: 1.5rem;
+                font-weight: 500;
+                .rate-averagestars{
+                    font-size: 1.1rem;
+                    margin-left: $margin2;
+                    img{
+                        height: 20px;
+                        width: 20px;
+                        margin: 0;
+                        padding: 0;
+                        display: inline-block;
+                    }
+                }
+            }
+            .rate-job{
+                margin: 0;
+                font-size: 1.2rem;
+                color: $gray;
+            }
+        }
+    }
+}

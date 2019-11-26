@@ -3,6 +3,23 @@ let session
 let linkNotify=document.getElementsByClassName( "icon" )[ 0 ]
 let notifications=document.getElementsByClassName( "notifications" )[ 0 ]
 
+function addEvent(element, event, func){
+    let elements = document.getElementsByClassName(element)
+    elements = Array.from(elements)
+
+    elements.map(el=>{
+        el.addEventListener(event, ()=>{
+            func(el)
+        })
+    })
+}
+
+function changeColorStar(el){
+    console.log('changing color star')
+    console.log(el)
+    el.style.opacity = 1
+}
+
 socket.on( 'init', ( dataSession ) => {
     session=dataSession
 } )
