@@ -78,6 +78,10 @@ module.exports = {
         const action = await Action.findOne({where: {idAction: idAction}})
         return action
     },
+    async listOneActiveAction(idAction){
+        const action = await Action.findOne({where: {idAction, isActive: true}})
+        return action
+    },
     async listActiveActionsNgo(idNgo){
         let action = await Action.findAll({where: {idNgo: idNgo, isActive: true}})
         let ngo
@@ -263,6 +267,19 @@ module.exports = {
     async listActionsVolunteer(idUser){
         const action = await ActionVolunteer.findAll({where: {idVolunteer: idUser}})
         return action
+    },
+    async listAcceptedActionsVolunteer(idUser){
+        const actionVolunteer = await ActionVolunteer.findAll({where: {idVolunteer: idUser}})
+        let acceptedActions = []
+        for(let av of actionVolunteer){
+            if(av.idVolunteer === idUser && av.acceptedNgo === true){
+                let vacancyAction = await vacancyController.listVacancyAction(av.idVacancyAction)
+                let action = await this.listOneActiveAction(vacancyAction.idAction)
+                action = await feedUtilities.formatAction(action)
+                acceptedActions.push(action)
+            }
+        }
+        return acceptedActions
     },
     async listOneActionVolunteer(idActionVolunteer){
         const actionVolunteer = await ActionVolunteer.findOne({where: {idActionVolunteer}})

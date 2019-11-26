@@ -69,6 +69,10 @@ router.post("/filter", async(req, res) => {
         district = data.district
     } 
 
+    else if(req.query.key === "my-events"){
+        actions = await actionController.listAcceptedActionsVolunteer(req.session.user.idVolunteer)
+    }
+
     // Pass to front an array with the name of ngos
     let nameNgos = []
     if(actions.length > 0){
@@ -84,20 +88,6 @@ router.post("/filter", async(req, res) => {
 
     res.json(articles)
     
-})
-
-router.post("/ajax", async(req, res) => {
-    let recommendedActions
-    let recommendedNgos
-    if(req.query.subscribies != "undefined"){
-        recommendedActions = await actionController.listActionByInscriptions(req.session.user.idVolunteer)
-    }else{
-        recommendedActions = await actionController.listRecommendedActions(req.session.user.idVolunteer)
-    }
-
-    recommendedNgos = await userNgoController.listRecommendedNgos(req.session.user.idVolunteer)
-
-    res.json({recommendedActions, recommendedNgos})
 })
 
 router.post("/members-management", async(req, res) => {

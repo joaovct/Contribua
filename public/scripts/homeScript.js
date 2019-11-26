@@ -96,6 +96,7 @@ writeActions = (articles) => {
     else if(articles.typeArticles === "recommended") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend('<h1 class="title padding-top2 margin-btm1">Eventos recomendados</h1>')
     else if(articles.typeArticles === "recents") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend('<h1 class="title padding-top2 margin-btm1">Eventos mais recentes</h1>')
     else if(articles.typeArticles === "proximity") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend(`<h1 class="title padding-top2 margin-btm1">Eventos próximos a ${articles.district}</h1>`)
+    else if(articles.typeArticles === "my-events") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend(`<h1 class="title padding-top2 margin-btm1">Seus próximos eventos</h1>`)
     // Write actions
     for(let i = 0; i < articles.actions.length; i++){
         let action = articles.actions[i]
@@ -225,6 +226,10 @@ showAlertNoneArticles = (typeArticles, radiusRange) => {
         case "recents":
             msg = "recentes"
             break
+        case "my-events":
+            msg = "seus eventos"
+            break
+
     }
     if(typeArticles==="proximity"){
         checksContent()
@@ -235,7 +240,7 @@ showAlertNoneArticles = (typeArticles, radiusRange) => {
 
 function formatDate(rDate){
     const months = ["Jan", "Fev", "Mar", "Abri", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-    rDate.day = rDate.getDay()
+    rDate.day = rDate.getDate()
     rDate.month = months[rDate.getMonth()]
     rDate.year = rDate.getFullYear()
     return rDate
