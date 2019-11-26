@@ -990,6 +990,7 @@ div.overlay {
     background-size: cover;
     opacity: .40;
     transition: opacity .5s;
+    cursor: pointer;
     &:hover{
       opacity: 1;
     }

@@ -191,6 +191,7 @@ router.get( '/:id/management', async ( req, res ) => {
 
 router.get('/:id/rating', async(req,res)=>{
     let action = await actionController.listOneAction(req.params.id)
+    
     dataHeader = req.session.user
     dataHeaderNgo = null
     if(req.session.ngo) { 
@@ -201,7 +202,12 @@ router.get('/:id/rating', async(req,res)=>{
     if( !req.session.ngo || req.session.ngo.idNgo != action.idNgo){
         res.render('error', {dataHeader, dataHeaderNgo})
     }else{
-        res.render('ngo/eventRating', {dataHeaderNgo, action})
+        let vacancies = await vacancyActionController.listVacanciesAction( action.idAction )
+        let idVacancies = vacancies.map( ( vacancy ) => {
+            return vacancy.idVacancyAction
+        } )
+        let volunteers = await vacancyActionController.listVacancyVolunteers( idVacancies, true )
+        res.render('ngo/eventRating', {dataHeaderNgo, action, volunteers})
     }
 })
 

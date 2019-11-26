@@ -14,12 +14,6 @@ function addEvent(element, event, func){
     })
 }
 
-function changeColorStar(el){
-    console.log('changing color star')
-    console.log(el)
-    el.style.opacity = 1
-}
-
 socket.on( 'init', ( dataSession ) => {
     session=dataSession
 } )

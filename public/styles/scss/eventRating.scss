@@ -1,9 +1,5 @@
 @import 'utilities/variables';
 
-body{
-    height: calc(100vh - 40px);
-}
-
 .action-miniature{
     width: 300px;
     margin: 0;
@@ -38,10 +34,12 @@ body{
     flex-flow: column nowrap;
     align-items: center;
     padding: $margin2;
-    position: absolute;
+    position: fixed;
     left: 50%;
-    bottom: $margin2;
+    bottom: -100%;
     transform: translateX(-50%);
+    z-index: 999;
+    transition: bottom .5s;
     .rate-pic{
         display: flex;
         justify-content: center;
