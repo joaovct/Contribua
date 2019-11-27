@@ -151,6 +151,7 @@ function checksStep1(doNotSubmit){
         if(!doNotSubmit){
             $('.aside-1').slideUp('fast')
             $('.aside-2').slideDown('slow')
+            closeAllAlerts()
         }
         return true
     }else return false
@@ -172,6 +173,7 @@ function checksTypeEventPunctual(){
     if(vDate){
         $('.aside-2').slideUp('fast')
         $('.aside-3').slideDown('slow')
+        closeAllAlerts()
         return true
     }else return false
 }
@@ -186,6 +188,7 @@ function checksTypeEventRecurrent(){
     if(vDate && vDescription){
         $('.aside-2').slideUp('fast')
         $('.aside-3').slideDown('slow')
+        closeAllAlerts()
         return true
     }else return false
 }
@@ -224,6 +227,7 @@ function checksJob(){
         iconClear(descriptionIcon)
         jobAmount.value = ""
         iconClear(amountIcon)
+        closeAllAlerts()
     } 
 }
 
@@ -329,6 +333,7 @@ function checksStep3(){
     if(jobs.length > 0){
         $('.aside-3').slideUp('fast')
         $('.article-event').slideDown('slow')
+        closeAllAlerts()
         return true
     }else return false
 }

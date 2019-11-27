@@ -203,10 +203,9 @@ module.exports = {
         })
 
         // Get id from close actions
-
         let radius = radiusDistance
         let idActions = []
-        for(let i = 0; i < actions.length; i++){
+        for(let i = 1; i < actions.length; i++){
             let d = Math.round(distance[i].distance.value/1000)
             if(d <= radius) idActions.push(actions[i].idAction)
         }
