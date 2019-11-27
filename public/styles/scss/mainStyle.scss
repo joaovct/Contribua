@@ -462,7 +462,7 @@ img.rounded-pic {
   .form-input[type="number"],
   .form-input-number {
     @extend %form-input;
-    width: 100px;
+    width: 120px;
   }
   .form-input-long-number {
     @extend %form-input;
@@ -889,6 +889,7 @@ div.overlay {
       transition: 0.5s;
       border-radius: 7px;
       align-items: center;
+      box-sizing: border-box;
       cursor: default;
       .flex-row {
         display: flex;
@@ -923,7 +924,7 @@ div.overlay {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    margin: 0 10px 0 0 ;
     padding: 12.5px;
     cursor: pointer;
     box-sizing: border-box;

@@ -119,6 +119,7 @@ module.exports = {
                     lastNameVolunteer: volunteer.lastNameVolunteer,
                     photoVolunteer: volunteer.photoVolunteer,
                     averageStarsVolunteer: volunteer.averageStarsVolunteer,
+                    cityVolunteer: volunteer.cityVolunteer,
                     districtVolunteer: volunteer.districtVolunteer,
                     isCreator: (id.isCreator ? true : false),
                     isAdmin: (id.isAdmin ? true : false)

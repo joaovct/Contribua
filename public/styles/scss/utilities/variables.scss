@@ -113,8 +113,9 @@ $borderColor: #eeeeee;
 
 %blue-rounded, .blue-rounded{
   @extend %span-rounded;
-  background: rgba(49, 113, 224,0.2);
-  color: $mainColor;
+  // background: rgba(49, 113, 224,0.2);
+  background: $mainColor;
+  color: white;
   font-weight: 500;
 }
 
