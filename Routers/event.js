@@ -207,7 +207,36 @@ router.get('/:id/rating', async(req,res)=>{
             return vacancy.idVacancyAction
         } )
         let volunteers = await vacancyActionController.listVacancyVolunteers( idVacancies, true )
-        res.render('ngo/eventRating', {dataHeaderNgo, action, volunteers})
+        let qtdVolunteers = volunteers.length
+        res.render('ngo/eventRating', {dataHeaderNgo, action, volunteers, qtdVolunteers})
+    }
+})
+
+router.post('/:id/rating/finish', async(req,res)=>{
+    let action = await actionController.listOneAction(req.params.id)
+    let idAction = action.idAction
+    let idNgo = action.idNgo
+    dataHeader = req.session.user
+    dataHeaderNgo = null
+    if(req.session.ngo){
+        dataHeaderNgo = req.session.ngo
+        dataHeader = null
+    }
+
+    if( !req.session.ngo || req.session.ngo.idNgo != action.idNgo){
+        res.render('error', {dataHeader, dataHeaderNgo})
+    }else{
+        let data = req.body
+        for(input in data){
+            let idVolunteer, valueRate
+            idVolunteer = input.substring(15)
+            for(value in data[input]){
+                valueRate = data[input][0]
+            }
+            await userController.updateAverageStars(idVolunteer, idNgo, idAction, valueRate)
+        }
+        req.flash("success_msg", "Voluntários avaliados.")
+        return res.redirect('/home')
     }
 })
 

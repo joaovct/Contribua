@@ -13,6 +13,7 @@
         width: 100%;
         border: $border;
         border-radius: 7px;
+        object-fit: cover;
     }
     p{
         @extend %medium-text;
@@ -60,7 +61,6 @@
                 font-weight: 500;
                 .rate-averagestars{
                     font-size: 1.1rem;
-                    margin-left: $margin2;
                     img{
                         height: 20px;
                         width: 20px;

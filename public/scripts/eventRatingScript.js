@@ -1,3 +1,13 @@
+function validateRating(){
+    let check = true
+    valueRate.map(rate=>{
+        if(!rate.valueRate) check = false
+    })
+    closeAllAlerts()
+    if(!check) callAlert("Erro na avaliação", "É preciso avaliar todos os voluntários antes de finalizar.", "error")
+    return check
+}
+
 function saveRate(id){
     let popup = getPopUp(id)
     let i
@@ -9,6 +19,9 @@ function saveRate(id){
     valueRate[i].valueRate = valueStars[i] + 1
     rewriteTable()
     document.getElementById(`input-rate-${id}`).value = valueStars[i] + 1
+    Array.from(inputs).map((input,j)=>{
+        input.value = valueStars[j] + 1
+    })
     hideRatePopUp(id)
 }
 
@@ -53,7 +66,7 @@ function rewriteTable(){
                         <p class="text">${volunteer.averagestars}/5 <img src="/assets/imgs/star.svg" class="inline-icon"/></p>
                     </div>
                     <div class="flex-row justifyContent-end">
-                        <input type="hidden" name="rate-volunteer" id="input-rate-${id}" data-id="${id}"/>
+                        <input type="hidden" class="rate-volunteer" name="rate-volunteer-${id}" id="input-rate-${id}" data-id="${id}"/>
                         <div data-idvolunteer="${id}" class="btn-rounded do-rate">Avaliar</div>
                     </div>
                 </div>
@@ -77,7 +90,7 @@ function rewriteTable(){
                         <p class="text">${rate.valueRate}/5 <img src="/assets/imgs/star.svg" class="inline-icon"/></p>
                     </div>
                     <div class="flex-row justifyContent-end">
-                        <input type="hidden" name="rate-volunteer" id="input-rate-${id}" data-id="${id}"/>
+                        <input type="hidden" class="rate-volunteer" name="rate-volunteer-${id}" id="input-rate-${id}" data-id="${id}"/>
                         <div data-idvolunteer="${id}" class="btn-outlined edit-rate">Editar avaliação</div>
                     </div>
                 </div>
@@ -109,7 +122,7 @@ function getPopUp(id){
     return document.getElementById(`rate-popup-${id}`)
 }
 
-let inputs = document.getElementsByName('rate-volunteer')
+let inputs = document.getElementsByClassName('rate-volunteer')
 let ids = Array.from(inputs).map(input=>{
     return input.dataset.id
 })

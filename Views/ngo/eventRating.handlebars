@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="/styles/css/eventRating.css" />
 
 {{#each volunteers}}
-    <div class="display-none data-volunteer" data-namevolunteer="{{nameVolunteer}}" data-lastnamevolunteer="{{lastNameVolunteer}}" data-cityvolunteer="{{cityVolunteer}}" data-vacancy="{{nameVacancy}}" data-averagestars="{{averageStarVolunteer}}" data-photo="{{photoVolunteer}}">
+    <div class="display-none data-volunteer" data-namevolunteer="{{nameVolunteer}}" data-lastnamevolunteer="{{lastNameVolunteer}}" data-cityvolunteer="{{cityVolunteer}}" data-vacancy="{{nameVacancy}}" data-averagestars="{{averageStarsVolunteer}}" data-photo="{{photoVolunteer}}">
     </div>
 {{/each}}
 
 <div class="centralize">
     <div class="container padding-top4">
         <div class="full-width justifyContent-between">
-            <form class="full-width padding-right4">
+            <form class="full-width padding-right4" method="POST" action="/event/{{action.idAction}}/rating/finish" onsubmit="return validateRating()">
                 <h1 class="title big-text margin0">Avaliação de voluntário</h1>
 
                 <h1 class="title-table" id="title-table-notRated">Voluntários não avaliados ({{qtdVolunteers}})</h1>
@@ -37,10 +37,10 @@
                                 <p class="text">{{nameVacancy}}</p>
                             </div>
                             <div class="flex-row">
-                                <p class="text">{{averageStarVolunteer}}/5 <img src="/assets/imgs/star.svg" class="inline-icon"/> </p>
+                                <p class="text">{{averageStarsVolunteer}}/5 <img src="/assets/imgs/star.svg" class="inline-icon"/> </p>
                             </div>
                             <div class="flex-row justifyContent-end">
-                                <input type="hidden" name="rate-volunteer" id="input-rate-{{idVolunteer}}" data-id="{{idVolunteer}}"/>
+                                <input type="hidden" class="rate-volunteer" name="rate-volunteer-{{idVolunteer}}" id="input-rate-{{idVolunteer}}" data-id="{{idVolunteer}}"/>
                                 <div data-idvolunteer="{{idVolunteer}}" class="btn-rounded do-rate">Avaliar</div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
             </form>
             <figure class="action-miniature">
                 <a href="/event/{{action.idAction}}">
-                    <img src="/assets/imgs/animal-cat-cute-46024.jpg" />
+                    <img src="/temp/uploads/action/{{action.photoAction}}" />
                     <p>{{action.nameAction}}</p>
                 </a>
             </figure>
@@ -79,7 +79,7 @@
         <figure class="rate-pic">
             <img src="/temp/uploads/profile/{{photoVolunteer}}"/>
             <article class="rate-content">
-                <p class="rate-name">{{nameVolunteer}} <span class="rate-averagestars">{{averageStarVolunteer}}/5 <img src="/assets/imgs/star.svg"></span></p>
+                <p class="rate-name">{{nameVolunteer}} <span class="rate-averagestars">{{averageStarsVolunteer}}/5 <img src="/assets/imgs/star.svg"></span></p>
                 <p class="rate-job">{{nameVacancy}}</p>
             </article>
         </figure>
