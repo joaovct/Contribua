@@ -290,7 +290,14 @@ router.post( "/:id/deactivate", async ( req, res ) => {
 
 router.post( "/accept-event", async ( req, res ) => {
     if ( req.query.accepted ) {
-        await actionController.acceptSubscribe( req.query.idActionVolunteer )
+        let rtn = await actionController.acceptSubscribe( req.query.idActionVolunteer )
+        if(rtn===false){
+            res.json({
+                title: "Não há vagas disponíveis",
+                message: "O limite de voluntários inscritos para essa vaga já foi excedido.",
+                type: 'error'
+            })
+        }
     }
 
     if ( req.query.refuse ) {
