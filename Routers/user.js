@@ -26,7 +26,7 @@ router.get('/:userName', async (req,res)=>{
             let actions = await actionController.listActionsNgo(idNgo)
             for(let action of actions) action = feedUtilities.formatAction(action)
 
-            const amtMembers = membersNgo.length
+            const amtMembers = membersNgo.qtdMembers
             const amtActions = actions.length
             const telephonesNgo = await telephoneController.listTelephoneNgo(idNgo)
             return res.render("ngo/profile", {data: req.session.ngo, dataHeaderNgo: req.session.ngo, causes: category, isVisit: false, amtMembers, actions, amtActions, telephonesNgo})
@@ -77,17 +77,19 @@ router.get('/:userName', async (req,res)=>{
     // Render other ngo profile
     const ngo = await verifyUserName.ngo(req.params.userName)
     if(ngo){
+        
         const idNgo = ngo.idNgo
         ngo.createdAt.month = months[ngo.createdAt.getMonth()]
         ngo.createdAt.year = ngo.createdAt.getFullYear()
         
         const membersNgo = await ngoController.listMembersNgo(idNgo)
+
         const category = await causesController.listCausesNgo(idNgo)
-            
+
         let actions = await actionController.listActionsNgo(idNgo)
         for(let action of actions) action = feedUtilities.formatAction(action)
 
-        const amtMembers = membersNgo.length
+        const amtMembers = membersNgo.qtdMembers
         const amtActions = actions.length
         const telephonesNgo = await telephoneController.listTelephoneNgo(idNgo)
 
@@ -106,9 +108,9 @@ router.get('/:userName', async (req,res)=>{
 
                 if(hasNgo.userName === req.params.userName)
                     isSubscribed = true
-                
             }
             
+
             return res.render("ngo/profile", {data: ngo, dataHeader: req.session.user, causes: category, ngos: req.session.ngoUser, isVisit: true, isVolunteer, isSubscribed, amtMembers, actions, amtActions, telephonesNgo})
         }else{
             /* isnt volunteer */
