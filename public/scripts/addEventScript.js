@@ -52,7 +52,7 @@ function changeAddress(){
         address.value = ""
         cep.value = ""
     }
-    checksStep1()
+    checksStep1(true)
     closeAllAlerts()
 }
 
@@ -138,7 +138,7 @@ function previewPhoto(){
     }
 }
 
-function checksStep1(){
+function checksStep1(doNotSubmit){
     var vCauses = validationCauses(cases)
     var vCep = validationCep(cep, iconCep)
     var vAddressNumber = validationAddressNumber(addressNumber, iconAddressNumber)
@@ -148,8 +148,11 @@ function checksStep1(){
     if(!vCauses) callAlert("Algo está faltando...", "É preciso selecionar ao menos uma causa para este evento", 'error')
     if(!vCep || !vAddressNumber || !vCity || !vDistrict || !vAddress) callAlert("Esqueceu algo?", "Parece que há alguns campos não preenchidos.", "error")
     if(vCauses && vCep && vAddressNumber && vCity && vDistrict && vAddress){
-        $('.aside-1').slideUp('fast')
-        $('.aside-2').slideDown('slow')
+        if(!doNotSubmit){
+            $('.aside-1').slideUp('fast')
+            $('.aside-2').slideDown('slow')
+            closeAllAlerts()
+        }
         return true
     }else return false
 }
@@ -170,6 +173,7 @@ function checksTypeEventPunctual(){
     if(vDate){
         $('.aside-2').slideUp('fast')
         $('.aside-3').slideDown('slow')
+        closeAllAlerts()
         return true
     }else return false
 }
@@ -184,6 +188,7 @@ function checksTypeEventRecurrent(){
     if(vDate && vDescription){
         $('.aside-2').slideUp('fast')
         $('.aside-3').slideDown('slow')
+        closeAllAlerts()
         return true
     }else return false
 }
@@ -222,6 +227,7 @@ function checksJob(){
         iconClear(descriptionIcon)
         jobAmount.value = ""
         iconClear(amountIcon)
+        closeAllAlerts()
     } 
 }
 
@@ -327,6 +333,7 @@ function checksStep3(){
     if(jobs.length > 0){
         $('.aside-3').slideUp('fast')
         $('.article-event').slideDown('slow')
+        closeAllAlerts()
         return true
     }else return false
 }

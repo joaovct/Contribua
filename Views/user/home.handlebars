@@ -3,7 +3,7 @@
 <div class="centralize padding-top4">
     <div class="container" id="container">
         <h1 class="title">Bem-vindo de volta <span class="blue">{{dataHeader.nameVolunteer}}</span></h1>
-        <div class="feed-header">
+        <div class="feed-header margin-top2">
             <form class="form full-width">
                 <div class="wrapper-options">
                     <div onclick="$('.cause-options').toggle('fast')" class="open-options margin-right1">
@@ -26,6 +26,9 @@
                         {{/each}}
                     </div>
                 </div>
+
+                <input type="checkbox" id="my-events" value="my-events" class="form-checkbox filters">
+                <label for="my-events" class="form-btnCheckbox">Meus eventos</label>
 
                 <input type="checkbox" id="filter-subscription" value="subscriptions" class="form-checkbox filters"
                     checked>
@@ -64,10 +67,6 @@
                         </datalist>
                     </div>
                 </div>
-
-                <input type="checkbox" id="my-events" value="my-events" class="form-checkbox filters">
-                <label for="my-events" class="form-btnCheckbox">Meus eventos</label>
-
             </form>
 
         </div>

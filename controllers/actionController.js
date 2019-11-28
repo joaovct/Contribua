@@ -7,11 +7,13 @@ const Ngo = require('../Models/Ngo')
 const UserNgo = require('../Models/UserNgo')
 const CategoryAction = require('../Models/CategoryAction')
 const Category = require("../models/Category")
+const VacancyAction = require('../Models/VacancyAction')
 const causesController = require("./causesController")
 const vacancyController = require("./vacancyActionController")
 const userNgo = require("./userNgoController")
 const feedUtilities = require('../helpers/feedUtilities')
 const ActionVolunteer = require('../models/ActionVolunteer')
+
 const apiKey = "AIzaSyA36tg5LqcFuIXDpeMtAlDeVGj87qqxrVk"
 let maxShow = 8
 module.exports = {
@@ -204,10 +206,9 @@ module.exports = {
         })
 
         // Get id from close actions
-
         let radius = radiusDistance
         let idActions = []
-        for(let i = 0; i < actions.length; i++){
+        for(let i = 1; i < actions.length; i++){
             let d = Math.round(distance[i].distance.value/1000)
             if(d <= radius) idActions.push(actions[i].idAction)
         }
@@ -336,8 +337,22 @@ module.exports = {
         return actionVolunteer
     },
     async acceptSubscribe(idActionVolunteer){
-        const actionVolunteer = await ActionVolunteer.update({acceptedNgo: true}, {where: {idActionVolunteer}})
-        return actionVolunteer.idVolunteer
+        let idVacancy = await ActionVolunteer.findOne({where: {idActionVolunteer}}) 
+        idVacancy = idVacancy.idVacancyAction
+        let qtdVacancy = await vacancyController.listVacancyAction(idVacancy)
+        qtdVacancy = qtdVacancy.qtdVacancyAction
+
+        let qtdInscriptions = await ActionVolunteer.findAll({where: {idVacancyAction: idVacancy, acceptedNgo: true}})
+        qtdInscriptions = qtdInscriptions.length
+
+        if(qtdInscriptions < qtdVacancy){
+            const actionVolunteer = await ActionVolunteer.update({acceptedNgo: true}, {where: {idActionVolunteer}})
+            return actionVolunteer.idVolunteer
+        }else{
+            return false
+        }
+
+        
     },
     async refuseSubscribe(idActionVolunteer){
         const actionVolunteer = await ActionVolunteer.update({acceptedNgo: false}, {where: {idActionVolunteer}})

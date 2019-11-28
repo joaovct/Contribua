@@ -47,7 +47,7 @@
                             <h3>{{vacancies.data.qtdRequests}}</h3>
                         </li>
                     </ul>
-                    <button id="btn-report" class="btn-callaction">Relatório do evento</button>
+                    <button id="btn-report" class="btn-callaction margin-top2">Relatório do evento</button>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                     <div class="row">
                         <div class="flex-row">Nome completo</div>
                         <div class="flex-row">Vaga</div>
-                        <div class="flex-row">Avaliação</div>
+                        <div class="flex-row">Média de Avaliação</div>
                         <div class="flex-row"></div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                             <div class="flex-row">
                                 <p class="text">{{nameVacancy}}</p>
                             </div>
-                            <div class="flex-row">{{averageStarVolunteer}}</div>
+                            <div class="flex-row">{{averageStarsVolunteer}}/5 <img src="/assets/imgs/star.svg" class="inline-icon"/></div>
                             <div class="flex-row justifyContent-end">
                                 <button data-type="refuse" data-id="{{idActionVolunteer}}"
                                     class="btn-danger-outlined margin-right2 btn-request">Recusar</button>
@@ -125,7 +125,7 @@
                             <div class="flex-row">
                                 <p class="text">{{nameVacancy}}</p>
                             </div>
-                            <div class="flex-row">{{averageStarVolunteer}}</div>
+                            <div class="flex-row">{{averageStarsVolunteer}}/5 <img src="/assets/imgs/star.svg" class="inline-icon"/></div>
                             <div class="flex-row">
                                 <p class="green-rounded margin0 margin-right4">Aceito</p>
                                 <figure onclick="hideOptions('.member-options-{{idActionVolunteer}}')"
@@ -176,7 +176,7 @@
                             <div class="flex-row">
                                 <p class="text">{{nameVacancy}}</p>
                             </div>
-                            <div class="flex-row">{{averageStarVolunteer}}</div>
+                            <div class="flex-row">{{averageStarsVolunteer}}/5 <img src="/assets/imgs/star.svg" class="inline-icon"/></div>
                             <div class="flex-row">
                                 <p class="red-rounded margin0 margin-right4">Não aceito</p>
                                 <figure onclick="hideOptions('.member-options-{{idActionVolunteer}}')"

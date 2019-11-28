@@ -1,12 +1,17 @@
 <link rel="stylesheet" href="/styles/css/eventRating.css" />
 
+{{#each volunteers}}
+    <div class="display-none data-volunteer" data-namevolunteer="{{nameVolunteer}}" data-lastnamevolunteer="{{lastNameVolunteer}}" data-cityvolunteer="{{cityVolunteer}}" data-vacancy="{{nameVacancy}}" data-averagestars="{{averageStarsVolunteer}}" data-photo="{{photoVolunteer}}">
+    </div>
+{{/each}}
+
 <div class="centralize">
     <div class="container padding-top4">
         <div class="full-width justifyContent-between">
-            <form class="full-width padding-right4">
+            <form class="full-width padding-right4" method="POST" action="/event/{{action.idAction}}/rating/finish" onsubmit="return validateRating()">
                 <h1 class="title big-text margin0">Avaliação de voluntário</h1>
 
-                <h1 class="title-table">Voluntários não avaliados (1)</h1>
+                <h1 class="title-table" id="title-table-notRated">Voluntários não avaliados ({{qtdVolunteers}})</h1>
                 <div class="table-container" id="table-notRated">
                     <div class="table-header">
                         <div class="row">
@@ -16,31 +21,34 @@
                             <div class="flex-row"></div>
                         </div>
                     </div>
-                    <div class="table-body">
+                    <div class="table-body" id="table-body-notRated">
+                    {{#each volunteers}}
                         <div class="row">
                             <div class="flex-row">
                                 <figure class="table-pic">
-                                    <img src="/assets/imgs/man2.jpg"/>
+                                    <img src="/temp/uploads/profile/{{photoVolunteer}}"/>
                                 </figure>
                                 <article class="margin-left1">
-                                    <h1 class="small-text medium-weight-text margin0 padding0">Alfredo Augusto Oliveira</h1>
-                                    <p class="gray smallest-text margin0 padding0">Rio de Janeiro</p>
+                                    <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}} {{lastNameVolunteer}}</h1>
+                                    <p class="gray smallest-text margin0 padding0">{{cityVolunteer}}</p>
                                 </article>
                             </div>
                             <div class="flex-row">
-                                <p class="text">Assistente geral</p>
+                                <p class="text">{{nameVacancy}}</p>
                             </div>
                             <div class="flex-row">
-                                <p class="text">4.5/5 <img src="/assets/imgs/star.svg" class="inline-icon"/> </p>
+                                <p class="text">{{averageStarsVolunteer}}/5 <img src="/assets/imgs/star.svg" class="inline-icon"/> </p>
                             </div>
                             <div class="flex-row justifyContent-end">
-                                <div data-idvolunteer="1" class="btn-rounded do-rate">Avaliar</div>
+                                <input type="hidden" class="rate-volunteer" name="rate-volunteer-{{idVolunteer}}" id="input-rate-{{idVolunteer}}" data-id="{{idVolunteer}}"/>
+                                <div data-idvolunteer="{{idVolunteer}}" class="btn-rounded do-rate">Avaliar</div>
                             </div>
                         </div>
+                    {{/each}}
                     </div>
                 </div>
 
-                <h1 class="title-table">Voluntários avaliados (1)</h1>
+                <h1 class="title-table" id="title-table-rated">Voluntários avaliados (0)</h1>
                 <div class="table-container" id="table-rated">
                     <div class="table-header">
                         <div class="row">
@@ -50,27 +58,7 @@
                             <div class="flex-row"></div>
                         </div>
                     </div>
-                    <div class="table-body">
-                        <div class="row">
-                            <div class="flex-row">
-                                <figure class="table-pic">
-                                    <img src="/assets/imgs/man2.jpg"/>
-                                </figure>
-                                <article class="margin-left1">
-                                    <h1 class="small-text medium-weight-text margin0 padding0">Alfredo Augusto Oliveira</h1>
-                                    <p class="gray smallest-text margin0 padding0">Rio de Janeiro</p>
-                                </article>
-                            </div>
-                            <div class="flex-row">
-                                <p class="text">Assistente geral</p>
-                            </div>
-                            <div class="flex-row">
-                                <p class="text">4 <img src="/assets/imgs/star.svg" class="inline-icon"/> </p>
-                            </div>
-                            <div class="flex-row justifyContent-end">
-                                <div data-idvolunteer="2" class="btn-outlined edit-rate">Editar avaliação</div>
-                            </div>
-                        </div>
+                    <div class="table-body" id="table-body-rated">
                     </div>
                 </div>
 
@@ -78,7 +66,7 @@
             </form>
             <figure class="action-miniature">
                 <a href="/event/{{action.idAction}}">
-                    <img src="/assets/imgs/animal-cat-cute-46024.jpg" />
+                    <img src="/temp/uploads/action/{{action.photoAction}}" />
                     <p>{{action.nameAction}}</p>
                 </a>
             </figure>
@@ -86,26 +74,27 @@
     </div>
 </div>
 
-<div class="rate-popup" id="rate-popup-1">
-    <figure class="rate-pic">
-        <img src="/assets/imgs/man2.jpg"/>
-        <article class="rate-content">
-            <p class="rate-name">Alfredo Augusto <span class="rate-averagestars">4,5/5 <img src="/assets/imgs/star.svg"/> </span></p>
-            <p class="rate-job">Assistente geral</p>
-        </article>
-    </figure>
-    <div class="rate-stars margin-top2">
-        <label class="star"></label>
-        <label class="star"></label>
-        <label class="star"></label>
-        <label class="star"></label>
-        <label class="star"></label>
+{{#each volunteers}}
+    <div class="rate-popup" id="rate-popup-{{idVolunteer}}">
+        <figure class="rate-pic">
+            <img src="/temp/uploads/profile/{{photoVolunteer}}"/>
+            <article class="rate-content">
+                <p class="rate-name">{{nameVolunteer}} <span class="rate-averagestars">{{averageStarsVolunteer}}/5 <img src="/assets/imgs/star.svg"></span></p>
+                <p class="rate-job">{{nameVacancy}}</p>
+            </article>
+        </figure>
+        <div class="rate-stars margin-top2">
+            <label class="star star-{{idVolunteer}}"></label>
+            <label class="star star-{{idVolunteer}}"></label>
+            <label class="star star-{{idVolunteer}}"></label>
+            <label class="star star-{{idVolunteer}}"></label>
+            <label class="star star-{{idVolunteer}}"></label>
+        </div>
+        <div class="margin-top4 full-width justifyContent-end">
+            <div onclick="hideRatePopUp({{idVolunteer}})" class="btn-secondary margin-right2">Cancelar</div>
+            <div onclick="saveRate({{idVolunteer}})" class="btn-primary">Salvar</div>
+        </div>
     </div>
-    <div class="margin-top4 full-width justifyContent-end">
-        <div class="btn-secondary margin-right2">Cancelar</div>
-        <div class="btn-primary">Salvar</div>
-    </div>
-</div>
+{{/each}}
 
 <script src="/scripts/eventRatingScript.js"></script>
-<script>addEvent('star','mouseover', changeColorStar)</script>

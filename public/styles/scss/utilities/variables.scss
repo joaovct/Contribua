@@ -113,8 +113,9 @@ $borderColor: #eeeeee;
 
 %blue-rounded, .blue-rounded{
   @extend %span-rounded;
-  background: rgba(49, 113, 224,0.2);
-  color: $mainColor;
+  // background: rgba(49, 113, 224,0.2);
+  background: $mainColor;
+  color: white;
   font-weight: 500;
 }
 
@@ -192,6 +193,7 @@ $borderColor: #eeeeee;
   height: 1.2rem;
   width: auto;
   display: inline-block;
+  margin-left: 5px;
 }
 
 .bg-lightBlue {

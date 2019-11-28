@@ -7,20 +7,36 @@ const Rating = db.sequelize.define("tbRating", {
         primaryKey: true,
         type: db.Sequelize.INTEGER
     },
-    idActionVolunteer: {
+    idAction: {
         allowNull: false,
         type: db.Sequelize.INTEGER,
         references: {
-            model: "tbActionVolunteer",
-            key: "idActionVolunteer"
+            model: "tbAction",
+            key: "idAction"
+        }
+    },
+    idVolunteer: {
+        allowNull: false,
+        type: db.Sequelize.INTEGER,
+        references: {
+            model: "tbVolunteer",
+            key: "idVolunteer"
+        }
+    },
+    idNgo: {
+        allowNull: false,
+        type: db.Sequelize.INTEGER,
+        references: {
+            model: "tbNgo",
+            key: "idNgo"
         }
     },
     starsVolunteer: {
-        allowNull: false,
+        allowNull: true,
         type: db.Sequelize.FLOAT,
     },
     starsNgo: {
-        allowNull: false,
+        allowNull: true,
         type: db.Sequelize.FLOAT
     }
 }, {
@@ -29,6 +45,6 @@ const Rating = db.sequelize.define("tbRating", {
     collate: "utf8_general_ci"
 })
 
-//Rating.sync({force: true})
+// Rating.sync({force: true})
 
 module.exports = Rating

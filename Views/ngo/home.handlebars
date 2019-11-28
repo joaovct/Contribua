@@ -63,7 +63,7 @@
                     <div class="row">
                         <div class="flex-row">Nome completo</div>
                         <div class="flex-row">Tipo de membro</div>
-                        <div class="flex-row">Avaliação</div>
+                        <div class="flex-row">Média de avaliação</div>
                         <div class="flex-row">N° de eventos participados</div>
                         <figure class="member-options-icon visibility-hidden">
                             <img src="/assets/imgs/threedots.svg">
@@ -80,7 +80,7 @@
                             <article class="margin-left1">
                                 <h1 class="small-text medium-weight-text margin0 padding0">{{nameVolunteer}} {{lastNameVolunteer}}
                                 </h1>
-                                <p class="gray smallest-text margin0 padding0">{{districtVolunteer}}</p>
+                                <p class="gray smallest-text margin0 padding0">{{cityVolunteer}} - {{districtVolunteer}}</p>
                             </article>
                         </div>
                         <div class="flex-row">
@@ -91,7 +91,7 @@
                             <p><span class="blue-rounded">Administrador</span></p>
                             {{/if}}
                         </div>
-                        <div class="flex-row">{{averageStarVolunteer}}</div>
+                        <div class="flex-row">{{averageStarsVolunteer}}/5 <img src="/assets/imgs/star.svg" class="inline-icon"/></div>
                         <div class="flex-row">{{qtdActions}}</div>
                         <figure onclick="hideOptions('.member-options-{{idVolunteer}}')" class="member-options-icon">
                             <img src="/assets/imgs/threedots.svg">

@@ -19,16 +19,17 @@ async function addEventToButtons () {
 
             if (await type==="accept"){
                 await acceptRequest(id)
+                updateTable()
+
             } 
             else if(await type==="refuse"){
                 await refuseRequest(id)
+                updateTable()
             }
 
-            console.log(doUpdateTable)
-            updateTable()
             if(doUpdateTable){
-                idVacancies.map(id=>{
-                    updateTable(id)
+                idVacancies.map(idVacancy=>{
+                    updateTable(idVacancy)
                 })
             }
         })
@@ -39,7 +40,10 @@ addEventToButtons()
 
 async function acceptRequest (idActionVolunteer) {
     socket.emit('accept-subscribe', idActionVolunteer)
-    $.post(`http://localhost:3000/event/accept-event?accepted=true&idActionVolunteer=${idActionVolunteer}`)
+    $.post(`http://localhost:3000/event/accept-event?accepted=true&idActionVolunteer=${idActionVolunteer}`, data=>{
+        closeAllAlerts()
+        callAlert(data.title, data.message, data.type) 
+    })
 }
 
 async function refuseRequest (idActionVolunteer) {
@@ -51,6 +55,7 @@ async function updateTable(idVacancy){
     setTimeout(async () => { 
         if(idVacancy == undefined) idVacancy = null
         await $.post(`http://localhost:3000/event/${idAction}/management/subscribers/${idVacancy}`, async (data)=>{
+            // callAlert('Não há mais vagas disponíveis', 'O limite de vagas foi excedido para esta vaga.','error')     
             writeVacanciesRequests(data.vacanciesRequests, idVacancy)
             writeVacanciesAccepted(data.vacanciesAccepted, idVacancy)
             writeVacanciesRejected(data.vacanciesRejected, idVacancy)
@@ -98,7 +103,7 @@ async function writeVacanciesRequests(vacancies, idVacancy){
                     <div class="flex-row">
                         <p class="text">${vacancy.nameVacancy}</p>
                     </div>
-                    <div class="flex-row">${vacancy.averageStarVolunteer}</div>
+                    <div class="flex-row">${vacancy.averageStarsVolunteer}/5 <img src="/assets/imgs/star.svg" class="inline-icon"/></div>
                     <div class="flex-row justifyContent-end">
                         <button data-type="refuse" data-id="${vacancy.idActionVolunteer}" ${updateTable} class="btn-danger-outlined margin-right2 btn-request">Recusar</button>
                         <button data-type="accept" data-id="${vacancy.idActionVolunteer}" ${updateTable} class="btn-primary btn-request">Aceitar inscrição</button>
@@ -151,7 +156,7 @@ async function writeVacanciesAccepted(vacancies, idVacancy){
                             <div class="flex-row">
                                 <p class="text">${vacancy.nameVacancy}</p>
                             </div>
-                            <div class="flex-row">${vacancy.averageStarVolunteer}</div>
+                            <div class="flex-row">${vacancy.averageStarsVolunteer}/5 <img src="/assets/imgs/star.svg" class="inline-icon"/></div>
                             <div class="flex-row">
                                 <p class="green-rounded margin0 margin-right4">Aceito</p>
                                 <figure onclick="hideOptions('.member-options-${vacancy.idActionVolunteer}${repeated}')"
@@ -213,7 +218,7 @@ async function writeVacanciesRejected(vacancies, idVacancy){
                             <div class="flex-row">
                                 <p class="text">${vacancy.nameVacancy}</p>
                             </div>
-                            <div class="flex-row">${vacancy.averageStarVolunteer}</div>
+                            <div class="flex-row">${vacancy.averageStarsVolunteer}/5 <img src="/assets/imgs/star.svg" class="inline-icon"/></div>
                             <div class="flex-row">
                                 <p class="red-rounded margin0 margin-right4">Não aceito</p>
                                 <figure onclick="hideOptions('.member-options-${vacancy.idActionVolunteer}${repeated}')"

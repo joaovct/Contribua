@@ -191,6 +191,7 @@ router.get( '/:id/management', async ( req, res ) => {
 
 router.get('/:id/rating', async(req,res)=>{
     let action = await actionController.listOneAction(req.params.id)
+    
     dataHeader = req.session.user
     dataHeaderNgo = null
     if(req.session.ngo) { 
@@ -201,7 +202,41 @@ router.get('/:id/rating', async(req,res)=>{
     if( !req.session.ngo || req.session.ngo.idNgo != action.idNgo){
         res.render('error', {dataHeader, dataHeaderNgo})
     }else{
-        res.render('ngo/eventRating', {dataHeaderNgo, action})
+        let vacancies = await vacancyActionController.listVacanciesAction( action.idAction )
+        let idVacancies = vacancies.map( ( vacancy ) => {
+            return vacancy.idVacancyAction
+        } )
+        let volunteers = await vacancyActionController.listVacancyVolunteers( idVacancies, true )
+        let qtdVolunteers = volunteers.length
+        res.render('ngo/eventRating', {dataHeaderNgo, action, volunteers, qtdVolunteers})
+    }
+})
+
+router.post('/:id/rating/finish', async(req,res)=>{
+    let action = await actionController.listOneAction(req.params.id)
+    let idAction = action.idAction
+    let idNgo = action.idNgo
+    dataHeader = req.session.user
+    dataHeaderNgo = null
+    if(req.session.ngo){
+        dataHeaderNgo = req.session.ngo
+        dataHeader = null
+    }
+
+    if( !req.session.ngo || req.session.ngo.idNgo != action.idNgo){
+        res.render('error', {dataHeader, dataHeaderNgo})
+    }else{
+        let data = req.body
+        for(input in data){
+            let idVolunteer, valueRate
+            idVolunteer = input.substring(15)
+            for(value in data[input]){
+                valueRate = data[input][0]
+            }
+            await userController.updateAverageStars(idVolunteer, idNgo, idAction, valueRate)
+        }
+        req.flash("success_msg", "Voluntários avaliados.")
+        return res.redirect('/home')
     }
 })
 
@@ -255,7 +290,14 @@ router.post( "/:id/deactivate", async ( req, res ) => {
 
 router.post( "/accept-event", async ( req, res ) => {
     if ( req.query.accepted ) {
-        await actionController.acceptSubscribe( req.query.idActionVolunteer )
+        let rtn = await actionController.acceptSubscribe( req.query.idActionVolunteer )
+        if(rtn===false){
+            res.json({
+                title: "Não há vagas disponíveis",
+                message: "O limite de voluntários inscritos para essa vaga já foi excedido.",
+                type: 'error'
+            })
+        }
     }
 
     if ( req.query.refuse ) {
