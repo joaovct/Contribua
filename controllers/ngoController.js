@@ -32,7 +32,7 @@ module.exports = {
                                             districtNgo: dataNgo.ngoDistrict,
                                             addressNgo: dataNgo.ngoAddress,
                                             numAddressNgo: dataNgo.ngoAddressNumber,
-                                            averageStarsNgo: "0"
+                                            averageStarsNgo: 0
                                         })
     
                     await telephoneController.registerPhoneNgo(ngo.idNgo, dataNgo.ngoTelephone)

@@ -44,7 +44,7 @@ module.exports = {
                                     cityVolunteer: dataUser.cityVolunteer,
                                     districtVolunteer: dataUser.districtVolunteer,
                                     addressVolunteer: dataUser.addressVolunteer,
-                                    avarageStarsVolunteer: "0",
+                                    averageStarsVolunteer: 0,
                                     activeVolunteer: true
                                 })
         if(Array.isArray(dataUser.categories))

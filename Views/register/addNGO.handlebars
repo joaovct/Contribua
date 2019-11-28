@@ -27,7 +27,7 @@
                         <label for="{{descCategory}}" class="form-btnCheckbox">{{descCategory}}</label>
                     {{/each}}
                 </div>
-                <div class="display-flex justifyContent-end">
+                <div class="display-flex margin-top2 justifyContent-end">
                     <div onclick="$('.ngoRegister').hide(); $('.ngoRegister:nth-child(2)').show()" class="btn-primary">Próximo</div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                         placeholder="Email da ONG" length="200" /></div>
                 <div class="icon-input"><input name="ngoUserName" class="form-input" type="text"
                         placeholder="Nome de usuário da ong" /></div>
-                <div class="display-flex justifyContent-end">
+                <div class="display-flex margin-top2 justifyContent-end">
                     <div onclick="$('.ngoRegister').hide(); $('.ngoRegister:nth-child(1)').show()" class="btn-secondary margin-right2">Voltar</div>
                     <div onclick="$('.ngoRegister').hide(); $('.ngoRegister:nth-child(3)').show()" class="btn-primary">Próximo</div>
                 </div>
@@ -51,7 +51,7 @@
                 <textarea name="ngoDescription" type="text" class="form-input form-textarea"
                     placeholder="Descreva brevemente sua ONG; Onde atua, trabalhos realizados, causas, etc"
                     length="5000" style="height: 300px"></textarea>
-                <div class="display-flex justifyContent-end">
+                <div class="display-flex margin-top2 justifyContent-end">
                     <div onclick="$('.ngoRegister').hide(); $('.ngoRegister:nth-child(2)').show()" class="btn-secondary margin-right2">Voltar</div>
                     <button type="submit" name="registerNGO-submit" id="registerNGO-submit" class="btn-primary">Próximo</button>
                 </div>
