@@ -41,8 +41,8 @@ router.get('/:userName', async (req,res)=>{
             const ngos = await userNgoController.listNgo(idVolunteer)
             const actions = await actionController.listAcceptedActionsVolunteer(idVolunteer)
             const amtActions = actions.length
-            const amtSubscribedNgos = ngos.length
-            return res.render("user/profile", {data: user, dataHeader: req.session.user, causes: category, ngos: req.session.ngoUser, isVisit: true, isVolunteer: true, actions, amtActions, amtSubscribedNgos})
+            const amtNgos = ngos.length
+            return res.render("user/profile", {data: user, dataHeader: req.session.user, causes: category, ngos: req.session.ngoUser, isVisit: true, isVolunteer: true, actions, amtActions, amtNgos})
         }
     }
 
@@ -70,8 +70,8 @@ router.get('/:userName', async (req,res)=>{
         const ngos = await userNgoController.listNgo(idVolunteer)
         const actions = await actionController.listAcceptedActionsVolunteer(idVolunteer)
         const amtActions = actions.length
-        const amtSubscribedNgos = ngos.length
-        return res.render("user/profile", {data: user, dataHeader: req.session.user, causes: category, ngos: req.session.ngoUser, isVisit: true, isVolunteer: true, actions, amtActions, amtSubscribedNgos})
+        const amtNgos = ngos.length
+        return res.render("user/profile", {data: user, dataHeader: req.session.user, causes: category, ngos: req.session.ngoUser, isVisit: true, isVolunteer: true, actions, amtActions, amtNgos})
     }
 
     // Render other ngo profile

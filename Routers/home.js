@@ -10,14 +10,20 @@ const feedUtilities = require('../helpers/feedUtilities')
 router.get("/", async (req, res) => {
     const causes = await causesController.listCauses()
     if(req.session.ngo){
-        let activeActions = await actionController.listActiveActionsNgo(req.session.ngo.idNgo)
+        let idNgo = req.session.ngo.idNgo
+        let activeActions = await actionController.listActiveActionsNgo(idNgo)
+        let disabledActions = await actionController.listDisabledActionsNgo(idNgo)
         const ngoCauses = await causesController.listCausesNgo(req.session.ngo.idNgo)
         const causesNotParticipe = await causesController.listCausesNotParticipeNgo(req.session.ngo.idNgo)
-        for(let action of activeActions) action = feedUtilities.formatAction(action)
-        let actions = {
-            activeActions
+        for(let action of activeActions) {
+            action = await feedUtilities.formatAction(action)
         }
-        if(actions.activeActions.length == 0) actions = false
+        let actions = {
+            activeActions,
+            disabledActions
+        }
+
+        if(actions.activeActions.length == 0 && actions.disabledActions.length == 0) actions = false
         const membersNgo = await ngoController.listMembersNgo(req.session.ngo.idNgo)
         res.render("ngo/Home", {dataHeaderNgo: req.session.ngo, membersNgo, actions, ngoCauses, causesNotParticipe})
 

@@ -93,14 +93,16 @@ module.exports = {
         return actions
     },
     async listActiveActionsNgo(idNgo){
-        let actions = await Action.findAll({where: {idNgo: idNgo, isActive: true}})
-        for(let action of actions){
-            action = feedUtilities.formatAction(action) 
+        let action = await Action.findAll({where: {idNgo: idNgo, isActive: true}})
+        let ngo
+        for(let a of action){
+            ngo = await Ngo.findOne({where: {idNgo: a.idNgo}, attributes: ['nameNgo']})
+            a.nameNgo = ngo.nameNgo
         }
-        return actions
+        return action
     },
-    async listActiveActionsNgo(idNgo){
-        let action = await Action.findAll({where: {idNgo: idNgo}})
+    async listDisabledActionsNgo(idNgo){
+        let action = await Action.findAll({where: {idNgo: idNgo, isActive: false}})
         let ngo
         for(let a of action){
             ngo = await Ngo.findOne({where: {idNgo: a.idNgo}, attributes: ['nameNgo']})

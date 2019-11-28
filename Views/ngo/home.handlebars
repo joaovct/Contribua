@@ -21,10 +21,36 @@
             {{#if actions}}
             {{#if actions.activeActions}}
             <nav class="nav-articles">
-                <h1 class="title padding-top2 margin-btm1">Meus eventos ativos</h1>
+                <h1 class="title padding-top2 margin-btm1">Eventos ativos</h1>
                 <div class="group-articles">
                     {{#each actions.activeActions}}
                     <article class="feed-article">
+                        <a href="event/{{idAction}}/management">
+                            <figure class="article-image">
+                                <img src="/temp/uploads/action/{{photoAction}}" />
+                            </figure>
+                            <div class="article-content">
+                                <h1 class="article-title">{{nameAction}}</h1>
+                                <h3 class="article-subitle">{{descriptionAction}}
+                                </h3>
+                                <div class="article-ngo-details">
+                                    <p class="article-ngo-name">Por <a href="#">{{nameNgo}}</a></p>
+                                    <p class="article-ngo-date">{{createdAt.day}} de {{createdAt.month}} de
+                                        {{createdAt.year}}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    {{/each}}
+                </div>
+            </nav>
+            {{/if}}
+            {{#if actions.disabledActions}}
+            <nav class="nav-articles">
+                <h1 class="title padding-top2 margin-btm1">Eventos encerrados</h1>
+                <div class="group-articles">
+                    {{#each actions.disabledActions}}
+                    <article class="feed-article event-closed">
                         <a href="event/{{idAction}}/management">
                             <figure class="article-image">
                                 <img src="/temp/uploads/action/{{photoAction}}" />
