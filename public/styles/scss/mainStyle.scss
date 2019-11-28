@@ -373,7 +373,6 @@ ul.causes {
   display: flex;
   flex-flow: row wrap;
   list-style: none;
-  margin-top: 5px;
   li.case,
   li.cause {
     font-size: 1em;
@@ -381,7 +380,7 @@ ul.causes {
     text-align: center;
     background: $lightBlue;
     color: $mainColor;
-    margin: 0 10px 10px 0;
+    margin: 5px 10px 5px 0;
     padding: 5px 10px 5px 10px;
     border-radius: 5px;
     cursor: pointer;

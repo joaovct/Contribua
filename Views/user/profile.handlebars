@@ -3,17 +3,52 @@
 
 <div class=" centralize padding-top4">
     <div class="container">
+
         <div class="profile-data">
+            <figure class="profile-pic">
+                <img src="/temp/uploads/profile/{{data.photoVolunteer}}" />
+            </figure>
+            <div class="profile-informations">
+                    <h1 class="username justifyContent-between">{{data.nameVolunteer}} {{data.lastNameVolunteer}}
+                        {{#if isVisit}}
+                        {{else}}
+                        <a href="/settings">
+                            <img src="/assets/imgs/settings.svg" class="inline-icon"/>
+                        </a>
+                        {{/if}}
+                    </h1>
+                    <ul class="cases">
+                        {{#each causes}}
+                        <li class="case"><a href="#">{{descCategory}}</a></li>
+                        {{/each}}
+                    </ul>
+                    <p class="text gray margin-top1"><img src="/assets/imgs/placeholder.svg" class="inline-icon" />
+                        {{data.districtVolunteer}}, {{data.cityVolunteer}}.</p>
+
+                    <p class="text margin-top1">{{data.biographyVolunteer}}</p>
+            </div>
+        </div>
+        <ul class="profile-stats margin-top2 margin-btm2">
+            <li><span class="number">{{data.averageStarsVolunteer}}/5 <img src="/assets/imgs/star.svg"
+                        class="inline-icon" /></span>média de estrelas</li>
+            <li><span class="number">{{amtActions}}</span> ações em eventos</li>
+            <li><span class="number">{{amtNgos}}</span> ONGs é inscrito</li>
+        </ul>
+
+        <div class="profile-data display-none">
             <figure class="profile-pic availableVolunteer">
                 <img src="/temp/uploads/profile/{{data.photoVolunteer}}" />
             </figure>
             <div class="profile-name">
-                <h1 class="username">{{data.nameVolunteer}} {{data.lastNameVolunteer}}</h1>
-                <ul class="cases margin0">
+                <h1 class="username">{{data.nameVolunteer}} {{data.lastNameVolunteer}} </h1>
+                <p class="text gray"><img src="/assets/imgs/placeholder.svg" class="inline-icon" />
+                    {{data.districtVolunteer}}, {{data.cityVolunteer}}.</p>
+                <ul class="cases">
                     {{#each causes}}
                     <li class="case"><a href="#">{{descCategory}}</a></li>
                     {{/each}}
                 </ul>
+                <p class="text">{{data.biographyVolunteer}}</p>
             </div>
             {{#if isVisit}}
             {{else}}
@@ -23,24 +58,60 @@
                 </figure>
             </a>
             {{/if}}
-            <div class="profile-location-since">
-                <h3 class="content">{{data.cityVolunteer}}. Desde {{data.createdAt.month}} de {{data.createdAt.year}}</h3>
-                {{!-- <h3 class="content">{{data.cityVolunteer}}</h3> --}}
-            </div>
-            <div class="profile-about">
-                <p class="content">{{data.biographyVolunteer}}</p>
-            </div>
-        </div>
-        <div class="profile-stats">
-            <ul>
-                {{!-- <li><span class="number">{{data.averageStarsVolunteer}}4.5/5</span>média de estrelas</li> --}}
-                <li><span class="number">0</span> ações em eventos</li>
-                <li><span class="number">{{amtSubscribedNgos}}</span> ONGs é inscrito</li>
-            </ul>
         </div>
         <nav class="nav-articles">
-            <h1 class="title padding-top2 margin-btm1">Eventos participados</h1>
-            <h2>Este usuário ainda não participou de nenhum evento...</h2>
+            {{#if actions}}
+            <div class="wrapper-articles" data-typeArticles="recommended">
+                <h1 class="title margin0 margin-btm1">Eventos participados</h1>
+                <div class="group-articles" id="group-recommendedActions">
+                    {{#each actions}}
+                    {{#if isActive}}
+                    <article class="feed-article">
+                        <a href="event/{{idAction}}">
+                            <figure class="article-image">
+                                <img src="/temp/uploads/action/{{photoAction}}" />
+                            </figure>
+                            <div class="article-content">
+                                <h1 class="article-title">{{nameAction}}</h1>
+                                <h3 class="article-subitle">{{descriptionAction}}
+                                </h3>
+                                <div class="article-ngo-details">
+                                    <p class="article-ngo-name">Por <a href="/{{username}}">{{nameNgo}}</a></p>
+                                    <p class="article-ngo-date"><a href="event/{{idAction}}">{{createdAt.day}} de
+                                            {{createdAt.month}} de
+                                            {{createdAt.year}}</a></p>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    {{else}}
+                    <article class="feed-article event-closed">
+                        <figure class="article-image">
+                            <img src="/temp/uploads/action/{{photoAction}}" />
+                        </figure>
+                        <div class="article-content">
+                            <h1 class="article-title">{{nameAction}}</h1>
+                            <h3 class="article-subitle">{{descriptionAction}}
+                            </h3>
+                            <div class="article-ngo-details">
+                                <p class="article-ngo-name">Por <a href="/{{username}}">{{nameNgo}}</a></p>
+                                <p class="article-ngo-date"><a href="event/{{idAction}}">{{createdAt.day}} de
+                                        {{createdAt.month}} de
+                                        {{createdAt.year}}</a></p>
+                            </div>
+                        </div>
+                    </article>
+                    {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+            {{else}}
+            <div class="container flex-column align-center margin-top4">
+                <img style="height: 300px;" src="/assets/imgs/empty4.svg" />
+                <h1 class="big-text text-center margin0 margin-top4">Nada por aqui...</h1>
+                <p class="text text-center margin0 margin-top1">Este usuário ainda não participou de nenhum evento.</p>
+            </div>
+            {{/if}}
         </nav>
     </div>
 </div>

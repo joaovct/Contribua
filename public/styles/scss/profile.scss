@@ -1,113 +1,79 @@
 @import "utilities/variables";
 
 .profile-data {
-  display: grid;
-  align-items: center;
-  grid-template-areas: "figure name configuration" "figure location location" "figure about about";
-  grid-template-columns: auto 1fr auto;
-  grid-column-gap: $margin4;
-  padding: 40px 0 0 0; // For after
-
-  figure.profile-pic {
-    grid-area: figure;
-    position: relative;
+  width: 100%;
+  display: flex;
+  .profile-pic {
+    width: 175px;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-flow: column nowrap;
-    height: 100%;
     img {
       height: 175px;
       width: 175px;
       margin: 0 !important;
+      padding: 0;
       border-radius: 7px;
       object-fit: cover;
     }
-    form{
+    .btn-primary{
       width: 100%;
-      #checkbox-subscribe{
-        display: none;
-      }
-      #btn-subscribe{
-        width: 100%;
-        @extend %btn-primary;
-        border: 1px solid $mainColor;
-        outline: 0;
-      }
-      #checkbox-subscribe:checked + #btn-subscribe{
-        @extend %btn-outlined;
-        box-shadow: none;
-      }
+      margin-top: $margin2;
+    }
+    input[type="checkbox"]{
+      display: none;
     }
   }
-  .profile-name {
-    display: flex;
-    justify-content: center;
-    flex-flow: column nowrap;
-    grid-area: name;
-    .username {
-      font-size: 2.4em;
-      font-weight: bolder;
-      padding: 0;
-      margin: 0;
-    }
-  }
-  figure.linkSettings {
-    padding: 0;
+  .profile-informations {
+    width: 100%;
     margin: 0;
-    grid-area: configuration;
-    cursor: pointer;
-    img {
-      height: 28px;
-      width: 28px;
-    }
-  }
-  .profile-location-since {
-    margin: $margin2 / 2 0 0 0;
-    grid-area: location;
-    .content {
-      font-size: 1.1em;
-      font-weight: 500;
-      color: $gray;
-      margin: 0;
+    padding: 0 0 0 $margin2;
+    .username,
+    .text,
+    .gray{
+      width: 100%;
+      display: block;
       padding: 0;
-    }
-  }
-  .profile-about {
-    margin: $margin2 / 2 0 0 0;
-    grid-area: about;
-    .content {
-      font-size: 1.1em;
-      font-weight: normal;
       margin: 0;
+    }
+    .cases{
       padding: 0;
+      margin: 0;
+    }
+    .username {
+      display: flex;
+      @extend %big-text;
+      @extend %bold;
+      @extend %justifyContent-between;
+      align-items: center;
+      img.inline-icon{
+        margin: 0;
+        height: 2rem;
+      }
     }
   }
 }
-.profile-stats {
-  display: flex;
-  justify-content: center;
-  background: #f9f9f9;
-  padding: $margin2 0 $margin2 0;
-  margin: $margin2 0 $margin2 0;
-  ul {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    li {
-      margin: 0 $margin4 0 $margin4;
-      text-align: center;
-      font-size: 1.1em;
-      font-weight: bold;
-      color: $darkGray;
 
-      .number {
-        display: block;
-        font-size: 1.4em;
-        color: black;
-      }
+.profile-stats {
+  width: 100%;
+  border: $border;
+  border-radius: 7px;
+  padding: $margin1;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  li {
+    margin: 0 $margin2 0 $margin2;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: $darkGray;
+    .number {
+      display: block;
+      font-size: 1.4em;
+      color: black;
     }
   }
 }

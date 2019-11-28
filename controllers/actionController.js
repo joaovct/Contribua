@@ -84,8 +84,22 @@ module.exports = {
         const action = await Action.findOne({where: {idAction, isActive: true}})
         return action
     },
+    async listActionsNgo(idNgo){
+        let actions = await Action.findAll({where: {idNgo: idNgo}})
+        for(let action of actions){
+            action = feedUtilities.formatAction(action) 
+        }
+        return actions
+    },
     async listActiveActionsNgo(idNgo){
-        let action = await Action.findAll({where: {idNgo: idNgo, isActive: true}})
+        let actions = await Action.findAll({where: {idNgo: idNgo, isActive: true}})
+        for(let action of actions){
+            action = feedUtilities.formatAction(action) 
+        }
+        return actions
+    },
+    async listActiveActionsNgo(idNgo){
+        let action = await Action.findAll({where: {idNgo: idNgo}})
         let ngo
         for(let a of action){
             ngo = await Ngo.findOne({where: {idNgo: a.idNgo}, attributes: ['nameNgo']})
@@ -275,7 +289,7 @@ module.exports = {
         for(let av of actionVolunteer){
             if(av.idVolunteer === idUser && av.acceptedNgo === true){
                 let vacancyAction = await vacancyController.listVacancyAction(av.idVacancyAction)
-                let action = await this.listOneActiveAction(vacancyAction.idAction)
+                let action = await this.listOneAction(vacancyAction.idAction)
                 action = await feedUtilities.formatAction(action)
                 acceptedActions.push(action)
             }

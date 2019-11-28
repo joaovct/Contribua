@@ -119,6 +119,9 @@
       }
     }
     .event-closed {
+      .article-image{
+        position: relative;
+      }
       .article-image::after {
         content: "";
         position: absolute;
