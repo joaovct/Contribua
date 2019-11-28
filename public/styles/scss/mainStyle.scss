@@ -837,6 +837,51 @@ div.overlay {
       }
     }
   }
+  .modal-rate-popup {
+    @extend %box;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: $margin2;
+    z-index: 999;
+    transition: bottom 0.5s;
+    .rate-pic {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      img {
+        height: 100px;
+        width: 100px;
+        object-fit: cover;
+        border-radius: 100%;
+      }
+      .rate-content {
+        padding-left: $margin2;
+        .rate-name {
+          margin: 0;
+          font-size: 1.5rem;
+          font-weight: 500;
+          .rate-averagestars {
+            font-size: 1.1rem;
+            img {
+              height: 20px;
+              width: 20px;
+              margin: 0;
+              padding: 0;
+              display: inline-block;
+            }
+          }
+        }
+        .rate-job {
+          margin: 0;
+          font-size: 1.2rem;
+          color: $gray;
+        }
+      }
+    }
+  }
 }
 
 .table-container {
@@ -850,7 +895,7 @@ div.overlay {
       width: calc(100% / 4);
       padding: 10px;
       box-sizing: border-box;
-      button{
+      button {
         padding: $margin1;
         font-size: 1em;
         width: auto;
@@ -923,7 +968,7 @@ div.overlay {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 10px 0 0 ;
+    margin: 0 10px 0 0;
     padding: 12.5px;
     cursor: pointer;
     box-sizing: border-box;
@@ -978,20 +1023,20 @@ div.overlay {
   }
 }
 
-.rate-stars{
+.rate-stars {
   display: flex;
   justify-content: center;
-  .star{
+  .star {
     display: block;
     height: 35px;
     width: 35px;
     margin: 0 $margin1 0 $margin1;
-    background: url('../../assets/imgs/star.svg');
+    background: url("../../assets/imgs/star.svg");
     background-size: cover;
-    opacity: .40;
-    transition: opacity .5s;
+    opacity: 0.4;
+    transition: opacity 0.5s;
     cursor: pointer;
-    &:hover{
+    &:hover {
       opacity: 1;
     }
   }

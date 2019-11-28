@@ -284,7 +284,7 @@ router.post( "/:id/edit", multer( multerConfig.action() ).single( 'thumbnail' ),
 } )
 
 router.post( "/:id/deactivate", async ( req, res ) => {
-    await actionController.deactivate( req.params.id )
+    // await actionController.deactivate( req.params.id )
     return res.redirect( "/home" )
 } )
 

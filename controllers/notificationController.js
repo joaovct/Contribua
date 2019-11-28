@@ -11,7 +11,7 @@ module.exports = {
         const notification = await NotificationNgo.create({
                                 idVolunteer: user.idVolunteer,
                                 idNgo: idNgo,
-                                msgNotification: "se inscreveu em sua ong",
+                                msgNotification: "<strong>"+user.userName+"</strong> se inscreveu em sua ong",
                                 viewedNotification: false
                             })
         return notification
@@ -24,7 +24,7 @@ module.exports = {
         await NotificationNgo.create({
             idVolunteer: user.idVolunteer,
             idNgo: ngo.idNgo,
-            msgNotification: "solicitou participação na vaga "+vacancy.nameVacancyAction,
+            msgNotification: "<strong>"+user.userName+"</strong> solicitou participação na vaga "+vacancy.nameVacancyAction,
             linkNotification: "/event/"+action.idAction+"/management",
             viewedNotification: false
         })
@@ -110,5 +110,47 @@ module.exports = {
     },
     async viewedNotificationUser(idUser){
         await NotificationVolunteer.update({viewedNotification: true}, {where: {idVolunteer: idUser, viewedNotification: false}})
+    },
+    
+    // Both
+    async ratingNotificationNgo(idAction){
+        let action = await actionController.listOneAction(idAction)
+        let ngo = await ngoController.listOneNgo(action.idNgo)
+
+        await NotificationNgo.create({
+            idVolunteer: null,
+            idNgo: ngo.idNgo,
+            msgNotification: "Não se esqueça de avaliar seus voluntários do evento <strong>"+action.nameAction+"</strong>",
+            linkNotification: "/event/"+action.idAction+"/rating",
+            viewedNotification: false,
+            usePhotoNgo: true,
+        })
+
+        return ngo
+    },
+    async ratingNotificationVolunteer(idAction){
+        const action = await actionController.listOneAction(idAction)
+        const ngo = await ngoController.listOneNgo(action.idNgo)
+        const vacancies = await vacancyController.listVacanciesAction(idAction)
+        const idVacancies = vacancies.map(vacancy=>{
+            return vacancy.idVacancyAction
+        })
+
+        let volunteers = await vacancyController.listVacancyVolunteers(idVacancies, true)
+        const idVolunteers = volunteers.map(volunteer=>{
+            return volunteer.idVolunteer
+        })
+
+        await idVolunteers.forEach(async(idVolunteer)=>{
+            await NotificationVolunteer.create({
+                idVolunteer,
+                idNgo: ngo.idNgo,
+                msgNotification: `<div style="cursor: pointer;" onclick="writeRatingNgo(${action.idAction})"> O evento <strong>${action.nameAction}</strong> foi encerrado. Não se esqueça de avaliar a ONG ${ngo.nameNgo}. </div>`,
+                linkNotification: '',
+                viewedNotification: false
+            })
+        })
+
+        return volunteers
     }
 }

@@ -53,6 +53,8 @@ socket.on( 'notificationNgo', ( notificationsNgo ) => {
 } )
 
 socket.on( 'notificationUser', ( notificationsUser ) => {
+    console.log('Notificação de usuário')
+    console.log(notificationsUser)
     let oldNotifications=notificationsUser.oldNotifications
     let newNotifications=notificationsUser.newNotifications
 
@@ -91,13 +93,25 @@ linkNotify.addEventListener( "click", () => {
 } )
 
 function writeOldNotificationNgo( oldNotifications ) {
+
+    console.log(oldNotifications)
+
     for ( let i in oldNotifications ) {
         if ( session.ngo.idNgo===oldNotifications[ i ].notification.idNgo ) {
             let notification=oldNotifications[ i ].notification
             let user=oldNotifications[ i ].user
-            $( notifications ).prepend( `
-                <a href="${notification.linkNotification}"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
-            `)
+
+            if(notification.usePhotoNgo){
+                $( notifications ).prepend( `
+                    <a href="${notification.linkNotification}"><li><img src="/temp/uploads/profile/${session.ngo.photoNgo}"> <span>${notification.msgNotification}</span></li></a>
+                `)
+            }else{
+                $( notifications ).prepend( `
+                    <a href="${notification.linkNotification}"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span>${notification.msgNotification}</span></li></a>
+                `)
+            }
+
+            
 
         }
     }
@@ -109,14 +123,23 @@ function writeOldNotificationNgo( oldNotifications ) {
 }
 
 function writeNewNotificationNgo( newNotifications ) {
+
+    
     for ( let i in newNotifications ) {
         if ( session.ngo.idNgo===newNotifications[ i ].notification.idNgo ) {
             $( linkNotify ).addClass( "notify" )
             let notification=newNotifications[ i ].notification
             let user=newNotifications[ i ].user
-            $( notifications ).prepend( `
-                <a href="${notification.linkNotification}"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span><strong>${user.userName}</strong> ${notification.msgNotification}</span></li></a>
-            `)
+
+            if(notification.usePhotoNgo){
+                $( notifications ).prepend( `
+                    <a href="${notification.linkNotification}"><li><img src="/temp/uploads/profile/${session.ngo.photoNgo}"> <span>${notification.msgNotification}</span></li></a>
+                `)
+            }else{
+                $( notifications ).prepend( `
+                    <a href="${notification.linkNotification}"><li><img src="/temp/uploads/profile/${user.photoVolunteer}"> <span>${notification.msgNotification}</span></li></a>
+                `)
+            }
 
         }
     }
@@ -128,8 +151,9 @@ function writeNewNotificationNgo( newNotifications ) {
 }
 
 function writeOldNotificationUser( oldNotifications ) {
+
     for ( let i in oldNotifications ) {
-        if ( session.user.idVolunteer===oldNotifications[ i ].notification.idVolunteer ) {
+        if ( session.user.idVolunteer===oldNotifications[ i ].notification.idVolunteer) {
             let notification=oldNotifications[ i ].notification
             let ngo=oldNotifications[ i ].ngo
             $( notifications ).prepend( `
@@ -146,8 +170,11 @@ function writeOldNotificationUser( oldNotifications ) {
 }
 
 function writeNewNotificationUser( newNotifications ) {
+    
+    console.log(newNotifications)
+
     for ( let i in newNotifications ) {
-        if ( session.user.idVolunteer===newNotifications[ i ].notification.idVolunteer ) {
+        if ( session.user.idVolunteer===newNotifications[ i ].notification.idVolunteer) {
             $( linkNotify ).addClass( "notify" )
             let notification=newNotifications[ i ].notification
             let ngo=newNotifications[ i ].ngo
@@ -348,4 +375,8 @@ function rotate90( el ) {
         else degress += 45
         el.style.transform = `rotate(${degress}deg)`
     }
+}
+
+function writeRatingNgo(idAction){
+    console.log(idAction)
 }

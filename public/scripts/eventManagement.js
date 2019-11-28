@@ -315,3 +315,10 @@ btnReport.addEventListener("click", async () => {
         window.open("http://localhost:3000/reports/"+file)
     }, 500)
 })
+
+const btnDeactivate = document.getElementById('btn-proceed-deactivate') 
+btnDeactivate.addEventListener('click',()=>{
+    socket.emit('rating-alert-ngo', idAction)
+    socket.emit('rating-alert-volunteer', idAction)
+    $('#deactivate-form').submit()
+})

@@ -9,7 +9,6 @@ const NotificationVolunteer = db.sequelize.define("tbNotificationVolunteer", {
     },
     idNgo: {
         type: db.Sequelize.INTEGER,
-        allowNull: false,
         references: {
             model: "tbNgo",
             key: "idNgo"
@@ -17,7 +16,6 @@ const NotificationVolunteer = db.sequelize.define("tbNotificationVolunteer", {
     },
     idVolunteer: {
         type: db.Sequelize.INTEGER,
-        allowNull: false,
         references: {
             model: "tbVolunteer",
             key: "idVolunteer"

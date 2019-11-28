@@ -9,7 +9,6 @@ const NotificationNgo = db.sequelize.define("tbNotificationNgo", {
     },
     idVolunteer: {
         type: db.Sequelize.INTEGER,
-        allowNull: false,
         references: {
             model: "tbVolunteer",
             key: "idVolunteer"
@@ -17,7 +16,6 @@ const NotificationNgo = db.sequelize.define("tbNotificationNgo", {
     },
     idNgo: {
         type: db.Sequelize.INTEGER,
-        allowNull: false,
         references: {
             model: "tbNgo",
             key: "idNgo"
@@ -29,6 +27,9 @@ const NotificationNgo = db.sequelize.define("tbNotificationNgo", {
     },
     linkNotification: {
         type: db.Sequelize.STRING(300)
+    },
+    usePhotoNgo:{
+        type: db.Sequelize.BOOLEAN
     },
     viewedNotification:{
         type: db.Sequelize.BOOLEAN,
