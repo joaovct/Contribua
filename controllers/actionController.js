@@ -6,6 +6,7 @@ const Volunteer = require('../Models/Volunteer')
 const Ngo = require('../Models/Ngo')
 const UserNgo = require('../Models/UserNgo')
 const CategoryAction = require('../Models/CategoryAction')
+const Category = require("../models/Category")
 const causesController = require("./causesController")
 const vacancyController = require("./vacancyActionController")
 const userNgo = require("./userNgoController")
@@ -50,7 +51,7 @@ module.exports = {
     async editPunctual(dataAction, idAction){
         await Action.update({
             nameAction: dataAction.name,
-            descriptionAction: dataAction.description,
+            descriptionAction: dataAction.article,
             cepAction: dataAction.cep,
             cityAction: dataAction.city,
             districtAction: dataAction.district,
@@ -218,6 +219,55 @@ module.exports = {
         for(let action of data.actions) action = await feedUtilities.formatAction(action)
 
         return data
+    },
+    async listActionsByCauses(causes){
+        let actions = []
+        let categories = []
+
+        for(let cause of causes){
+            let category = await Category.findOne({where: {descCategory: cause}, attributes: ["idCategory"]})
+            categories.push(category.idCategory)
+        }
+
+        let categoryAction = await CategoryAction.findAll({where: {idCategory: categories}})
+        for(let ca of categoryAction){
+            let action = await this.listOneAction(ca.idAction)
+            actions.push(action)
+        }
+
+        let actionsFiltered = []
+        for(let i in actions){
+            let aux = 1
+            for(let j in actions){
+                if(actions[i].idAction === actions[j].idAction && i != j){
+                    aux++
+                }
+            }
+            actionsFiltered.push({action: actions[i], qtd: aux})
+        }
+
+        for(let i in actionsFiltered){
+            for(let j in actionsFiltered){
+                if(actionsFiltered[i].action.idAction === actionsFiltered[j].action.idAction && i != j){
+                    actionsFiltered.splice(i, 1)
+                }
+            }
+        }
+
+        for(let i in actionsFiltered){
+            for(let j in actionsFiltered){
+                if(actionsFiltered[i].qtd < actionsFiltered[j].qtd){
+                    actionsFiltered.splice(i, 1)
+                }
+            }
+        }
+
+        actions = []
+        for(let i in actionsFiltered){
+            actions.push(actionsFiltered[i].action)
+        }
+
+        return actions
     },
 
     //ACTION VOLUNTEER

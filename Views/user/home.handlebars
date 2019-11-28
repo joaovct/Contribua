@@ -12,7 +12,7 @@
                     <div class="options cause-options">
                         {{#each userCauses}}
                         <input type="checkbox" class="option-checkbox" value="{{descCategory}}" id="{{descCategory}}"
-                            name="categories" class="form-checkbox" checked>
+                            name="categories" class="form-checkbox">
                         <label for="{{descCategory}}" class="label-option">
                             <div class="option-marker"></div>{{descCategory}}
                         </label>
@@ -24,19 +24,6 @@
                             <div class="option-marker"></div>{{descCategory}}
                         </label>
                         {{/each}}
-                    </div>
-                </div>
-                
-                <div class="wrapper-options">
-                    <div onclick="$('.skills-options').toggle('fast')" class="open-options callShow margin-right1">
-                        <span>Habilidades <img src="/assets/imgs/arrow-down.svg" /></span>
-                    </div>
-                    <div class="options skills-options ">
-                        <input type="checkbox" class="option-checkbox" value="habilidade" id="habilidade"
-                            name="categories" class="form-checkbox" checked>
-                        <label for="habilidade" class="label-option">
-                            <div class="option-marker"></div>Habilidade
-                        </label>
                     </div>
                 </div>
 

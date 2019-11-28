@@ -1,4 +1,5 @@
 let buttons = document.getElementsByClassName('filters')
+let optionCheckbox = document.getElementsByClassName("option-checkbox")
 let btnProximity = document.getElementById('filter-proximity')
 let btnProximityRange = document.getElementById('filter-proximity-range')
 let boxRange = document.getElementById('options-range')
@@ -13,11 +14,23 @@ for(let b of buttons){
     b.addEventListener("click", ()=>{
         doFiltering(b)
     })
-    if(b.type === "range"){ 
+    if(b.type === "range"){     
         b.addEventListener("input", ()=>{
             doFiltering(b)
         }) 
     }
+}
+
+for(let oc of optionCheckbox){
+    oc.addEventListener("click", () => {
+        let options = []
+        for(let oc2 of optionCheckbox){
+            if(oc2.checked){
+                options.push(oc2.value)
+            }
+        }
+        doFiltering(options)
+    })
 }
 
 // Add event listener to proximity button
@@ -39,30 +52,44 @@ btnProximity.addEventListener('click', ()=>{
     }
 })
 
-doFiltering = (filter) => {
-    // Normal filters
-    if(filter.checked && filter.value != "proximity"){
-        let url = `http://localhost:3000/home/filter?key=${filter.value}`
-        $.post(url, (data) => {
-            if(data.articles != undefined || data.ngos != undefined) writeArticles(data)
-            else{
-                checksContent()
-            }
-        })
-    }else if(!filter.checked && filter.type != "range"){
-        removeArticles(filter.value)
-        checksContent()
-    }
-    // Proximity filter
-    if(filter.type === "range"){
-        let valueRange = document.getElementById('filter-proximity-range').value
-        let url = `http://localhost:3000/home/filter?key=${filter.getAttribute('data-type')}&distance=${valueRange}`
-        $.post(url, (data)=>{
-            if(data.articles != undefined || data.ngos != undefined) writeArticles(data, valueRange)
-            else{
-                checksContent()
-            }
-        })
+doFiltering = async (filter) => {
+    if(Array.isArray(filter)){
+        let data = await $.post(`http://localhost:3000/home/filter?options=${filter}&key=options`)
+
+        if(data.articles != undefined || data.ngos != undefined) 
+            writeArticles(data)
+        else{
+            checksContent()
+        }
+        if(filter.length === 0){
+            removeArticles(filter.value)
+            checksContent()
+        }
+    }else{
+        // Normal filters
+        if(filter.checked && filter.value != "proximity"){
+            let url = `http://localhost:3000/home/filter?key=${filter.value}`
+            $.post(url, (data) => {
+                if(data.articles != undefined || data.ngos != undefined) writeArticles(data)
+                else{
+                    checksContent()
+                }
+            })
+        }else if(!filter.checked && filter.type != "range"){
+            removeArticles(filter.value)
+            checksContent()
+        }
+        // Proximity filter
+        if(filter.type === "range"){
+            let valueRange = document.getElementById('filter-proximity-range').value
+            let url = `http://localhost:3000/home/filter?key=${filter.getAttribute('data-type')}&distance=${valueRange}`
+            $.post(url, (data)=>{
+                if(data.articles != undefined || data.ngos != undefined) writeArticles(data, valueRange)
+                else{
+                    checksContent()
+                }
+            })
+        }
     }
 }
 
@@ -97,6 +124,7 @@ writeActions = (articles) => {
     else if(articles.typeArticles === "recents") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend('<h1 class="title padding-top2 margin-btm1">Eventos mais recentes</h1>')
     else if(articles.typeArticles === "proximity") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend(`<h1 class="title padding-top2 margin-btm1">Eventos próximos a ${articles.district}</h1>`)
     else if(articles.typeArticles === "my-events") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend(`<h1 class="title padding-top2 margin-btm1">Seus próximos eventos</h1>`)
+    else if(articles.typeArticles === "options") $(`[data-typeArticles="${articles.typeArticles}"]`).prepend(`<h1 class="title padding-top2 margin-btm1">Eventos por causas selecionadas</h1>`)
     // Write actions
     for(let i = 0; i < articles.actions.length; i++){
         let action = articles.actions[i]
@@ -228,6 +256,9 @@ showAlertNoneArticles = (typeArticles, radiusRange) => {
             break
         case "my-events":
             msg = "seus eventos"
+            break
+        case "options":
+            msg = "tais causas selecionadas"
             break
 
     }

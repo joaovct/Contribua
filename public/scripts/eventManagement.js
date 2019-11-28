@@ -284,9 +284,9 @@ cep.addEventListener("keyup", () => {
 function fillCep(conteudo){
     if (!("erro" in conteudo)) {
         addressPreview.innerHTML = conteudo.logradouro+", "+number.value+" - "+conteudo.bairro+", "+conteudo.localidade
-        city.value = "..."
-        district.value = "..."
-        address.value = "..."
+        city.value = conteudo.localidade
+        district.value = conteudo.bairro
+        address.value = conteudo.logradouro
     }else{
         addressPreview.innerHTML = "CEP não encontrado"
         addressPreview.classList.remove("blue-rounded")
