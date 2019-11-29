@@ -42,7 +42,7 @@ router.get('/:userName', async (req,res)=>{
             const actions = await actionController.listAcceptedActionsVolunteer(idVolunteer)
             const amtActions = actions.length
             const amtNgos = ngos.length
-            return res.render("user/profile", {data: user, dataHeader: req.session.user, causes: category, ngos: req.session.ngoUser, isVisit: true, isVolunteer: true, actions, amtActions, amtNgos})
+            return res.render("user/profile", {data: user, dataHeaderNgo: req.session.ngo, causes: category, ngos: req.session.ngoUser, isVisit: true, isVolunteer: true, actions, amtActions, amtNgos})
         }
     }
 

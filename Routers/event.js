@@ -326,20 +326,15 @@ router.post( "/subscribe", async ( req, res ) => {
 } )
 
 router.post("/report-event/:id", async (req, res) => {
-
     const action = await actionController.listOneAction(req.params.id)
     const ngo = await ngoController.listOneNgo(action.idNgo)
-    const vacancies = await vacancyActionController.listVacanciesAction(action.idAction)
-    let user
+    const vacancies = await vacancyActionController.listVacanciesAction(req.params.id)
+    
+    const idVacancies = vacancies.map(vacancy=>{
+        return vacancy.idVacancyAction
+    })
 
-    if(vacancies.length === 1){
-        user = await vacancyActionController.listVacancyVolunteers(vacancies[0].idVacancyAction, true)
-    }else{
-        for(let i = 0; i < vacancies.length; i++){
-            user = await vacancyActionController.listVacancyVolunteers(vacancies[i].idVacancyAction, true)
-        }
-    }
-
+    let user = await vacancyActionController.listVacancyVolunteers(idVacancies, true)
     let data = {action, ngo, user}
 
     await report.event(data)
