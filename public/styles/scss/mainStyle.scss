@@ -839,6 +839,7 @@ div.overlay {
   }
   .modal-rate-popup {
     @extend %box;
+    max-width: $widthContainer / 2;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;

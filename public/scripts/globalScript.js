@@ -377,6 +377,106 @@ function rotate90( el ) {
     }
 }
 
-function writeRatingNgo(idAction){
-    console.log(idAction)
+let modalValueStars = -1
+
+function hideRateModal(idAction){
+    let overlay = $(`#rate-overlay-${idAction}`)
+    console.log(overlay)
+    overlay.hide()
+}
+
+async function writeRatingNgo(idAction){
+    await $.post(`http://localhost:3000/${idAction}/ngo-rating/`, async (data)=>{
+        console.log(data)
+        let action = data.action
+        let ngo = data.ngo
+
+        if(!data.isRated){
+            $("#overlay-rate-modal").append(`
+                <div class="modal-rate-popup" id="rate-modal-${idAction}">
+                    <figure class="rate-pic">
+                        <img src="/temp/uploads/profile/${ngo.photoNgo}"/>
+                        <article class="rate-content">
+                            <p class="rate-name">${ngo.nameNgo} <span class="rate-averagestars">${ngo.averageStarsNgo}/5 <img src="/assets/imgs/star.svg"></span></p>
+                            <p class="rate-job">${action.nameAction}</p>
+                        </article>
+                    </figure>
+                    <input type="hidden" id="input-modal-rate-${idAction}" value=""/>
+                    <div class="rate-stars margin-top2">
+                        <label class="star star-${idAction}"></label>
+                        <label class="star star-${idAction}"></label>
+                        <label class="star star-${idAction}"></label>
+                        <label class="star star-${idAction}"></label>
+                        <label class="star star-${idAction}"></label>
+                    </div>
+                    <div class="margin-top4 full-width justifyContent-end">
+                        <div onclick="hideRateModal(${idAction})" class="btn-secondary margin-right2">Cancelar</div>
+                        <div onclick="saveRateModal(${idAction})" class="btn-primary">Avaliar</div>
+                    </div>
+                </div>
+            `)
+            hoverStars(idAction)
+            $('#overlay-rate-modal').slideDown().css('display','flex')
+        }
+
+        if(data.alert){
+            let alert = data.alert
+            closeAllAlerts()
+            callAlert(alert.title, alert.message, alert.type)
+        }
+    })
+    
+}
+
+function hoverStars(idAction){
+    let stars = document.getElementsByClassName(`star-${idAction}`)
+    stars = Array.from(stars)
+    stars.map((star,i)=>{
+        star.addEventListener('click', ()=>{
+            stars.map((Star,j)=>{
+                modalValueStars = i
+                if(j<=i) Star.style.opacity = 1
+                else Star.style.opacity = ""
+            })
+        })
+
+        $(star).on('mouseenter', ()=>{
+            stars.map((Star, j)=>{
+                if(j<=i) Star.style.opacity = 1
+                else Star.style.opacity = ""
+            })
+        })
+
+        $(star).on('mouseleave',()=>{
+            stars.map((Star, j)=>{
+                if(j<=modalValueStars) Star.style.opacity = 1
+                else Star.style.opacity = ""
+            })
+        })
+    })
+}
+
+function hideRateModal(idAction){
+    modalValueStars = -1
+    $("#overlay-rate-modal").slideUp('fast')
+    $(`#rate-modal-${idAction}`).remove()
+}
+
+async function saveRateModal(idAction){
+    if(modalValueStars < 0){
+        closeAllAlerts()
+        callAlert('Avaliação inválida','Você precisa avaliar a ONG antes de finalizar.','error')
+    } 
+    else{
+        modalValueStars++
+        closeAllAlerts()
+        await $.post(`http://localhost:3000/${idAction}/ngo-rating/${modalValueStars}/finish`, async (data)=>{
+            if(data.alert){
+                let alert = data.alert
+                closeAllAlerts()
+                callAlert(alert.title, alert.message, alert.type)
+            }
+        })
+        hideRateModal(idAction)
+    }
 }

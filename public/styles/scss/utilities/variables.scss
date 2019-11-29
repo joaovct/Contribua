@@ -452,7 +452,7 @@ $borderColor: #eeeeee;
 }
 
 %display-block, .display-block{
-  display: block !important;
+  display: block;
 }
 
 %display-inline, .display-inline{
@@ -464,7 +464,7 @@ $borderColor: #eeeeee;
 }
 
 %display-flex, .display-flex{
-  display: flex !important;
+  display: flex;
 }
 
 %display-grid, .display-grid{

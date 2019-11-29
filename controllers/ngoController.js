@@ -129,5 +129,5 @@ module.exports = {
         if(i>0) membersNgo.qtdMembers = i
         else membersNgo = false
         return membersNgo
-    }
+    },
 }

@@ -4,6 +4,7 @@ const causesController=require( "../controllers/causesController" )
 const actionController=require( "../controllers/actionController" )
 const userController=require( "../controllers/userController" )
 const vacancyActionController=require( "../controllers/vacancyActionController" )
+const ratingController = require('../controllers/ratingController')
 const ngoController=require( "../controllers/ngoController" )
 const feedUtilities=require( '../helpers/feedUtilities' )
 const multer=require( "multer" )
@@ -233,7 +234,7 @@ router.post('/:id/rating/finish', async(req,res)=>{
             for(value in data[input]){
                 valueRate = data[input][0]
             }
-            await userController.updateAverageStars(idVolunteer, idNgo, idAction, valueRate)
+            await ratingController.updateAverageStarsVolunteer(idVolunteer, idNgo, idAction, valueRate)
         }
         req.flash("success_msg", "Voluntários avaliados.")
         return res.redirect('/home')
@@ -284,7 +285,7 @@ router.post( "/:id/edit", multer( multerConfig.action() ).single( 'thumbnail' ),
 } )
 
 router.post( "/:id/deactivate", async ( req, res ) => {
-    // await actionController.deactivate( req.params.id )
+    await actionController.deactivate( req.params.id )
     return res.redirect( "/home" )
 } )
 

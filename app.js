@@ -25,6 +25,9 @@ const event = require("./Routers/event")
 const MemoryStore = require('memorystore')(session)
 const store = new MemoryStore()
 const notificationController = require("./controllers/notificationController")
+const actionController = require('./controllers/actionController')
+const ngoController = require('./controllers/ngoController')
+const ratingController = require('./controllers/ratingController')
 
 //**Configs**//
 //cookie
@@ -199,6 +202,29 @@ app.post('/search', async (req,res)=>{
 
 app.post('/searchVolunteer', async (req,res)=>{
     res.json(await search.doSearchVolunteer(req.query.key))
+})
+
+app.post('/:id/ngo-rating/', async (req,res)=>{
+    let idVolunteer = req.session.user.idVolunteer
+    let idAction = req.params.id
+    let action = await actionController.listOneAction(idAction)
+    let ngo = await ngoController.listOneNgo(action.idNgo)
+    let isRated = await ratingController.checksNgoIsRated(ngo.idNgo, idVolunteer, idAction)
+    if(isRated){
+        res.json({isRated: true, alert: {title: "ONG já avaliada", message: "Não é possível avaliar novamente esta ONG por meio desse evento.", type: "error"}})
+    }else{
+        res.json({isRated: false, action, ngo, alert: "none"})
+    }
+})
+
+app.post('/:id/ngo-rating/:value/finish', async (req,res)=>{
+    let value = req.params.value
+    let idVolunteer = req.session.user.idVolunteer
+    let idAction = req.params.id
+    let action = await actionController.listOneAction(idAction)
+    let idNgo = action.idNgo
+    let averageStars = await ratingController.updateAverageStarsNgo(idNgo, idVolunteer, idAction, value)
+    res.json({alert: {title: "Sucesso!",message: `ONG avaliada com sucesso.`,type:"success"}})
 })
 
 // Localhost

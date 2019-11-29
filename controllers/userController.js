@@ -1,5 +1,4 @@
 const User = require("../models/Volunteer")
-const Rating = require('../models/Rating')
 const verifyEmail = require("../helpers/verifyEmail")
 const verifyCPF = require("../helpers/verifyCPF")
 const verifyUserName = require("../helpers/verifyUserName")
@@ -101,66 +100,4 @@ module.exports = {
     async listUsers(idUsers){
         const users = await User.findAll({where: {idVolunteer: idUsers}})
     },
-    async updateAverageStars(idVolunteer, idNgo, idAction, value){
-        value = parseFloat(value)
-        let totalStars = await Rating.findAll({attributes: ['starsVolunteer'], where: {idVolunteer}})
-        if(totalStars.length == 0){
-            await User.update({
-                averageStarsVolunteer: value
-            }, {where: {idVolunteer}})
-            
-            const rating = await Rating.findOne({where: {idAction, idVolunteer}})
-            if(rating === null || rating === undefined){
-                await Rating.create({
-                    idAction,
-                    idNgo,
-                    idVolunteer,
-                    starsVolunteer: value
-                })
-            }else{
-                await Rating.update({
-                    idVolunteer,
-                    idNgo,
-                    starsVolunteer: value
-                }, {where: {idAction, idVolunteer}})
-            }
-
-            let stars = await User.findOne({attributes: ['averageStarsVolunteer'], where: {idVolunteer}})
-            return stars[0]
-        }else{
-            const rating = await Rating.findOne({where: {idAction, idVolunteer}})
-            if(rating === null || rating === undefined){
-                await Rating.create({
-                    idAction,
-                    idNgo,
-                    idVolunteer,
-                    starsVolunteer: value
-                })
-            }else{
-                await Rating.update({
-                    idVolunteer,
-                    idNgo,
-                    starsVolunteer: value
-                }, {where: {idAction, idVolunteer}})
-            }
-
-            totalStars = await Rating.findAll({attributes: ['starsVolunteer'], where: {idVolunteer}})
-            
-            let averageStars = 0
-            // let i = 0
-            totalStars.map((star,j)=>{
-                averageStars += star.starsVolunteer
-                i = j + 1
-            })
-            // i++
-            averageStars /= i
-            averageStars = averageStars.toFixed(1)
-
-            await User.update({
-                averageStarsVolunteer: averageStars
-            }, {where: {idVolunteer}})
-
-            return averageStars
-        }
-    }
 }
