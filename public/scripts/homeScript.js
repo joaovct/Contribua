@@ -132,26 +132,48 @@ writeActions = (articles) => {
         // Format date
         let date = new Date(action.createdAt)
         date = formatDate(date)
-
-        $(`[data-typeGroup="${articles.typeArticles}"]`).append(
-            `
-            <article class="feed-article">
-                <a href="event/${action.idAction}">
-                    <figure class="article-image">
-                       <img src="/temp/uploads/action/${action.photoAction}" />
-                    </figure>
-                    <div class="article-content">
-                      <h1 class="article-title">${action.nameAction}</h1>
-                       <h3 class="article-subitle">${action.descriptionAction}</h3>
-                            <div class="article-ngo-details">
-                            <p class="article-ngo-name">Por <a href="#">${nameNgo}</a></p>
-                            <p class="article-ngo-date">${date.day} de ${date.month} de ${date.year}</p>
+        if(action.isActive){
+            $(`[data-typeGroup="${articles.typeArticles}"]`).append(
+                `
+                <article class="feed-article">
+                    <a href="event/${action.idAction}">
+                        <figure class="article-image">
+                           <img src="/temp/uploads/action/${action.photoAction}" />
+                        </figure>
+                        <div class="article-content">
+                          <h1 class="article-title">${action.nameAction}</h1>
+                           <h3 class="article-subitle">${action.descriptionAction}</h3>
+                                <div class="article-ngo-details">
+                                <p class="article-ngo-name">Por <a href="#">${nameNgo}</a></p>
+                                <p class="article-ngo-date">${date.day} de ${date.month} de ${date.year}</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </article>   
-            `
-        )
+                    </a>
+                </article>   
+                `
+            )
+        }else{
+            $(`[data-typeGroup="${articles.typeArticles}"]`).append(
+                `
+                <article class="feed-article event-closed">
+                    <a href="event/${action.idAction}">
+                        <figure class="article-image">
+                           <img src="/temp/uploads/action/${action.photoAction}" />
+                        </figure>
+                        <div class="article-content">
+                          <h1 class="article-title">${action.nameAction}</h1>
+                           <h3 class="article-subitle">${action.descriptionAction}</h3>
+                                <div class="article-ngo-details">
+                                <p class="article-ngo-name">Por <a href="#">${nameNgo}</a></p>
+                                <p class="article-ngo-date">${date.day} de ${date.month} de ${date.year}</p>
+                            </div>
+                        </div>
+                    </a>
+                </article>   
+                `
+            )
+        }
+        
     }
 }
 

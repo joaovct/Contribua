@@ -2,6 +2,7 @@ const Ngo = require('../models/Ngo')
 
 module.exports = {
     async formatAction(action){
+        console.log(action.descriptionAction)
         action.descriptionAction = action.descriptionAction.substring(0,100) + "..."
         const months = ["Jan", "Fev", "Mar", "Abri", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
         action.createdAt.day = action.createdAt.getDate()

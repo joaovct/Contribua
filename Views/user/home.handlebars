@@ -79,6 +79,7 @@
                 <h1 class="title padding-top2 margin-btm1">Eventos recomendados</h1>
                 <div class="group-articles" id="group-recommendedActions">
                     {{#each articles.recommendedActions}}
+                    {{#if isActive}}
                     <article class="feed-article">
                         <a href="event/{{idAction}}">
                             <figure class="article-image">
@@ -97,6 +98,27 @@
                             </div>
                         </a>
                     </article>
+                    {{else}}
+                    <article class="feed-article event-closed">
+                        <a href="event/{{idAction}}">
+                            <figure class="article-image">
+                                <img src="/temp/uploads/action/{{photoAction}}" />
+                            </figure>
+                            <div class="article-content">
+                                <h1 class="article-title">{{nameAction}}</h1>
+                                <h3 class="article-subitle">{{descriptionAction}}
+                                </h3>
+                                <div class="article-ngo-details">
+                                    <p class="article-ngo-name">Por <a href="/{{username}}">{{nameNgo}}</a></p>
+                                    <p class="article-ngo-date"><a href="event/{{idAction}}">{{createdAt.day}} de
+                                            {{createdAt.month}} de
+                                            {{createdAt.year}}</a></p>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    {{/if}}
+                    
                     {{/each}}
                 </div>
             </div>
@@ -107,6 +129,7 @@
                 <h1 class="title padding-top2 margin-btm1">Eventos de suas incrições</h1>
                 <div class="group-articles" id="group-recommendedActions">
                     {{#each articles.actionsByInscriptions}}
+                    {{#if isActive}}
                     <article class="feed-article">
                         <a href="event/{{idAction}}">
                             <figure class="article-image">
@@ -125,6 +148,27 @@
                             </div>
                         </a>
                     </article>
+                    {{else}}
+                    <article class="feed-article event-closed">
+                        <a href="event/{{idAction}}">
+                            <figure class="article-image">
+                                <img src="/temp/uploads/action/{{photoAction}}" />
+                            </figure>
+                            <div class="article-content">
+                                <h1 class="article-title">{{nameAction}}</h1>
+                                <h3 class="article-subitle">{{descriptionAction}}
+                                </h3>
+                                <div class="article-ngo-details">
+                                    <p class="article-ngo-name">Por <a href="/{{username}}">{{nameNgo}}</a></p>
+                                    <p class="article-ngo-date"><a href="event/{{idAction}}">{{createdAt.day}} de
+                                            {{createdAt.month}} de
+                                            {{createdAt.year}}</a></p>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    {{/if}}
+                    
                     {{/each}}
                 </div>
             </div>
