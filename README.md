@@ -1,6 +1,9 @@
 # Contribua!
 
  ## Contribua! is a undergraduate work project made by students from Etec de Guaianazes. Contribua! is Web plataform aimed at helping NGOs attract volunteers to their actions. Volunteers can find NGOs and actions based on causes, location and rating.
+ 
+ ### Techs used -> HTML, SASS, JS, Node.JS, MySQL 
+ 
  ### Some screenshots (Portuguese content):
  
  > ### Login
