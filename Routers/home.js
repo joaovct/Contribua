@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
 
         if(actions.activeActions.length == 0 && actions.disabledActions.length == 0) actions = false
         const membersNgo = await ngoController.listMembersNgo(req.session.ngo.idNgo)
-        res.render("ngo/Home", {dataHeaderNgo: req.session.ngo, membersNgo, actions, ngoCauses, causesNotParticipe})
+        res.render("ngo/home", {dataHeaderNgo: req.session.ngo, membersNgo, actions, ngoCauses, causesNotParticipe})
 
     }else{
         // Get articles

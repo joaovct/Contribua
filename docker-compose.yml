@@ -1,0 +1,15 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+  database:
+    image: mysql
+    environment: 
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - database:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+volumes:
+  database:

@@ -15,14 +15,14 @@ const VacancySkill = db.sequelize.define("tbVacancySkill", {
             key: "idSkill"
         }
     },
-    idVacancyVolunteer: {
-        allowNull: false,
-        type: db.Sequelize.INTEGER,
-        references: {
-            model: "tbVacancyVolunteer",
-            key: "idVacancyVolunteer"
-        }
-    }
+    // idVacancyVolunteer: {
+    //     allowNull: false,
+    //     type: db.Sequelize.INTEGER,
+    //     references: {
+    //         model: "tbVacancyVolunteer",
+    //         key: "idVacancyVolunteer"
+    //     }
+    // }
 },
 {
     freezeTableName: true,

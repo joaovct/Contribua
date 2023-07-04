@@ -1,6 +1,6 @@
 const Volunteer = require('../models/Volunteer')
 const Ngo = require('../models/Ngo')
-const Action = require('../Models/Action')
+const Action = require('../models/Action')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 var results = []

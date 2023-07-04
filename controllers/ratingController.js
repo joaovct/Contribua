@@ -1,5 +1,5 @@
 const User = require("../models/Volunteer")
-const Ngo = require('../Models/Ngo')
+const Ngo = require('../models/Ngo')
 const Rating = require('../models/Rating')
 
 module.exports = {

@@ -1,0 +1,38 @@
+const Volunteer = require('./Volunteer');
+const Skill = require('./Skill');
+const Action = require('./Action');
+const Category = require('./Category');
+const Rating = require('./Rating');
+const VacancyAction = require('./VacancyAction');
+const ActionVolunteer = require('./ActionVolunteer');
+const CategoryAction = require('./CategoryAction');
+const CategoryNgo = require('./CategoryNgo');
+const CategoryVolunteer = require('./CategoryVolunteer');
+const NotificationNgo = require('./NotificationNgo');
+const NotificationVolunteer = require('./NotificationVolunteer');
+const SkillVolunteer = require('./SkillVolunteer');
+const TelephoneNgo = require('./TelephoneNgo');
+const TelephoneVolunteer = require('./TelephoneVolunteer');
+const UserNgo = require('./UserNgo');
+const VacancySkill = require('./VacancySkill');
+const Ngo = require('./Ngo');
+
+Volunteer.sync({force:true});
+
+Skill.sync({force:true});
+Ngo.sync({force:true});
+Action.sync({force:true});
+Category.sync({force:true});
+Rating.sync({force:true});
+VacancyAction.sync({force:true});
+ActionVolunteer.sync({force:true});
+CategoryAction.sync({force:true});
+CategoryNgo.sync({force:true});
+CategoryVolunteer.sync({force:true});
+NotificationNgo.sync({force:true});
+NotificationVolunteer.sync({force:true});
+SkillVolunteer.sync({force:true});
+TelephoneNgo.sync({force:true});
+TelephoneVolunteer.sync({force:true});
+UserNgo.sync({force:true});
+VacancySkill.sync({force:true});

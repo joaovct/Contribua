@@ -63,6 +63,7 @@ app.engine('handlebars', handlebars({
     defaultLayout: 'main'
 }))
 app.set('view engine', 'handlebars')
+app.set('views', './Views');
 
 //public
 app.use(express.static(path.join(__dirname, "public")))

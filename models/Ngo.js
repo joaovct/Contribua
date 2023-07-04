@@ -61,6 +61,6 @@ const Ngo = db.sequelize.define("tbNgo", {
     collate: "utf8_general_ci"
 })
 
-//Ngo.sync({force: true})
+// Ngo.sync({force: true})
 
 module.exports = Ngo
